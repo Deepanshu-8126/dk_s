@@ -16,6 +16,7 @@ const TICKERS = [
 
 const DESKTOP_TABS = [
   { id: 'all', label: 'All Hits', icon: Flame },
+  { id: 'niches', label: '10 Viral Niches', icon: Sparkles },
   { id: 'products', label: 'Gadgets & Deals', icon: ShoppingBag },
   { id: 'gold', label: 'Gold Rate', icon: Coins },
   { id: 'hyperlocal', label: 'Fuel & Mandi', icon: Fuel },

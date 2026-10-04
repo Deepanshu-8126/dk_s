@@ -24,6 +24,7 @@ export default function MobileDrawer({ isOpen, onClose, activeTab, onSelectTab }
 
   const NAV_ITEMS = [
     { id: 'all', label: 'All Hits & Stories', icon: Flame, color: 'text-amber-600' },
+    { id: 'niches', label: '10 Viral Niches 2026', icon: Sparkles, color: 'text-indigo-600' },
     { id: 'products', label: 'Gadgets & Tech Deals', icon: ShoppingBag, color: 'text-amber-600' },
     { id: 'gold', label: 'Gold Rate Today', icon: Coins, color: 'text-amber-500' },
     { id: 'hyperlocal', label: 'Fuel & Mandi Bhav', icon: Fuel, color: 'text-emerald-600' },

@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import SEOSchema from './components/SEOSchema';
 import ProductShowcase from './components/products/ProductShowcase';
 import UniversalTopicViewer from './components/common/UniversalTopicViewer';
+import ViralNicheExplorer from './components/niches/ViralNicheExplorer';
 import ArticlesSection from './components/ArticlesSection';
 import HyperlocalSection from './components/HyperlocalSection';
 import GuideArticleView from './components/GuideArticleView';
@@ -175,6 +176,7 @@ export default function App() {
             {/* All View */}
             {activeTab === 'all' && (
               <div className="space-y-12">
+                <ViralNicheExplorer onSelectTopic={(t) => setLiveTopic(t)} />
                 <ProductShowcase searchQuery={searchQuery} />
                 <GamingSection searchQuery={searchQuery} />
                 <GoldRateWidget searchQuery={searchQuery} />
@@ -185,6 +187,7 @@ export default function App() {
             )}
 
             {/* Tab Specific Views */}
+            {activeTab === 'niches' && <div className="py-2"><ViralNicheExplorer onSelectTopic={(t) => setLiveTopic(t)} /></div>}
             {activeTab === 'products' && <div className="py-2"><ProductShowcase searchQuery={searchQuery} /></div>}
             {activeTab === 'gaming' && <div className="py-2"><GamingSection searchQuery={searchQuery} /></div>}
             {activeTab === 'gold' && <div className="py-2"><GoldRateWidget searchQuery={searchQuery} /></div>}
