@@ -9,7 +9,9 @@ export const AFFILIATE_CONFIG = {
       const stored = localStorage.getItem('ud_amazon_tag');
       if (stored) return stored.trim();
     }
-    return '';
+    return (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_AMAZON_ASSOCIATE_TAG)
+      ? import.meta.env.VITE_AMAZON_ASSOCIATE_TAG
+      : 'uniquedigi0c6-21';
   },
   earnkaroId: '3360368',
   wishlinkHandle: 'aestheticoutfits',
@@ -23,16 +25,12 @@ export const AFFILIATE_CONFIG = {
 export function buildAmazonAffiliateUrl(query, customTag = null) {
   const tag = (customTag !== null ? customTag : AFFILIATE_CONFIG.getAmazonTag()).trim();
   const clean = (query || '').trim();
-  const tagSuffix = tag ? `?tag=${encodeURIComponent(tag)}` : '';
 
   if (!clean) return tag ? `https://www.amazon.in/?tag=${encodeURIComponent(tag)}` : 'https://www.amazon.in/';
 
-  // Direct ASIN check (10 chars, alphanumeric)
-  if (clean.length === 10 && /^[A-Z0-9]{10}$/.test(clean)) {
-    return `https://www.amazon.in/dp/${clean}${tagSuffix}`;
-  }
-
-  const encoded = encodeURIComponent(clean);
+  // Clean title for search: remove brackets and noise words
+  const cleanKeywords = clean.replace(/[()]/g, ' ').replace(/\s+/g, ' ').trim();
+  const encoded = encodeURIComponent(cleanKeywords);
   return tag
     ? `https://www.amazon.in/s?k=${encoded}&tag=${encodeURIComponent(tag)}`
     : `https://www.amazon.in/s?k=${encoded}`;
