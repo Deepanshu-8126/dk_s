@@ -42,3 +42,11 @@ The user requested:
 - [x] Verify 32 routes pre-rendered with SEO metadata
 - [x] Check dev server status on `http://localhost:5175` (Healthy & HMR active)
 - [x] Document final walkthrough in `walkthrough.md`
+
+### Phase 5: Telegram Live Alerts & Real Click Analytics Tracker
+- [ ] Step 1: Add `notify_live_publication(article, live_url)` in `trend-earning-system/connectors/telegram.py` with direct article links and inline buttons.
+- [ ] Step 2: Create `uniquedigit-portal/server/analyticsService.js` to track real article views & affiliate clicks.
+- [ ] Step 3: Wire `/api/analytics/track` and `/api/analytics/stats` in `server/apiRouter.js`.
+- [ ] Step 4: Fire lightweight view ping on mount in `src/components/GuideArticleView.jsx`.
+- [ ] Step 5: Test and verify notification formatting and analytics incrementation via automated test script.
+- [ ] Step 6: Sync to GitHub and update `.env.example` with Telegram Bot token and Chat ID setup instructions.

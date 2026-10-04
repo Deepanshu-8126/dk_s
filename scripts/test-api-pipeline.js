@@ -73,6 +73,28 @@ async function runTests() {
     console.log(`ℹ️ Status: ${noSrcRes.status} Response:`, noSrcData);
   }
 
+  // Test 6: Real-Time Analytics & Click Tracking
+  console.log('\n[6] Testing /api/analytics/track and /api/analytics/stats...');
+  const testSlug = 'ssc-cgl-2026-cut-off-in-tier-2-prep';
+  await fetch(`${BASE_URL}/api/analytics/track`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ slug: testSlug, type: 'view' })
+  });
+  await fetch(`${BASE_URL}/api/analytics/track`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ slug: testSlug, type: 'click' })
+  });
+
+  const statsRes = await fetch(`${BASE_URL}/api/analytics/stats?slug=${testSlug}`);
+  const statsData = await statsRes.json();
+  if (statsRes.status === 200 && statsData.views >= 1 && statsData.clicks >= 1) {
+    console.log(`✅ Passed: Real-time tracking verified for "${testSlug}" (${statsData.views} views, ${statsData.clicks} clicks).`);
+  } else {
+    console.error('❌ Failed: /api/analytics/stats', statsData);
+  }
+
   console.log('\n--- ALL VERIFICATION TESTS COMPLETED ---');
 }
 

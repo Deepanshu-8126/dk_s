@@ -7,6 +7,7 @@ import { searchWikimediaCommons } from './wikimediaService.js';
 import { fetchTopicSources } from './sourcesService.js';
 import { generateGroundedDraft } from './geminiService.js';
 import { getPublishedArticles, getDrafts, saveDraft, publishDraft } from './storageService.js';
+import { recordAnalyticsEvent, getAnalyticsStats } from './analyticsService.js';
 
 function parseBody(req) {
   return new Promise((resolve, reject) => {
@@ -117,6 +118,25 @@ export async function handleApiRequest(req, res) {
 
       const published = await publishDraft(draftId);
       return sendJson(res, 200, { success: true, post: published });
+    }
+
+    // 7. POST /api/analytics/track
+    if (pathname === '/api/analytics/track' && method === 'POST') {
+      const body = await parseBody(req);
+      const slug = body.slug;
+      const eventType = body.type || 'view';
+      if (!slug) {
+        return sendJson(res, 400, { error: 'SLUG_REQUIRED', message: 'slug is required' });
+      }
+      const updated = recordAnalyticsEvent(slug, eventType);
+      return sendJson(res, 200, { success: true, stats: updated });
+    }
+
+    // 8. GET /api/analytics/stats
+    if (pathname === '/api/analytics/stats' && method === 'GET') {
+      const slug = url.searchParams.get('slug');
+      const stats = getAnalyticsStats(slug);
+      return sendJson(res, 200, stats);
     }
 
     return sendJson(res, 404, { error: 'NOT_FOUND', message: `Endpoint ${pathname} not found` });

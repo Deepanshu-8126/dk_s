@@ -27,6 +27,16 @@ export default function GuideArticleView({ article, onBack }) {
     dateModified: article.updatedAt || article.publishedAt,
   };
 
+  React.useEffect(() => {
+    if (article?.slug) {
+      fetch('/api/analytics/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: article.slug, type: 'view' })
+      }).catch(() => {});
+    }
+  }, [article?.slug]);
+
   return (
     <article className="max-w-4xl mx-auto py-6">
       <SEO
