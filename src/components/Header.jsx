@@ -90,20 +90,32 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
 
           <div
             onClick={() => setActiveTab('all')}
-            className="flex items-center gap-2.5 cursor-pointer select-none group"
+            className="flex items-center gap-3 cursor-pointer select-none group"
           >
-            <div
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-sm sm:text-base text-white shadow-xs bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-600 border border-indigo-500/20 group-hover:scale-105 transition-transform"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              UD
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-950 p-0.5 border border-slate-800 shadow-md group-hover:scale-105 transition-transform flex items-center justify-center">
+              <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-1">
+                <defs>
+                  <linearGradient id="udGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#6366F1" />
+                    <stop offset="50%" stopColor="#818CF8" />
+                    <stop offset="100%" stopColor="#4F46E5" />
+                  </linearGradient>
+                </defs>
+                <rect width="36" height="36" rx="8" fill="#0B0F19" />
+                <path d="M9 10V20C9 23.866 12.134 27 16 27C19.866 27 23 23.866 23 20V10" stroke="url(#udGrad)" strokeWidth="3" strokeLinecap="round" />
+                <path d="M21 10H27V26" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="27" cy="10" r="2" fill="#10B981" />
+              </svg>
             </div>
             <div>
-              <div className="font-black text-base sm:text-lg leading-none text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
-                Unique<span className="text-indigo-600">Digit</span>
+              <div className="flex items-center gap-1.5">
+                <span className="font-black text-lg sm:text-xl tracking-tight text-slate-950 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+                  Unique<span className="text-indigo-600">Digit</span>
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               </div>
-              <div className="text-[10px] font-semibold text-slate-400 hidden lg:block tracking-wide">
-                Daily Intelligence & Editorial
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5 hidden sm:block">
+                Daily Intelligence & Deals
               </div>
             </div>
           </div>

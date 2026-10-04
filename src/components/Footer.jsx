@@ -8,14 +8,22 @@ export default function Footer({ setActiveTab }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
           {/* Col 1: Brand & Ground Intelligence */}
           <div className="sm:col-span-2 md:col-span-1 lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-3">
-              <div
-                className="w-8 h-8 rounded-xl flex items-center justify-center font-black text-sm text-white bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-600 border border-indigo-500/20 shadow-xs"
-                style={{ fontFamily: 'var(--font-display)' }}
-              >
-                UD
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-9 h-9 rounded-xl bg-slate-950 p-0.5 border border-slate-800 shadow-md flex items-center justify-center shrink-0">
+                <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-1">
+                  <defs>
+                    <linearGradient id="udGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#6366F1" />
+                      <stop offset="100%" stopColor="#4F46E5" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="36" height="36" rx="8" fill="#0B0F19" />
+                  <path d="M9 10V20C9 23.866 12.134 27 16 27C19.866 27 23 23.866 23 20V10" stroke="url(#udGradFooter)" strokeWidth="3" strokeLinecap="round" />
+                  <path d="M21 10H27V26" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="27" cy="10" r="2" fill="#10B981" />
+                </svg>
               </div>
-              <span className="font-black text-lg text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+              <span className="font-black text-xl text-slate-950 tracking-tight leading-none" style={{ fontFamily: 'var(--font-display)' }}>
                 Unique<span className="text-indigo-600">Digit</span>
               </span>
             </div>
