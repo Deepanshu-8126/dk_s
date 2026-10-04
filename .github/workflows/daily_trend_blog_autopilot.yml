@@ -1,0 +1,39 @@
+name: 🚀 Autonomous UniqueDigit Intelligence & Data Sync
+
+on:
+  schedule:
+    # Runs 3 times a day: 2:00 AM (7:30 AM IST), 10:00 AM (3:30 PM IST), 6:00 PM (11:30 PM IST) UTC
+    - cron: '0 2,10,18 * * *'
+  workflow_dispatch: # Allows manual trigger anytime from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  sync-intelligence-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm clean-install --progress=false
+
+      - name: 🔄 Fetch Live Market Data (Gold, AI Tools, Deals)
+        run: node scripts/fetch-all-live-data.js
+
+      - name: ⚛️ Build Ultra-Premium React Portal
+        run: npm run build
+
+      - name: 💾 Commit & Push Fresh Data Sync
+        run: |
+          git config --global user.name "UniqueDigit Bot"
+          git config --global user.email "bot@uniquedigit.in"
+          git add public/data/ src/data/ public/sitemap.xml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-synced live rates, AI tools & sitemaps [skip ci]" && git push)

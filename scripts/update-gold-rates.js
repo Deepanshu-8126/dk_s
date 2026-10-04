@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Dynamic Daily Gold Rate Updater & Trigger Pipeline
  * ====================================================
