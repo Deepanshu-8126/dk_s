@@ -173,16 +173,16 @@ export default function App() {
               <HeroWidget setActiveTab={setActiveTab} />
             )}
 
-            {/* All View */}
+            {/* All View — High Signal Intelligence Radar */}
             {activeTab === 'all' && (
               <div className="space-y-12">
                 <ViralNicheExplorer onSelectTopic={(t) => setLiveTopic(t)} />
-                <ProductShowcase searchQuery={searchQuery} />
                 <GamingSection searchQuery={searchQuery} />
                 <GoldRateWidget searchQuery={searchQuery} />
-                <HyperlocalSection />
                 <AIToolsSection searchQuery={searchQuery} />
                 <SarkariResultSection searchQuery={searchQuery} />
+                <HyperlocalSection />
+                {searchQuery && <ProductShowcase searchQuery={searchQuery} />}
               </div>
             )}
 

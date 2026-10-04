@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Star, ExternalLink, TrendingUp, Layers, Check, Bot, Code2, Wand2, Cpu, Music, FileText, Search } from 'lucide-react';
+import { Sparkles, Star, ExternalLink, Layers, Check, Bot, Code2, Wand2, Cpu, Music, FileText, Search, X, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { AI_TOOLS } from '../data/aiTools';
 
 const CATEGORIES = [
@@ -24,6 +24,7 @@ const TOOL_ICONS = {
 
 export default function AIToolsSection({ searchQuery }) {
   const [selectedCat, setSelectedCat] = useState('all');
+  const [selectedTool, setSelectedTool] = useState(null);
   const [copiedId, setCopiedId] = useState(null);
 
   const filtered = AI_TOOLS.filter(tool => {
@@ -37,7 +38,8 @@ export default function AIToolsSection({ searchQuery }) {
     return matchCat && matchSearch;
   });
 
-  const handleShare = (id, link) => {
+  const handleShare = (e, id, link) => {
+    e.stopPropagation();
     navigator.clipboard?.writeText(link);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
@@ -51,13 +53,13 @@ export default function AIToolsSection({ searchQuery }) {
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-2">
             <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
             <Sparkles size={13} />
-            <span>Verified AI Intelligence Hub</span>
+            <span>Curated AI Intelligence Hub</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             Curated AI Tools Directory <span className="text-indigo-600">2026</span>
           </h2>
           <p className="text-xs text-slate-500 mt-1 max-w-xl leading-relaxed">
-            Kantar benchmark: +154% YoY search demand. Handpicked utility tools with free tiers, benchmark scores, and verified features.
+            Click any tool to inspect real-world capabilities, Indian INR pricing, and free tier allowances.
           </p>
         </div>
 
@@ -79,17 +81,18 @@ export default function AIToolsSection({ searchQuery }) {
         </div>
       </div>
 
-      {/* Grid of Tools (Refined Modern Cards) */}
+      {/* Grid of Tools */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {filtered.map(tool => {
           const ToolIcon = TOOL_ICONS[tool.id] || Sparkles;
           return (
             <div
               key={tool.id}
-              className="group relative flex flex-col justify-between rounded-2xl p-5 bg-white border border-slate-200 hover:border-indigo-300 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              onClick={() => setSelectedTool(tool)}
+              className="group cursor-pointer relative flex flex-col justify-between rounded-2xl p-5 bg-white border border-slate-200 hover:border-indigo-300 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               <div>
-                {/* Card Top Row */}
+                {/* Top Row */}
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-xs border bg-slate-50 border-slate-200 text-indigo-600 group-hover:scale-105 group-hover:bg-indigo-50 transition-all">
@@ -110,64 +113,119 @@ export default function AIToolsSection({ searchQuery }) {
                   </div>
                 </div>
 
-              {/* Description */}
-              <p className="text-xs text-[#4B5563] line-clamp-3 mb-3 leading-relaxed">
-                {tool.description}
-              </p>
+                <p className="text-xs text-slate-500 line-clamp-3 mb-3 leading-relaxed">
+                  {tool.description}
+                </p>
 
-              {/* Use Cases tags */}
-              {tool.useCase && (
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {tool.useCase.map((uc, idx) => (
-                    <span
-                      key={idx}
-                      className="text-[10px] px-2 py-0.5 rounded-md bg-[#F1F5F9] text-[#475569] border border-[#E2E8F0]"
-                    >
-                      #{uc}
+                {tool.useCase && (
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {tool.useCase.map((uc, idx) => (
+                      <span key={idx} className="text-[10px] px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 border border-slate-200">
+                        #{uc}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Bottom Meta & Action */}
+              <div className="pt-3 border-t border-slate-100">
+                <div className="flex items-center justify-between text-xs mb-3 text-slate-500">
+                  <span className="font-medium text-slate-700">
+                    Pricing: <strong className="text-slate-900">{tool.pricing}</strong>
+                  </span>
+                  <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                    {tool.pricingType === 'freemium' ? 'Free Tier Included' : 'Pro Tier Available'}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(tool.affiliateLink, '_blank');
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-all shadow-xs cursor-pointer"
+                  >
+                    <span>{tool.cta || 'Try Official Tool'}</span>
+                    <ExternalLink size={13} />
+                  </button>
+                  <button
+                    onClick={(e) => handleShare(e, tool.id, tool.affiliateLink)}
+                    title="Copy direct link"
+                    className="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 transition-colors cursor-pointer"
+                  >
+                    {copiedId === tool.id ? <Check size={14} className="text-emerald-600" /> : <Layers size={14} />}
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Deep Detail Modal for Selected Tool */}
+      {selectedTool && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs" onClick={() => setSelectedTool(null)}>
+          <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200" onClick={e => e.stopPropagation()}>
+            <div className="flex items-start justify-between gap-3 pb-4 border-b border-slate-100 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 font-bold">
+                  <Sparkles size={24} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-black text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
+                    {selectedTool.name}
+                  </h3>
+                  <span className="text-xs text-slate-400 font-semibold">{selectedTool.category}</span>
+                </div>
+              </div>
+              <button onClick={() => setSelectedTool(null)} className="p-1.5 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-slate-700 cursor-pointer">
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="space-y-4 text-xs">
+              <div>
+                <strong className="text-slate-800 block mb-1">What this tool is used for:</strong>
+                <p className="text-slate-600 leading-relaxed">{selectedTool.description}</p>
+              </div>
+
+              <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 font-medium">Pricing Model:</span>
+                  <strong className="text-slate-900 font-mono text-sm">{selectedTool.pricing}</strong>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 font-medium">Verified Rating:</span>
+                  <span className="font-bold text-amber-700">★ {selectedTool.rating} ({selectedTool.reviewCount} users)</span>
+                </div>
+              </div>
+
+              <div>
+                <strong className="text-slate-800 block mb-2">Primary Workflows:</strong>
+                <div className="flex flex-wrap gap-1.5">
+                  {selectedTool.useCase?.map((uc, i) => (
+                    <span key={i} className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 font-medium text-[11px]">
+                      <CheckCircle2 size={11} /> {uc}
                     </span>
                   ))}
                 </div>
-              )}
-            </div>
-
-            {/* Bottom Meta & Action */}
-            <div className="pt-3 border-t border-[#F1F5F9]">
-              <div className="flex items-center justify-between text-xs mb-3 text-[#6B7280]">
-                <span className="font-medium text-[#4B5563]">
-                  Pricing: <strong className="text-[#111827]">{tool.pricing}</strong>
-                </span>
-                <span className="text-[11px] text-[#059669] font-semibold flex items-center gap-1">
-                  <TrendingUp size={12} /> {tool.searchVolume || 'Trending'}
-                </span>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="pt-4 border-t border-slate-100 flex gap-2">
                 <a
-                  href={tool.affiliateLink}
+                  href={selectedTool.affiliateLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-bold text-white bg-[#4F46E5] hover:bg-[#4338CA] transition-all shadow-xs"
+                  className="flex-1 py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 flex items-center justify-center gap-2 shadow-xs"
                 >
-                  <span>{tool.cta || 'Try Free Now'}</span>
+                  <span>Launch Official Workspace</span>
                   <ExternalLink size={13} />
                 </a>
-                <button
-                  onClick={() => handleShare(tool.id, tool.affiliateLink)}
-                  title="Copy direct link"
-                  className="p-2 rounded-xl bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#475569] border border-[#E2E8F0] transition-colors"
-                >
-                  {copiedId === tool.id ? <Check size={14} className="text-[#059669]" /> : <Layers size={14} />}
-                </button>
               </div>
             </div>
           </div>
-        );
-      })}
-    </div>
-
-      {filtered.length === 0 && (
-        <div className="text-center py-12 rounded-2xl bg-white border border-[#E5E7EB] text-[#6B7280]">
-          <p className="text-sm">Koi AI tool match nahi hua search query ke saath.</p>
         </div>
       )}
     </section>

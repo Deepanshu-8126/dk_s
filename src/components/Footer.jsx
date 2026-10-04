@@ -19,13 +19,11 @@ export default function Footer({ setActiveTab }) {
                 Unique<span className="text-indigo-600">Digit</span>
               </span>
             </div>
-            <p className="text-xs text-slate-500 leading-relaxed mb-4">
+            <p className="text-xs text-slate-500 leading-relaxed mb-3">
               India's premier daily intelligence & utility portal. Verified bullion rates, curated AI tools, PC gaming benchmarks, and government recruitment notices.
             </p>
-            <div className="inline-flex items-center gap-1.5 text-[11px] text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <ShieldCheck size={12} className="text-emerald-600" />
-              <span>100% Free Public Verification</span>
+            <div className="text-[11px] text-slate-400 font-mono">
+              Live automated data sync • Updated October 2026
             </div>
           </div>
 

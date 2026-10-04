@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, ExternalLink, BarChart2, AlertTriangle, Coins, Activity, ShieldCheck, RefreshCw } from 'lucide-react';
 import { REAL_GOLD_DATA, fetchLiveGoldRate, isDataStale, STALE_BADGE_TEXT } from '../data/realData';
+import GoldFairPriceCalculator from './gold/GoldFairPriceCalculator';
 
 function SparkLine({ data }) {
   const min = Math.min(...data);
@@ -198,6 +199,12 @@ export default function GoldRateWidget() {
           </div>
         </div>
       </div>
+
+      {/* UniqueDigit Value Differentiator: Jewelry & Making Charge Calculator */}
+      <GoldFairPriceCalculator
+        rate22k={goldData.national.find(g => g.karat.includes('22'))?.perGram || 6842}
+        rate24k={goldData.national.find(g => g.karat.includes('24'))?.perGram || 7462}
+      />
 
       {/* City-wise Rates Table (Clean White UI Table) */}
       <div className="global-card overflow-hidden mb-5 bg-white rounded-2xl border border-[#E5E7EB] shadow-xs">
