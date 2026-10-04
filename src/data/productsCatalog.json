@@ -1,7 +1,7 @@
 {
   "lastUpdated": "2026-10-04T22:45:00+05:30",
   "displayUpdated": "4 October 2026, 10:45 PM IST",
-  "amazonTagConfigured": false,
+  "amazonTagConfigured": true,
   "count": 7,
   "products": [
     {
@@ -47,7 +47,7 @@
         "Apple Intelligence built-in for Siri & writing tools"
       ],
       "matchScore": 0,
-      "affiliateUrl": "https://www.amazon.in/dp/B0DHBY87P1"
+      "affiliateUrl": "https://www.amazon.in/dp/B0DHBY87P1?tag=sampletag-21"
     },
     {
       "id": "samsung-galaxy-s24-ultra",
@@ -92,13 +92,13 @@
         "7 years of Android OS and security upgrades"
       ],
       "matchScore": 0,
-      "affiliateUrl": "https://www.amazon.in/dp/B0CQ2BBH97"
+      "affiliateUrl": "https://www.amazon.in/dp/B0CQ2BBH97?tag=sampletag-21"
     },
     {
       "id": "oneplus-12-5g",
       "title": "OnePlus 12 5G (Silky Black, 16GB RAM, 512GB Storage)",
       "category": "Smartphones",
-      "verdictBadge": "Best Value Flagship Under ₹70k",
+      "verdictBadge": "Best Value Flagship Under \u20b970k",
       "specScore": 92,
       "verdict": "Flagship Snapdragon 8 Gen 3 performance and Hasselblad periscope cameras at half the price of Apple and Samsung ultras.",
       "pros": [
@@ -127,7 +127,7 @@
         "Processor": "Snapdragon 8 Gen 3 (4nm)",
         "Camera": "Hasselblad 4th Gen (50MP Sony LYT-808 + 64MP 3x Periscope)",
         "Battery": "5400 mAh with 100W SUPERVOOC charging",
-        "Cooling": "Dual Cryo-velocity VC cooling (9140 mm²)"
+        "Cooling": "Dual Cryo-velocity VC cooling (9140 mm\u00b2)"
       },
       "badge": "VALUE FLAGSHIP",
       "highlights": [
@@ -136,7 +136,7 @@
         "Hasselblad color calibration for portraits"
       ],
       "matchScore": 0,
-      "affiliateUrl": "https://www.amazon.in/dp/B0CQPNWJ32"
+      "affiliateUrl": "https://www.amazon.in/dp/B0CQPNWJ32?tag=sampletag-21"
     },
     {
       "id": "nvidia-rtx-4070-super-gpu",
@@ -181,7 +181,7 @@
         "Compact dual-fan form factor fits almost all mATX cases"
       ],
       "matchScore": 0,
-      "affiliateUrl": "https://www.amazon.in/dp/B0CS6Y428P"
+      "affiliateUrl": "https://www.amazon.in/dp/B0CS6Y428P?tag=sampletag-21"
     },
     {
       "id": "amd-ryzen-5-7600-processor",
@@ -192,7 +192,7 @@
       "verdict": "The best value gaming CPU in India on the future-proof AM5 socket with zero bottleneck when paired with RTX 4070 series.",
       "pros": [
         "Future-proof AM5 socket supported through 2027+ for easy drop-in upgrades",
-        "Low 65W TDP keeps Indian summer temperatures cool under 68°C"
+        "Low 65W TDP keeps Indian summer temperatures cool under 68\u00b0C"
       ],
       "cons": [
         "Requires DDR5 memory which has a minor price premium over older DDR4"
@@ -222,10 +222,10 @@
       "highlights": [
         "Supports high-speed DDR5 6000MHz memory with AMD EXPO",
         "PCIe 5.0 lanes for next-generation Gen5 NVMe SSDs",
-        "Low power draw keeps Indian summer temperatures under 68°C"
+        "Low power draw keeps Indian summer temperatures under 68\u00b0C"
       ],
       "matchScore": 0,
-      "affiliateUrl": "https://www.amazon.in/dp/B0BMQJWBDM"
+      "affiliateUrl": "https://www.amazon.in/dp/B0BMQJWBDM?tag=sampletag-21"
     },
     {
       "id": "sony-wh-1000xm5-headphones",
@@ -270,7 +270,7 @@
         "Crystal-clear voice calls with 4 beamforming microphones"
       ],
       "matchScore": 0,
-      "affiliateUrl": "https://www.amazon.in/dp/B09XS7JWHH"
+      "affiliateUrl": "https://www.amazon.in/dp/B09XS7JWHH?tag=sampletag-21"
     },
     {
       "id": "macbook-air-m3-13inch",
@@ -315,7 +315,9 @@
         "1080p FaceTime HD camera with studio-quality three-mic array"
       ],
       "matchScore": 0,
-      "affiliateUrl": "https://www.amazon.in/dp/B0CX23NSX1"
+      "affiliateUrl": "https://www.amazon.in/dp/B0CX23NSX1?tag=sampletag-21"
     }
-  ]
+  ],
+  "activeAmazonTag": "sampletag-21",
+  "lastAffiliateSync": "2026-10-04 23:10:59 IST"
 }
