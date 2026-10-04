@@ -159,6 +159,53 @@ export async function handleApiRequest(req, res) {
       return sendJson(res, 200, { success: true, data: updated });
     }
 
+    // 11. GET /api/products/search & GET /api/products/trending
+    if ((pathname === '/api/products/search' || pathname === '/api/products/trending') && method === 'GET') {
+      const jsonPath = path.resolve('public/data/products-catalog.json');
+      let catalog = [];
+      if (fs.existsSync(jsonPath)) {
+        try {
+          const raw = fs.readFileSync(jsonPath, 'utf-8');
+          const parsed = JSON.parse(raw);
+          catalog = parsed.products || [];
+        } catch {}
+      }
+
+      const q = (url.searchParams.get('q') || '').toLowerCase().trim();
+      const tag = (url.searchParams.get('tag') || '').trim();
+      const limit = parseInt(url.searchParams.get('limit') || '8', 10);
+
+      let filtered = catalog;
+      if (q) {
+        filtered = catalog.filter(p => 
+          p.title?.toLowerCase().includes(q) ||
+          p.category?.toLowerCase().includes(q) ||
+          (p.keywords && p.keywords.some(k => k.toLowerCase().includes(q)))
+        );
+        if (filtered.length === 0) {
+          filtered = catalog.slice(0, limit);
+        }
+      }
+
+      const processed = filtered.slice(0, limit).map(p => {
+        let affiliateUrl = p.affiliateUrl || '';
+        if (tag && p.asin) {
+          affiliateUrl = `https://www.amazon.in/dp/${p.asin}?tag=${encodeURIComponent(tag)}`;
+        } else if (tag && !p.asin) {
+          affiliateUrl = `https://www.amazon.in/s?k=${encodeURIComponent(p.title)}&tag=${encodeURIComponent(tag)}`;
+        }
+        return { ...p, affiliateUrl };
+      });
+
+      return sendJson(res, 200, {
+        success: true,
+        query: q,
+        tag: tag || null,
+        count: processed.length,
+        products: processed
+      });
+    }
+
     return sendJson(res, 404, { error: 'NOT_FOUND', message: `Endpoint ${pathname} not found` });
   } catch (err) {
     console.error(`[API Error] ${method} ${pathname}:`, err.message);

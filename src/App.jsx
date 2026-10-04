@@ -8,7 +8,7 @@ import SarkariResultSection from './components/SarkariResultSection';
 import AIToolsSection from './components/AIToolsSection';
 import Footer from './components/Footer';
 import SEOSchema from './components/SEOSchema';
-import AdSlot from './components/common/AdSlot';
+import ProductShowcase from './components/products/ProductShowcase';
 import ArticlesSection from './components/ArticlesSection';
 import HyperlocalSection from './components/HyperlocalSection';
 import GuideArticleView from './components/GuideArticleView';
@@ -39,6 +39,13 @@ export default function App() {
           description: "Live 24 Carat and 22 Carat gold rates across Indian metros. Verified IBJA bullion prices.",
           canonicalPath: "/gold-rate",
           schema: generateFinancialProductSchema(REAL_GOLD_DATA.national[0], REAL_GOLD_DATA.national[1]?.perGram, "India"),
+        };
+      case 'products':
+        return {
+          title: "Top Trending Gadgets, PC Builds & Deals 2026 | UniqueDigit",
+          description: "Verified tech deals, flagship smartphones, GPUs, laptops, and authentic product pricing in India.",
+          canonicalPath: "/products",
+          schema: null,
         };
       case 'hyperlocal':
         return {
@@ -119,8 +126,6 @@ export default function App() {
               setSearchQuery={setSearchQuery}
             />
 
-            <AdSlot id="header-leaderboard" slotType="leaderboard" />
-
             {/* Editorial Studio Tab */}
             {activeTab === 'studio' && (
               <div className="py-4">
@@ -139,16 +144,17 @@ export default function App() {
             {/* All View */}
             {activeTab === 'all' && (
               <div className="space-y-12">
+                <ProductShowcase searchQuery={searchQuery} />
                 <GamingSection searchQuery={searchQuery} />
                 <GoldRateWidget searchQuery={searchQuery} />
                 <HyperlocalSection />
-                <AdSlot id="in-feed-market-pulse" slotType="in-feed" />
                 <AIToolsSection searchQuery={searchQuery} />
                 <SarkariResultSection searchQuery={searchQuery} />
               </div>
             )}
 
             {/* Tab Specific Views */}
+            {activeTab === 'products' && <div className="py-2"><ProductShowcase searchQuery={searchQuery} /></div>}
             {activeTab === 'gaming' && <div className="py-2"><GamingSection searchQuery={searchQuery} /></div>}
             {activeTab === 'gold' && <div className="py-2"><GoldRateWidget searchQuery={searchQuery} /></div>}
             {activeTab === 'hyperlocal' && <div className="py-2"><HyperlocalSection /></div>}

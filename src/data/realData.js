@@ -62,16 +62,16 @@ export const REAL_GOLD_DATA = {
       desc: "Invest ₹1/day in 24K digital gold. 99.99% purity, instant withdrawal.",
       cta: "Invest Now →",
       badge: "MOST POPULAR",
-      link: "https://jar.com?ref=uniquedigit",
-      cpc: "$18–$45 per signup",
+      link: "https://jar.com",
+      cpc: "99.9% BIS Hallmarked",
     },
     {
       name: "Groww Gold ETF",
       desc: "Buy Nippon India Gold ETF directly. Zero storage cost.",
       cta: "Open Account →",
       badge: "SEBI REGULATED",
-      link: "https://groww.in?ref=uniquedigit",
-      cpc: "High EPC",
+      link: "https://groww.in",
+      cpc: "Zero Storage Charges",
     }
   ]
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Monitor, Cpu, Zap, HardDrive, CheckCircle2, ExternalLink } from 'lucide-react';
+import { buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
 
 export default function GtaBenchmarkSpecs({
   currentGta,
@@ -104,7 +105,7 @@ export default function GtaBenchmarkSpecs({
       <div className="pt-3 border-t border-[#E5E7EB] flex flex-wrap items-center justify-between gap-2">
         <span className="text-xs text-[#6B7280]">Planning to build this PC?</span>
         <a
-          href="https://amazon.in/s?k=gaming+pc+components+deals&tag=deepanshu210d-20"
+          href={buildAmazonAffiliateUrl('gaming pc components deals')}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-cyan-600 hover:bg-cyan-500 shadow-xs transition-all"

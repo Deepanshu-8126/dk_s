@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Search, X, Bell, Flame, Gamepad2, Coins, Sparkles, Newspaper, Fuel, Menu, PenTool } from 'lucide-react';
+import { Search, X, Bell, Flame, Gamepad2, Coins, Sparkles, Newspaper, Fuel, Menu, PenTool, ShoppingBag } from 'lucide-react';
 import MobileDrawer from './common/MobileDrawer';
 
 const TICKERS = [
   "GOLD ALERT: 24K Gold ₹7,462/gram — Up ₹130 today | MCX India",
+  "DEALS: iPhone 16 Pro & RTX 4070 Super price drops verified on Amazon India",
   "PETROL/DIESEL: Daily UP rates revised at 6 AM — Aligarh ₹96.48, Lucknow ₹96.57",
   "GTA 6: Rockstar confirms Vice City map size & Leonida physics engine — PC specs guide live",
   "AI TOOLS: Gemini Ultra 2.0 launches with real-time Hindi voice — 154% YoY search surge",
@@ -15,6 +16,7 @@ const TICKERS = [
 
 const DESKTOP_TABS = [
   { id: 'all', label: 'All Hits', icon: Flame },
+  { id: 'products', label: 'Gadgets & Deals', icon: ShoppingBag },
   { id: 'gold', label: 'Gold Rate', icon: Coins },
   { id: 'hyperlocal', label: 'Fuel & Mandi', icon: Fuel },
   { id: 'gaming', label: 'Gaming & GTA', icon: Gamepad2 },

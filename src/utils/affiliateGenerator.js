@@ -4,28 +4,38 @@
  */
 
 export const AFFILIATE_CONFIG = {
-  amazonTag: 'deepanshu210d-20',
+  getAmazonTag: () => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('ud_amazon_tag');
+      if (stored) return stored.trim();
+    }
+    return '';
+  },
   earnkaroId: '3360368',
   wishlinkHandle: 'aestheticoutfits',
 };
 
 /**
  * Generate Amazon India Affiliate Search / Direct Link
- * @param {string} query - Product or search keyword (e.g., 'rtx 4070 super gaming pc')
- * @param {string} [customTag] - Optional override tag
+ * If tag is provided or saved in settings, attaches ?tag=...
+ * If no tag is configured yet, generates clean direct Amazon link.
  */
 export function buildAmazonAffiliateUrl(query, customTag = null) {
-  const tag = customTag || AFFILIATE_CONFIG.amazonTag;
+  const tag = (customTag !== null ? customTag : AFFILIATE_CONFIG.getAmazonTag()).trim();
   const clean = (query || '').trim();
-  if (!clean) return `https://www.amazon.in/?tag=${tag}`;
+  const tagSuffix = tag ? `?tag=${encodeURIComponent(tag)}` : '';
+
+  if (!clean) return tag ? `https://www.amazon.in/?tag=${encodeURIComponent(tag)}` : 'https://www.amazon.in/';
 
   // Direct ASIN check (10 chars, alphanumeric)
   if (clean.length === 10 && /^[A-Z0-9]{10}$/.test(clean)) {
-    return `https://www.amazon.in/dp/${clean}?tag=${tag}`;
+    return `https://www.amazon.in/dp/${clean}${tagSuffix}`;
   }
 
   const encoded = encodeURIComponent(clean);
-  return `https://www.amazon.in/s?k=${encoded}&tag=${tag}`;
+  return tag
+    ? `https://www.amazon.in/s?k=${encoded}&tag=${encodeURIComponent(tag)}`
+    : `https://www.amazon.in/s?k=${encoded}`;
 }
 
 /**

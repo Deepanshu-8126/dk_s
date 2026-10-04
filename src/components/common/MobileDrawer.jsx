@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { X, Flame, Coins, Fuel, Gamepad2, Sparkles, Newspaper, PenTool } from 'lucide-react';
+import { X, Flame, Coins, Fuel, Gamepad2, Sparkles, Newspaper, PenTool, ShoppingBag } from 'lucide-react';
 
 export default function MobileDrawer({ isOpen, onClose, activeTab, onSelectTab }) {
   const drawerRef = useRef(null);
@@ -24,6 +24,7 @@ export default function MobileDrawer({ isOpen, onClose, activeTab, onSelectTab }
 
   const NAV_ITEMS = [
     { id: 'all', label: 'All Hits & Stories', icon: Flame, color: 'text-amber-600' },
+    { id: 'products', label: 'Gadgets & Tech Deals', icon: ShoppingBag, color: 'text-amber-600' },
     { id: 'gold', label: 'Gold Rate Today', icon: Coins, color: 'text-amber-500' },
     { id: 'hyperlocal', label: 'Fuel & Mandi Bhav', icon: Fuel, color: 'text-emerald-600' },
     { id: 'gaming', label: 'Gaming & GTA Craze', icon: Gamepad2, color: 'text-cyan-600' },
