@@ -16,7 +16,7 @@ export default function ArticleCard({ article, onClick }) {
         {/* Visual Preview */}
         <div className={`relative h-32 rounded-xl overflow-hidden mb-3 bg-gradient-to-br ${meta.gradient}`}>
           <SmartImage
-            src={meta.src}
+            src={article.image?.thumbUrl || article.imageUrl || meta.src}
             keyword={article.keyword}
             niche={meta.niche}
             alt={article.imageAlt || article.title}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, AlertCircle, Compass, Target } from 'lucide-react';
+import { CheckCircle2, Target } from 'lucide-react';
 
 /**
  * Format inline markdown: **bold**, [link](url), `code`

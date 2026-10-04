@@ -1,1 +1,1 @@
-export { GeminiKeyRotator } from './rotator.js';
+export { BlogApiClient } from './rotator.js';

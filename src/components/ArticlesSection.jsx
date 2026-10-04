@@ -1,25 +1,42 @@
-import React, { useState } from 'react';
-import { Award, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
-import { getArticlesPage } from '../data/articles/index.js';
+import React, { useState, useEffect } from 'react';
+import { Award, ShieldCheck, ChevronLeft, ChevronRight, PenTool, BookOpen } from 'lucide-react';
 import { ArticleCard } from './articles';
 import GuideArticleView from './GuideArticleView';
+import { EditorialStudio } from './studio';
+import { BlogApiClient } from '../services/geminiRotator';
+import fallbackArticles from '../data/articles/published.json';
 
-/**
- * ArticlesSection Component
- * Displays Agentic EEAT-verified long-tail articles passing Critic quality audits.
- * Features pagination & dynamic reader with full Google EEAT Author Entity.
- */
 export default function ArticlesSection() {
+  const [articles, setArticles] = useState(fallbackArticles || []);
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeArticle, setActiveArticle] = useState(null);
+  const [showStudio, setShowStudio] = useState(false);
 
-  const { articles, total, totalPages, hasNext, hasPrev } = getArticlesPage(currentPage, 8);
+  const loadPosts = async () => {
+    setLoading(true);
+    try {
+      const data = await BlogApiClient.getPosts();
+      if (Array.isArray(data.posts) && data.posts.length > 0) {
+        setArticles(data.posts);
+      }
+    } catch {
+      // Keep fallback static articles if server is unreachable
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  if (!articles || articles.length === 0) {
-    return null;
-  }
+  useEffect(() => {
+    loadPosts();
+  }, []);
 
-  // If viewing a full article guide
+  const limit = 8;
+  const total = articles.length;
+  const totalPages = Math.ceil(total / limit) || 1;
+  const start = (currentPage - 1) * limit;
+  const currentArticles = articles.slice(start, start + limit);
+
   if (activeArticle) {
     return (
       <div className="mb-12">
@@ -49,21 +66,58 @@ export default function ArticlesSection() {
             Verified Market Guides & <span className="text-emerald-600">Verdicts</span>
           </h2>
           <p className="text-xs text-[#4B5563] mt-1 max-w-xl">
-            Autonomous multi-agent research. Factual ground realities, long-tail regional prices, and honest buying verdicts.
+            Fact-grounded editorial publication. Real source citations, licensed Wikimedia Commons media, and genuine market analysis.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 shrink-0">
-          <Award size={14} className="text-amber-500" />
-          <span>Critic Audit Passed (<strong className="text-slate-800">100% Unique</strong>)</span>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowStudio(!showStudio)}
+            className="px-3.5 py-2 rounded-xl bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+          >
+            <PenTool size={14} />
+            <span>{showStudio ? 'Close Studio' : 'Editorial Studio'}</span>
+          </button>
+          <div className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-500 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200">
+            <Award size={14} className="text-amber-500" />
+            <span>100% Fact-Checked</span>
+          </div>
         </div>
       </div>
 
+      {/* Editorial Studio Inline Drafter */}
+      {showStudio && (
+        <EditorialStudio
+          onArticlePublished={() => {
+            loadPosts();
+            setShowStudio(false);
+          }}
+          onClose={() => setShowStudio(false)}
+        />
+      )}
+
+      {/* Empty State */}
+      {!loading && articles.length === 0 && (
+        <div className="p-8 text-center bg-white rounded-2xl border border-dashed border-slate-300">
+          <BookOpen size={32} className="mx-auto text-slate-400 mb-2" />
+          <h3 className="font-bold text-base text-slate-800">No Articles Published Yet</h3>
+          <p className="text-xs text-slate-500 max-w-md mx-auto mt-1 mb-4">
+            No live posts found in data store. Use the Editorial Studio to fetch sources and draft an authentic article.
+          </p>
+          <button
+            onClick={() => setShowStudio(true)}
+            className="px-4 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition-colors"
+          >
+            Open Editorial Studio
+          </button>
+        </div>
+      )}
+
       {/* Articles Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {articles.map((article) => (
+        {currentArticles.map((article) => (
           <ArticleCard
-            key={article.slug}
+            key={article.slug || article.id}
             article={article}
             onClick={() => setActiveArticle(article)}
           />
@@ -79,15 +133,15 @@ export default function ArticlesSection() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-              disabled={!hasPrev}
-              className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 disabled:opacity-40 hover:bg-slate-50 flex items-center gap-1"
+              disabled={currentPage === 1}
+              className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 disabled:opacity-40 hover:bg-slate-50 flex items-center gap-1 cursor-pointer"
             >
               <ChevronLeft size={13} /> Prev
             </button>
             <button
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-              disabled={!hasNext}
-              className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 disabled:opacity-40 hover:bg-slate-50 flex items-center gap-1"
+              disabled={currentPage === totalPages}
+              className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 disabled:opacity-40 hover:bg-slate-50 flex items-center gap-1 cursor-pointer"
             >
               Next <ChevronRight size={13} />
             </button>

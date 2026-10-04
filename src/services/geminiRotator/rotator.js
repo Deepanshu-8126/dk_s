@@ -1,83 +1,61 @@
 /**
- * Gemini Free Key Rotation & Auto-Failover Engine
- * 
- * Supports rotating multiple free Gemini API keys (e.g. GEMINI_KEY_1, GEMINI_KEY_2)
- * to bypass the 15 req/min RPM limit while staying 100% on the free tier.
+ * Client-Side Blog API Client
+ * Securely communicates with server-side endpoints without exposing GEMINI_API_KEY to browser code.
  */
 
-export class GeminiKeyRotator {
-  constructor(keys = []) {
-    // Collect from parameters or environment
-    const envKeys = [
-      process?.env?.VITE_GEMINI_API_KEY,
-      process?.env?.GEMINI_API_KEY_1,
-      process?.env?.GEMINI_API_KEY_2,
-      process?.env?.GEMINI_API_KEY_3,
-    ].filter(Boolean);
-
-    this.keys = keys.length > 0 ? keys : (envKeys.length > 0 ? envKeys : ['DEMO_FREE_KEY']);
-    this.currentIndex = 0;
-    this.keyFailures = new Map();
+export class BlogApiClient {
+  static async getPosts() {
+    const res = await fetch('/api/posts');
+    if (!res.ok) throw new Error(`Failed to fetch posts: ${res.status}`);
+    return await res.json();
   }
 
-  getActiveKey() {
-    return this.keys[this.currentIndex];
+  static async getDrafts() {
+    const res = await fetch('/api/drafts');
+    if (!res.ok) throw new Error(`Failed to fetch drafts: ${res.status}`);
+    return await res.json();
   }
 
-  rotateKey(reason = 'Rate limit or quota') {
-    const prevKey = this.getActiveKey();
-    const failures = (this.keyFailures.get(prevKey) || 0) + 1;
-    this.keyFailures.set(prevKey, failures);
-
-    this.currentIndex = (this.currentIndex + 1) % this.keys.length;
-    const nextKey = this.getActiveKey();
-    console.warn(`[Gemini Rotator] Rotated from key ${this.currentIndex === 0 ? this.keys.length : this.currentIndex} to ${(this.currentIndex + 1)} (${reason})`);
-    return nextKey;
+  static async searchMedia(query, limit = 12) {
+    const res = await fetch(`/api/media/search?q=${encodeURIComponent(query)}&limit=${limit}`);
+    if (!res.ok) throw new Error(`Failed to search media: ${res.status}`);
+    return await res.json();
   }
 
-  async generateContent(prompt, systemInstruction = '', model = 'gemini-2.5-flash') {
-    let attempts = 0;
-    const maxAttempts = Math.min(this.keys.length * 2, 6);
+  static async fetchSources(topic, sources = []) {
+    const res = await fetch('/api/sources/fetch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic, sources })
+    });
+    if (!res.ok) throw new Error(`Failed to fetch sources: ${res.status}`);
+    return await res.json();
+  }
 
-    while (attempts < maxAttempts) {
-      attempts++;
-      const apiKey = this.getActiveKey();
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-
-      try {
-        const payload = {
-          contents: [{ parts: [{ text: prompt }] }],
-        };
-        if (systemInstruction) {
-          payload.systemInstruction = { parts: [{ text: systemInstruction }] };
-        }
-
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-
-        if (res.status === 429 || res.status === 403) {
-          this.rotateKey(`HTTP ${res.status}`);
-          continue;
-        }
-
-        if (!res.ok) {
-          throw new Error(`Gemini API error: HTTP ${res.status}`);
-        }
-
-        const data = await res.json();
-        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-        return { success: true, text, model, keyIndex: this.currentIndex };
-      } catch (err) {
-        if (attempts >= maxAttempts) {
-          return { success: false, error: err.message };
-        }
-        this.rotateKey(err.message);
-      }
+  static async generateDraft({ topic, sources, image }) {
+    const res = await fetch('/api/blog/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic, sources, image })
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      const err = new Error(data.message || 'Generation failed');
+      err.code = data.error;
+      err.setupHelp = data.setupHelp;
+      throw err;
     }
+    return data;
+  }
 
-    return { success: false, error: 'All rotated Gemini keys exhausted.' };
+  static async publishDraft(draftId) {
+    const res = await fetch('/api/blog/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ draftId })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || 'Publishing failed');
+    return data;
   }
 }
