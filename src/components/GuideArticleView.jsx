@@ -133,6 +133,27 @@ export default function GuideArticleView({ article, onBack }) {
         )}
       </div>
 
+      {/* Independent Editorial & FTC Affiliate Disclosure Notice */}
+      <div className="mb-6 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start sm:items-center gap-3 text-[11px] text-slate-500">
+        <ShieldCheck size={16} className="text-emerald-600 shrink-0 mt-0.5 sm:mt-0" />
+        <span>
+          <strong>Reader-Supported Media:</strong> UniqueDigit independently benchmarks tools, gold rates, and gadgets. When you make a purchase or subscribe via our verified links, we may earn an affiliate commission at no additional cost to you.
+        </span>
+      </div>
+
+      {/* At a Glance Executive Summary */}
+      {article.metaDescription && (
+        <div className="mb-6 p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100">
+          <div className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1 flex items-center gap-1.5">
+            <BookOpen size={13} />
+            <span>At a Glance · Key Takeaways</span>
+          </div>
+          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+            {article.metaDescription}
+          </p>
+        </div>
+      )}
+
       {/* Article Content */}
       <ArticleRenderer content={article.content} />
 
