@@ -140,7 +140,8 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
               onChange={e => setSearchQuery(e.target.value)}
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}
-              placeholder="Search guides, gold..."
+              placeholder="Search topics, AI tools, gold, specs..."
+              aria-label="Search topics, AI tools, gold rates, and specs"
               className="w-full pl-8 pr-7 py-1.5 text-xs sm:text-sm rounded-xl outline-none bg-slate-50 hover:bg-slate-100/70 focus:bg-white text-slate-900 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 transition-all"
             />
             {searchQuery && (

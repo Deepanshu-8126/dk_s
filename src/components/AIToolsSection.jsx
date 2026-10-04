@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { Sparkles, Star, ExternalLink, Layers, Check, Bot, Code2, Wand2, Cpu, Music, FileText, Search, X, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, Star, ExternalLink, Layers, Check, Bot, Code2, Wand2, Cpu, Music, FileText, Search, ShieldCheck, Video } from 'lucide-react';
 import { AI_TOOLS } from '../data/aiTools';
+import AIToolModal from './ai/AIToolModal';
 
 const CATEGORIES = [
   { id: 'all', label: 'All Tools' },
-  { id: 'AI Assistant', label: 'Assistants' },
+  { id: 'Video Generation', label: 'Video AI' },
+  { id: 'AI Assistant', label: 'Assistants & LLMs' },
   { id: 'Coding', label: 'Coding' },
-  { id: 'Image & Art', label: 'Image & Video' },
+  { id: 'Image & Art', label: 'Image & Art' },
   { id: 'Writing & Copy', label: 'Writing & SEO' },
-  { id: 'Productivity', label: 'Productivity' },
+  { id: 'Audio & Music', label: 'Audio & Music' },
 ];
 
 const TOOL_ICONS = {
@@ -19,15 +21,37 @@ const TOOL_ICONS = {
   'midjourney-v7': Wand2,
   'claude-sonnet': Cpu,
   'suno-music-ai': Music,
+  'suno-v4': Music,
   'notion-ai': FileText,
+  'google-veo-2': Video,
+  'kling-ai': Video,
+  'luma-dream-machine': Video,
+  'deepseek-v3': Cpu,
 };
 
 export default function AIToolsSection({ searchQuery }) {
+  const [tools, setTools] = useState(AI_TOOLS);
   const [selectedCat, setSelectedCat] = useState('all');
   const [selectedTool, setSelectedTool] = useState(null);
   const [copiedId, setCopiedId] = useState(null);
 
-  const filtered = AI_TOOLS.filter(tool => {
+  useEffect(() => {
+    let mounted = true;
+    fetch('/api/ai-tools')
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (mounted && data?.tools && data.tools.length > 0) {
+          // Merge discovered tools at top, preserving existing tools without ID collisions
+          const discoveredIds = new Set(data.tools.map(t => t.id));
+          const existingFiltered = AI_TOOLS.filter(t => !discoveredIds.has(t.id));
+          setTools([...data.tools, ...existingFiltered]);
+        }
+      })
+      .catch(() => {});
+    return () => { mounted = false; };
+  }, []);
+
+  const filtered = tools.filter(tool => {
     const matchCat = selectedCat === 'all' || tool.category.toLowerCase().includes(selectedCat.toLowerCase());
     const q = (searchQuery || '').toLowerCase();
     const matchSearch = !q || 
@@ -52,14 +76,14 @@ export default function AIToolsSection({ searchQuery }) {
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-2">
             <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
-            <Sparkles size={13} />
-            <span>Curated AI Intelligence Hub</span>
+            <ShieldCheck size={13} className="text-emerald-600" />
+            <span>8-Pillar Authenticity Verified Engine</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             Curated AI Tools Directory <span className="text-indigo-600">2026</span>
           </h2>
           <p className="text-xs text-slate-500 mt-1 max-w-xl leading-relaxed">
-            Click any tool to inspect real-world capabilities, Indian INR pricing, and free tier allowances.
+            Auto-verified video models, frontier LLMs, and code agents audited for commercial safety, latency, and free tier allowances.
           </p>
         </div>
 
@@ -71,8 +95,8 @@ export default function AIToolsSection({ searchQuery }) {
               onClick={() => setSelectedCat(cat.id)}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                 selectedCat === cat.id
-                  ? 'bg-slate-950 text-white shadow-xs border border-slate-950'
-                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:bg-slate-50'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300'
               }`}
             >
               {cat.label}
@@ -99,9 +123,14 @@ export default function AIToolsSection({ searchQuery }) {
                       <ToolIcon size={19} />
                     </div>
                     <div>
-                      <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase bg-indigo-50 text-indigo-700 border border-indigo-100 mb-1">
-                        {tool.tagBadge || tool.category}
-                      </span>
+                      <div className="flex items-center gap-1.5 mb-1 flex-wrap">
+                        <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase bg-indigo-50 text-indigo-700 border border-indigo-100">
+                          {tool.tagBadge || tool.category}
+                        </span>
+                        <span className="inline-flex items-center gap-0.5 text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                          <ShieldCheck size={10} /> Verified
+                        </span>
+                      </div>
                       <h3 className="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug" style={{ fontFamily: 'var(--font-display)' }}>
                         {tool.name}
                       </h3>
@@ -164,70 +193,8 @@ export default function AIToolsSection({ searchQuery }) {
         })}
       </div>
 
-      {/* Deep Detail Modal for Selected Tool */}
-      {selectedTool && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs" onClick={() => setSelectedTool(null)}>
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200" onClick={e => e.stopPropagation()}>
-            <div className="flex items-start justify-between gap-3 pb-4 border-b border-slate-100 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 font-bold">
-                  <Sparkles size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-black text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
-                    {selectedTool.name}
-                  </h3>
-                  <span className="text-xs text-slate-400 font-semibold">{selectedTool.category}</span>
-                </div>
-              </div>
-              <button onClick={() => setSelectedTool(null)} className="p-1.5 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-slate-700 cursor-pointer">
-                <X size={18} />
-              </button>
-            </div>
-
-            <div className="space-y-4 text-xs">
-              <div>
-                <strong className="text-slate-800 block mb-1">What this tool is used for:</strong>
-                <p className="text-slate-600 leading-relaxed">{selectedTool.description}</p>
-              </div>
-
-              <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-500 font-medium">Pricing Model:</span>
-                  <strong className="text-slate-900 font-mono text-sm">{selectedTool.pricing}</strong>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-500 font-medium">Verified Rating:</span>
-                  <span className="font-bold text-amber-700">★ {selectedTool.rating} ({selectedTool.reviewCount} users)</span>
-                </div>
-              </div>
-
-              <div>
-                <strong className="text-slate-800 block mb-2">Primary Workflows:</strong>
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedTool.useCase?.map((uc, i) => (
-                    <span key={i} className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 font-medium text-[11px]">
-                      <CheckCircle2 size={11} /> {uc}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex gap-2">
-                <a
-                  href={selectedTool.affiliateLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 flex items-center justify-center gap-2 shadow-xs"
-                >
-                  <span>Launch Official Workspace</span>
-                  <ExternalLink size={13} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* 8-Pillars Detail Dossier Modal */}
+      <AIToolModal tool={selectedTool} onClose={() => setSelectedTool(null)} />
     </section>
   );
 }

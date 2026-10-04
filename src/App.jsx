@@ -177,7 +177,7 @@ export default function App() {
             {activeTab === 'all' && (
               <div className="space-y-12">
                 <ViralNicheExplorer onSelectTopic={(t) => setLiveTopic(t)} />
-                <GamingSection searchQuery={searchQuery} />
+                <GamingSection searchQuery={searchQuery} setActiveTab={setActiveTab} isHome={true} />
                 <GoldRateWidget searchQuery={searchQuery} />
                 <AIToolsSection searchQuery={searchQuery} />
                 <SarkariResultSection searchQuery={searchQuery} />
@@ -189,7 +189,7 @@ export default function App() {
             {/* Tab Specific Views */}
             {activeTab === 'niches' && <div className="py-2"><ViralNicheExplorer onSelectTopic={(t) => setLiveTopic(t)} /></div>}
             {activeTab === 'products' && <div className="py-2"><ProductShowcase searchQuery={searchQuery} /></div>}
-            {activeTab === 'gaming' && <div className="py-2"><GamingSection searchQuery={searchQuery} /></div>}
+            {activeTab === 'gaming' && <div className="py-2"><GamingSection searchQuery={searchQuery} setActiveTab={setActiveTab} isHome={false} /></div>}
             {activeTab === 'gold' && <div className="py-2"><GoldRateWidget searchQuery={searchQuery} /></div>}
             {activeTab === 'hyperlocal' && <div className="py-2"><HyperlocalSection /></div>}
             {activeTab === 'ai' && <div className="py-2"><AIToolsSection searchQuery={searchQuery} /></div>}

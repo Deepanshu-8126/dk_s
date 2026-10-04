@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingBag, ExternalLink, Star, ShieldCheck, Tag, Sparkles, SlidersHorizontal, Check, RefreshCw } from 'lucide-react';
 import fallbackData from '../../data/productsCatalog.json';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
+import PcBuildTable from '../gaming/PcBuildTable';
 
 export default function ProductShowcase({ searchQuery, activeCategory = 'all' }) {
+  const [activeBuildIdx, setActiveBuildIdx] = useState(1);
   const [products, setProducts] = useState(fallbackData.products || []);
   const [loading, setLoading] = useState(false);
   const [currentTag, setCurrentTag] = useState(() => AFFILIATE_CONFIG.getAmazonTag());
@@ -207,6 +209,14 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
             </div>
           );
         })}
+      </div>
+
+      {/* Complete Indian PC Builds & Component Rigs Guide */}
+      <div className="mt-14 pt-10 border-t border-slate-200">
+        <PcBuildTable
+          activeBuildIdx={activeBuildIdx}
+          setActiveBuildIdx={setActiveBuildIdx}
+        />
       </div>
     </section>
   );

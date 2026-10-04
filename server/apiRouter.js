@@ -297,6 +297,21 @@ export async function handleApiRequest(req, res) {
       return sendJson(res, 404, { error: 'TOPIC_NOT_FOUND', message: `No verified topic found for ${q}` });
     }
 
+    // 13. GET /api/ai-tools (Automated Discovery & 8-Pillar Verification Catalog)
+    if (pathname === '/api/ai-tools' && method === 'GET') {
+      const verifiedPath = path.resolve('public/data/verified_ai_tools.json');
+      if (fs.existsSync(verifiedPath)) {
+        try {
+          const raw = fs.readFileSync(verifiedPath, 'utf-8');
+          const parsed = JSON.parse(raw);
+          return sendJson(res, 200, { success: true, ...parsed });
+        } catch (e) {
+          console.warn(`[AI Tools Read Warning] ${e.message}`);
+        }
+      }
+      return sendJson(res, 200, { success: true, tools: [] });
+    }
+
     return sendJson(res, 404, { error: 'NOT_FOUND', message: `Endpoint ${pathname} not found` });
   } catch (err) {
     console.error(`[API Error] ${method} ${pathname}:`, err.message);

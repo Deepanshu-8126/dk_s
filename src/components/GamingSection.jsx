@@ -3,10 +3,11 @@ import { GTA_EDITIONS } from '../data/gamingData';
 import { REAL_GTA_DATA, fetchLiveSteamGtaPrice } from '../data/realData';
 import { GtaSpotlight, PcBuildTable, TrendingGames } from './gaming';
 
-export default function GamingSection({ searchQuery }) {
+export default function GamingSection({ searchQuery, setActiveTab, isHome = false }) {
   const [activeGtaTab, setActiveGtaTab] = useState('gta-6-pc');
   const [selectedRes, setSelectedRes] = useState('recommended');
   const [activeBuildIdx, setActiveBuildIdx] = useState(1); // Default to GTA 6 ready rig
+  const [showHardwareBuilds, setShowHardwareBuilds] = useState(!isHome);
   const [steamGtaPrice, setSteamGtaPrice] = useState({
     currentPrice: REAL_GTA_DATA.gta5.cachedPriceInr,
     isLive: false,
@@ -73,11 +74,53 @@ export default function GamingSection({ searchQuery }) {
         activeGtaTab={activeGtaTab}
       />
 
-      {/* 2. Indian PC Build Pricing Guide */}
-      <PcBuildTable
-        activeBuildIdx={activeBuildIdx}
-        setActiveBuildIdx={setActiveBuildIdx}
-      />
+      {/* 2. Indian PC Build Pricing Guide / Hardware Rigs Callout */}
+      {showHardwareBuilds ? (
+        <div className="relative">
+          {isHome && (
+            <div className="flex justify-end mb-2">
+              <button
+                onClick={() => setShowHardwareBuilds(false)}
+                className="text-xs text-slate-500 hover:text-slate-800 underline cursor-pointer"
+              >
+                Hide PC Rigs Table
+              </button>
+            </div>
+          )}
+          <PcBuildTable
+            activeBuildIdx={activeBuildIdx}
+            setActiveBuildIdx={setActiveBuildIdx}
+          />
+        </div>
+      ) : (
+        <div className="my-6 p-4 md:p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-indigo-500/20 shadow-xs">
+          <div>
+            <span className="text-[10px] font-black tracking-widest text-indigo-400 uppercase">Hardware Rigs & Deals</span>
+            <h4 className="text-sm md:text-base font-bold text-white mt-0.5" style={{ fontFamily: 'var(--font-display)' }}>
+              Building a PC for GTA 6 or Esports?
+            </h4>
+            <p className="text-xs text-slate-300 mt-0.5">
+              Compare 4 tested builds (₹35k Budget to ₹2.2L Ultra) with verified part prices.
+            </p>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={() => setShowHardwareBuilds(true)}
+              className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors cursor-pointer"
+            >
+              Quick View Rigs
+            </button>
+            {setActiveTab && (
+              <button
+                onClick={() => setActiveTab('products')}
+                className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-xs transition-colors cursor-pointer"
+              >
+                Gadgets & Deals Tab →
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* 3. Trending Games in India */}
       <TrendingGames />
