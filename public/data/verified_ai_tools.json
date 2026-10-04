@@ -1,6 +1,6 @@
 {
   "version": "2026.10",
-  "updatedAt": "2026-10-04 23:04:08 UTC",
+  "updatedAt": "2026-10-04 23:36:58 UTC",
   "totalAudited": 6,
   "pillarsAudited": [
     "Official Domain & SSL",
@@ -45,7 +45,7 @@
       "verificationScore": 98,
       "isNew": true,
       "isFeatured": true,
-      "lastAudited": "2026-10-04 23:04 UTC",
+      "lastAudited": "2026-10-04 23:36 UTC",
       "status": "VERIFIED_ACTIVE"
     },
     {
@@ -80,7 +80,7 @@
       "verificationScore": 95,
       "isNew": true,
       "isFeatured": true,
-      "lastAudited": "2026-10-04 23:04 UTC",
+      "lastAudited": "2026-10-04 23:36 UTC",
       "status": "VERIFIED_ACTIVE"
     },
     {
@@ -115,7 +115,7 @@
       "verificationScore": 99,
       "isNew": true,
       "isFeatured": true,
-      "lastAudited": "2026-10-04 23:04 UTC",
+      "lastAudited": "2026-10-04 23:36 UTC",
       "status": "VERIFIED_ACTIVE"
     },
     {
@@ -149,7 +149,7 @@
       "verificationScore": 94,
       "isNew": false,
       "isFeatured": false,
-      "lastAudited": "2026-10-04 23:04 UTC",
+      "lastAudited": "2026-10-04 23:36 UTC",
       "status": "VERIFIED_ACTIVE"
     },
     {
@@ -184,7 +184,7 @@
       "verificationScore": 99,
       "isNew": false,
       "isFeatured": true,
-      "lastAudited": "2026-10-04 23:04 UTC",
+      "lastAudited": "2026-10-04 23:36 UTC",
       "status": "VERIFIED_ACTIVE"
     },
     {
@@ -218,7 +218,7 @@
       "verificationScore": 96,
       "isNew": true,
       "isFeatured": false,
-      "lastAudited": "2026-10-04 23:04 UTC",
+      "lastAudited": "2026-10-04 23:36 UTC",
       "status": "VERIFIED_ACTIVE"
     }
   ]

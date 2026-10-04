@@ -101,14 +101,37 @@ export default function UniversalTopicViewer({ topic, onClose }) {
       </div>
 
       {/* Summary Section */}
-      <div className="p-5 sm:p-6">
+      <div className="p-5 sm:p-6 bg-white">
         <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
           <BookOpen size={13} className="text-slate-500" />
-          <span>Detailed Ground Analysis</span>
+          <span>Detailed Ground Analysis & Verdict</span>
         </h3>
-        <p className="text-sm text-slate-700 leading-relaxed">
+        <p className="text-sm text-slate-700 leading-relaxed mb-6">
           {topic.summary}
         </p>
+
+        {/* Dynamic Affiliate CTA + Sticky Recommendations */}
+        <div className="p-4 rounded-xl bg-slate-900 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-slate-800">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+                Verified Indian Pricing & Deals
+              </span>
+            </div>
+            <p className="text-xs text-slate-300 mt-1">
+              Check live availability, seller offers & lowest price on Amazon India for <strong className="text-white">{topic.title}</strong>
+            </p>
+          </div>
+          <a
+            href={`https://www.amazon.in/s?k=${encodeURIComponent(topic.title)}&tag=uniquedigi0c6-21`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm text-center shadow-lg transition-all transform hover:scale-[1.02] cursor-pointer shrink-0"
+          >
+            Check Price on Amazon.in →
+          </a>
+        </div>
       </div>
     </div>
   );
