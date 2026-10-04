@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-10-04T14:54:12.619006+00:00",
-  "displayUpdated": "04 October 2026, 08:24 PM IST",
-  "source": "IBJA / Multi Commodity Exchange (MCX)",
+  "lastUpdated": "2026-10-04T17:34:08.089Z",
+  "displayUpdated": "4 October 2026, 11:04 pm IST",
+  "source": "IBJA / Multi Commodity Exchange",
   "isLive": true,
   "currency": "INR",
   "national": [
@@ -11,7 +11,7 @@
       "perGram": 7462,
       "per10g": 74620,
       "change": 130,
-      "changePercent": 1.77,
+      "changePercent": 1.74,
       "direction": "up"
     },
     {
@@ -20,79 +20,110 @@
       "perGram": 6835,
       "per10g": 68350,
       "change": 119,
-      "changePercent": 1.77,
+      "changePercent": 1.74,
       "direction": "up"
     },
     {
       "karat": "18 Carat",
       "purity": "75.0%",
-      "perGram": 5596,
-      "per10g": 55960,
+      "perGram": 5597,
+      "per10g": 55970,
       "change": 98,
-      "changePercent": 1.77,
+      "changePercent": 1.74,
       "direction": "up"
     }
   ],
   "cities": [
     {
       "city": "Mumbai",
-      "rate24k": 7462,
       "rate22k": 6835,
-      "change": 130
+      "rate24k": 7462,
+      "change": 119
     },
     {
       "city": "Delhi",
-      "rate24k": 7480,
       "rate22k": 6851,
-      "change": 130
+      "rate24k": 7480,
+      "change": 119
     },
     {
       "city": "Bangalore",
-      "rate24k": 7455,
       "rate22k": 6828,
-      "change": 130
+      "rate24k": 7455,
+      "change": 119
     },
     {
       "city": "Chennai",
-      "rate24k": 7495,
       "rate22k": 6863,
-      "change": 130
+      "rate24k": 7495,
+      "change": 119
     },
     {
       "city": "Hyderabad",
-      "rate24k": 7460,
       "rate22k": 6833,
-      "change": 130
+      "rate24k": 7460,
+      "change": 119
     },
     {
       "city": "Kolkata",
-      "rate24k": 7470,
       "rate22k": 6843,
-      "change": 130
+      "rate24k": 7470,
+      "change": 119
     },
     {
       "city": "Pune",
-      "rate24k": 7465,
       "rate22k": 6838,
-      "change": 130
+      "rate24k": 7465,
+      "change": 119
     },
     {
       "city": "Ahmedabad",
-      "rate24k": 7458,
       "rate22k": 6831,
-      "change": 130
+      "rate24k": 7458,
+      "change": 119
+    }
+  ],
+  "sparkline": [
+    7182,
+    7222,
+    7272,
+    7322,
+    7362,
+    7402,
+    7332,
+    7462
+  ],
+  "nifty": {
+    "value": "25,842",
+    "change": "+386.05",
+    "changePercent": "+1.52%",
+    "direction": "up",
+    "open": "25,456",
+    "high": "25,890",
+    "low": "25,410"
+  },
+  "sensex": {
+    "value": "84,891",
+    "change": "+1,254.00",
+    "changePercent": "+1.50%",
+    "direction": "up"
+  },
+  "affiliates": [
+    {
+      "name": "Jar App — Digital Gold",
+      "desc": "Invest ₹1/day in 24K digital gold. 99.99% purity, instant withdrawal.",
+      "cta": "Invest Now →",
+      "badge": "MOST POPULAR",
+      "link": "https://jar.com?ref=uniquedigit",
+      "cpc": "$18–$45 per signup"
     },
     {
-      "city": "Lucknow",
-      "rate24k": 7482,
-      "rate22k": 6853,
-      "change": 130
-    },
-    {
-      "city": "Jaipur",
-      "rate24k": 7477,
-      "rate22k": 6849,
-      "change": 130
+      "name": "Groww Gold ETF",
+      "desc": "Buy Nippon India Gold ETF directly. Zero storage cost.",
+      "cta": "Open Account →",
+      "badge": "SEBI REGULATED",
+      "link": "https://groww.in?ref=uniquedigit",
+      "cpc": "High EPC"
     }
   ]
 }
