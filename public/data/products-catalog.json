@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-10-04T20:45:00+05:30",
-  "displayUpdated": "4 October 2026, 08:45 PM IST",
+  "lastUpdated": "2026-10-04T22:45:00+05:30",
+  "displayUpdated": "4 October 2026, 10:45 PM IST",
   "amazonTagConfigured": false,
   "count": 7,
   "products": [
@@ -8,6 +8,16 @@
       "id": "apple-iphone-16-pro",
       "title": "Apple iPhone 16 Pro (128 GB) - Desert Titanium",
       "category": "Smartphones",
+      "verdictBadge": "Top Pick: Flagship Camera & Performance",
+      "specScore": 96,
+      "verdict": "The undisputed flagship for pro creators who demand 4K 120fps Dolby Vision, dedicated Camera Control, and console-grade gaming.",
+      "pros": [
+        "Unmatched 4K 120fps video & 5x optical zoom",
+        "A18 Pro delivers effortless all-day battery & console ray-tracing"
+      ],
+      "cons": [
+        "Base model starts at 128GB storage which fills fast with ProRes video"
+      ],
       "keywords": [
         "iphone",
         "iphone 16",
@@ -43,6 +53,16 @@
       "id": "samsung-galaxy-s24-ultra",
       "title": "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB RAM, 256GB)",
       "category": "Smartphones",
+      "verdictBadge": "Top Pick: Ultimate Android & Zoom",
+      "specScore": 95,
+      "verdict": "The most versatile smartphone in the world with a glare-free flat display, built-in S-Pen, and class-leading 100x zoom.",
+      "pros": [
+        "Gorilla Armor flat glass dramatically eliminates outdoor screen reflections",
+        "Galaxy AI Circle to Search and live translation work seamlessly"
+      ],
+      "cons": [
+        "Large 6.8-inch sharp-cornered chassis can feel bulky in one hand"
+      ],
       "keywords": [
         "samsung",
         "s24 ultra",
@@ -78,6 +98,16 @@
       "id": "oneplus-12-5g",
       "title": "OnePlus 12 5G (Silky Black, 16GB RAM, 512GB Storage)",
       "category": "Smartphones",
+      "verdictBadge": "Best Value Flagship Under ₹70k",
+      "specScore": 92,
+      "verdict": "Flagship Snapdragon 8 Gen 3 performance and Hasselblad periscope cameras at half the price of Apple and Samsung ultras.",
+      "pros": [
+        "Blazing 100W charging fills battery from 0 to 100% in 26 minutes",
+        "Outstanding 4500-nit ProXDR display with Aqua Touch wet-finger support"
+      ],
+      "cons": [
+        "Curved screen edges may cause occasional palm touch sensitivity"
+      ],
       "keywords": [
         "oneplus",
         "oneplus 12",
@@ -112,6 +142,16 @@
       "id": "nvidia-rtx-4070-super-gpu",
       "title": "ZOTAC Gaming GeForce RTX 4070 Super Twin Edge 12GB GDDR6X",
       "category": "PC Gaming Hardware",
+      "verdictBadge": "Top Pick: 1440p Gaming Sweetspot",
+      "specScore": 94,
+      "verdict": "The definitive graphics card for 1440p ultra ray tracing and DLSS 3.5 Frame Generation, meeting GTA 6 recommended specifications.",
+      "pros": [
+        "Crushes 100+ FPS in Cyberpunk 2077 and GTA V with Path Tracing",
+        "Compact dual-fan form factor fits easily in micro-ATX cabinets"
+      ],
+      "cons": [
+        "Requires dedicated 16-pin 12VHPWR power cable adapter"
+      ],
       "keywords": [
         "rtx 4070",
         "gpu",
@@ -147,6 +187,16 @@
       "id": "amd-ryzen-5-7600-processor",
       "title": "AMD Ryzen 5 7600 Desktop Processor (6 Cores 12 Threads, AM5)",
       "category": "PC Gaming Hardware",
+      "verdictBadge": "Best Value Gaming CPU",
+      "specScore": 91,
+      "verdict": "The best value gaming CPU in India on the future-proof AM5 socket with zero bottleneck when paired with RTX 4070 series.",
+      "pros": [
+        "Future-proof AM5 socket supported through 2027+ for easy drop-in upgrades",
+        "Low 65W TDP keeps Indian summer temperatures cool under 68°C"
+      ],
+      "cons": [
+        "Requires DDR5 memory which has a minor price premium over older DDR4"
+      ],
       "keywords": [
         "ryzen 5 7600",
         "cpu",
@@ -181,6 +231,16 @@
       "id": "sony-wh-1000xm5-headphones",
       "title": "Sony WH-1000XM5 Wireless Noise Cancelling Headphones - Black",
       "category": "Audio & Electronics",
+      "verdictBadge": "Top Pick: Best Active Noise Cancellation",
+      "specScore": 95,
+      "verdict": "The gold standard for office and travel silence, featuring 8-microphone ANC and ultra-plush synthetic leather earcups.",
+      "pros": [
+        "Unbeatable noise cancellation silences train rumblings and cafe chatter",
+        "30-hour battery life with 3-minute emergency fast charging"
+      ],
+      "cons": [
+        "Earcups do not fold inward like older XM4 model"
+      ],
       "keywords": [
         "headphones",
         "sony",
@@ -216,6 +276,16 @@
       "id": "macbook-air-m3-13inch",
       "title": "Apple 2024 MacBook Air 13-inch (M3 chip, 16GB Unified Memory, 256GB SSD)",
       "category": "Laptops & Computers",
+      "verdictBadge": "Top Pick: Best Laptop for 85% of Users",
+      "specScore": 97,
+      "verdict": "The best everyday and coding laptop on the planet: 18-hour real battery, silent fanless chassis, and gorgeous 500-nit Liquid Retina screen.",
+      "pros": [
+        "18 hours of true battery life with 100% silent fanless operation",
+        "16GB Unified Memory handles heavy VS Code, Docker, and 40 browser tabs"
+      ],
+      "cons": [
+        "Supports maximum 2 external displays only when laptop lid is shut"
+      ],
       "keywords": [
         "macbook",
         "macbook air",

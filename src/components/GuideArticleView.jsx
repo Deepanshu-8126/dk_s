@@ -5,6 +5,18 @@ import { ArticleRenderer, RelatedArticles } from './articles';
 import SEO from './SEO';
 
 export default function GuideArticleView({ article, onBack }) {
+  const slug = article?.slug;
+
+  React.useEffect(() => {
+    if (slug) {
+      fetch('/api/analytics/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, type: 'view' })
+      }).catch(() => {});
+    }
+  }, [slug]);
+
   if (!article) return null;
 
   const imageMeta = article.image || {};
@@ -27,15 +39,6 @@ export default function GuideArticleView({ article, onBack }) {
     dateModified: article.updatedAt || article.publishedAt,
   };
 
-  React.useEffect(() => {
-    if (article?.slug) {
-      fetch('/api/analytics/track', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug: article.slug, type: 'view' })
-      }).catch(() => {});
-    }
-  }, [article?.slug]);
 
   return (
     <article className="max-w-4xl mx-auto py-6">

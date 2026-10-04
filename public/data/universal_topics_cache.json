@@ -70,5 +70,22 @@
     },
     "sourceUrl": "https://en.wikipedia.org/wiki/Wheat",
     "lastVerified": "2026-10-04"
+  },
+  "gta": {
+    "id": "gta",
+    "query": "gta",
+    "title": "GTA",
+    "niche": "Gaming",
+    "description": "Topics referred to by the same term",
+    "summary": "GTA or gta may refer to:",
+    "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=85",
+    "fastFacts": {
+      "Category": "Topics referred to by the same term",
+      "Niche Domain": "Gaming",
+      "Fact Verification": "Public Peer-Reviewed",
+      "Primary Focus": "GTA or gta may refer to:"
+    },
+    "sourceUrl": "https://en.wikipedia.org/wiki/GTA",
+    "lastVerified": "2026-10-04"
   }
 }
