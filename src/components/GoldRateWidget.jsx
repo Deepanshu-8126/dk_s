@@ -49,10 +49,10 @@ export default function GoldRateWidget() {
       {/* Section header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#FEF3C7] border border-[#FDE68A] flex items-center justify-center">
-            <Coins className="text-[#B45309]" size={18} />
+          <div className="w-8 h-8 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center">
+            <Coins className="text-amber-600" size={17} />
           </div>
-          <h2 className="text-xl md:text-2xl font-black text-[#111827]" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             Gold Rate Today
           </h2>
           <span className="badge-gold text-xs font-bold px-2.5 py-0.5 rounded-full">
@@ -60,57 +60,57 @@ export default function GoldRateWidget() {
           </span>
           {isLive && (
             <span className="badge-emerald text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
               SPOT API LIVE
             </span>
           )}
           {stale && (
-            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#FEF2F2] text-[#DC2626] border border-[#FEE2E2] flex items-center gap-1">
+            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1">
               <AlertTriangle size={11} />
               {STALE_BADGE_TEXT}
             </span>
           )}
         </div>
-        <span className="text-xs text-[#6B7280] font-mono">
+        <span className="text-xs text-slate-400 font-mono">
           Last updated: {goldData.displayUpdated}
         </span>
       </div>
 
-      {/* 3 Main Gold Rate Cards (Clean White UI, 16px radius, #B45309 28px bold price) */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+      {/* 3 Main Gold Rate Cards (Clean Modern Elevation, Bold Slate Prices) */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-5">
         {goldData.national.map((rate, i) => (
-          <div key={i} className="global-card niche-gold relative overflow-hidden bg-white p-5 rounded-2xl border border-[#E5E7EB] shadow-xs hover:shadow-md transition-all">
+          <div key={i} className="global-card relative overflow-hidden bg-white p-5 rounded-2xl border border-slate-200 hover:border-amber-300 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-start justify-between mb-3">
               <div>
-                <div className="text-xs font-bold text-[#6B7280] uppercase tracking-wider mb-1">
+                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
                   {rate.karat}
                 </div>
-                <div className="price-num text-3xl font-black text-[#B45309] font-mono">
+                <div className="price-num text-3xl font-black text-slate-900 font-mono tracking-tight">
                   ₹{rate.perGram.toLocaleString('en-IN')}
                 </div>
-                <div className="text-xs text-[#6B7280] mt-0.5">per 1 gram</div>
+                <div className="text-xs text-slate-400 mt-0.5 font-medium">per 1 gram</div>
               </div>
               <div className="text-right">
-                <div className="flex items-center justify-end gap-1 text-sm font-bold text-[#059669] font-mono">
+                <div className="flex items-center justify-end gap-1 text-sm font-bold text-emerald-600 font-mono">
                   <TrendingUp size={14} />
                   <span>+₹{rate.change}</span>
                 </div>
-                <div className="text-xs font-semibold text-[#059669] font-mono">
+                <div className="text-xs font-semibold text-emerald-600 font-mono">
                   +{rate.changePercent}%
                 </div>
               </div>
             </div>
 
             {/* 10g Calculation */}
-            <div className="flex items-center justify-between pt-3 border-t border-[#F3F4F6]">
-              <span className="text-xs text-[#6B7280]">10 Grams Total</span>
-              <span className="font-bold text-sm text-[#111827] font-mono">
+            <div className="flex items-center justify-between pt-3 border-t border-slate-100">
+              <span className="text-xs text-slate-500">10 Grams Total</span>
+              <span className="font-bold text-sm text-slate-900 font-mono">
                 ₹{rate.per10g.toLocaleString('en-IN')}
               </span>
             </div>
 
             {/* Verification label */}
-            <div className="mt-2 text-[10px] text-[#9CA3AF] font-mono">
+            <div className="mt-2 text-[10px] text-slate-400 font-mono">
               Last updated: {goldData.displayUpdated}
             </div>
           </div>

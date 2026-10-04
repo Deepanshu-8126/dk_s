@@ -15,10 +15,10 @@ export default function GtaSpotlight({
   const curatedArtwork = getCuratedMedia(currentGta.title);
 
   return (
-    <div className="rounded-2xl border border-[#E5E7EB] bg-white shadow-xs overflow-hidden mb-8">
+    <div className="rounded-2xl border border-slate-200 bg-white shadow-xs overflow-hidden mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-12">
         {/* Left Column: Game Preview & Store Pricing */}
-        <div className="lg:col-span-5 relative min-h-[320px] flex flex-col justify-end p-6 overflow-hidden bg-slate-900">
+        <div className="lg:col-span-5 relative min-h-[340px] flex flex-col justify-end p-6 overflow-hidden bg-slate-950">
           <SmartImage
             src={curatedArtwork}
             keyword={currentGta.imageKeyword || currentGta.title}
@@ -28,13 +28,13 @@ export default function GtaSpotlight({
             className="absolute inset-0 w-full h-full"
             imgClassName="transition-transform duration-700 hover:scale-105 object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/20" />
 
           <div className="relative z-10 text-white">
-            <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500 text-slate-950 mb-2">
+            <span className="inline-block px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-sky-500 text-slate-950 mb-2 font-mono">
               {currentGta.tag}
             </span>
-            <h3 className="text-2xl font-black text-white" style={{ fontFamily: 'var(--font-display)' }}>
+            <h3 className="text-2xl font-black text-white tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
               {currentGta.title}
             </h3>
             <p className="text-xs text-slate-200 mt-1.5 line-clamp-3 leading-relaxed">

@@ -53,34 +53,33 @@ export default function ArticlesSection() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 flex items-center gap-1">
-              <ShieldCheck size={14} /> Google EEAT & Helpful Content Verified
-            </span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-2">
+            <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
+            <ShieldCheck size={13} />
+            <span>Fact-Grounded Editorial Desk</span>
           </div>
           <h2
-            className="text-xl md:text-2xl font-black text-[#111827]"
+            className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Verified Market Guides & <span className="text-emerald-600">Verdicts</span>
+            Verified Market Guides & <span className="text-indigo-600">Analysis</span>
           </h2>
-          <p className="text-xs text-[#4B5563] mt-1 max-w-xl">
-            Fact-grounded editorial publication. Real source citations, licensed Wikimedia Commons media, and genuine market analysis.
+          <p className="text-xs text-slate-500 mt-1 max-w-xl leading-relaxed">
+            Real source grounding, licensed Wikimedia Commons media, and genuine market analysis audited by our 10-pillar verification engine.
           </p>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowStudio(!showStudio)}
-            className="px-3.5 py-2 rounded-xl bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="px-3.5 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
           >
-            <PenTool size={14} />
+            <PenTool size={13} className="text-indigo-400" />
             <span>{showStudio ? 'Close Studio' : 'Editorial Studio'}</span>
           </button>
-          <div className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-500 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200">
+          <div className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200">
             <Award size={14} className="text-amber-500" />
-            <span>100% Fact-Checked</span>
+            <span>Fact-Checked</span>
           </div>
         </div>
       </div>

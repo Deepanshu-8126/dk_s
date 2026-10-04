@@ -59,38 +59,38 @@ export default function GuideArticleView({ article, onBack }) {
       )}
 
       <header className="mb-6">
-        <span className="inline-block px-3 py-0.5 rounded-full text-xs font-bold tracking-wide uppercase bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">
+        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
           {article.keyword || 'Verified Editorial'}
         </span>
         <h1
-          className="text-2xl md:text-4xl font-black text-[#111827] tracking-tight leading-tight mb-4"
+          className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           {article.title}
         </h1>
 
-        <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white border border-[#E5E7EB] shadow-xs">
+        <div className="flex flex-wrap items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
           <div className="flex items-center gap-3">
             <div>
-              <div className="flex items-center gap-1.5 font-bold text-sm text-[#111827]">
+              <div className="flex items-center gap-2 font-bold text-sm text-slate-900">
                 <span>{article.author?.name || 'Pradeep Joshi'}</span>
-                <span className="inline-flex items-center text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded-full">
+                <span className="inline-flex items-center text-[10px] text-emerald-700 font-semibold bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
                   <ShieldCheck size={11} className="mr-0.5" /> Verified Author
                 </span>
               </div>
-              <div className="text-xs text-[#6B7280]">
+              <div className="text-xs text-slate-500 mt-0.5">
                 {article.author?.role || 'Senior Public Examinations Analyst'}
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-4 text-xs text-[#6B7280]">
-            <span className="flex items-center gap-1">
-              <Calendar size={13} />
-              Published: {article.publishedAt ? article.publishedAt.split('T')[0] : '2026-10-04'}
+          <div className="flex items-center gap-4 text-xs text-slate-500 font-mono">
+            <span className="flex items-center gap-1.5">
+              <Calendar size={13} className="text-slate-400" />
+              {article.publishedAt ? article.publishedAt.split('T')[0] : '2026-10-04'}
             </span>
-            <span className="flex items-center gap-1">
-              <Clock size={13} />
+            <span className="flex items-center gap-1.5">
+              <Clock size={13} className="text-slate-400" />
               {article.wordCount || 400} words
             </span>
           </div>
@@ -99,7 +99,7 @@ export default function GuideArticleView({ article, onBack }) {
 
       {/* Hero Image & Attribution */}
       <div className="mb-8">
-        <div className="relative h-64 md:h-96 rounded-3xl overflow-hidden shadow-sm bg-slate-100">
+        <div className="relative h-64 md:h-96 rounded-3xl overflow-hidden shadow-sm bg-slate-950 border border-slate-200">
           <SmartImage
             src={article.imageUrl || imageMeta.thumbUrl || imageMeta.originalUrl}
             keyword={article.keyword}
@@ -120,7 +120,7 @@ export default function GuideArticleView({ article, onBack }) {
                 href={imagePageUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-amber-600 hover:text-amber-700 font-semibold flex items-center gap-1 shrink-0"
+                className="text-indigo-600 hover:text-indigo-700 font-semibold flex items-center gap-1 shrink-0"
               >
                 <span>Wikimedia Commons</span>
                 <ExternalLink size={10} />

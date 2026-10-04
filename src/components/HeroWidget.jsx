@@ -8,37 +8,39 @@ export default function HeroWidget({ setActiveTab }) {
 
   return (
     <section className="mb-10 pt-2">
-      {/* 4 Spotlight Cards - Clean White UI */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* 4 Spotlight Cards - Refined Modern Editorial Elevation */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {/* Card 1: Gold Rate Today */}
         <div
           onClick={() => setActiveTab('gold')}
-          className="cursor-pointer group rounded-2xl p-5 bg-white border border-[#E5E7EB] hover:border-[#F59E0B] shadow-xs hover:shadow-md transition-all duration-200"
+          className="cursor-pointer group rounded-2xl p-5 bg-white border border-slate-200 hover:border-amber-300 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FEF3C7] text-[#B45309] border border-[#FDE68A]">
-              <Coins size={12} className="text-[#B45309]" />
-              Live MCX
-            </span>
-            <span className="text-[11px] text-[#6B7280] font-medium">9:30 AM IST</span>
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200">
+                <Coins size={12} className="text-amber-600" />
+                Live MCX
+              </span>
+              <span className="text-[11px] text-slate-400 font-medium">9:30 AM IST</span>
+            </div>
+
+            <div className="mb-4">
+              <div className="text-xs text-slate-500 font-medium">Gold 24K (10g)</div>
+              <div className="flex items-baseline gap-2 mt-1">
+                <span className="text-2xl font-black text-slate-900 font-mono tracking-tight">
+                  ₹{gold24k.per10g.toLocaleString('en-IN')}
+                </span>
+                <span className="text-xs font-bold text-emerald-600 flex items-center">
+                  <TrendingUp size={13} className="inline mr-0.5" /> +{gold24k.changePercent}%
+                </span>
+              </div>
+              <div className="text-xs text-slate-500 mt-1">
+                22K Rate: <strong className="text-slate-900 font-semibold">₹{gold22k.perGram.toLocaleString('en-IN')}/g</strong>
+              </div>
+            </div>
           </div>
 
-          <div className="mb-4">
-            <div className="text-xs text-[#6B7280] font-semibold">Gold 24K (10g)</div>
-            <div className="flex items-baseline gap-2 mt-1">
-              <span className="text-2xl font-black text-[#B45309] font-mono">
-                ₹{gold24k.per10g.toLocaleString('en-IN')}
-              </span>
-              <span className="text-xs font-bold text-[#059669] flex items-center">
-                <TrendingUp size={13} className="inline mr-0.5" /> +{gold24k.changePercent}%
-              </span>
-            </div>
-            <div className="text-xs text-[#4B5563] mt-1 font-medium">
-              22K Rate: <strong className="text-[#111827]">₹{gold22k.perGram.toLocaleString('en-IN')}/g</strong>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between text-xs text-[#B45309] font-bold group-hover:text-[#92400E] pt-2 border-t border-[#F3F4F6]">
+          <div className="flex items-center justify-between text-xs text-amber-700 font-bold group-hover:text-amber-800 pt-3 border-t border-slate-100">
             <span>City Rates & Charts</span>
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </div>
@@ -47,28 +49,30 @@ export default function HeroWidget({ setActiveTab }) {
         {/* Card 2: Gaming & GTA Craze */}
         <div
           onClick={() => setActiveTab('gaming')}
-          className="cursor-pointer group rounded-2xl p-5 bg-white border border-[#E5E7EB] hover:border-[#0891B2] shadow-xs hover:shadow-md transition-all duration-200"
+          className="cursor-pointer group rounded-2xl p-5 bg-white border border-slate-200 hover:border-sky-300 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#ECFEFF] text-[#0891B2] border border-[#CFFAFE]">
-              <Gamepad2 size={12} className="text-[#0891B2]" />
-              GTA 6 Craze
-            </span>
-            <span className="text-xs text-[#0891B2] font-bold">PC Specs</span>
-          </div>
-
-          <div className="mb-4">
-            <div className="text-xs text-[#6B7280] font-semibold">Grand Theft Auto VI</div>
-            <div className="text-lg font-black text-[#111827] mt-1 group-hover:text-[#0891B2] transition-colors" style={{ fontFamily: 'var(--font-display)' }}>
-              Vice City 4K RT
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-sky-50 text-sky-800 border border-sky-200">
+                <Gamepad2 size={12} className="text-sky-600" />
+                GTA 6 Craze
+              </span>
+              <span className="text-xs text-sky-700 font-semibold bg-sky-50 px-2 py-0.5 rounded-full border border-sky-100">PC Specs</span>
             </div>
-            <p className="text-xs text-[#4B5563] mt-1.5 line-clamp-2">
-              Leaked hardware benchmark specs & Indian budget builds from {REAL_GTA_DATA.gta6.specs.minimum.estimatedPcCost} to 4K Ultra.
-            </p>
+
+            <div className="mb-4">
+              <div className="text-xs text-slate-500 font-medium">Rockstar Games</div>
+              <div className="text-lg font-black text-slate-900 mt-1 group-hover:text-sky-600 transition-colors" style={{ fontFamily: 'var(--font-display)' }}>
+                Vice City 4K RT
+              </div>
+              <p className="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">
+                Leaked hardware benchmark specs & Indian budget builds from {REAL_GTA_DATA.gta6.specs.minimum.estimatedPcCost} to 4K Ultra.
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center justify-between text-xs text-[#0891B2] font-bold group-hover:text-[#0E7490] pt-2 border-t border-[#F3F4F6]">
-            <span>GTA 6 Calculator & Deals</span>
+          <div className="flex items-center justify-between text-xs text-sky-700 font-bold group-hover:text-sky-800 pt-3 border-t border-slate-100">
+            <span>Hardware Benchmarks</span>
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
@@ -76,27 +80,29 @@ export default function HeroWidget({ setActiveTab }) {
         {/* Card 3: AI Tools Spotlight */}
         <div
           onClick={() => setActiveTab('ai')}
-          className="cursor-pointer group rounded-2xl p-5 bg-white border border-[#E5E7EB] hover:border-[#4F46E5] shadow-xs hover:shadow-md transition-all duration-200"
+          className="cursor-pointer group rounded-2xl p-5 bg-white border border-slate-200 hover:border-indigo-300 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#EEF2FF] text-[#4F46E5] border border-[#E0E7FF]">
-              <Sparkles size={12} className="text-[#4F46E5]" />
-              +154% YoY
-            </span>
-            <span className="text-xs text-[#059669] font-bold bg-[#ECFDF5] px-2 py-0.5 rounded">High CPC</span>
-          </div>
-
-          <div className="mb-4">
-            <div className="text-xs text-[#6B7280] font-semibold">Featured AI Tool</div>
-            <div className="text-lg font-black text-[#111827] mt-1 group-hover:text-[#4F46E5] transition-colors" style={{ fontFamily: 'var(--font-display)' }}>
-              Gemini Ultra 2.0
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-indigo-50 text-indigo-800 border border-indigo-200">
+                <Sparkles size={12} className="text-indigo-600" />
+                +154% YoY
+              </span>
+              <span className="text-[11px] text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">Free Tier</span>
             </div>
-            <p className="text-xs text-[#4B5563] mt-1.5 line-clamp-2">
-              State-of-the-art Hindi voice & coding capabilities with live web citations.
-            </p>
+
+            <div className="mb-4">
+              <div className="text-xs text-slate-500 font-medium">Featured AI Tool</div>
+              <div className="text-lg font-black text-slate-900 mt-1 group-hover:text-indigo-600 transition-colors" style={{ fontFamily: 'var(--font-display)' }}>
+                Gemini Ultra 2.0
+              </div>
+              <p className="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">
+                State-of-the-art Hindi voice & coding capabilities with live web citations.
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center justify-between text-xs text-[#4F46E5] font-bold group-hover:text-[#3730A3] pt-2 border-t border-[#F3F4F6]">
+          <div className="flex items-center justify-between text-xs text-indigo-700 font-bold group-hover:text-indigo-800 pt-3 border-t border-slate-100">
             <span>Browse 12+ AI Tools</span>
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </div>
@@ -105,27 +111,29 @@ export default function HeroWidget({ setActiveTab }) {
         {/* Card 4: Sarkari Result & Admit Alerts */}
         <div
           onClick={() => setActiveTab('sarkari')}
-          className="cursor-pointer group rounded-2xl p-5 bg-white border border-[#E5E7EB] hover:border-[#DC2626] shadow-xs hover:shadow-md transition-all duration-200"
+          className="cursor-pointer group rounded-2xl p-5 bg-white border border-slate-200 hover:border-rose-300 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FEF2F2] text-[#DC2626] border border-[#FEE2E2]">
-              <Newspaper size={12} className="text-[#DC2626]" />
-              Sarkari Alert
-            </span>
-            <span className="text-xs text-[#DC2626] font-bold">17,727 Posts</span>
-          </div>
-
-          <div className="mb-4">
-            <div className="text-xs text-[#6B7280] font-semibold">Exam Result Update</div>
-            <div className="text-lg font-black text-[#111827] mt-1 group-hover:text-[#DC2626] transition-colors" style={{ fontFamily: 'var(--font-display)' }}>
-              SSC CGL 2026 Tier-1
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-rose-50 text-rose-800 border border-rose-200">
+                <Newspaper size={12} className="text-rose-600" />
+                Sarkari Alert
+              </span>
+              <span className="text-xs text-rose-700 font-semibold bg-rose-50 px-2 py-0.5 rounded-full border border-rose-100">17,727 Posts</span>
             </div>
-            <p className="text-xs text-[#4B5563] mt-1.5 line-clamp-2">
-              Scorecards & cut-off merit list released on official portal. Direct PDF links ready.
-            </p>
+
+            <div className="mb-4">
+              <div className="text-xs text-slate-500 font-medium">Exam Result Update</div>
+              <div className="text-lg font-black text-slate-900 mt-1 group-hover:text-rose-600 transition-colors" style={{ fontFamily: 'var(--font-display)' }}>
+                SSC CGL 2026 Tier-1
+              </div>
+              <p className="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">
+                Scorecards & cut-off merit list released on official portal. Direct PDF links ready.
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center justify-between text-xs text-[#DC2626] font-bold group-hover:text-[#991B1B] pt-2 border-t border-[#F3F4F6]">
+          <div className="flex items-center justify-between text-xs text-rose-700 font-bold group-hover:text-rose-800 pt-3 border-t border-slate-100">
             <span>Check Results & Cards</span>
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </div>

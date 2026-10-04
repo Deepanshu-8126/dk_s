@@ -45,23 +45,23 @@ export default function SarkariResultSection({ searchQuery }) {
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#FEF2F2] border border-[#FEE2E2] flex items-center justify-center">
-            <Newspaper className="text-[#DC2626]" size={18} />
+          <div className="w-8 h-8 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center">
+            <Newspaper className="text-rose-600" size={17} />
           </div>
-          <h2 className="text-xl md:text-2xl font-black text-[#111827]" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             Sarkari Result & Jobs 2026
           </h2>
-          <span className="badge-red text-xs font-bold px-2.5 py-0.5 rounded-full">
-            101M/mo searches
+          <span className="badge-red text-xs font-semibold px-2.5 py-0.5 rounded-full">
+            Official Portals Verified
           </span>
           {isStale && (
-            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#FEF2F2] text-[#DC2626] border border-[#FEE2E2] flex items-center gap-1">
+            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1">
               <AlertTriangle size={11} />
               {STALE_BADGE_TEXT}
             </span>
           )}
         </div>
-        <span className="text-xs text-[#6B7280] font-mono">
+        <span className="text-xs text-slate-400 font-mono">
           Last updated: {REAL_SARKARI_DATA.displayUpdated}
         </span>
       </div>

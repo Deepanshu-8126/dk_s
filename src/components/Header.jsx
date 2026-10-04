@@ -14,13 +14,13 @@ const TICKERS = [
 ];
 
 const DESKTOP_TABS = [
-  { id: 'all', label: 'All Hits', icon: Flame, activeClass: 'active-all' },
-  { id: 'gold', label: 'Gold Rate', icon: Coins, activeClass: 'active-gold' },
-  { id: 'hyperlocal', label: 'Fuel & Mandi', icon: Fuel, activeClass: 'active-gold' },
-  { id: 'gaming', label: 'Gaming & GTA', icon: Gamepad2, activeClass: 'active-cyan' },
-  { id: 'ai', label: 'AI Tools', icon: Sparkles, activeClass: 'active-indigo' },
-  { id: 'sarkari', label: 'Sarkari Result', icon: Newspaper, activeClass: 'active-red' },
-  { id: 'studio', label: 'Editorial Studio', icon: PenTool, activeClass: 'bg-purple-600 text-white shadow-xs' },
+  { id: 'all', label: 'All Hits', icon: Flame },
+  { id: 'gold', label: 'Gold Rate', icon: Coins },
+  { id: 'hyperlocal', label: 'Fuel & Mandi', icon: Fuel },
+  { id: 'gaming', label: 'Gaming & GTA', icon: Gamepad2 },
+  { id: 'ai', label: 'AI Tools', icon: Sparkles },
+  { id: 'sarkari', label: 'Sarkari Result', icon: Newspaper },
+  { id: 'studio', label: 'Editorial Studio', icon: PenTool },
 ];
 
 export default function Header({ searchQuery, setSearchQuery, activeTab, setActiveTab }) {
@@ -35,16 +35,16 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-[#E5E7EB] shadow-xs">
-      {/* Ticker strip on top */}
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+      {/* Ticker strip on top (Refined Dark Obsidian with Emerald Pulse) */}
       {showTicker && (
-        <div className="flex items-center text-xs bg-[#FEF2F2] border-b border-[#FEE2E2] text-[#DC2626] h-8">
-          <div className="shrink-0 flex items-center gap-1.5 px-3 font-bold uppercase tracking-wider bg-[#FEE2E2] text-[#DC2626] h-full">
-            <span className="w-2 h-2 rounded-full bg-red-600 animate-ping shrink-0" />
-            <span className="hidden sm:inline" style={{ fontFamily: 'var(--font-display)' }}>LIVE UPDATES</span>
-            <span className="sm:hidden" style={{ fontFamily: 'var(--font-display)' }}>LIVE</span>
+        <div className="flex items-center text-xs bg-[#0B0F19] border-b border-slate-800 text-slate-300 h-8">
+          <div className="shrink-0 flex items-center gap-1.5 px-3 font-bold uppercase tracking-wider bg-slate-900/90 text-emerald-400 h-full border-r border-slate-800">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping shrink-0" />
+            <span className="hidden sm:inline text-[11px]" style={{ fontFamily: 'var(--font-display)' }}>LIVE INTELLIGENCE</span>
+            <span className="sm:hidden text-[11px]" style={{ fontFamily: 'var(--font-display)' }}>LIVE</span>
           </div>
-          <div className="flex-1 overflow-hidden px-2 sm:px-3 font-semibold text-[#DC2626]" style={{ fontFamily: 'var(--font-display)' }}>
+          <div className="flex-1 overflow-hidden px-2 sm:px-3 font-medium text-slate-200" style={{ fontFamily: 'var(--font-display)' }}>
             <span key={tickerIdx} className="block truncate text-[11px] sm:text-xs">
               {TICKERS[tickerIdx]}
             </span>
@@ -52,9 +52,9 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
           <button
             onClick={() => setShowTicker(false)}
             aria-label="Close live ticker"
-            className="shrink-0 px-2 sm:px-3 text-[#DC2626]/70 hover:text-[#DC2626] transition-colors focus:ring-1 focus:ring-red-400"
+            className="shrink-0 px-2 sm:px-3 text-slate-400 hover:text-white transition-colors"
           >
-            <X size={14} />
+            <X size={13} />
           </button>
         </div>
       )}
@@ -67,26 +67,26 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={isMobileMenuOpen}
-            className="md:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:ring-2 focus:ring-amber-500 transition-colors"
+            className="md:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
           >
             <Menu size={20} />
           </button>
 
           <div
             onClick={() => setActiveTab('all')}
-            className="flex items-center gap-2 cursor-pointer select-none"
+            className="flex items-center gap-2.5 cursor-pointer select-none group"
           >
             <div
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-sm sm:text-base text-white shadow-sm"
-              style={{ background: 'linear-gradient(135deg, #D97706 0%, #B45309 100%)', fontFamily: 'var(--font-display)' }}
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-black text-sm sm:text-base text-white shadow-xs bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-600 border border-indigo-500/20 group-hover:scale-105 transition-transform"
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               UD
             </div>
             <div>
-              <div className="font-black text-base sm:text-lg leading-none text-[#111827]" style={{ fontFamily: 'var(--font-display)' }}>
-                Unique<span className="text-[#B45309]">Digit</span>
+              <div className="font-black text-base sm:text-lg leading-none text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
+                Unique<span className="text-indigo-600">Digit</span>
               </div>
-              <div className="text-[10px] font-semibold text-[#6B7280] hidden lg:block">
+              <div className="text-[10px] font-semibold text-slate-400 hidden lg:block tracking-wide">
                 Daily Intelligence & Editorial
               </div>
             </div>
@@ -94,7 +94,7 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
         </div>
 
         {/* Center: Desktop Nav Pills */}
-        <nav className="hidden md:flex items-center gap-1 overflow-x-auto scroll-x flex-1 max-w-2xl px-2">
+        <nav className="hidden md:flex items-center gap-1.5 overflow-x-auto scroll-x flex-1 max-w-2xl px-2">
           {DESKTOP_TABS.map(tab => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -102,11 +102,13 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`tab-pill flex items-center gap-1.5 text-xs py-1.5 px-2.5 whitespace-nowrap focus:ring-2 focus:ring-amber-500 ${
-                  isActive ? tab.activeClass : 'text-slate-600 hover:bg-slate-100'
+                className={`tab-pill flex items-center gap-1.5 text-xs py-1.5 px-3 rounded-full transition-all ${
+                  isActive
+                    ? 'bg-slate-950 text-white font-bold shadow-xs border-slate-950'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 border-transparent'
                 }`}
               >
-                <Icon size={13} />
+                <Icon size={13} className={isActive ? 'text-indigo-400' : 'text-slate-400'} />
                 <span>{tab.label}</span>
               </button>
             );
@@ -123,11 +125,7 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}
               placeholder="Search guides, gold..."
-              className="w-full pl-8 pr-7 py-1.5 text-xs sm:text-sm rounded-xl outline-none bg-slate-50 text-slate-900 border transition-all"
-              style={{
-                borderColor: searchFocused ? '#B45309' : '#E5E7EB',
-                boxShadow: searchFocused ? '0 0 0 2px rgba(180, 83, 9, 0.15)' : 'none',
-              }}
+              className="w-full pl-8 pr-7 py-1.5 text-xs sm:text-sm rounded-xl outline-none bg-slate-50 hover:bg-slate-100/70 focus:bg-white text-slate-900 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 transition-all"
             />
             {searchQuery && (
               <button
@@ -142,7 +140,7 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
 
           <button
             aria-label="Notifications"
-            className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors focus:ring-2 focus:ring-amber-500"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
           >
             <Bell size={15} />
           </button>
