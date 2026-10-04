@@ -1,0 +1,618 @@
+{
+  "generatedAt": "2026-10-04T20:55:00+05:30",
+  "displayUpdated": "4 October 2026, 08:55 PM IST",
+  "totalNiches": 10,
+  "totalEntities": 32,
+  "niches": [
+    {
+      "id": "ai-frontier",
+      "name": "AI Agents & Frontier Tech",
+      "tag": "+154% YoY",
+      "icon": "Sparkles",
+      "color": "indigo",
+      "itemCount": 5,
+      "items": [
+        {
+          "id": "google-gemini",
+          "title": "Google Gemini",
+          "nicheId": "ai-frontier",
+          "description": "Chatbot developed by Google",
+          "summary": "Gemini, also known as Google Gemini, is a generative artificial intelligence chatbot and virtual assistant developed by Google. It is powered by the family of large language models (LLMs) of the same name, after previously being based on LaMDA and PaLM 2.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Google_Gemini_Screenshot_%282026%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Ai Frontier",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Gemini, also known as Google Gemini, is a generative artificial intelligence chatbot and v...",
+            "Key Attribute": "It is powered by the family of large language models (LLMs) of the same name, after previo..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Google_Gemini",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "chatgpt",
+          "title": "ChatGPT",
+          "nicheId": "ai-frontier",
+          "description": "Generative AI chatbot by OpenAI",
+          "summary": "ChatGPT is a generative AI chatbot developed by OpenAI. Originally released on November 30, 2022, the product uses large language models—specifically generative pre-trained transformers (GPTs)—to generate text, speech, and images in response to user prompts. ChatGPT accelerated the AI boom, an ongoing period marked by rapid investment and public attention toward the field of artificial intelligence (AI). OpenAI operates the service on a freemium model. Users can interact with ChatGPT through text, audio, and image prompts.",
+          "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/960px-OpenAI_logo_2025_%28symbol%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "fastFacts": {
+            "Domain": "Ai Frontier",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "ChatGPT is a generative AI chatbot developed by OpenAI",
+            "Key Attribute": "Originally released on November 30, 2022, the product uses large language models—specifica..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/ChatGPT",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "claude-ai",
+          "title": "Claude (AI)",
+          "nicheId": "ai-frontier",
+          "description": "Large language model and AI chatbot by Anthropic",
+          "summary": "Claude is a series of large language models (LLMs) developed by American software company Anthropic. Claude was released as an AI-based chatbot in March 2023. It is also used in AI-assisted software development. Anthropic sells Claude-based agentic tools including Claude Code, a terminal coding agent, and Claude Cowork, a similar tool for non-programmers.",
+          "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=85",
+          "fastFacts": {
+            "Domain": "Ai Frontier",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Claude is a series of large language models (LLMs) developed by American software company ...",
+            "Key Attribute": "Claude was released as an AI-based chatbot in March 2023"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Claude_(AI)",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "deepseek",
+          "title": "DeepSeek",
+          "nicheId": "ai-frontier",
+          "description": "Chinese artificial intelligence company",
+          "summary": "Hangzhou DeepSeek Artificial Intelligence Basic Technology Research Co., Ltd., doing business as DeepSeek, is a Chinese artificial intelligence (AI) company that develops open weights large language models (LLMs). Based in Hangzhou, Zhejiang, DeepSeek is owned and funded by High-Flyer, a Chinese hedge fund.",
+          "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=85",
+          "fastFacts": {
+            "Domain": "Ai Frontier",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Hangzhou DeepSeek Artificial Intelligence Basic Technology Research Co., Ltd., doing busin...",
+            "Key Attribute": "Based in Hangzhou, Zhejiang, DeepSeek is owned and funded by High-Flyer, a Chinese hedge f..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/DeepSeek",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "perplexity-ai",
+          "title": "Perplexity AI",
+          "nicheId": "ai-frontier",
+          "description": "American artificial intelligence company",
+          "summary": "Perplexity AI, Inc., or simply Perplexity, is an American privately held software company offering a web search engine that processes user queries and synthesizes responses. Perplexity products use large language models and include web search capabilities which provide responses based on current Internet content, citing sources used. A free public version is available, while a paid Pro subscription offers access to more advanced language models and additional features.",
+          "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=85",
+          "fastFacts": {
+            "Domain": "Ai Frontier",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Perplexity AI, Inc., or simply Perplexity, is an American privately held software company ...",
+            "Key Attribute": "Perplexity products use large language models and include web search capabilities which pr..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Perplexity_AI",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gaming-pc",
+      "name": "Gaming & Next-Gen PC Specs",
+      "tag": "Craze",
+      "icon": "Gamepad2",
+      "color": "sky",
+      "itemCount": 4,
+      "items": [
+        {
+          "id": "grand-theft-auto-vi",
+          "title": "Grand Theft Auto VI",
+          "nicheId": "gaming-pc",
+          "description": "Upcoming video game",
+          "summary": "Grand Theft Auto VI is an upcoming action-adventure game developed and published by Rockstar Games. It is due to be the eighth main entry in the Grand Theft Auto series, following 2013's Grand Theft Auto V, and the sixteenth instalment overall. Set within the fictional US state of Leonida, based on Florida, the story follows the criminal duo of Jason Duval and Lucia Caminos. Players will be able to freely roam Leonida's open world, which features the Miami-inspired Vice City.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/46/Grand_Theft_Auto_VI.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Gaming Pc",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Grand Theft Auto VI is an upcoming action-adventure game developed and published by Rockst...",
+            "Key Attribute": "It is due to be the eighth main entry in the Grand Theft Auto series, following 2013's Gra..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "geforce-rtx-40-series",
+          "title": "GeForce RTX 40 series",
+          "nicheId": "gaming-pc",
+          "description": "Series of GPUs by Nvidia",
+          "summary": "The GeForce RTX 40 series is a family of consumer graphics processing units (GPUs) in Nvidia's GeForce line of graphics cards, succeeding the GeForce RTX 30 series. The series was announced on September 20, 2022, at the GPU Technology Conference, and launched on October 12, 2022, starting with its flagship model, the RTX 4090. It was succeeded by the GeForce RTX 50 series, which debuted on January 30, 2025, after being previously announced at CES.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Leistungsanalyse_NVIDIA_GeForce_RTX_4090_%28Geekerwan%29_02_cropped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Gaming Pc",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The GeForce RTX 40 series is a family of consumer graphics processing units (GPUs) in Nvid...",
+            "Key Attribute": "The series was announced on September 20, 2022, at the GPU Technology Conference, and laun..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/GeForce_RTX_40_series",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "steam-service",
+          "title": "Steam (service)",
+          "nicheId": "gaming-pc",
+          "description": "Video game distribution platform",
+          "summary": "Steam is a digital distribution platform for PC games by the American video game studio Valve. It was launched as a software client in September 2003 to provide video game updates automatically for Valve's games and expanded to distributing third-party titles in late 2005. Steam offers various features, such as game server matchmaking with Valve Anti-Cheat (VAC) measures, social networking, and game streaming services. The Steam client functions include update maintenance, cloud storage, and community features such as direct messaging, an in-game overlay, discussion forums, and a virtual collectable marketplace. The storefront also offers productivity software, game soundtracks, videos, and sells hardware made by Valve, such as the Valve Index and the Steam Deck.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/9c/Steam_%28service%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Gaming Pc",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Steam is a digital distribution platform for PC games by the American video game studio Va...",
+            "Key Attribute": "It was launched as a software client in September 2003 to provide video game updates autom..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Steam_(service)",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "valorant",
+          "title": "Valorant",
+          "nicheId": "gaming-pc",
+          "description": "2020 video game by Riot Games",
+          "summary": "Valorant is a 2020 first-person tactical hero shooter video game developed and published by Riot Games. A free-to-play game, Valorant takes inspiration from the Counter-Strike series, borrowing several mechanics such as the buy menu, spray patterns, and inaccuracy while moving. Development started in 2014 and was teased under the codename Project A in 2019; the game was released on June 2, 2020, for Windows. It was ported to the PlayStation 5 and Xbox Series X/S in June 2024, albeit without crossplay between PC and console clients. A mobile version, Valorant Mobile, launched in China on August 19, 2025, with a global release set at a later date.",
+          "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Valorant_logo_-_pink_color_version.svg/960px-Valorant_logo_-_pink_color_version.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "fastFacts": {
+            "Domain": "Gaming Pc",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Valorant is a 2020 first-person tactical hero shooter video game developed and published b...",
+            "Key Attribute": "A free-to-play game, Valorant takes inspiration from the Counter-Strike series, borrowing ..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Valorant",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gold-bullion",
+      "name": "Gold & Bullion Assets",
+      "tag": "101M/mo",
+      "icon": "Coins",
+      "color": "amber",
+      "itemCount": 2,
+      "items": [
+        {
+          "id": "gold-as-an-investment",
+          "title": "Gold as an investment",
+          "nicheId": "gold-bullion",
+          "description": "Use of gold as a store of value and investment asset",
+          "summary": "Gold, alongside platinum and silver, is highly popular among precious metals as an investment. Investors generally buy gold as a way of diversifying risk, especially through the use of futures contracts and derivatives. The gold market is subject to speculation and volatility as are other markets.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Gold_bullion_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Gold Bullion",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Gold, alongside platinum and silver, is highly popular among precious metals as an investm...",
+            "Key Attribute": "Investors generally buy gold as a way of diversifying risk, especially through the use of ..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Gold_as_an_investment",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "silver-as-an-investment",
+          "title": "Silver as an investment",
+          "nicheId": "gold-bullion",
+          "description": "Investment in the precious metal silver",
+          "summary": "Silver may be held as an investment through physical bullion, bullion coins, exchange-traded products, futures and other derivatives, storage accounts, and shares of silver-mining companies. Silver has both industrial and investment demand, with uses including electrical and electronic products, photovoltaics, jewelry, silverware, coins, medals, and other industrial applications.",
+          "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Various_types_of_American_silver_coinage%2C_15_February_2020.jpg/3840px-Various_types_of_American_silver_coinage%2C_15_February_2020.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "fastFacts": {
+            "Domain": "Gold Bullion",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Silver may be held as an investment through physical bullion, bullion coins, exchange-trad...",
+            "Key Attribute": "Silver has both industrial and investment demand, with uses including electrical and elect..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Silver_as_an_investment",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "sarkari-jobs",
+      "name": "Sarkari & Recruitment Alerts",
+      "tag": "Govt Verified",
+      "icon": "Newspaper",
+      "color": "rose",
+      "itemCount": 3,
+      "items": [
+        {
+          "id": "staff-selection-commission",
+          "title": "Staff Selection Commission",
+          "nicheId": "sarkari-jobs",
+          "description": "Government of India agency responsible for recruitment of staffs",
+          "summary": "The Staff Selection Commission (SSC) is an organisation under the Government of India to recruit staff for various posts in the various ministries and departments of the government of India and in subordinate offices and agencies.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/d5/Staff_Selection_Commission.webp?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Sarkari Jobs",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The Staff Selection Commission (SSC) is an organisation under the Government of India to r..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Staff_Selection_Commission",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "union-public-service-commission",
+          "title": "Union Public Service Commission",
+          "nicheId": "sarkari-jobs",
+          "description": "Constitutional body in India tasked with recruiting officers for the civil services",
+          "summary": "The Union Public Service Commission (UPSC) is a constitutional body in India tasked with recruiting officers for All India Services and the Central Civil Services through various standardized examinations. In 2023, 1.3 million applicants competed for just 1,255 positions.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/bf/Union_public_service_commission.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Sarkari Jobs",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The Union Public Service Commission (UPSC) is a constitutional body in India tasked with r...",
+            "Key Attribute": "In 2023, 1.3 million applicants competed for just 1,255 positions."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Union_Public_Service_Commission",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "railway-recruitment-control-board",
+          "title": "Railway Recruitment Control Board",
+          "nicheId": "sarkari-jobs",
+          "description": "Public recruitment body in India",
+          "summary": "The Railway Recruitment Control Board (RRCB) is a government body established in 1998 under the Ministry of Railways, Government of India. It is responsible for coordinating and monitoring the activities of the Railway Recruitment Boards (RRBs), which conduct recruitment for Group C posts in Indian Railways. Currently, there are 21 RRBs located across various cities.",
+          "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=85",
+          "fastFacts": {
+            "Domain": "Sarkari Jobs",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The Railway Recruitment Control Board (RRCB) is a government body established in 1998 unde...",
+            "Key Attribute": "It is responsible for coordinating and monitoring the activities of the Railway Recruitmen..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Railway_Recruitment_Control_Board",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "smartphones",
+      "name": "Flagship Smartphones & Gadgets",
+      "tag": "Hot Deals",
+      "icon": "ShoppingBag",
+      "color": "emerald",
+      "itemCount": 3,
+      "items": [
+        {
+          "id": "iphone-16",
+          "title": "IPhone 16",
+          "nicheId": "smartphones",
+          "description": "2024 smartphone by Apple",
+          "summary": "The iPhone 16 and iPhone 16 Plus are smartphones developed and marketed by Apple. They are the eighteenth-generation iPhones, succeeding the iPhone 15 and iPhone 15 Plus. The devices were announced alongside the higher-priced iPhone 16 Pro and 16 Pro Max during the Apple Event at Apple Park in Cupertino, California, on September 9, 2024, and released on September 20.",
+          "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/IPhone_16_Vector.svg/500px-IPhone_16_Vector.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "fastFacts": {
+            "Domain": "Smartphones",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The iPhone 16 and iPhone 16 Plus are smartphones developed and marketed by Apple",
+            "Key Attribute": "They are the eighteenth-generation iPhones, succeeding the iPhone 15 and iPhone 15 Plus"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/IPhone_16",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "samsung-galaxy-s24",
+          "title": "Samsung Galaxy S24",
+          "nicheId": "smartphones",
+          "description": "2024 flagship smartphones by Samsung Electronics",
+          "summary": "The Samsung Galaxy S24 is a series of high-end Android-based smartphones manufactured, developed, produced, and marketed by Samsung Electronics as part of its flagship Galaxy S series. They collectively serve as the successors to the Galaxy S23 series. The first three smartphones were announced on January 17, 2024, at the Samsung's Galaxy Unpacked event in San Jose, California, and they were released in the United States and Europe on January 31, 2024. The Galaxy S24 FE was unveiled at the following event on September 26, 2024, alongside the Galaxy Tab S10 series, and released on October 3, 2024.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Samsung_Galaxy_S24%2C_Sperrbildschirm.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Smartphones",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The Samsung Galaxy S24 is a series of high-end Android-based smartphones manufactured, dev...",
+            "Key Attribute": "They collectively serve as the successors to the Galaxy S23 series"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Samsung_Galaxy_S24",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "oneplus-12",
+          "title": "OnePlus 12",
+          "nicheId": "smartphones",
+          "description": "Android smartphone",
+          "summary": "The OnePlus 12 is an Android-based smartphone manufactured by OnePlus. It was announced on December 5, 2023, and made available on December 11, 2023.",
+          "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=85",
+          "fastFacts": {
+            "Domain": "Smartphones",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The OnePlus 12 is an Android-based smartphone manufactured by OnePlus",
+            "Key Attribute": "It was announced on December 5, 2023, and made available on December 11, 2023."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/OnePlus_12",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "electric-vehicles",
+      "name": "Electric Vehicles & Tech Auto",
+      "tag": "+88% Surge",
+      "icon": "Zap",
+      "color": "cyan",
+      "itemCount": 3,
+      "items": [
+        {
+          "id": "electric-vehicle",
+          "title": "Electric vehicle",
+          "nicheId": "electric-vehicles",
+          "description": "Vehicle propelled fully or mostly by electricity",
+          "summary": "An electric vehicle (EV) is a vehicle propelled mostly by electric power. EVs encompass electric cars and other electric road vehicles as well as other types of land vehicles, such as electric rail vehicles. It also includes electric watercraft, aircraft, and spacecraft.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Model_S_charging_at_a_Tesla_station_cropped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Electric Vehicles",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "An electric vehicle (EV) is a vehicle propelled mostly by electric power",
+            "Key Attribute": "EVs encompass electric cars and other electric road vehicles as well as other types of lan..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Electric_vehicle",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "tata-curvv",
+          "title": "Tata Curvv",
+          "nicheId": "electric-vehicles",
+          "description": "Compact crossover SUV",
+          "summary": "The Tata Curvv is a compact SUV produced by Tata Motors. It launched in India in August 2024 with petrol, diesel, and battery electric variants. The Curvv is based on the smaller Nexon, with a lengthened rear section and reworked body panels while newer engine options and additional technology such as level 2 ADAS are reserved for top trims.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/2025_Tata_Curvv_Creative%2B_S_Petrol_%28India%29_front_view.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Electric Vehicles",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The Tata Curvv is a compact SUV produced by Tata Motors",
+            "Key Attribute": "It launched in India in August 2024 with petrol, diesel, and battery electric variants"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Tata_Curvv",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "mahindra-mahindra",
+          "title": "Mahindra & Mahindra",
+          "nicheId": "electric-vehicles",
+          "description": "Indian automobile manufacturer",
+          "summary": "Mahindra Automotive is an Indian automobile manufacturing company headquartered in Mumbai. It was established in 1945 as Mahindra & Mohammed and later renamed Mahindra & Mahindra. Part of the Mahindra Group, Mahindra Automotive is one of the largest SUV manufacturers by production in India and the Mahindra Tractors subsidiary is the largest manufacturer of tractors in the world by volume. It was ranked 18th on a list of top companies in India by Fortune India 500 in 2025. Its major competitors in the Indian vehicular market include Maruti Suzuki and Tata Motors. Anish Shah is the current CEO and Managing Director of Mahindra Automotive.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Mahindra_Automotive_new_logo.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Electric Vehicles",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Mahindra Automotive is an Indian automobile manufacturing company headquartered in Mumbai",
+            "Key Attribute": "It was established in 1945 as Mahindra & Mohammed and later renamed Mahindra & Mahindra"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Mahindra_%26_Mahindra",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "health-medicine",
+      "name": "Health & Generic Medicines",
+      "tag": "Essential",
+      "icon": "HeartPulse",
+      "color": "emerald",
+      "itemCount": 3,
+      "items": [
+        {
+          "id": "paracetamol",
+          "title": "Paracetamol",
+          "nicheId": "health-medicine",
+          "description": "Medication for pain and fever",
+          "summary": "Paracetamol, or acetaminophen, is an analgesic and antipyretic agent used to treat fever and mild to moderate pain. It is a widely available over-the-counter drug sold generically or under various brand names, including Tylenol and Panadol.",
+          "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Paracetamol-skeletal.svg/960px-Paracetamol-skeletal.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "fastFacts": {
+            "Domain": "Health Medicine",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Paracetamol, or acetaminophen, is an analgesic and antipyretic agent used to treat fever a...",
+            "Key Attribute": "It is a widely available over-the-counter drug sold generically or under various brand nam..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Paracetamol",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "ibuprofen",
+          "title": "Ibuprofen",
+          "nicheId": "health-medicine",
+          "description": "Nonsteroidal anti-inflammatory drug",
+          "summary": "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) that is used to relieve pain, fever, and inflammation. This includes painful menstrual periods, migraines, and rheumatoid arthritis. It can be taken orally or intravenously. It typically begins working within an hour.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/Ibuprofen-3D-balls.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Health Medicine",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) that is used to relieve pain, f...",
+            "Key Attribute": "This includes painful menstrual periods, migraines, and rheumatoid arthritis"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Ibuprofen",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "amoxicillin",
+          "title": "Amoxicillin",
+          "nicheId": "health-medicine",
+          "description": "Beta-lactam antibiotic",
+          "summary": "Amoxicillin is an antibiotic medication belonging to the aminopenicillin class of the penicillin family. The drug is used to treat bacterial infections such as middle ear infection, strep throat, pneumonia, skin infections, odontogenic infections, and urinary tract infections. It is taken orally, or less commonly by either intramuscular injection or by an IV bolus injection, which is a relatively quick intravenous injection lasting from a couple of seconds to a few minutes.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Amoxicillin-from-xtal-3D-bs-17.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Health Medicine",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Amoxicillin is an antibiotic medication belonging to the aminopenicillin class of the peni...",
+            "Key Attribute": "The drug is used to treat bacterial infections such as middle ear infection, strep throat,..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Amoxicillin",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "agriculture-mandi",
+      "name": "Agriculture & Mandi Bhav",
+      "tag": "Daily Rates",
+      "icon": "Wheat",
+      "color": "amber",
+      "itemCount": 3,
+      "items": [
+        {
+          "id": "wheat",
+          "title": "Wheat",
+          "nicheId": "agriculture-mandi",
+          "description": "Genus of grass cultivated for grain",
+          "summary": "Wheat is a group of wild and domesticated grasses of the genus Triticum. As cereals, they are cultivated for their grains, which are staple foods around the world. Well-known wheat species and hybrids include the most widely grown common wheat, spelt, durum, emmer, einkorn, and Khorasan or Kamut. The archaeological record suggests that wheat was first cultivated in the regions of the Fertile Crescent around 9600 BC.",
+          "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Vehn%C3%A4pelto_6.jpg/3840px-Vehn%C3%A4pelto_6.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "fastFacts": {
+            "Domain": "Agriculture Mandi",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Wheat is a group of wild and domesticated grasses of the genus Triticum",
+            "Key Attribute": "As cereals, they are cultivated for their grains, which are staple foods around the world"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Wheat",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "mustard-plant",
+          "title": "Mustard plant",
+          "nicheId": "agriculture-mandi",
+          "description": "Flowering plants in the family Brassicaceae used for mustard",
+          "summary": "The mustard plant is any one of several plant species in the genera Brassica, Rhamphospermum and Sinapis in the family Brassicaceae. Mustard seed is used as a spice. Grinding and mixing the seeds with water, vinegar, or other liquids creates the yellow condiment known as prepared mustard. The seeds can also be pressed to make mustard oil, and the edible leaves can be eaten as mustard greens. Many vegetables are cultivated varieties of mustard plants; domestication may have begun 6,000 years ago.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Mustard_plant_flower.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Agriculture Mandi",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The mustard plant is any one of several plant species in the genera Brassica, Rhamphosperm...",
+            "Key Attribute": "Mustard seed is used as a spice"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Mustard_plant",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "basmati",
+          "title": "Basmati",
+          "nicheId": "agriculture-mandi",
+          "description": "Variety of long-grain rice originating from Indian subcontinent",
+          "summary": "Basmati is a variety of long, slender-grained aromatic rice which originates from the Indian subcontinent, mainly in the regions of Haryana, Punjab, Sindh and many other states and provinces of India, Pakistan and Nepal. As of 2019, India accounted for 65% of the international trade in basmati rice, while Pakistan accounted for the remaining 35%. Many countries use domestically grown basmati rice crops; however, basmati is geographically exclusive to certain districts of India and Pakistan.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/07/Khyma_and_Basmati_rice.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Agriculture Mandi",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "Basmati is a variety of long, slender-grained aromatic rice which originates from the Indi...",
+            "Key Attribute": "As of 2019, India accounted for 65% of the international trade in basmati rice, while Paki..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Basmati",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "pet-care",
+      "name": "Pet Breeds & Animal Care",
+      "tag": "Trending",
+      "icon": "Dog",
+      "color": "purple",
+      "itemCount": 3,
+      "items": [
+        {
+          "id": "golden-retriever",
+          "title": "Golden Retriever",
+          "nicheId": "pet-care",
+          "description": "Scottish breed of dog",
+          "summary": "The Golden Retriever is a Scottish breed of retriever dog of medium-large size. It is characterised by a gentle and affectionate nature and a striking golden coat. It is a working dog, and registration is subject to successful completion of a working trial. It is commonly kept as a companion dog and is among the most frequently registered breeds in several Western countries; some may compete in dog shows or obedience trials, or work as guide dogs.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_Retriever_Dukedestiny01_drvd.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Pet Care",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The Golden Retriever is a Scottish breed of retriever dog of medium-large size",
+            "Key Attribute": "It is characterised by a gentle and affectionate nature and a striking golden coat"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Golden_Retriever",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "german-shepherd",
+          "title": "German Shepherd",
+          "nicheId": "pet-care",
+          "description": "German breed of dog",
+          "summary": "The German Shepherd, also known in Britain as an Alsatian, is a German breed of working dog of medium to large size. It is characterized by its intelligent and obedient nature.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/German_Shepherd_-_DSC_0346_%2810096362833%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Pet Care",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The German Shepherd, also known in Britain as an Alsatian, is a German breed of working do...",
+            "Key Attribute": "It is characterized by its intelligent and obedient nature."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/German_Shepherd",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "labrador-retriever",
+          "title": "Labrador Retriever",
+          "nicheId": "pet-care",
+          "description": "British breed of retriever gun dog",
+          "summary": "The Labrador Retriever, also known simply as the Labrador or Lab, is a British breed of retriever gun dog. It was developed in the United Kingdom from St. John's water dogs imported from the Colony of Newfoundland, and was named after the Labrador region in that colony. It is among the most commonly kept dogs in several countries, particularly in the Western world.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/Labrador_on_Quantock_%282175262184%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Pet Care",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "The Labrador Retriever, also known simply as the Labrador or Lab, is a British breed of re...",
+            "Key Attribute": "It was developed in the United Kingdom from St"
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Labrador_Retriever",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "weather-climate",
+      "name": "Weather & Climate Intelligence",
+      "tag": "Live Radar",
+      "icon": "CloudSun",
+      "color": "blue",
+      "itemCount": 3,
+      "items": [
+        {
+          "id": "monsoon",
+          "title": "Monsoon",
+          "nicheId": "weather-climate",
+          "description": "Seasonal changes in atmospheric circulation and precipitation",
+          "summary": "A monsoon is traditionally a seasonal reversing wind accompanied by corresponding changes in precipitation, but now used to describe seasonal changes in atmospheric circulation and precipitation associated with annual latitudinal oscillation of the Intertropical Convergence Zone, specifically between its limits to the north and south of the equator.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Monsoon_clouds_near_Nagercoil.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Weather Climate",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "A monsoon is traditionally a seasonal reversing wind accompanied by corresponding changes ..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Monsoon",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "india-meteorological-department",
+          "title": "India Meteorological Department",
+          "nicheId": "weather-climate",
+          "description": "Meteorological agency of the Government of India",
+          "summary": "India Meteorological Department (IMD) is an Indian agency of the Ministry of Earth Sciences of the Government of India. It is the principal agency responsible for meteorological observations, weather forecasting and seismology. IMD is headquartered in Delhi and operates hundreds of observation stations across India and Antarctica. Regional offices are at Chennai, Mumbai, Kolkata, Nagpur, Guwahati and New Delhi.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/IMD_Mausam_Bhavan_Headquarters_New_Delhi_2017.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Weather Climate",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "India Meteorological Department (IMD) is an Indian agency of the Ministry of Earth Science...",
+            "Key Attribute": "It is the principal agency responsible for meteorological observations, weather forecastin..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/India_Meteorological_Department",
+          "lastVerified": "2026-10-04"
+        },
+        {
+          "id": "air-quality-index",
+          "title": "Air quality index",
+          "nicheId": "weather-climate",
+          "description": "Measure of air pollution",
+          "summary": "An air quality index (AQI) is an approximation of how polluted the air currently is or how polluted it is forecast to become. As air pollution levels rise, so does the AQI, along with the associated public health risks.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Edinburgh_air_quality_measurement_station_dsc06786.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+          "fastFacts": {
+            "Domain": "Weather Climate",
+            "Peer Verification": "Wikipedia Certified",
+            "Core Focus": "An air quality index (AQI) is an approximation of how polluted the air currently is or how...",
+            "Key Attribute": "As air pollution levels rise, so does the AQI, along with the associated public health ris..."
+          },
+          "sourceUrl": "https://en.wikipedia.org/wiki/Air_quality_index",
+          "lastVerified": "2026-10-04"
+        }
+      ]
+    }
+  ]
+}
