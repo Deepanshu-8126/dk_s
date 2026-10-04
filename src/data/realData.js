@@ -169,7 +169,7 @@ export const REAL_GAMING_PC_DATA = {
         { part: "Cabinet", model: "Ant Esports ICE-112 RGB", price: "₹2,800" }
       ],
       affiliateCta: "Check Budget 1080p Build on Amazon →",
-      affiliateUrl: "https://amazon.in/s?k=gaming+pc+rx+6600+build&tag=deepanshu210d-20"
+      affiliateUrl: "https://amazon.in/s?k=gaming+pc+rx+6600+build&tag=uniquedigi0c6-21"
     },
     {
       tier: "GTA 6 Ready Rig (1440p High RT)",
@@ -192,7 +192,7 @@ export const REAL_GAMING_PC_DATA = {
         { part: "Cabinet", model: "Lian Li Lancool 216", price: "₹7,200" }
       ],
       affiliateCta: "View 1440p Rig Deals on Amazon →",
-      affiliateUrl: "https://amazon.in/s?k=rtx+4070+super+gaming+pc&tag=deepanshu210d-20"
+      affiliateUrl: "https://amazon.in/s?k=rtx+4070+super+gaming+pc&tag=uniquedigi0c6-21"
     },
     {
       tier: "God Tier Streamer / 4K Esports Beast",
@@ -215,7 +215,7 @@ export const REAL_GAMING_PC_DATA = {
         { part: "Power Supply", model: "Corsair RM1000x 1000W 80+", price: "₹15,200" }
       ],
       affiliateCta: "Explore God Tier Hardware on Amazon →",
-      affiliateUrl: "https://amazon.in/s?k=rtx+4090+gaming+pc+complete&tag=deepanshu210d-20"
+      affiliateUrl: "https://amazon.in/s?k=rtx+4090+gaming+pc+complete&tag=uniquedigi0c6-21"
     }
   ]
 };
