@@ -8,6 +8,8 @@
     "sitemap": "node scripts/seo/generate-sitemap.js",
     "ping": "node scripts/seo/ping-search-console.js",
     "build": "node scripts/seo/generate-sitemap.js && node node_modules/vite/bin/vite.js build && node scripts/seo/check-bundle-size.js && node scripts/seo/prerender.js",
+    "predeploy": "npm run build",
+    "deploy": "wrangler deploy",
     "lint": "node node_modules/oxlint/bin/oxlint",
     "test": "node scripts/test-api-pipeline.js",
     "server": "node server/index.js",
