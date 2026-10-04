@@ -3,6 +3,7 @@ import { ShoppingBag, ExternalLink, Star, ShieldCheck, Tag, Sparkles, SlidersHor
 import fallbackData from '../../data/productsCatalog.json';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
 import PcBuildTable from '../gaming/PcBuildTable';
+import UniversalTopicViewer from '../common/UniversalTopicViewer';
 
 const FILTER_TABS = [
   { id: 'all', label: 'All Deals' },
@@ -21,6 +22,7 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
   const [showTagSettings, setShowTagSettings] = useState(false);
   const [inputTag, setInputTag] = useState(() => AFFILIATE_CONFIG.getAmazonTag());
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [selectedModalProduct, setSelectedModalProduct] = useState(null);
 
   const loadProducts = async (q = '') => {
     setLoading(true);
@@ -247,23 +249,49 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
                   )}
                 </div>
 
-                <a
-                  href={finalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-amber-600 hover:bg-amber-700 shadow-xs transition-all cursor-pointer"
-                >
-                  <span>Check Verified Deal on Amazon</span>
-                  <ExternalLink size={13} />
-                </a>
+                {/* Actions: Direct Amazon Buy + Full Deep Dive Dossier */}
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <button
+                    onClick={() => setSelectedModalProduct({
+                      title: product.title,
+                      niche: product.category,
+                      summary: product.verdict,
+                      imageUrl: product.imageUrl,
+                      fastFacts: product.specs,
+                      sourceUrl: finalUrl,
+                      lastVerified: 'Today (Live Stock)'
+                    })}
+                    className="py-2.5 px-2 rounded-xl text-[11px] font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all cursor-pointer text-center"
+                  >
+                    Deep Specs & Alternatives
+                  </button>
+
+                  <a
+                    href={finalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-[11px] font-black text-slate-950 bg-amber-400 hover:bg-amber-300 shadow-xs transition-all cursor-pointer text-center"
+                  >
+                    <span>Amazon.in</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
                 <span className="block text-center text-[10px] text-slate-400 mt-1.5">
-                  Audited Today · Real Amazon India Stock
+                  Audited Today · Tag: {currentTag || 'uniquedigi0c6-21'}
                 </span>
               </div>
             </div>
           );
         })}
       </div>
+
+      {/* Full-Page Deep Intelligence Modal */}
+      {selectedModalProduct && (
+        <UniversalTopicViewer
+          topic={selectedModalProduct}
+          onClose={() => setSelectedModalProduct(null)}
+        />
+      )}
 
       {/* Complete Indian PC Builds & Component Rigs Guide */}
       <div className="mt-14 pt-10 border-t border-slate-200">
