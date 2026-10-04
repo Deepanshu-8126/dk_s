@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft, Calendar, Clock, CheckCircle2, ShieldCheck, Share2 } from 'lucide-react';
 import SmartImage from './common/SmartImage';
+import { ArticleRenderer } from './articles';
 import SEO from './SEO';
 
 /**
@@ -122,36 +123,7 @@ export default function GuideArticleView({ article, onBack }) {
       </div>
 
       {/* Article Content */}
-      <div className="prose prose-slate max-w-none text-[#334155] leading-relaxed space-y-5 text-sm md:text-base">
-        {article.content.split('\n\n').map((para, idx) => {
-          if (para.startsWith('###')) {
-            return (
-              <h2
-                key={idx}
-                className="text-lg md:text-xl font-bold text-[#111827] pt-4 pb-1 border-b border-slate-100"
-              >
-                {para.replace('###', '').trim()}
-              </h2>
-            );
-          }
-          if (para.startsWith('**Verdict:')) {
-            return (
-              <div
-                key={idx}
-                className="p-5 rounded-2xl bg-amber-50 border border-amber-200 text-[#92400E] font-medium my-6 shadow-xs"
-              >
-                <div className="flex items-center gap-1.5 text-[#B45309] font-black text-base uppercase tracking-wider mb-2">
-                  🎯 Final Buying Verdict
-                </div>
-                <p className="text-sm md:text-base leading-relaxed text-[#78350F]">
-                  {para.replace('**Verdict: Lena chahiye ya nahi and kyu?**', '').trim()}
-                </p>
-              </div>
-            );
-          }
-          return <p key={idx}>{para}</p>;
-        })}
-      </div>
+      <ArticleRenderer content={article.content} />
 
       {/* Author Bio Footer */}
       <footer className="mt-12 p-6 rounded-3xl bg-[#F8FAFC] border border-[#E2E8F0]">
