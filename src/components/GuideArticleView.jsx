@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowLeft, Calendar, Clock, ShieldCheck, ExternalLink, Image as ImageIcon, BookOpen } from 'lucide-react';
 import SmartImage from './common/SmartImage';
-import { ArticleRenderer } from './articles';
+import { ArticleRenderer, RelatedArticles } from './articles';
 import SEO from './SEO';
 
 export default function GuideArticleView({ article, onBack }) {
@@ -164,6 +164,15 @@ export default function GuideArticleView({ article, onBack }) {
           {article.author?.bio || 'Senior education journalist analyzing Staff Selection Commission normalization and regional cut-off matrices.'}
         </p>
       </footer>
+
+      {/* Recommendations / Related Articles */}
+      <RelatedArticles
+        currentSlug={article.slug}
+        onSelectArticle={(rec) => {
+          window.history.pushState({}, '', `/guide/${rec.slug}`);
+          window.location.reload();
+        }}
+      />
     </article>
   );
 }
