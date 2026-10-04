@@ -80,18 +80,44 @@ export const REAL_GOLD_DATA = {
  * Fetch live spot gold price with fallback to verified static data
  */
 export async function fetchLiveGoldRate() {
+  // 1. First priority: Server dynamic endpoint /api/gold-rates (updated by Python/cron pipeline)
+  try {
+    const localRes = await fetch('/api/gold-rates');
+    if (localRes.ok) {
+      const data = await localRes.json();
+      if (data && data.national && data.national.length > 0) {
+        return {
+          ...REAL_GOLD_DATA,
+          ...data,
+          isLive: true,
+        };
+      }
+    }
+  } catch {}
+
+  // 2. Second priority: Public synced JSON /data/gold-rates.json
+  try {
+    const pubRes = await fetch('/data/gold-rates.json');
+    if (pubRes.ok) {
+      const data = await pubRes.json();
+      if (data && data.national) {
+        return {
+          ...REAL_GOLD_DATA,
+          ...data,
+          isLive: true,
+        };
+      }
+    }
+  } catch {}
+
+  // 3. Third priority: Live spot API
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000);
-    const res = await fetch("https://api.metals.live/v1/spot/gold", {
-      signal: controller.signal
-    });
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
+    const res = await fetch("https://api.metals.live/v1/spot/gold", { signal: controller.signal });
     clearTimeout(timeoutId);
-
     if (res.ok) {
       const data = await res.json();
-      // If API returns price per troy ounce in USD, estimate INR per gram
-      // 1 troy ounce = 31.1035 grams, assume USD/INR ~ 86
       const spotUsd = Array.isArray(data) && data[0]?.price ? data[0].price : data.price;
       if (spotUsd && spotUsd > 1000) {
         const ratePerGram24k = Math.round((spotUsd * 86.2) / 31.1035);
@@ -109,9 +135,8 @@ export async function fetchLiveGoldRate() {
         };
       }
     }
-  } catch (err) {
-    // Graceful fallback to verified cached data
-  }
+  } catch {}
+
   return {
     ...REAL_GOLD_DATA,
     isLive: false,
@@ -144,7 +169,7 @@ export const REAL_GAMING_PC_DATA = {
         { part: "Cabinet", model: "Ant Esports ICE-112 RGB", price: "₹2,800" }
       ],
       affiliateCta: "Check Budget 1080p Build on Amazon →",
-      affiliateUrl: "https://amazon.in/s?k=gaming+pc+rx+6600+build&tag=shelfcreator-21"
+      affiliateUrl: "https://amazon.in/s?k=gaming+pc+rx+6600+build&tag=deepanshu210d-20"
     },
     {
       tier: "GTA 6 Ready Rig (1440p High RT)",
@@ -167,7 +192,7 @@ export const REAL_GAMING_PC_DATA = {
         { part: "Cabinet", model: "Lian Li Lancool 216", price: "₹7,200" }
       ],
       affiliateCta: "View 1440p Rig Deals on Amazon →",
-      affiliateUrl: "https://amazon.in/s?k=rtx+4070+super+gaming+pc&tag=shelfcreator-21"
+      affiliateUrl: "https://amazon.in/s?k=rtx+4070+super+gaming+pc&tag=deepanshu210d-20"
     },
     {
       tier: "God Tier Streamer / 4K Esports Beast",
@@ -190,7 +215,7 @@ export const REAL_GAMING_PC_DATA = {
         { part: "Power Supply", model: "Corsair RM1000x 1000W 80+", price: "₹15,200" }
       ],
       affiliateCta: "Explore God Tier Hardware on Amazon →",
-      affiliateUrl: "https://amazon.in/s?k=rtx+4090+gaming+pc+complete&tag=shelfcreator-21"
+      affiliateUrl: "https://amazon.in/s?k=rtx+4090+gaming+pc+complete&tag=deepanshu210d-20"
     }
   ]
 };

@@ -3,11 +3,14 @@
  * Handles /api/media, /api/posts, /api/drafts, /api/blog/generate, and /api/blog/publish
  */
 
+import fs from 'fs';
+import path from 'path';
 import { searchWikimediaCommons } from './wikimediaService.js';
 import { fetchTopicSources } from './sourcesService.js';
 import { generateGroundedDraft } from './geminiService.js';
 import { getPublishedArticles, getDrafts, saveDraft, publishDraft } from './storageService.js';
 import { recordAnalyticsEvent, getAnalyticsStats } from './analyticsService.js';
+import { updateGoldRates } from '../scripts/update-gold-rates.js';
 
 function parseBody(req) {
   return new Promise((resolve, reject) => {
@@ -137,6 +140,23 @@ export async function handleApiRequest(req, res) {
       const slug = url.searchParams.get('slug');
       const stats = getAnalyticsStats(slug);
       return sendJson(res, 200, stats);
+    }
+
+    // 9. GET /api/gold-rates
+    if (pathname === '/api/gold-rates' && method === 'GET') {
+      const jsonPath = path.resolve('public/data/gold-rates.json');
+      if (fs.existsSync(jsonPath)) {
+        const raw = fs.readFileSync(jsonPath, 'utf-8');
+        return sendJson(res, 200, JSON.parse(raw));
+      }
+      return sendJson(res, 404, { error: 'GOLD_DATA_NOT_FOUND' });
+    }
+
+    // 10. POST /api/gold-rates/trigger
+    if (pathname === '/api/gold-rates/trigger' && method === 'POST') {
+      const body = await parseBody(req);
+      const updated = await updateGoldRates(body);
+      return sendJson(res, 200, { success: true, data: updated });
     }
 
     return sendJson(res, 404, { error: 'NOT_FOUND', message: `Endpoint ${pathname} not found` });

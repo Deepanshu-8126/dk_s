@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TrendingUp, TrendingDown, ExternalLink, BarChart2, AlertTriangle, Coins, Activity, ShieldCheck } from 'lucide-react';
+import { TrendingUp, TrendingDown, ExternalLink, BarChart2, AlertTriangle, Coins, Activity, ShieldCheck, RefreshCw } from 'lucide-react';
 import { REAL_GOLD_DATA, fetchLiveGoldRate, isDataStale, STALE_BADGE_TEXT } from '../data/realData';
 
 function SparkLine({ data }) {
@@ -30,16 +30,23 @@ function SparkLine({ data }) {
 export default function GoldRateWidget() {
   const [goldData, setGoldData] = useState(REAL_GOLD_DATA);
   const [isLive, setIsLive] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-  useEffect(() => {
-    let mounted = true;
-    fetchLiveGoldRate().then(res => {
-      if (mounted && res) {
+  const loadData = async () => {
+    setIsRefreshing(true);
+    try {
+      const res = await fetchLiveGoldRate();
+      if (res) {
         setGoldData(res);
         setIsLive(Boolean(res.isLive));
       }
-    });
-    return () => { mounted = false; };
+    } finally {
+      setTimeout(() => setIsRefreshing(false), 400);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
   }, []);
 
   const stale = isDataStale(goldData.lastUpdated);
@@ -71,9 +78,20 @@ export default function GoldRateWidget() {
             </span>
           )}
         </div>
-        <span className="text-xs text-slate-400 font-mono">
-          Last updated: {goldData.displayUpdated}
-        </span>
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={loadData}
+            disabled={isRefreshing}
+            title="Fetch latest verified bullion prices"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all cursor-pointer"
+          >
+            <RefreshCw size={12} className={isRefreshing ? "animate-spin text-indigo-600" : "text-slate-500"} />
+            <span>{isRefreshing ? "Syncing..." : "Live Sync"}</span>
+          </button>
+          <span className="text-xs text-slate-400 font-mono hidden sm:inline">
+            Updated: {goldData.displayUpdated}
+          </span>
+        </div>
       </div>
 
       {/* 3 Main Gold Rate Cards (Clean Modern Elevation, Bold Slate Prices) */}

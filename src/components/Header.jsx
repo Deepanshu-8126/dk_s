@@ -25,9 +25,22 @@ const DESKTOP_TABS = [
 
 export default function Header({ searchQuery, setSearchQuery, activeTab, setActiveTab }) {
   const [tickerIdx, setTickerIdx] = useState(0);
-  const [showTicker, setShowTicker] = useState(true);
+  const [showTicker, setShowTicker] = useState(() => {
+    try {
+      return localStorage.getItem('ud_ticker_closed') !== 'true';
+    } catch {
+      return true;
+    }
+  });
   const [searchFocused, setSearchFocused] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleDismissTicker = () => {
+    setShowTicker(false);
+    try {
+      localStorage.setItem('ud_ticker_closed', 'true');
+    } catch {}
+  };
 
   useEffect(() => {
     const t = setInterval(() => setTickerIdx(i => (i + 1) % TICKERS.length), 5000);
@@ -36,7 +49,7 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-      {/* Ticker strip on top (Refined Dark Obsidian with Emerald Pulse) */}
+      {/* Ticker strip on top (Persistently Dismissible in localStorage) */}
       {showTicker && (
         <div className="flex items-center text-xs bg-[#0B0F19] border-b border-slate-800 text-slate-300 h-8">
           <div className="shrink-0 flex items-center gap-1.5 px-3 font-bold uppercase tracking-wider bg-slate-900/90 text-emerald-400 h-full border-r border-slate-800">
@@ -50,9 +63,9 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
             </span>
           </div>
           <button
-            onClick={() => setShowTicker(false)}
+            onClick={handleDismissTicker}
             aria-label="Close live ticker"
-            className="shrink-0 px-2 sm:px-3 text-slate-400 hover:text-white transition-colors"
+            className="shrink-0 px-2 sm:px-3 text-slate-400 hover:text-white transition-colors cursor-pointer"
           >
             <X size={13} />
           </button>
@@ -139,8 +152,20 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
           </div>
 
           <button
-            aria-label="Notifications"
-            className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+            onClick={() => {
+              const next = !showTicker;
+              setShowTicker(next);
+              try {
+                localStorage.setItem('ud_ticker_closed', (!next).toString());
+              } catch {}
+            }}
+            title={showTicker ? "Hide live intelligence strip" : "Show live intelligence strip"}
+            aria-label="Toggle Live Alerts"
+            className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border transition-all cursor-pointer ${
+              showTicker
+                ? 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                : 'bg-emerald-50 border-emerald-300 text-emerald-600 hover:bg-emerald-100'
+            }`}
           >
             <Bell size={15} />
           </button>
