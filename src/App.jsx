@@ -9,6 +9,7 @@ import AIToolsSection from './components/AIToolsSection';
 import Footer from './components/Footer';
 import SEOSchema from './components/SEOSchema';
 import ProductShowcase from './components/products/ProductShowcase';
+import UniversalTopicViewer from './components/common/UniversalTopicViewer';
 import ArticlesSection from './components/ArticlesSection';
 import HyperlocalSection from './components/HyperlocalSection';
 import GuideArticleView from './components/GuideArticleView';
@@ -21,6 +22,7 @@ import publishedArticles from './data/articles/published.json';
 export default function App() {
   const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [liveTopic, setLiveTopic] = useState(null);
   const [directArticle, setDirectArticle] = useState(() => {
     if (typeof window === 'undefined') return null;
     const path = window.location.pathname;
@@ -30,6 +32,27 @@ export default function App() {
     }
     return null;
   });
+
+  // Debounced live topic discovery for ANY user query (Wikipedia zero-cost pipeline)
+  useEffect(() => {
+    const q = (searchQuery || '').trim();
+    if (q.length < 3) {
+      setLiveTopic(null);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/topic/live?q=${encodeURIComponent(q)}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.topic) setLiveTopic(data.topic);
+        }
+      } catch {}
+    }, 350);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
 
   const getSeoProps = () => {
     switch (activeTab) {
@@ -125,6 +148,14 @@ export default function App() {
               setActiveTab={setActiveTab}
               setSearchQuery={setSearchQuery}
             />
+
+            {/* Universal Topic Intelligence Viewer (Gaming, Medicine, Animals, Crops, Tech, Weather) */}
+            {liveTopic && (
+              <UniversalTopicViewer
+                topic={liveTopic}
+                onClose={() => setLiveTopic(null)}
+              />
+            )}
 
             {/* Editorial Studio Tab */}
             {activeTab === 'studio' && (
