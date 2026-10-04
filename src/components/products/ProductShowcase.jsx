@@ -159,11 +159,15 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
             >
               <div>
                 {/* Product Image Box */}
-                <div className="relative h-48 rounded-2xl overflow-hidden mb-3.5 bg-slate-900">
+                <div className="relative h-48 rounded-2xl overflow-hidden mb-3.5 bg-slate-900 flex items-center justify-center">
                   <img
-                    src={product.imageUrl}
+                    src={product.imageUrl || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=85'}
                     alt={product.title}
                     loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=85';
+                    }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />

@@ -66,8 +66,12 @@ export default function UniversalTopicViewer({ topic, onClose }) {
             <img
               src={topic.imageUrl || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85'}
               alt={topic.title}
-              className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
               loading="eager"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85';
+              }}
+              className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent pointer-events-none" />
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
