@@ -87,5 +87,93 @@
     },
     "sourceUrl": "https://en.wikipedia.org/wiki/GTA",
     "lastVerified": "2026-10-04"
+  },
+  "monso": {
+    "id": "monsoon",
+    "query": "monso",
+    "title": "Monsoon",
+    "niche": "Weather & Climate",
+    "description": "Seasonal changes in atmospheric circulation and precipitation",
+    "summary": "A monsoon is traditionally a seasonal reversing wind accompanied by corresponding changes in precipitation, but now used to describe seasonal changes in atmospheric circulation and precipitation associated with annual latitudinal oscillation of the Intertropical Convergence Zone, specifically between its limits to the north and south of the equator.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Monsoon_clouds_near_Nagercoil.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "fastFacts": {
+      "Category": "Seasonal changes in atmospheric circulation and precipitation",
+      "Niche Domain": "Weather & Climate",
+      "Fact Verification": "Public Peer-Reviewed",
+      "Primary Focus": "A monsoon is traditionally a seasonal reversing wind accompanied by corresponding changes in pr..."
+    },
+    "sourceUrl": "https://en.wikipedia.org/wiki/Monsoon",
+    "lastVerified": "2026-10-04"
+  },
+  "monsoon o": {
+    "id": "monsoon-of-south-asia",
+    "query": "monsoon o",
+    "title": "Monsoon of South Asia",
+    "niche": "Weather & Climate",
+    "description": "Monsoon in Indian subcontinent",
+    "summary": "The Monsoon of South Asia is among several geographically distributed global monsoons. It affects the Indian subcontinent, where it is one of the oldest and most anticipated weather phenomena, and an economically important pattern every year from June through September, but it is only partly understood and notoriously difficult to predict. Several theories have been proposed to explain the origin, process, strength, variability, distribution, and general vagaries of the monsoon, but understanding and predictability are still evolving.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/The_South_Asian_Monsoon.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "fastFacts": {
+      "Category": "Monsoon in Indian subcontinent",
+      "Niche Domain": "Weather & Climate",
+      "Fact Verification": "Public Peer-Reviewed",
+      "Primary Focus": "The Monsoon of South Asia is among several geographically distributed global monsoons",
+      "Key Trait": "It affects the Indian subcontinent, where it is one of the oldest and most anticipated weather ..."
+    },
+    "sourceUrl": "https://en.wikipedia.org/wiki/Monsoon_of_South_Asia",
+    "lastVerified": "2026-10-04"
+  },
+  "monsoon of tod": {
+    "id": "monsoon-of-south-asia",
+    "query": "monsoon of tod",
+    "title": "Monsoon of South Asia",
+    "niche": "Weather & Climate",
+    "description": "Monsoon in Indian subcontinent",
+    "summary": "The Monsoon of South Asia is among several geographically distributed global monsoons. It affects the Indian subcontinent, where it is one of the oldest and most anticipated weather phenomena, and an economically important pattern every year from June through September, but it is only partly understood and notoriously difficult to predict. Several theories have been proposed to explain the origin, process, strength, variability, distribution, and general vagaries of the monsoon, but understanding and predictability are still evolving.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/The_South_Asian_Monsoon.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "fastFacts": {
+      "Category": "Monsoon in Indian subcontinent",
+      "Niche Domain": "Weather & Climate",
+      "Fact Verification": "Public Peer-Reviewed",
+      "Primary Focus": "The Monsoon of South Asia is among several geographically distributed global monsoons",
+      "Key Trait": "It affects the Indian subcontinent, where it is one of the oldest and most anticipated weather ..."
+    },
+    "sourceUrl": "https://en.wikipedia.org/wiki/Monsoon_of_South_Asia",
+    "lastVerified": "2026-10-04"
+  },
+  "moosn": {
+    "id": "nele-moos",
+    "query": "moosn",
+    "title": "Nele Moos",
+    "niche": "General Intelligence",
+    "description": "German Paralympic athlete",
+    "summary": "Nele Moos is a German Paralympic athlete who competes in long jump and sprinting events at international track and field competitions. She is a World bronze medalist and World junior silver medalist, she has competed at the 2020 Summer Paralympics in the 100 metres and 400 metres but did not medal in her events.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/Nele_Moos_2024_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "fastFacts": {
+      "Category": "German Paralympic athlete",
+      "Niche Domain": "General Intelligence",
+      "Fact Verification": "Public Peer-Reviewed",
+      "Primary Focus": "Nele Moos is a German Paralympic athlete who competes in long jump and sprinting events at inte...",
+      "Key Trait": "She is a World bronze medalist and World junior silver medalist, she has competed at the 2020 S..."
+    },
+    "sourceUrl": "https://en.wikipedia.org/wiki/Nele_Moos",
+    "lastVerified": "2026-10-04"
+  },
+  "moosnsoon": {
+    "id": "monsoon",
+    "query": "moosnsoon",
+    "title": "Monsoon",
+    "niche": "Weather & Climate",
+    "description": "Seasonal changes in atmospheric circulation and precipitation",
+    "summary": "A monsoon is traditionally a seasonal reversing wind accompanied by corresponding changes in precipitation, but now used to describe seasonal changes in atmospheric circulation and precipitation associated with annual latitudinal oscillation of the Intertropical Convergence Zone, specifically between its limits to the north and south of the equator.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Monsoon_clouds_near_Nagercoil.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "fastFacts": {
+      "Category": "Seasonal changes in atmospheric circulation and precipitation",
+      "Niche Domain": "Weather & Climate",
+      "Fact Verification": "Public Peer-Reviewed",
+      "Primary Focus": "A monsoon is traditionally a seasonal reversing wind accompanied by corresponding changes in pr..."
+    },
+    "sourceUrl": "https://en.wikipedia.org/wiki/Monsoon",
+    "lastVerified": "2026-10-04"
   }
 }
