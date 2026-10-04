@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import SEOSchema from './components/SEOSchema';
 import ProductShowcase from './components/products/ProductShowcase';
 import UniversalTopicViewer from './components/common/UniversalTopicViewer';
+import VersusBattleEngine from './components/common/VersusBattleEngine';
+import StickyBuyBar from './components/common/StickyBuyBar';
 import ViralNicheExplorer from './components/niches/ViralNicheExplorer';
 import ArticlesSection from './components/ArticlesSection';
 import HyperlocalSection from './components/HyperlocalSection';
@@ -19,11 +21,14 @@ import SEO, { generateFinancialProductSchema, generateAIToolsSchema } from './co
 import { REAL_GOLD_DATA } from './data/realData';
 import { AI_TOOLS } from './data/aiTools';
 import publishedArticles from './data/articles/published.json';
+import productsCatalog from './data/productsCatalog.json';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [liveTopic, setLiveTopic] = useState(null);
+  const [versusModal, setVersusModal] = useState({ isOpen: false, itemA: null, itemB: null });
+  
   const [directArticle, setDirectArticle] = useState(() => {
     if (typeof window === 'undefined') return null;
     const path = window.location.pathname;
@@ -54,6 +59,12 @@ export default function App() {
 
     return () => clearTimeout(timer);
   }, [searchQuery]);
+
+  const openVersus = (itemA = null, itemB = null) => {
+    const defaultA = itemA || productsCatalog[0] || null;
+    const defaultB = itemB || productsCatalog[1] || null;
+    setVersusModal({ isOpen: true, itemA: defaultA, itemB: defaultB });
+  };
 
   const getSeoProps = () => {
     switch (activeTab) {
@@ -108,8 +119,8 @@ export default function App() {
         };
       default:
         return {
-          title: "Gold Rate Today + AI Tools + Sarkari Result | UniqueDigit",
-          description: "India's daily intelligence hub uniting live gold rates, top AI tools, GTA gaming, and sarkari results.",
+          title: "UniqueDigit — India's #1 Live Hardware Intelligence & Wirecutter-Grade Verdicts",
+          description: "India's daily intelligence hub uniting live gadget verdicts, 2 Pros + 1 Con honest breakdowns, and verified deals.",
           canonicalPath: "/",
           schema: null,
         };
@@ -117,9 +128,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#1A2027] selection:bg-amber-100 selection:text-amber-900">
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#1A2027] selection:bg-amber-100 selection:text-amber-900 pb-16 md:pb-0">
       <SEO {...getSeoProps()} />
-      <SEOSchema />
+      <SEOSchema activeItem={liveTopic} products={productsCatalog} />
 
       <Header
         activeTab={activeTab}
@@ -158,6 +169,16 @@ export default function App() {
               />
             )}
 
+            {/* Versus Battle Modal Engine */}
+            {versusModal.isOpen && (
+              <VersusBattleEngine
+                productA={versusModal.itemA}
+                productB={versusModal.itemB}
+                catalog={productsCatalog}
+                onClose={() => setVersusModal({ isOpen: false, itemA: null, itemB: null })}
+              />
+            )}
+
             {/* Editorial Studio Tab */}
             {activeTab === 'studio' && (
               <div className="py-4">
@@ -170,7 +191,10 @@ export default function App() {
 
             {/* Hero Widget in 'all' view */}
             {!searchQuery && activeTab === 'all' && (
-              <HeroWidget setActiveTab={setActiveTab} />
+              <HeroWidget
+                setActiveTab={setActiveTab}
+                onOpenVersus={() => openVersus()}
+              />
             )}
 
             {/* All View — High Signal Intelligence Radar */}
@@ -182,13 +206,13 @@ export default function App() {
                 <AIToolsSection searchQuery={searchQuery} />
                 <SarkariResultSection searchQuery={searchQuery} />
                 <HyperlocalSection />
-                {searchQuery && <ProductShowcase searchQuery={searchQuery} />}
+                {searchQuery && <ProductShowcase searchQuery={searchQuery} onCompare={(p) => openVersus(p)} />}
               </div>
             )}
 
             {/* Tab Specific Views */}
             {activeTab === 'niches' && <div className="py-2"><ViralNicheExplorer onSelectTopic={(t) => setLiveTopic(t)} /></div>}
-            {activeTab === 'products' && <div className="py-2"><ProductShowcase searchQuery={searchQuery} /></div>}
+            {activeTab === 'products' && <div className="py-2"><ProductShowcase searchQuery={searchQuery} onCompare={(p) => openVersus(p)} /></div>}
             {activeTab === 'gaming' && <div className="py-2"><GamingSection searchQuery={searchQuery} setActiveTab={setActiveTab} isHome={false} /></div>}
             {activeTab === 'gold' && <div className="py-2"><GoldRateWidget searchQuery={searchQuery} /></div>}
             {activeTab === 'hyperlocal' && <div className="py-2"><HyperlocalSection /></div>}
@@ -200,6 +224,12 @@ export default function App() {
           </>
         )}
       </main>
+
+      {/* High-Converting Mobile Sticky Bar */}
+      <StickyBuyBar
+        activeItem={liveTopic || productsCatalog[0]}
+        onOpenVersus={() => openVersus(liveTopic || productsCatalog[0], productsCatalog[1])}
+      />
 
       <Footer setActiveTab={setActiveTab} />
     </div>
