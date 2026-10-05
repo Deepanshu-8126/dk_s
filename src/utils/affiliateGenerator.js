@@ -1,6 +1,6 @@
 /**
  * DYNAMIC AFFILIATE LINK GENERATOR (Frontend & Server)
- * Generates verified Amazon Associates, EarnKaro, and Wishlink URLs
+ * Generates verified Amazon Associates, Cloaked /go/:slug URLs, and Multi-Vendor Fallbacks.
  */
 
 export const AFFILIATE_CONFIG = {
@@ -18,9 +18,19 @@ export const AFFILIATE_CONFIG = {
 };
 
 /**
+ * Generate Clean Cloaked /go/:slug URL routed through Cloudflare Pages Function
+ * @param {string} slug
+ * @param {string|null} customTag
+ * @returns {string} Clean cloaked URL
+ */
+export function buildCloakedUrl(slug, customTag = null) {
+  const cleanSlug = (slug || '').toLowerCase().replace(/[^a-z0-9-]/g, '');
+  const tag = (customTag !== null ? customTag : AFFILIATE_CONFIG.getAmazonTag()).trim();
+  return `/go/${cleanSlug}?tag=${encodeURIComponent(tag)}`;
+}
+
+/**
  * Generate Amazon India Affiliate Search / Direct Link
- * If tag is provided or saved in settings, attaches ?tag=...
- * If no tag is configured yet, generates clean direct Amazon link.
  */
 export function buildAmazonAffiliateUrl(query, customTag = null) {
   const tag = (customTag !== null ? customTag : AFFILIATE_CONFIG.getAmazonTag()).trim();
@@ -34,6 +44,28 @@ export function buildAmazonAffiliateUrl(query, customTag = null) {
   return tag
     ? `https://www.amazon.in/s?k=${encoded}&tag=${encodeURIComponent(tag)}`
     : `https://www.amazon.in/s?k=${encoded}`;
+}
+
+/**
+ * Multi-Vendor Out-of-Stock Fallback Routing
+ * If Amazon is out of stock, routes to Flipkart via EarnKaro
+ */
+export function buildMultiVendorUrl(productTitle, inStockOnAmazon = true) {
+  if (inStockOnAmazon) {
+    return {
+      primary: buildAmazonAffiliateUrl(productTitle),
+      vendor: 'Amazon.in',
+      badge: 'In Stock'
+    };
+  }
+  
+  const encoded = encodeURIComponent(productTitle);
+  const flipkartSearch = `https://www.flipkart.com/search?q=${encoded}`;
+  return {
+    primary: `https://earnkaro.com/deals?r=${AFFILIATE_CONFIG.earnkaroId}&url=${encodeURIComponent(flipkartSearch)}`,
+    vendor: 'Flipkart Verified',
+    badge: 'Alternative Deal'
+  };
 }
 
 /**

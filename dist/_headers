@@ -1,0 +1,29 @@
+# Cloudflare Pages Edge Caching & Security Headers
+
+# 1. Static Assets (JS, CSS, Fonts, Images, SVGs) - Immutable Edge Caching
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/*.svg
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  X-Content-Type-Options: nosniff
+
+# 2. Dynamic Pricing & Inventory API Routes - Never Cache
+/api/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization
+
+# 3. Cloaked Affiliate Redirects - Instant No-Cache 302
+/go/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# 4. Prerendered HTML Pages - Fast Revalidation
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

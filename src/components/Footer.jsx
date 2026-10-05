@@ -156,6 +156,19 @@ export default function Footer({ setActiveTab }) {
           </div>
         </div>
 
+        {/* Official Amazon Associates Compliance Disclosure Banner */}
+        <div className="my-8 p-4 rounded-2xl bg-slate-950 border border-slate-800 text-slate-400 text-xs leading-relaxed flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="p-2 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shrink-0">
+            <ShieldCheck size={18} />
+          </div>
+          <div>
+            <strong className="text-white block font-display">Amazon Associates & Affiliate Transparency Disclosure:</strong>
+            <span>
+              UniqueDigit is a participant in the Amazon Services LLC Associates Program and the Amazon.in Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.in. As an Amazon Associate, we earn from qualifying purchases. Product prices, coupons, and availability are accurate as of the date/time indicated and are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply to the purchase of this product.
+            </span>
+          </div>
+        </div>
+
         {/* Legal, Integrity & Ethics Row */}
         <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© 2026 UniqueDigit. All verified rates & official recruitment alerts collected from authorized public bodies.</p>
