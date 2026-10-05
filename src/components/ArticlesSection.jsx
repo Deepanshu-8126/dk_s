@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Award, ShieldCheck, ChevronLeft, ChevronRight, PenTool, BookOpen } from 'lucide-react';
-import { ArticleCard } from './articles';
+import { Award, ShieldCheck, ChevronLeft, ChevronRight, PenTool, BookOpen, Sparkles } from 'lucide-react';
+import UniversalEditorialCard from './common/UniversalEditorialCard';
 import GuideArticleView from './GuideArticleView';
 import { EditorialStudio } from './studio';
 import { BlogApiClient } from '../services/geminiRotator';
 import fallbackArticles from '../data/articles/published.json';
 
 export default function ArticlesSection() {
-  const [articles, setArticles] = useState(fallbackArticles || []);
+  const [articles, setArticles] = useState(fallbackArticles?.articles || fallbackArticles || []);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeArticle, setActiveArticle] = useState(null);
@@ -37,6 +37,10 @@ export default function ArticlesSection() {
   const start = (currentPage - 1) * limit;
   const currentArticles = articles.slice(start, start + limit);
 
+  const heroArticle = currentArticles[0];
+  const sideArticles = currentArticles.slice(1, 3);
+  const remainingArticles = currentArticles.slice(3);
+
   if (activeArticle) {
     return (
       <div className="mb-12">
@@ -53,34 +57,29 @@ export default function ArticlesSection() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-2">
-            <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-cyan-400 text-xs font-semibold mb-2 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
             <ShieldCheck size={13} />
-            <span>Fact-Grounded Editorial Desk</span>
+            <span>The Verge-Style Fact-Grounded Desk</span>
           </div>
           <h2
-            className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight"
-            style={{ fontFamily: 'var(--font-display)' }}
+            className="text-2xl md:text-3xl font-black text-white tracking-tight font-outfit"
           >
-            Verified Market Guides & <span className="text-indigo-600">Analysis</span>
+            Verified Market Guides & <span className="text-cyan-400">Analysis</span>
           </h2>
-          <p className="text-xs text-slate-500 mt-1 max-w-xl leading-relaxed">
-            Real source grounding, licensed Wikimedia Commons media, and genuine market analysis audited by our 10-pillar verification engine.
+          <p className="text-xs text-slate-400 mt-1 max-w-xl leading-relaxed">
+            Real source grounding, licensed media, and genuine market analysis audited by our 10-pillar verification engine.
           </p>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowStudio(!showStudio)}
-            className="px-3.5 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
+            className="px-3.5 py-2 rounded-xl bg-cyan-500 text-slate-950 hover:bg-cyan-400 text-xs font-bold flex items-center gap-1.5 transition-all shadow-md cursor-pointer"
           >
-            <PenTool size={13} className="text-indigo-400" />
+            <PenTool size={13} />
             <span>{showStudio ? 'Close Studio' : 'Editorial Studio'}</span>
           </button>
-          <div className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200">
-            <Award size={14} className="text-amber-500" />
-            <span>Fact-Checked</span>
-          </div>
         </div>
       </div>
 
@@ -97,50 +96,79 @@ export default function ArticlesSection() {
 
       {/* Empty State */}
       {!loading && articles.length === 0 && (
-        <div className="p-8 text-center bg-white rounded-2xl border border-dashed border-slate-300">
+        <div className="p-8 text-center bg-slate-900 rounded-3xl border border-dashed border-slate-800">
           <BookOpen size={32} className="mx-auto text-slate-400 mb-2" />
-          <h3 className="font-bold text-base text-slate-800">No Articles Published Yet</h3>
-          <p className="text-xs text-slate-500 max-w-md mx-auto mt-1 mb-4">
+          <h3 className="font-bold text-base text-slate-200 font-outfit">No Articles Published Yet</h3>
+          <p className="text-xs text-slate-400 max-w-md mx-auto mt-1 mb-4">
             No live posts found in data store. Use the Editorial Studio to fetch sources and draft an authentic article.
           </p>
           <button
             onClick={() => setShowStudio(true)}
-            className="px-4 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition-colors"
+            className="px-4 py-2 bg-cyan-500 text-slate-950 rounded-xl text-xs font-bold hover:bg-cyan-400 transition-colors"
           >
             Open Editorial Studio
           </button>
         </div>
       )}
 
-      {/* Articles Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {currentArticles.map((article) => (
-          <ArticleCard
-            key={article.slug || article.id}
-            article={article}
-            onClick={() => setActiveArticle(article)}
+      {/* The Verge-Style Asymmetric Visual Rhythm */}
+      <div className="space-y-6">
+        {/* 1. Hero Lead Article */}
+        {heroArticle && (
+          <UniversalEditorialCard
+            article={heroArticle}
+            layoutVariant="hero"
+            onClick={(a) => setActiveArticle(a)}
           />
-        ))}
+        )}
+
+        {/* 2. Asymmetric Secondary Stories */}
+        {sideArticles.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            {sideArticles.map((art) => (
+              <UniversalEditorialCard
+                key={art.slug || art.id}
+                article={art}
+                layoutVariant="asymmetric"
+                onClick={(a) => setActiveArticle(a)}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* 3. Compact Grid Remaining Stories */}
+        {remainingArticles.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {remainingArticles.map((art) => (
+              <UniversalEditorialCard
+                key={art.slug || art.id}
+                article={art}
+                layoutVariant="compact"
+                onClick={(a) => setActiveArticle(a)}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-200">
-          <span className="text-xs text-slate-500">
-            Showing Page {currentPage} of {totalPages} ({total} guides)
+        <div className="flex items-center justify-between mt-8 pt-4 border-t border-slate-800">
+          <span className="text-xs text-slate-400 font-mono">
+            Page {currentPage} of {totalPages} ({total} guides)
           </span>
           <div className="flex items-center gap-2">
             <button
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 disabled:opacity-40 hover:bg-slate-50 flex items-center gap-1 cursor-pointer"
+              className="px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-semibold text-slate-300 disabled:opacity-40 hover:bg-slate-800 flex items-center gap-1 cursor-pointer"
             >
               <ChevronLeft size={13} /> Prev
             </button>
             <button
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 disabled:opacity-40 hover:bg-slate-50 flex items-center gap-1 cursor-pointer"
+              className="px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-semibold text-slate-300 disabled:opacity-40 hover:bg-slate-800 flex items-center gap-1 cursor-pointer"
             >
               Next <ChevronRight size={13} />
             </button>

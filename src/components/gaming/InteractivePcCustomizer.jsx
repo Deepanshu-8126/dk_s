@@ -97,6 +97,53 @@ export default function InteractivePcCustomizer() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
         {/* Left Column: Interactive Component Pickers */}
         <div className="lg:col-span-7 space-y-4">
+          
+          {/* Quick Preset Budget Matcher */}
+          <div className="p-3 rounded-2xl bg-slate-950/80 border border-slate-800 flex items-center justify-between gap-2 flex-wrap">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+              <Sparkles size={12} className="text-amber-400" />
+              <span>Budget Matcher:</span>
+            </span>
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <button
+                onClick={() => {
+                  setSelectedCpu(COMPONENT_OPTIONS.cpu[0]);
+                  setSelectedGpu(COMPONENT_OPTIONS.gpu[0]);
+                  setSelectedRam(COMPONENT_OPTIONS.ram[0]);
+                  setSelectedStorage(COMPONENT_OPTIONS.storage[0]);
+                  setSelectedPsu(COMPONENT_OPTIONS.psu[0]);
+                }}
+                className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 transition cursor-pointer"
+              >
+                ~₹55k (1080p)
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedCpu(COMPONENT_OPTIONS.cpu[2]);
+                  setSelectedGpu(COMPONENT_OPTIONS.gpu[2]);
+                  setSelectedRam(COMPONENT_OPTIONS.ram[2]);
+                  setSelectedStorage(COMPONENT_OPTIONS.storage[1]);
+                  setSelectedPsu(COMPONENT_OPTIONS.psu[1]);
+                }}
+                className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-200 border border-indigo-500/40 transition cursor-pointer"
+              >
+                ~₹1.18L (1440p RT)
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedCpu(COMPONENT_OPTIONS.cpu[3]);
+                  setSelectedGpu(COMPONENT_OPTIONS.gpu[3]);
+                  setSelectedRam(COMPONENT_OPTIONS.ram[3]);
+                  setSelectedStorage(COMPONENT_OPTIONS.storage[2]);
+                  setSelectedPsu(COMPONENT_OPTIONS.psu[2]);
+                }}
+                className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 border border-amber-500/30 transition cursor-pointer"
+              >
+                ~₹2.2L (4K God)
+              </button>
+            </div>
+          </div>
+
           {/* 1. Processor Picker */}
           <div>
             <label className="text-xs font-bold text-slate-300 mb-1.5 flex items-center justify-between">

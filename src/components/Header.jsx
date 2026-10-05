@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Search, X, Flame, Gamepad2, Coins, Sparkles, Newspaper, Fuel, Menu, PenTool, ShoppingBag, ShieldCheck } from 'lucide-react';
+import { Search, X, Flame, Gamepad2, Coins, Sparkles, Newspaper, Fuel, Menu, PenTool, ShoppingBag, ShieldCheck, Bookmark, Command } from 'lucide-react';
 import MobileDrawer from './common/MobileDrawer';
+import LanguageSelector from './common/LanguageSelector';
 
 const TICKERS = [
   "GOLD ALERT: 24K Gold ₹7,462/gram — Up ₹130 today | MCX India",
@@ -25,7 +26,7 @@ const DESKTOP_TABS = [
   { id: 'studio', label: 'Editorial Studio', icon: PenTool },
 ];
 
-export default function Header({ searchQuery, setSearchQuery, activeTab, setActiveTab }) {
+export default function Header({ searchQuery, setSearchQuery, activeTab, setActiveTab, onOpenWishlist, onOpenSearch, wishlistCount = 0 }) {
   const [tickerIdx, setTickerIdx] = useState(0);
   const [showTicker, setShowTicker] = useState(() => {
     try {
@@ -50,12 +51,12 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#0B0F19]/95 backdrop-blur-md border-b border-slate-800/80 shadow-lg text-slate-100">
+    <header className="sticky top-0 z-40 bg-[#0A0A0C]/95 backdrop-blur-md border-b border-[#23232C] shadow-2xl text-[#EDEDED]">
       {/* Ticker strip on top */}
       {showTicker && (
-        <div className="flex items-center text-xs bg-[#030712] border-b border-slate-800/80 text-slate-300 h-8">
-          <div className="shrink-0 flex items-center gap-1.5 px-3 font-bold uppercase tracking-wider bg-slate-900/90 text-emerald-400 h-full border-r border-slate-800">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping shrink-0" />
+        <div className="flex items-center text-xs bg-[#0A0A0C] border-b border-[#23232C] text-slate-300 h-8">
+          <div className="shrink-0 flex items-center gap-1.5 px-3 font-bold uppercase tracking-wider bg-[#141419] text-amber-400 h-full border-r border-[#23232C]">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping shrink-0" />
             <span className="hidden sm:inline text-[11px] font-display">LIVE INTELLIGENCE</span>
             <span className="sm:hidden text-[11px] font-display">LIVE</span>
           </div>
@@ -142,13 +143,13 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
           })}
         </nav>
 
-        {/* Right: Search Box */}
-        <div className="relative flex items-center">
-          <div className={`relative flex items-center transition-all ${searchFocused ? 'w-48 sm:w-64' : 'w-36 sm:w-52'}`}>
+        {/* Right: Search Box + Wishlist & Quick Search Trigger */}
+        <div className="relative flex items-center gap-2">
+          <div className={`relative hidden sm:flex items-center transition-all ${searchFocused ? 'w-48 sm:w-56' : 'w-36 sm:w-44'}`}>
             <Search size={14} className="absolute left-3 text-slate-400 pointer-events-none" />
             <input
               type="text"
-              placeholder="Search gadgets, AI..."
+              placeholder="Search gadgets..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setSearchFocused(true)}
@@ -164,6 +165,37 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
               </button>
             )}
           </div>
+
+          {/* Instant Search Modal Button (Cmd+K) */}
+          {onOpenSearch && (
+            <button
+              onClick={onOpenSearch}
+              className="p-2 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white transition cursor-pointer flex items-center gap-1"
+              title="Quick Search (Ctrl+K)"
+            >
+              <Search size={14} />
+              <span className="hidden lg:inline text-[10px] font-mono text-slate-400 px-1 py-0.2 bg-slate-800 rounded">⌘K</span>
+            </button>
+          )}
+
+          {/* Regional Language Switcher */}
+          <LanguageSelector />
+
+          {/* Saved Wishlist Drawer Trigger */}
+          {onOpenWishlist && (
+            <button
+              onClick={onOpenWishlist}
+              className="relative p-2 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-amber-400 transition cursor-pointer"
+              title="View Saved Wishlist"
+            >
+              <Bookmark size={15} />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-amber-400 text-slate-950 font-bold text-[9px] flex items-center justify-center font-mono shadow-sm">
+                  {wishlistCount}
+                </span>
+              )}
+            </button>
+          )}
         </div>
       </div>
 

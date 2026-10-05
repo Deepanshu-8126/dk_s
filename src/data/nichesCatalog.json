@@ -1,0 +1,140 @@
+{
+  "niches": [
+    {
+      "id": "gaming",
+      "name": "Gaming & Hardware",
+      "accent": "cyan",
+      "badge": "⚡ High FPS Tested",
+      "icon": "Gamepad2",
+      "items": [
+        {
+          "id": "rtx-4070-super-deal",
+          "type": "deal",
+          "category": "gaming",
+          "title": "NVIDIA GeForce RTX 4070 Super 12GB GDDR6X",
+          "summary": "Best value 1440p High Ray Tracing GPU with DLSS 3.5 frame reconstruction.",
+          "price": 61499,
+          "originalPrice": 74999,
+          "inStock": true,
+          "priority": 10,
+          "imageUrl": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800&auto=format&fit=crop&q=80",
+          "specs": {
+            "CUDA Cores": "7,168",
+            "VRAM": "12GB GDDR6X",
+            "Power": "220W TGP",
+            "Target Resolution": "1440p Ultra RT"
+          },
+          "tags": ["gpu", "nvidia", "gaming", "1440p", "rtx"],
+          "faqs": [
+            {
+              "q": "Is 12GB VRAM enough for 1440p gaming in 2026?",
+              "a": "Yes, 12GB GDDR6X easily powers all modern AAA titles at 1440p with max textures and DLSS enabled."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "name": "Bullion & Gold Rates",
+      "accent": "emerald",
+      "badge": "📈 Live Market Rate",
+      "icon": "Coins",
+      "items": [
+        {
+          "id": "24k-gold-rate-tracker",
+          "type": "finance-chart",
+          "category": "finance",
+          "title": "24 Karat Pure Sovereign Bullion Index",
+          "summary": "Real-time 99.9% hallmarked pure gold rate tracking across all major Indian bullion hubs.",
+          "price": 74620,
+          "originalPrice": 75200,
+          "inStock": true,
+          "priority": 9,
+          "imageUrl": "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&auto=format&fit=crop&q=80",
+          "specs": {
+            "Purity": "24K (99.9% Pure)",
+            "Standard Unit": "10 Grams",
+            "Daily Movement": "+₹130 (Bullish)",
+            "MCX Rate": "₹74,480/10g"
+          },
+          "tags": ["gold", "bullion", "finance", "24k", "investment"],
+          "faqs": [
+            {
+              "q": "What is the difference between 24K and 22K gold?",
+              "a": "24K is 99.9% pure gold ideal for coins/bars, while 22K is 91.6% pure alloyed with copper/silver for durable jewelry."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coding",
+      "name": "AI & Developer Tools",
+      "accent": "purple",
+      "badge": "💻 Dev Supercharger",
+      "icon": "Code",
+      "items": [
+        {
+          "id": "cursor-ai-ide",
+          "type": "tool",
+          "category": "coding",
+          "title": "Cursor AI Code Editor & Claude 3.5 Sonnet Integration",
+          "summary": "Next-generation AI code editor that understands your full codebase context for 10x velocity.",
+          "price": 1650,
+          "originalPrice": 2200,
+          "inStock": true,
+          "priority": 8,
+          "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80",
+          "specs": {
+            "Model": "Claude 3.5 Sonnet + GPT-4o",
+            "Context Window": "200k Tokens",
+            "Platform": "Windows, macOS, Linux",
+            "Free Tier": "Available"
+          },
+          "tags": ["ai", "coding", "cursor", "claude", "developer"],
+          "faqs": [
+            {
+              "q": "Can I use Cursor for commercial development?",
+              "a": "Yes, Cursor has privacy mode that guarantees your proprietary code is never stored or used to train models."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fashion",
+      "name": "Smart Wearables & Audio",
+      "accent": "rose",
+      "badge": "🎧 Lifestyle Trend",
+      "icon": "Sparkles",
+      "items": [
+        {
+          "id": "sony-wh1000xm5",
+          "type": "deal",
+          "category": "fashion",
+          "title": "Sony WH-1000XM5 Wireless Active Noise Cancelling Headphones",
+          "summary": "Industry-leading noise cancellation with 30-hour battery life and LDAC Hi-Res audio support.",
+          "price": 26990,
+          "originalPrice": 34990,
+          "inStock": true,
+          "priority": 7,
+          "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80",
+          "specs": {
+            "Battery": "30 Hours ANC On",
+            "Driver": "30mm Precision Engineered",
+            "Codecs": "LDAC, AAC, SBC",
+            "Charging": "3 min for 3 hours playback"
+          },
+          "tags": ["audio", "sony", "anc", "headphones", "wireless"],
+          "faqs": [
+            {
+              "q": "Are Sony XM5 headphones good for long flights?",
+              "a": "Yes, with 8 microphones and Auto NC Optimizer, it completely silences airplane cabin hum."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

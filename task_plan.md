@@ -1,52 +1,30 @@
-# Task Plan: Real Image Engine & UI Consistency Elevation
+# 📋 Task Plan: Hinglish Pipeline, Social Story Generator & Price Time-Traveler
 
-## Context & Objectives
-The user requested:
-1. **Real Images**: Replace random Wikimedia expo/cosplay photos and missing images with authentic, verified high-resolution keyart, product photos, and official brand assets across Gaming, AI Tools, Gold/Bullion, Govt Exams, and Hyperlocal sectors.
-2. **UI Better / UI Consistency**: Enforce strict typography hierarchy, color & token lock, comfortable touch targets, and zero style drift across all sections (Hero, Hyperlocal, Gold, Gaming, AI Tools, Sarkari, Articles).
-3. **Reticle Verifier**: Automated proof layer with zero silent breakages (`npm run build`, bundle size audit < 500KB, all files strictly < 200 lines).
+## Objectives
+1. **Feature 1: Instant Regional Language Pipeline (Hinglish/Hindi/English Switcher)**
+   - LanguageContext / useTranslation hook supporting `en` (English), `hi-en` (Conversational Hinglish), and `hi` (Hindi).
+   - Global Language Switcher in Header and Mobile Dock.
+   - Translation keys for UI labels, badges, calculators, and verdicts.
+2. **Feature 2: One-Click Social Deal Card & Story Generator**
+   - Interactive modal (`SocialDealStoryModal.jsx`) that renders a high-res 9:16 Instagram Story & WhatsApp Status canvas.
+   - Includes UniqueDigit watermark, product imagery, discount badge, pricing, and 1-click PNG download + WhatsApp direct share.
+3. **Feature 3: Amazon Price "Time-Traveler" 6-Month History Graph**
+   - Interactive SVG price chart component (`PriceHistoryChart.jsx`) with 6-month historical low, all-time high, price fluctuation trend line, and "Best Time to Buy" verdict.
 
 ---
 
-## Phases
+## Phases & Tasks
 
-### Phase 1: Real Visuals & Curated Media Registry
-- [x] Create `src/data/curatedMedia.js` containing verified, high-resolution official CDN assets for:
-  - Top Games (GTA 6 Vice City keyart, GTA V action keyart, Valorant agent keyart, Black Myth Wukong action keyart, Cyberpunk 2077 Night City keyart)
-  - AI Tool Brand Logos & Badges (Gemini, ChatGPT, Perplexity, Cursor, Midjourney, Claude, Suno, Notion)
-  - Bullion & Gold Assets (Swiss PAMP 24K bar, MCX hallmark bullion)
-  - Govt Exams & Sarkari Assets (SSC CGL, UPSC, Railway, Bank PO)
-  - Fuel & Mandi Agriculture Assets
-- [x] Update `src/utils/imageEngine/fetchers.js` and `src/utils/imageEngine/index.js` to prioritize authentic curated keyart over random Wikipedia search results.
-
-### Phase 2: UI Consistency & Visual Elevation
-- [x] Elevate `TrendingGames.jsx`:
-  - Use verified official high-res game art directly (`src={game.artwork}`)
-  - Add publisher badge, clean playerbase pill, and responsive typography
-- [x] Elevate `AIToolsSection.jsx`:
-  - Add official tool brand avatars/badges with custom color accents
-  - Standardize typography to SaaS hierarchy (`#111827`, `#4B5563`, `#6B7280`)
-- [x] Elevate `HyperlocalSection.jsx`:
-  - Token lock: replace ad-hoc `gray-900`/`gray-500` with standard `#111827`, `#4B5563`, `#E5E7EB`
-  - Clean table headers with proper padding and pill badges
-- [x] Elevate `GtaSpotlight.jsx`:
-  - Direct curated artwork pass (`src={curatedArtwork}`) and high-contrast specs cards
-
-### Phase 3: Architectural & Line Count Constraints (<200 lines)
-- [x] Verify every modified or created file is strictly < 200 lines (all files 54-175 lines)
-- [x] Ensure barrel exports `index.js` exist for any component directories
-
-### Phase 4: Reticle Runtime Perception & Verification Layer
-- [x] Execute `npm run build` (Passed with 0 errors)
-- [x] Verify bundle sizes < 500KB (All chunks < 210KB)
-- [x] Verify 32 routes pre-rendered with SEO metadata
-- [x] Check dev server status on `http://localhost:5175` (Healthy & HMR active)
-- [x] Document final walkthrough in `walkthrough.md`
-
-### Phase 5: Telegram Live Alerts & Real Click Analytics Tracker
-- [ ] Step 1: Add `notify_live_publication(article, live_url)` in `trend-earning-system/connectors/telegram.py` with direct article links and inline buttons.
-- [ ] Step 2: Create `uniquedigit-portal/server/analyticsService.js` to track real article views & affiliate clicks.
-- [ ] Step 3: Wire `/api/analytics/track` and `/api/analytics/stats` in `server/apiRouter.js`.
-- [ ] Step 4: Fire lightweight view ping on mount in `src/components/GuideArticleView.jsx`.
-- [ ] Step 5: Test and verify notification formatting and analytics incrementation via automated test script.
-- [ ] Step 6: Sync to GitHub and update `.env.example` with Telegram Bot token and Chat ID setup instructions.
+- [x] **Phase 1: Architecture & Data Specs**
+  - [x] Task 1.1: Create `src/context/LanguageContext.jsx` with full Hindi & Hinglish dictionaries.
+  - [x] Task 1.2: Add price history datapoints and multi-language keys in `src/data/productsCatalog.json`.
+- [x] **Phase 2: Component Implementation**
+  - [x] Task 2.1: Build `src/components/common/LanguageSelector.jsx` and wire to `Header.jsx`.
+  - [x] Task 2.2: Build `src/components/common/SocialDealStoryModal.jsx` using HTML5 Canvas with branded layout.
+  - [x] Task 2.3: Build `src/components/products/PriceHistoryChart.jsx` with smooth SVG area gradient.
+- [x] **Phase 3: Integration & UI Lock**
+  - [x] Task 3.1: Integrate Story Share button and Price History graph into `ProductShowcase.jsx` and `ProductCard`.
+  - [x] Task 3.2: Wire Language Provider across `src/App.jsx`.
+- [x] **Phase 4: Reticle Verification & Build Integrity**
+  - [x] Task 4.1: Run `npm run build` and verify static HTML prerender of 32+ routes with 0 errors.
+  - [x] Task 4.2: Audit bundle size and verify UI token consistency.

@@ -2,6 +2,9 @@ import React from 'react';
 import { ArrowLeft, Calendar, Clock, ShieldCheck, ExternalLink, Image as ImageIcon, BookOpen, Sparkles, CheckCircle2 } from 'lucide-react';
 import SmartImage from './common/SmartImage';
 import ReadingProgressBar from './common/ReadingProgressBar';
+import AudioArticlePlayer from './ai/AudioArticlePlayer';
+import ArticleKeyTakeaways from './ai/ArticleKeyTakeaways';
+import GiscusComments from './community/GiscusComments';
 import { ArticleRenderer, RelatedArticles } from './articles';
 import SEO from './SEO';
 
@@ -40,6 +43,12 @@ export default function GuideArticleView({ article, onBack }) {
     datePublished: article.publishedAt,
     dateModified: article.updatedAt || article.publishedAt,
   };
+
+  const keyTakeaways = article.keyTakeaways || [
+    article.metaDescription || 'Complete ground-reality benchmark data and verified price matrix for Indian consumers.',
+    'Zero sponsored bias — independent performance validation and authentic component compatibility.',
+    'Verified Indian MRP & live Amazon/Flipkart affiliate discount tracking.'
+  ];
 
   return (
     <article className="max-w-4xl mx-auto py-6">
@@ -109,6 +118,13 @@ export default function GuideArticleView({ article, onBack }) {
         </div>
       </header>
 
+      {/* Free Web Speech Audio Article Player */}
+      <AudioArticlePlayer
+        title={article.title}
+        contentText={article.content}
+        estimatedMinutes={readingTimeMin}
+      />
+
       {/* Hero Image & Attribution */}
       <div className="mb-8">
         <div className="relative h-64 md:h-96 rounded-3xl overflow-hidden shadow-sm bg-slate-950 border border-slate-200">
@@ -150,18 +166,8 @@ export default function GuideArticleView({ article, onBack }) {
         </span>
       </div>
 
-      {/* At a Glance Executive Summary */}
-      {article.metaDescription && (
-        <div className="mb-6 p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100">
-          <div className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-1 flex items-center gap-1.5">
-            <BookOpen size={13} />
-            <span>At a Glance · Key Takeaways</span>
-          </div>
-          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            {article.metaDescription}
-          </p>
-        </div>
-      )}
+      {/* 10-Second Key Takeaways Box */}
+      <ArticleKeyTakeaways bullets={keyTakeaways} />
 
       {/* Article Content */}
       <ArticleRenderer content={article.content} />
@@ -195,6 +201,9 @@ export default function GuideArticleView({ article, onBack }) {
         </section>
       )}
 
+      {/* Open-Source Giscus Comments Stream */}
+      <GiscusComments term={article.slug || 'general'} />
+
       {/* Author Bio Footer */}
       <footer className="mt-8 p-6 rounded-3xl bg-[#F8FAFC] border border-[#E2E8F0]">
         <div className="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">
@@ -204,7 +213,7 @@ export default function GuideArticleView({ article, onBack }) {
           {article.author?.name || 'Pradeep Joshi'}
         </div>
         <p className="text-xs text-[#4B5563] leading-relaxed">
-          {article.author?.bio || 'Senior education journalist analyzing Staff Selection Commission normalization and regional cut-off matrices.'}
+          {article.author?.bio || 'Senior tech and gaming benchmark journalist analyzing component thermals and price-to-performance matrices.'}
         </p>
       </footer>
 

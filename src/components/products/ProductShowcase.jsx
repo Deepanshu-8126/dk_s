@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, ExternalLink, Star, ShieldCheck, Tag, Sparkles, SlidersHorizontal, Check, RefreshCw, CheckCircle2, XCircle, Award, Swords } from 'lucide-react';
+import { ShoppingBag, ExternalLink, Star, ShieldCheck, Tag, Sparkles, SlidersHorizontal, Check, RefreshCw, CheckCircle2, XCircle, Award, Swords, Bookmark, Bell, Share2, History } from 'lucide-react';
 import fallbackData from '../../data/productsCatalog.json';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
 import { calculateDiscount } from '../../utils/calculator';
 import UniversalTopicViewer from '../common/UniversalTopicViewer';
+import PriceDropAlertModal from '../common/PriceDropAlertModal';
+import SocialDealStoryModal from '../common/SocialDealStoryModal';
+import PriceHistoryChart from './PriceHistoryChart';
+import { useTranslation } from '../../context/LanguageContext';
 
 const FILTER_TABS = [
   { id: 'all', label: 'All Deals' },
@@ -13,7 +17,8 @@ const FILTER_TABS = [
   { id: 'Audio', label: 'Audio & ANC' },
 ];
 
-export default function ProductShowcase({ searchQuery, activeCategory = 'all', onCompare }) {
+export default function ProductShowcase({ searchQuery, activeCategory = 'all', onCompare, onWishlistUpdate }) {
+  const { t } = useTranslation();
   const [products, setProducts] = useState(fallbackData.products || []);
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [loading, setLoading] = useState(false);
@@ -22,6 +27,33 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
   const [inputTag, setInputTag] = useState(() => AFFILIATE_CONFIG.getAmazonTag());
   const [savedSuccess, setSavedSuccess] = useState(false);
   const [selectedModalProduct, setSelectedModalProduct] = useState(null);
+  const [alertModalProduct, setAlertModalProduct] = useState(null);
+  const [storyModalProduct, setStoryModalProduct] = useState(null);
+  const [expandedHistoryId, setExpandedHistoryId] = useState(null);
+  const [wishlistIds, setWishlistIds] = useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('ud_wishlist') || '[]');
+      return saved.map(item => item.id);
+    } catch {
+      return [];
+    }
+  });
+
+  const toggleWishlist = (product) => {
+    try {
+      const existing = JSON.parse(localStorage.getItem('ud_wishlist') || '[]');
+      const exists = existing.some(item => item.id === product.id);
+      let updated;
+      if (exists) {
+        updated = existing.filter(item => item.id !== product.id);
+      } else {
+        updated = [...existing, product];
+      }
+      localStorage.setItem('ud_wishlist', JSON.stringify(updated));
+      setWishlistIds(updated.map(item => item.id));
+      if (onWishlistUpdate) onWishlistUpdate(updated);
+    } catch {}
+  };
 
   const loadProducts = async (q = '') => {
     setLoading(true);
@@ -75,7 +107,7 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
             <span>UniqueDigit Tested & Spec-Score Audited Engine</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight font-display">
-            The Best Tech & Gadget Deals in India <span className="text-amber-400">2026</span>
+            {t('bestDeals')} <span className="text-amber-400">2026</span>
           </h2>
           <p className="text-xs text-slate-400 mt-1 max-w-xl leading-relaxed">
             Tested benchmark scores, verified 1-sentence verdicts, 2 pros + 1 honest con, and live Amazon India pricing.
@@ -179,12 +211,38 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
                     {product.badge || product.category}
                   </span>
 
-                  {/* True Dynamic Discount Badge (Never shows fake discount) */}
-                  {activeDiscount && (
-                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-400 text-slate-950 shadow-md">
-                      {activeDiscount}
-                    </span>
-                  )}
+                  {/* Actions & Discount Bar */}
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+                    {activeDiscount && (
+                      <span className="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-amber-400 text-slate-950 shadow-md font-mono">
+                        {activeDiscount}
+                      </span>
+                    )}
+                    {/* Share Story Button */}
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setStoryModalProduct(product); }}
+                      className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-slate-900 text-slate-300 hover:text-cyan-400 border border-slate-700 backdrop-blur-md transition cursor-pointer"
+                      title="Share as WhatsApp/Instagram Story"
+                    >
+                      <Share2 size={12} />
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setAlertModalProduct(product); }}
+                      className="p-1.5 rounded-lg bg-slate-950/80 hover:bg-slate-900 text-slate-300 hover:text-amber-400 border border-slate-700 backdrop-blur-md transition cursor-pointer"
+                      title="Set Price Drop Alert"
+                    >
+                      <Bell size={12} />
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); toggleWishlist(product); }}
+                      className={`p-1.5 rounded-lg bg-slate-950/80 hover:bg-slate-900 border border-slate-700 backdrop-blur-md transition cursor-pointer ${
+                        wishlistIds.includes(product.id) ? 'text-amber-400' : 'text-slate-300 hover:text-white'
+                      }`}
+                      title={wishlistIds.includes(product.id) ? "Saved in Wishlist" : "Save to Wishlist"}
+                    >
+                      <Bookmark size={12} className={wishlistIds.includes(product.id) ? "fill-amber-400 text-amber-400" : ""} />
+                    </button>
+                  </div>
                 </div>
 
                 {/* UniqueDigit Verdict Badge & Smartprix Spec Score */}
@@ -237,6 +295,27 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
                     ))}
                   </div>
                 )}
+
+                {/* Price History Toggle Button */}
+                <button
+                  type="button"
+                  onClick={() => setExpandedHistoryId(expandedHistoryId === product.id ? null : product.id)}
+                  className="w-full flex items-center justify-between text-xs font-semibold text-slate-400 hover:text-cyan-400 py-1.5 px-3 rounded-xl bg-slate-950/40 border border-slate-800/80 mb-3 transition-colors"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <History size={13} className="text-cyan-400" />
+                    <span>{expandedHistoryId === product.id ? 'Hide Price History' : '6-Month Price Graph'}</span>
+                  </span>
+                  <span className="text-[10px] text-emerald-400 font-mono font-bold">ATL Verified</span>
+                </button>
+
+                {/* Expandable Price History Graph */}
+                {expandedHistoryId === product.id && (
+                  <PriceHistoryChart product={{
+                    ...product,
+                    priceNumber: product.price || 61499
+                  }} />
+                )}
               </div>
 
               {/* Price & Action Button */}
@@ -286,7 +365,7 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
                     className="py-2.5 px-3 rounded-xl font-extrabold text-xs bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <ShoppingBag size={13} />
-                    <span>Buy Deal</span>
+                    <span>{t('viewOnAmazon')}</span>
                   </a>
                 </div>
               </div>
@@ -300,6 +379,24 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
         <UniversalTopicViewer
           topic={selectedModalProduct}
           onClose={() => setSelectedModalProduct(null)}
+        />
+      )}
+
+      {/* Instant Price Drop Alert Modal */}
+      {alertModalProduct && (
+        <PriceDropAlertModal
+          product={alertModalProduct}
+          isOpen={!!alertModalProduct}
+          onClose={() => setAlertModalProduct(null)}
+        />
+      )}
+
+      {/* 9:16 Social Story Modal */}
+      {storyModalProduct && (
+        <SocialDealStoryModal
+          product={storyModalProduct}
+          isOpen={!!storyModalProduct}
+          onClose={() => setStoryModalProduct(null)}
         />
       )}
     </section>
