@@ -3,23 +3,23 @@ import { getCuratedMedia } from '../../data/curatedMedia';
 const CURATED_TOPIC_FALLBACKS = [
   {
     regex: /(gta|gaming|pc build|rig|rtx|gpu|steam|playstation|xbox)/i,
-    url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80',
+    url: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg',
+  },
+  {
+    regex: /(iphone|smartphone|galaxy|s24|oneplus|mobile|phone)/i,
+    url: 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg',
+  },
+  {
+    regex: /(macbook|laptop|headphones|audio|sony|anc)/i,
+    url: 'https://m.media-amazon.com/images/I/71ItMeqpN3L._SX679_.jpg',
   },
   {
     regex: /(gold|bullion|silver|24k|22k|karat|sohna|sarrafa)/i,
-    url: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80',
+    url: 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg',
   },
   {
     regex: /(ai|chatgpt|gemini|deepseek|claude|copilot|llm|coding|prompt)/i,
-    url: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    regex: /(sarkari|ssc|cgl|upsc|exam|admit|result|cutoff|vacancy)/i,
-    url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    regex: /(fuel|petrol|diesel|mandi|wheat|crop|chana|gehu|mustard)/i,
-    url: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80',
+    url: 'https://m.media-amazon.com/images/I/71ItMeqpN3L._SX679_.jpg',
   },
 ];
 

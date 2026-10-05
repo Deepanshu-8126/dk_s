@@ -275,12 +275,6 @@ function AppContent() {
         )}
       </main>
 
-      {/* High-Converting Mobile Sticky Bar */}
-      <StickyBuyBar
-        activeItem={liveTopic || productsCatalog.products?.[0]}
-        onOpenVersus={() => openVersus(liveTopic || productsCatalog.products?.[0], productsCatalog.products?.[1])}
-      />
-
       {/* Modern Bottom Mobile Navigation Dock */}
       <StickyMobileNav activeTab={activeTab} setActiveTab={setActiveTab} />
 
@@ -299,11 +293,6 @@ function AppContent() {
         onClose={() => setIsSearchOpen(false)}
         onSelectArticle={(article) => setDirectArticle(article)}
       />
-
-      {/* User Preference Onboarding Quiz */}
-      <UserOnboardingQuiz onComplete={(interest) => {
-        if (interest && interest !== 'all') setActiveTab(interest);
-      }} />
 
       {/* Exit-Intent Deal Retention Popup */}
       <ExitIntentPopup />

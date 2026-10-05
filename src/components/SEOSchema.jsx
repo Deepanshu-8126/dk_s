@@ -66,7 +66,7 @@ export default function SEOSchema({ activeItem = null, products = [] }) {
     '@context': 'https://schema.org',
     '@type': 'Product',
     'name': p.name || p.title || 'Tech Hardware',
-    'image': p.imageUrl || p.image || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=85',
+    'image': p.imageUrl || p.image || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg',
     'description': p.verdict || p.description || 'Tested and rated with verified benchmarks.',
     'brand': {
       '@type': 'Brand',

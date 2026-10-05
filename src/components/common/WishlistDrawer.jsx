@@ -6,7 +6,10 @@ export default function WishlistDrawer({ isOpen, onClose, wishlist, onRemoveItem
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/40 backdrop-blur-sm flex justify-end animate-fadeIn">
+    <div 
+      className="fixed inset-0 z-50 overflow-hidden bg-slate-900/40 backdrop-blur-sm flex justify-end animate-fadeIn touch-manipulation"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
       <div className="w-full max-w-md bg-white text-slate-900 h-full border-l border-slate-200 shadow-2xl flex flex-col justify-between">
         
         {/* Header */}

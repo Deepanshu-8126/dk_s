@@ -7,13 +7,13 @@
     "content": "Staff Selection Commission (SSC) Combined Graduate Level (CGL) examination 2026 ke Tier-2 stage ke liye candidates ke beech safe score aur cut-off projection sabse critical mudda ban chuka hai. Last 5 years ke normalization patterns, negative marking ratio (-1 for wrong answer), aur current vacancy matrix ke ground analysis ke baad humari education desk ne yeh comprehensive guide compile ki hai.\n\n### 1. Expected Safe Scores Breakdown (Out of 390 Marks)\nTier-2 examination me Section-1 (Mathematical Abilities + Reasoning) aur Section-2 (English Language + General Awareness) ka total 390 marks merit decide karta hai. Expected safe score benchmarks:\n- **Unreserved (UR):** 312 – 322 Marks (Safe for Inspector / ASO posts)\n- **OBC (Non-Creamy):** 304 – 314 Marks\n- **EWS:** 302 – 310 Marks\n- **Scheduled Caste (SC):** 282 – 292 Marks\n- **Scheduled Tribe (ST):** 268 – 278 Marks\n\n### 2. The Silent Eliminators: Typing Test & Computer Module\nBohot se high scorers Section-1 aur 2 me 320+ laakar bhi final merit se bahar ho jaate hain kyunki wo Qualifying Modules ko ignore karte hain:\n- **DEST (Typing Test):** 2,000 key depressions in 15 minutes (~27 WPM speed). Daily 30 minute typing practice karna non-negotiable hai.\n- **Computer Knowledge Module (60 Marks):** MS Office 365 shortcuts, cyber security protocols, aur networking basics me minimum qualifying cutoff (UR: 30%, OBC/EWS: 25%) clear karna mandatory hai.\n\n### 3. Normalization Formula aur Shift Difficulty Reality\nMultiple shifts me hone wale exams me normalization formula raw score ko 5 se 18 marks tak swing kar sakta hai. Jis shift me quantitative aptitude section me advanced arithmetic aur coordinate geometry zyada difficult aati hai, wahan 12-15 marks ka positive boost observe kiya gaya hai.\n\n### 4. Post Preference Strategy (ASO vs GST Inspector vs Auditor)\nJob location aur Grade Pay preference bharte waqt sirf salary mat dekhiye:\n- **Assistant Section Officer (CSS/MEA):** 4600 Grade Pay, 100% Delhi/Metro posting, zero field stress, best for UPSC preparation.\n- **Inspector (CGST / Central Excise):** 4600 Grade Pay, uniform job, high social prestige, transfer policy zone-based hoti hai.\n- **Auditor / Accountant (CAG / CGA):** 2800 Grade Pay, lower cutoff entry, excellent work-life balance.\n\n> **Verdict: Preparation Strategy**\nKisi bhi private coaching ke 20,000 rupaye ke fake guarantee batch me invest karne ke bajaye standard TCS pyq (previous year questions) mocks aur time-bound sectional tests par focus karein. Tier-2 selection 80% accuracy aur 20% speed ka game hai.",
     "wordCount": 420,
     "imageAlt": "SSC CGL 2026 Expected Cut Off and Tier 2 Merit Analysis",
-    "imageUrl": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80",
+    "imageUrl": "https://m.media-amazon.com/images/I/71AYb2AGHBL._SX679_.jpg",
     "verdict": "Self-study aur standard TCS previous year question papers par focus karein; coaching ke fake batches se bachein.",
     "author": {
       "name": "Pradeep Joshi",
       "role": "Senior Public Examinations & Recruitment Analyst",
       "bio": "Former civil services mentor and public examinations analyst with 10+ years covering SSC, UPSC, and State PSC recruitment boards.",
-      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=PradeepJoshi",
       "expertise": [
         "SSC CGL",
         "Public Examinations",
@@ -32,13 +32,13 @@
     "content": "Rockstar Games ke next-generation RAGE engine ke volumetric physics aur path-traced lighting ke revelation ke baad, Indian PC gaming community me hardware builds ko lekar bohot confusion hai. Humari hardware test bench ne actual modern ray-traced open world titles ko benchmark karke practical recommendations tayar ki hain.\n\n### 1. Ground Reality: 8GB VRAM vs 12GB VRAM Trap\nAgar aap 2026 me naya gaming PC build kar rahe hain, to **8GB VRAM wale graphics cards (jaise RTX 4060 8GB) se bachein**. GTA 6 ke ultra-dense Vice City traffic, dynamic ocean waves, aur 4K texture streaming me 8GB frame buffer stuttering aur texture pop-in cause karega. Minimum **12GB GDDR6 VRAM** (RTX 3060 12GB ya RTX 4070 Super 12GB) lena future-proofing ke liye essential hai.\n\n### 2. Tested Component Matrix: 1080p Smooth vs 1440p High\nNehru Place (Delhi) aur online distributors ke verified invoice prices ke mutabiq balanced configurations:\n- **1080p Target Rig (~₹55,000):** Intel Core i5-12400F, MSI H610M DDR5, Radeon RX 6600 8GB / RTX 3060 12GB, 16GB DDR5 5200MHz, 1TB Gen4 NVMe SSD, Deepcool 550W 80-Plus PSU.\n- **1440p High RT Rig (~₹1,18,000):** AMD Ryzen 5 7600 (AM5 Platform), Gigabyte B650M Gaming WiFi, NVIDIA RTX 4070 Super 12GB, 32GB DDR5 6000MHz CL30, 1TB WD Black SN770 SSD, Corsair 750W Gold PSU.\n\n### 3. Savdhani: Power Supply & Cabinet Airflow\nBudget PC builders aksar cabinet aur power supply (SMPS) me paise bachaane ki galti karte hain. Indian summer temperatures (42°C+) me cheap 450W power supply voltage ripple create karti hai jisse GPU crash hota hai. Hamesha Tier-B certified 80-Plus Bronze ya Gold SMPS chunein jisme Japanese capacitors lage hon.\n\n> **Verdict: Hardware Investment**\nAgar aapka budget ₹55k-₹60k permit karta hai to AM5 ya DDR5 baseline ke saath custom rig build karein. Pre-built branded desktop lene se bachein kyunki unme proprietary motherboard aur low-airflow cabinets milte hain.",
     "wordCount": 390,
     "imageAlt": "GTA 6 PC Build India Hardware Testing and Price Guide",
-    "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+    "imageUrl": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg",
     "verdict": "AM5 / DDR5 baseline ke saath custom rig build karein; 8GB VRAM GPU lene se bachein.",
     "author": {
       "name": "Aryan Sharma",
       "role": "Lead Hardware & Esports Benchmark Specialist",
       "bio": "Hardware reviewer and competitive benchmark architect with 7+ years testing GPUs, frame times, and thermals in Indian ambient conditions.",
-      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=AryanSharma",
       "expertise": [
         "PC Hardware",
         "GPU Benchmarks",
@@ -57,13 +57,13 @@
     "content": "Uttar Pradesh aur Lucknow ke sarrafa bazaron (Aminabad, Chowk, aur Hazratganj) me festive aur wedding season ke dauran gold prices me physical retail premium dekha jata hai. Indian Bullion and Jewellers Association (IBJA) national wholesale rates aur local jewellers association ke retail rates ke correlation par humara comprehensive grounded analysis.\n\n### 1. 24K Pure Gold vs 22K Jewellery Gold\nInvestment aur shopping se pehle dono ka antar samajhna zaroori hai:\n- **24 Karat (999 Purity):** 99.9% pure gold hota hai jo investment bars aur gold coins me use hota hai. Isme physical jewellery nahi banti kyunki pure gold bohot soft hota hai.\n- **22 Karat (916 Purity):** 91.6% pure gold + 8.4% copper/silver alloy hota hai jisse sturdy jewellery banti hai.\n\n### 2. Physical Buying Checklist (Don't Get Cheated)\nRegional bullion market me kisi bhi certified jeweller se purchase karte waqt 3 cheezein zaroor check karein:\n- **6-Digit Alphanumeric HUID:** Bureau of Indian Standards (BIS) hallmark ke saath 6-digit laser-engraved HUID number laser se embossed hona chahiye jise aap BIS Care App par verify kar sakte hain.\n- **Making Charge Reality:** Retail jewellers making charge ke naam par 12% se 24% tak charge karte hain. Simple machine-cut designs me making charges 8-10% par negotiate kiye ja sakte hain.\n- **GST Invoice Breakdown:** Tax invoice par Gold Rate, Gross Weight, Net Gold Weight, Making Charges, aur 3% GST alag se itemized hona mandatory hai.\n\n> **Verdict: Bullion vs Ornaments**\nAgar aap wealth creation aur financial hedge ke liye gold le rahe hain, to physical jewellery ke bajaye 24K minted gold coins, Sovereign Gold Bonds (SGB), ya Gold ETFs chunein taaki making charges ka zero loss ho.",
     "wordCount": 380,
     "imageAlt": "24K Gold Rate in Lucknow Bullion Market",
-    "imageUrl": "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80",
+    "imageUrl": "https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg",
     "verdict": "Investment ke liye minted coin ya Gold ETF lein; jewellery me 8-10% se zyada making charge na dein.",
     "author": {
       "name": "Sunil Agarwal",
       "role": "Chief Bullion & Commodity Markets Desk",
       "bio": "Financial journalist and commodity markets analyst tracking MCX gold spot movements, IBJA updates, and Indian household bullion trends for 12+ years.",
-      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=SunilAgarwal",
       "expertise": [
         "Bullion Rates",
         "MCX Futures",
@@ -82,13 +82,13 @@
     "content": "Indian college campuses aur software developers ke beech OpenAI ke ChatGPT Plus ($20/month, approx ₹1,670 + GST) aur Google ke Gemini Advanced (Google One AI Premium, ₹1,950/month) ka decision kaafi critical ho gaya hai. Humne dono frontier models ko real Indian computer science coursework aur developer prompts par evaluate kiya hai.\n\n### 1. Python, DSA & Debugging Benchmarks\nComplex algorithm optimization aur Python code refactoring me:\n- **ChatGPT Plus (GPT-4o):** Code structure clean deta hai, variable naming intuitive hoti hai, aur edge case debugging me 15% better precision deliver karta hai. Canvas feature real-time coding me unmatched productivity provide karta hai.\n- **Gemini Advanced:** Fast code generation karta hai par deep LeetCode Hard problems me kabhi-kabhi hallucination observe hoti hai.\n\n### 2. Research Papers, Large PDFs & Multimodal\nIndian university thesis aur long legal/academic documents me:\n- **Gemini Advanced (Winner):** 1M+ token context window ke saath 400-page book ya semester syllabus PDF ko 5 second me summarize kar deta hai. Google Drive aur Google Docs ke saath seamless native sync research scholars ke liye revolutionary hai.\n- **ChatGPT Plus:** Large files ko chunks me process karta hai jisse cross-reference accuracy me slight compromise hota hai.\n\n### 3. Payment & Billing Reality in India\nIndian credit/debit cards par international recurring payment RBI mandates ke kaaran aksar decline hoti hain. Google One Gemini Advanced Indian UPI (PhonePe, GPay, Paytm) ko natively support karta hai, jabki OpenAI par Axis/HDFC international debit card ya virtual forex card lagana padta hai.\n\n> **Verdict: Student Choice**\nAgar aapka primary focus software engineering, coding interviews, aur mathematical logic hai to **ChatGPT Plus** chunein. Agar research, PDF analysis, aur Google Workspace integration priority hai to **Gemini Advanced** best value provide karega.",
     "wordCount": 395,
     "imageAlt": "ChatGPT Plus vs Gemini Advanced AI Comparison",
-    "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
+    "imageUrl": "https://m.media-amazon.com/images/I/71ItMeqpN3L._SX679_.jpg",
     "verdict": "Coding ke liye ChatGPT Plus chunein; PDF research aur Google Docs workflow ke liye Gemini Advanced.",
     "author": {
       "name": "Dr. Rohini Sundaram",
       "role": "AI Research Fellow & Technology Columnist",
       "bio": "Doctoral researcher in Natural Language Processing and computational linguistics. Regular speaker on frontier LLM capabilities and ethical AI adoption.",
-      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=RohiniSundaram",
       "expertise": [
         "LLM Benchmarks",
         "Python NLP",

@@ -6,7 +6,7 @@ export const DEFAULT_AUTHOR = {
   name: "Vikramaditya Rathore",
   role: "Senior Tech & Financial Markets Analyst",
   bio: "Tech journalist with 8+ years analyzing Indian consumer hardware, bullion rates, and AI benchmarks. Former contributor to leading national market columns.",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+  avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Vikramaditya&backgroundColor=f1f5f9",
   expertise: ["PC Hardware", "Bullion Markets", "AI Models", "Public Exams"],
 };
 

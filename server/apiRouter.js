@@ -249,7 +249,7 @@ export async function handleApiRequest(req, res) {
           const title = doc.title || targetTitle;
           const extract = doc.extract || '';
           const desc = doc.description || '';
-          const img = doc.originalimage?.source || doc.thumbnail?.source || 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=85';
+          const img = doc.originalimage?.source || doc.thumbnail?.source || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg';
 
           // Detect Niche
           const lower = `${title} ${desc} ${extract}`.toLowerCase();

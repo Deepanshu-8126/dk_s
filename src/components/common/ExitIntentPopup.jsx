@@ -9,6 +9,9 @@ export default function ExitIntentPopup() {
 
   useEffect(() => {
     try {
+      // Only enable on desktop with fine mouse pointers, never interrupt mobile touches
+      if (!window.matchMedia || !window.matchMedia('(pointer: fine)').matches) return;
+
       const alreadyShown = sessionStorage.getItem('ud_exit_shown');
       if (alreadyShown) return;
 
@@ -29,7 +32,10 @@ export default function ExitIntentPopup() {
   const buyUrl = buildAmazonAffiliateUrl(topDeal.title);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
+    <div 
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn"
+      onClick={(e) => { if (e.target === e.currentTarget) setIsVisible(false); }}
+    >
       <div className="relative w-full max-w-md bg-white text-slate-900 rounded-3xl p-6 sm:p-7 border border-amber-200 shadow-2xl text-center">
         
         <button

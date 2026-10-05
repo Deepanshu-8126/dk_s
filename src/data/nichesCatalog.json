@@ -51,7 +51,7 @@
           "originalPrice": 75200,
           "inStock": true,
           "priority": 9,
-          "imageUrl": "https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&auto=format&fit=crop&q=80",
+          "imageUrl": "https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg",
           "specs": {
             "Purity": "24K (99.9% Pure)",
             "Standard Unit": "10 Grams",
@@ -85,7 +85,7 @@
           "originalPrice": 2200,
           "inStock": true,
           "priority": 8,
-          "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80",
+          "imageUrl": "https://m.media-amazon.com/images/I/71ItMeqpN3L._SX679_.jpg",
           "specs": {
             "Model": "Claude 3.5 Sonnet + GPT-4o",
             "Context Window": "200k Tokens",

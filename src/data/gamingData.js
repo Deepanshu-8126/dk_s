@@ -12,7 +12,7 @@ export const TRENDING_GAMES_INDIA = [
   {
     name: "GTA V / GTA RP",
     keyword: "Grand Theft Auto V",
-    artwork: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=85",
+    artwork: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg",
     publisher: "Rockstar North",
     niche: "gaming",
     genre: "Open World / Roleplay",
@@ -25,7 +25,7 @@ export const TRENDING_GAMES_INDIA = [
   {
     name: "Valorant India",
     keyword: "Valorant",
-    artwork: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=85",
+    artwork: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/capsule_616x353.jpg",
     publisher: "Riot Games",
     niche: "gaming",
     genre: "Tactical FPS Esports",
@@ -38,7 +38,7 @@ export const TRENDING_GAMES_INDIA = [
   {
     name: "Black Myth: Wukong",
     keyword: "Black Myth Wukong",
-    artwork: "https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?auto=format&fit=crop&w=1200&q=85",
+    artwork: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg",
     publisher: "Game Science",
     niche: "gaming",
     genre: "Action RPG Souls-like",
@@ -51,7 +51,7 @@ export const TRENDING_GAMES_INDIA = [
   {
     name: "Cyberpunk 2077: Phantom Liberty",
     keyword: "Cyberpunk 2077",
-    artwork: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=85",
+    artwork: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg",
     publisher: "CD PROJEKT RED",
     niche: "gaming",
     genre: "Sci-Fi Ray Tracing Showcase",

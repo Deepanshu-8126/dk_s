@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { X, Flame, Coins, Fuel, Gamepad2, Sparkles, Newspaper, PenTool, ShoppingBag } from 'lucide-react';
 
-export default function MobileDrawer({ isOpen, onClose, activeTab, onSelectTab }) {
+export default function MobileDrawer({ isOpen, onClose, activeTab, onSelectTab, setActiveTab }) {
   const drawerRef = useRef(null);
+  const handleSelect = onSelectTab || setActiveTab || (() => {});
 
   // Keyboard navigation & Escape key listener
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function MobileDrawer({ isOpen, onClose, activeTab, onSelectTab }
       role="dialog"
       aria-modal="true"
       aria-label="Navigation Menu"
-      className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-xs transition-opacity duration-200"
+      className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-xs transition-opacity duration-200 touch-manipulation"
       onClick={onClose}
     >
       <div
@@ -54,14 +55,14 @@ export default function MobileDrawer({ isOpen, onClose, activeTab, onSelectTab }
             <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm text-white bg-gradient-to-br from-amber-600 to-amber-800">
               UD
             </div>
-            <span className="font-black text-base text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
+            <span className="font-black text-base text-slate-900 font-display">
               Unique<span className="text-amber-600">Digit</span>
             </span>
           </div>
           <button
             onClick={onClose}
             aria-label="Close navigation menu"
-            className="p-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 focus:ring-2 focus:ring-amber-500 transition-colors"
+            className="p-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 focus:ring-2 focus:ring-amber-500 transition-colors cursor-pointer"
           >
             <X size={18} />
           </button>
@@ -78,11 +79,12 @@ export default function MobileDrawer({ isOpen, onClose, activeTab, onSelectTab }
             return (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => {
-                  onSelectTab(item.id);
+                  handleSelect(item.id);
                   onClose();
                 }}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all text-left ${
+                className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-all text-left cursor-pointer min-h-[44px] ${
                   isActive
                     ? 'bg-amber-50 text-amber-900 border border-amber-200 shadow-xs'
                     : 'text-slate-700 hover:bg-slate-50'

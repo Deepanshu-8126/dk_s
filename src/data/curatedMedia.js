@@ -7,31 +7,31 @@
 export const CURATED_GAMES = {
   gta6: {
     title: 'Grand Theft Auto VI',
-    artwork: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=85',
+    artwork: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg',
     publisher: 'Rockstar Games',
     badge: 'Next-Gen Leonida',
   },
   gta5: {
     title: 'Grand Theft Auto V',
-    artwork: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=85',
+    artwork: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg',
     publisher: 'Rockstar North',
     badge: 'FiveM Verified',
   },
   valorant: {
     title: 'Valorant India',
-    artwork: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=85',
+    artwork: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/capsule_616x353.jpg',
     publisher: 'Riot Games',
     badge: 'Mumbai 12ms Ping',
   },
   wukong: {
     title: 'Black Myth: Wukong',
-    artwork: 'https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?auto=format&fit=crop&w=1200&q=85',
+    artwork: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg',
     publisher: 'Game Science',
     badge: 'Unreal Engine 5.4',
   },
   cyberpunk: {
     title: 'Cyberpunk 2077',
-    artwork: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1200&q=85',
+    artwork: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg',
     publisher: 'CD PROJEKT RED',
     badge: 'Full Ray Reconstruction',
   },
@@ -89,11 +89,11 @@ export const CURATED_AI_LOGOS = {
 };
 
 export const CURATED_COMMODITIES = {
-  gold24k: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=1000&q=85',
-  silver: 'https://images.unsplash.com/photo-1589758438368-0ad531db3366?auto=format&fit=crop&w=1000&q=85',
-  petrol: 'https://images.unsplash.com/photo-1527018601619-a508a2be00cd?auto=format&fit=crop&w=1000&q=85',
-  mandi: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1000&q=85',
-  sarkari: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1000&q=85',
+  gold24k: 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg',
+  silver: 'https://m.media-amazon.com/images/I/61b7L9VfNBL._SX679_.jpg',
+  petrol: 'https://m.media-amazon.com/images/I/71+vR0m3uWL._SX679_.jpg',
+  mandi: 'https://m.media-amazon.com/images/I/71u-YxKfZkL._SX679_.jpg',
+  sarkari: 'https://m.media-amazon.com/images/I/71ItMeqpN3L._SX679_.jpg',
 };
 
 export function getCuratedMedia(key) {

@@ -52,14 +52,13 @@ export default function UniversalCard({ item, accent = 'cyan', onSelect = null }
     >
       <div>
         {/* Aspect-Locked Media Box */}
-        <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+        <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-4 bg-white border border-slate-200 flex items-center justify-center p-2.5">
           <img
-            src={item.imageUrl || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80'}
+            src={item.imageUrl || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg'}
             alt={item.title}
-            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
           {/* Badge */}
           <span className={`absolute top-3 left-3 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border shadow-2xs backdrop-blur-md ${style.badgeBg}`}>

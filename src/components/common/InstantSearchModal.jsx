@@ -34,7 +34,10 @@ export default function InstantSearchModal({ isOpen, onClose, onSelectTopic, onS
   const searchResults = searchEverything(query);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/40 backdrop-blur-md flex items-start justify-center p-4 pt-16 sm:pt-24 animate-fadeIn">
+    <div 
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/40 backdrop-blur-md flex items-start justify-center p-4 pt-16 sm:pt-24 animate-fadeIn touch-manipulation"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
       <div className="relative w-full max-w-2xl bg-white text-slate-900 rounded-3xl border border-slate-200 shadow-2xl overflow-hidden flex flex-col">
         
         {/* Search Input Bar */}

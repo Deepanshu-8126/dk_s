@@ -9,7 +9,7 @@ export function getArticleVisualMeta(article) {
       gradient: 'from-cyan-950 via-slate-900 to-blue-950',
       icon: Gamepad2,
       accent: 'text-cyan-400',
-      src: article.imageUrl || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80',
+      src: article.imageUrl || 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg',
     };
   }
   if (text.includes('gold') || text.includes('bullion') || text.includes('rate') || text.includes('price')) {
@@ -19,7 +19,7 @@ export function getArticleVisualMeta(article) {
       gradient: 'from-amber-950 via-slate-900 to-yellow-950',
       icon: Coins,
       accent: 'text-amber-400',
-      src: article.imageUrl || 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80',
+      src: article.imageUrl || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg',
     };
   }
   if (text.includes('chatgpt') || text.includes('gemini') || text.includes('ai') || text.includes('tool')) {
@@ -29,7 +29,7 @@ export function getArticleVisualMeta(article) {
       gradient: 'from-indigo-950 via-slate-900 to-violet-950',
       icon: Sparkles,
       accent: 'text-indigo-400',
-      src: article.imageUrl || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
+      src: article.imageUrl || 'https://m.media-amazon.com/images/I/71ItMeqpN3L._SX679_.jpg',
     };
   }
   if (text.includes('cgl') || text.includes('ssc') || text.includes('sarkari') || text.includes('exam')) {
@@ -39,7 +39,7 @@ export function getArticleVisualMeta(article) {
       gradient: 'from-blue-950 via-slate-900 to-slate-900',
       icon: GraduationCap,
       accent: 'text-blue-400',
-      src: article.imageUrl || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
+      src: article.imageUrl || 'https://m.media-amazon.com/images/I/71AYb2AGHBL._SX679_.jpg',
     };
   }
   return {

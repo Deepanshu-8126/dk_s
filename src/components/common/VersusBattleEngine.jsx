@@ -15,7 +15,10 @@ export default function VersusBattleEngine({ productA, productB, catalog = [], o
   const winner = scoreA >= scoreB ? itemA : itemB;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
+    <div 
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn touch-manipulation"
+      onClick={(e) => { if (e.target === e.currentTarget && onClose) onClose(); }}
+    >
       <div className="relative w-full max-w-4xl bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden flex flex-col text-slate-900">
         
         {/* Header */}
