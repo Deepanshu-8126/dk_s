@@ -192,18 +192,17 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
             >
               <div>
                 {/* Product Image Box */}
-                <div className="relative h-48 rounded-2xl overflow-hidden mb-3.5 bg-slate-50 flex items-center justify-center border border-slate-200">
+                <div className="relative h-48 rounded-2xl overflow-hidden mb-3.5 bg-white flex items-center justify-center p-3 border border-slate-200 shadow-2xs">
                   <img
-                    src={product.imageUrl || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=85'}
+                    src={product.imageUrl || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg'}
                     alt={product.title}
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=85';
+                      e.currentTarget.src = 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg';
                     }}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                   
                   {/* Category Chip */}
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-white/90 backdrop-blur-md text-slate-800 border border-slate-200 shadow-xs">

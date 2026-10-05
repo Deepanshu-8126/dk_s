@@ -52,8 +52,13 @@ export default function ExitIntentPopup() {
         </p>
 
         {topDeal.imageUrl && (
-          <div className="h-44 rounded-2xl overflow-hidden mb-4 bg-slate-50 border border-slate-200 flex items-center justify-center">
-            <img src={topDeal.imageUrl} alt={topDeal.title} className="w-full h-full object-cover" />
+          <div className="h-48 rounded-2xl overflow-hidden mb-4 bg-white border border-slate-200 flex items-center justify-center p-3 shadow-xs">
+            <img 
+              src={topDeal.imageUrl} 
+              alt={topDeal.title} 
+              className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105" 
+              loading="lazy"
+            />
           </div>
         )}
 

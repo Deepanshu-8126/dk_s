@@ -53,9 +53,9 @@ export default function VersusBattleEngine({ productA, productB, catalog = [], o
             <div className={`p-4 rounded-2xl border transition-all ${winner === itemA ? 'bg-indigo-50/50 border-indigo-300 shadow-xs' : 'bg-slate-50 border-slate-200'}`}>
               <div className="flex items-start gap-3.5">
                 <img
-                  src={itemA.imageUrl || itemA.image || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=400&q=80'}
+                  src={itemA.imageUrl || itemA.image || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg'}
                   alt={itemA.name || itemA.title}
-                  className="w-20 h-20 rounded-xl object-cover border border-slate-200 bg-white shrink-0 shadow-xs"
+                  className="w-20 h-20 rounded-xl object-contain p-1.5 border border-slate-200 bg-white shrink-0 shadow-xs"
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
@@ -92,9 +92,9 @@ export default function VersusBattleEngine({ productA, productB, catalog = [], o
             <div className={`p-4 rounded-2xl border transition-all ${winner === itemB ? 'bg-indigo-50/50 border-indigo-300 shadow-xs' : 'bg-slate-50 border-slate-200'}`}>
               <div className="flex items-start gap-3.5">
                 <img
-                  src={itemB.imageUrl || itemB.image || 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80'}
+                  src={itemB.imageUrl || itemB.image || 'https://m.media-amazon.com/images/I/717Qo4MH97L._SX679_.jpg'}
                   alt={itemB.name || itemB.title}
-                  className="w-20 h-20 rounded-xl object-cover border border-slate-200 bg-white shrink-0 shadow-xs"
+                  className="w-20 h-20 rounded-xl object-contain p-1.5 border border-slate-200 bg-white shrink-0 shadow-xs"
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">

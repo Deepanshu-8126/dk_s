@@ -48,20 +48,19 @@ export default function UniversalTopicViewer({ topic, onClose }) {
         {/* Hero Section with Split Visual and Executive Badge */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 border-b border-slate-200 bg-slate-50 text-slate-900">
           {/* Authentic Real Image */}
-          <div className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] overflow-hidden flex items-center justify-center bg-slate-100">
+          <div className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] overflow-hidden flex items-center justify-center bg-white p-6 border-b lg:border-b-0 lg:border-r border-slate-200">
             <img
-              src={topic.imageUrl || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85'}
+              src={topic.imageUrl || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg'}
               alt={topic.title}
               loading="eager"
               onError={(e) => {
                 e.currentTarget.onerror = null;
-                e.currentTarget.src = 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85';
+                e.currentTarget.src = 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg';
               }}
-              className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
+              className="max-h-[300px] max-w-full object-contain transform hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
-              <span className="font-semibold bg-white/90 text-slate-800 backdrop-blur-md px-3 py-1 rounded-lg border border-slate-200 shadow-xs">
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
+              <span className="font-semibold bg-white/95 text-slate-800 backdrop-blur-md px-3 py-1 rounded-lg border border-slate-200 shadow-xs">
                 📸 Authentic Hardware Photo
               </span>
               <span className="font-mono text-emerald-800 font-bold bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
