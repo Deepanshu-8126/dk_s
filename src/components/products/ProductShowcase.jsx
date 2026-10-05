@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingBag, ExternalLink, Star, ShieldCheck, Tag, Sparkles, SlidersHorizontal, Check, RefreshCw, CheckCircle2, XCircle, Award, Swords } from 'lucide-react';
 import fallbackData from '../../data/productsCatalog.json';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
+import { calculateDiscount } from '../../utils/calculator';
 import UniversalTopicViewer from '../common/UniversalTopicViewer';
 
 const FILTER_TABS = [
@@ -71,7 +72,7 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-2">
             <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
             <Award size={13} className="text-amber-400" />
-            <span>Wirecutter & Spec-Score Audited Engine</span>
+            <span>UniqueDigit Tested & Spec-Score Audited Engine</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight font-display">
             The Best Tech & Gadget Deals in India <span className="text-amber-400">2026</span>
@@ -150,6 +151,9 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map(product => {
           const finalUrl = buildAmazonAffiliateUrl(product.title, currentTag);
+          const computedDiscount = calculateDiscount(product.originalPrice, product.price);
+          const activeDiscount = computedDiscount > 0 ? `${computedDiscount}% OFF` : null;
+
           return (
             <div
               key={product.id}
@@ -175,15 +179,15 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
                     {product.badge || product.category}
                   </span>
 
-                  {/* Discount Badge */}
-                  {product.discount && (
+                  {/* True Dynamic Discount Badge (Never shows fake discount) */}
+                  {activeDiscount && (
                     <span className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-400 text-slate-950 shadow-md">
-                      {product.discount}
+                      {activeDiscount}
                     </span>
                   )}
                 </div>
 
-                {/* Wirecutter Verdict Badge & Smartprix Spec Score */}
+                {/* UniqueDigit Verdict Badge & Smartprix Spec Score */}
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/15 text-indigo-400 border border-indigo-500/25">
                     {product.verdictBadge || "Verified Recommendation"}
@@ -244,7 +248,7 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
                       ₹{product.price?.toLocaleString('en-IN')}
                     </span>
                   </div>
-                  {product.originalPrice && (
+                  {product.originalPrice && product.originalPrice > product.price && (
                     <span className="text-xs line-through text-slate-400 font-mono">
                       ₹{product.originalPrice?.toLocaleString('en-IN')}
                     </span>
@@ -259,6 +263,8 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
                       niche: product.category,
                       summary: product.verdict,
                       imageUrl: product.imageUrl,
+                      pros: product.pros,
+                      cons: product.cons,
                       fastFacts: {
                         "Display": product.specs?.display || "Standard High Refresh",
                         "Processor / GPU": product.specs?.processor || product.specs?.gpu || "Flagship Grade",

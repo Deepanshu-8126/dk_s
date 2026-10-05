@@ -2,18 +2,15 @@ import React from 'react';
 import { ShoppingBag } from 'lucide-react';
 import { GAMING_PC_BUILDS } from '../../data/gamingData';
 import { REAL_GAMING_PC_DATA, isDataStale, STALE_BADGE_TEXT } from '../../data/realData';
+import { calculatePCTotal, formatPriceINR } from '../../utils/calculator';
 
 export default function PcBuildTable({ activeBuildIdx, setActiveBuildIdx }) {
   const build = GAMING_PC_BUILDS[activeBuildIdx] || GAMING_PC_BUILDS[0];
   const staleBuild = isDataStale(REAL_GAMING_PC_DATA.lastVerified);
 
   // Exact dynamic sum of all component prices to prevent any math contradiction
-  const calculatedTotal = build.components.reduce((sum, c) => {
-    const numeric = parseInt((c.price || '').replace(/[^0-9]/g, ''), 10) || 0;
-    return sum + numeric;
-  }, 0);
-
-  const displayTotal = calculatedTotal > 0 ? `₹${calculatedTotal.toLocaleString('en-IN')}` : build.budget;
+  const calculatedTotal = calculatePCTotal(build);
+  const displayTotal = calculatedTotal > 0 ? formatPriceINR(calculatedTotal) : build.budget;
 
   return (
     <div className="mb-10 text-slate-100">

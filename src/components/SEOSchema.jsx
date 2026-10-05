@@ -52,7 +52,7 @@ export default function SEOSchema({ activeItem = null, products = [] }) {
       },
       {
         '@type': 'Question',
-        'name': 'What is the 2 Pros + 1 Con Wirecutter breakdown?',
+        'name': 'What is the 2 Pros + 1 Con UniqueDigit breakdown?',
         'acceptedAnswer': {
           '@type': 'Answer',
           'text': 'To eliminate marketing hype, every product features 2 decisive advantages and 1 honest trade-off so buyers make clear, well-informed decisions.',

@@ -119,7 +119,7 @@ export default function App() {
         };
       default:
         return {
-          title: "UniqueDigit — India's #1 Live Hardware Intelligence & Wirecutter-Grade Verdicts",
+          title: "UniqueDigit — India's #1 Live Hardware Intelligence & Tested Hardware Verdicts",
           description: "India's daily intelligence hub uniting live gadget verdicts, 2 Pros + 1 Con honest breakdowns, and verified deals.",
           canonicalPath: "/",
           schema: null,

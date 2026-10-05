@@ -5,6 +5,7 @@ import {
   BarChart3, Scale, Flame, RefreshCw, ThumbsUp, Tag
 } from 'lucide-react';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
+import { getCuratedAlternatives } from '../../utils/recommendations';
 
 export default function UniversalTopicViewer({ topic, onClose }) {
   const [activeTab, setActiveTab] = useState('verdict');
@@ -14,115 +15,7 @@ export default function UniversalTopicViewer({ topic, onClose }) {
   const amazonUrl = buildAmazonAffiliateUrl(topic.title, currentTag);
 
   // Generate intelligent, non-redundant alternatives based on category and title
-  const getSmartAlternatives = () => {
-    const t = (topic.title || '').toLowerCase();
-    
-    if (t.includes('s24 ultra') || t.includes('s24')) {
-      return [
-        {
-          name: 'Apple iPhone 16 Pro Max (256GB)',
-          role: 'Top iOS Contender',
-          why: 'Offers maximum video capability with 4K 120fps Dolby Vision and class-leading A18 Pro silicon.',
-          badge: 'FLAGSHIP RIVAL',
-          score: 97
-        },
-        {
-          name: 'OnePlus 12 5G (16GB RAM, 512GB Storage)',
-          role: 'Best Value Alternative',
-          why: 'Delivers ~90% of the flagship experience with Snapdragon 8 Gen 3 at almost half the price.',
-          badge: 'VALUE CHAMP',
-          score: 92
-        }
-      ];
-    } else if (t.includes('iphone')) {
-      return [
-        {
-          name: 'Samsung Galaxy S24 Ultra 5G',
-          role: 'Top Android Rival',
-          why: 'Glare-free flat display, built-in S-Pen, and unbeatable 100x zoom versatility.',
-          badge: 'ANDROID FLAGSHIP',
-          score: 95
-        },
-        {
-          name: 'OnePlus 12 5G (Silky Black)',
-          role: 'Value Alternative',
-          why: 'Blazing 100W charging and clean OxygenOS at a much accessible price point.',
-          badge: 'BUDGET CHAMP',
-          score: 92
-        }
-      ];
-    } else if (t.includes('oneplus')) {
-      return [
-        {
-          name: 'iQOO 12 5G (Snapdragon 8 Gen 3)',
-          role: 'Performance Alternative',
-          why: 'Direct benchmark rival with dedicated Q1 gaming chip and 144Hz OLED panel.',
-          badge: 'GAMING RIVAL',
-          score: 93
-        },
-        {
-          name: 'Samsung Galaxy S24 Ultra 5G',
-          role: 'Ultimate Upgrade Pick',
-          why: 'Full titanium build, 100x zoom camera, and 7 years of full Android OS upgrades.',
-          badge: 'UPGRADE PICK',
-          score: 95
-        }
-      ];
-    } else if (t.includes('4070') || t.includes('gpu') || t.includes('graphics')) {
-      return [
-        {
-          name: 'Nvidia GeForce RTX 4080 Super 16GB',
-          role: 'Top 4K Ultra Upgrade',
-          why: '16GB VRAM buffer and 10,240 CUDA cores for native 4K 120FPS ultra ray tracing.',
-          badge: '4K UPGRADE',
-          score: 98
-        },
-        {
-          name: 'AMD Radeon RX 7900 GRE 16GB',
-          role: 'Best Raster Value Alternative',
-          why: 'Offers 16GB VRAM for raw rasterized high-FPS gaming at a competitive Indian retail price.',
-          badge: 'VALUE RIVAL',
-          score: 91
-        }
-      ];
-    } else if (t.includes('macbook') || t.includes('laptop')) {
-      return [
-        {
-          name: 'Apple MacBook Pro 14-inch (M3 Pro)',
-          role: 'Pro Creator Upgrade',
-          why: 'Active fan cooling, 120Hz Liquid Retina XDR screen, and support for dual external 6K monitors.',
-          badge: 'PRO UPGRADE',
-          score: 98
-        },
-        {
-          name: 'ASUS Zenbook 14 OLED (Intel Core Ultra 7)',
-          role: 'Top Windows OLED Alternative',
-          why: 'Lightweight aluminium chassis, vibrant 120Hz OLED screen, and extensive port selection.',
-          badge: 'WINDOWS CHAMP',
-          score: 90
-        }
-      ];
-    }
-
-    return [
-      {
-        name: `Premium Upgrade Contender for ${topic.niche || 'Tech'}`,
-        role: 'Top Tier Upgrade',
-        why: 'Offers dedicated creator features, higher bandwidth memory, and extended warranty headroom.',
-        badge: 'UPGRADE PICK',
-        score: 96
-      },
-      {
-        name: `Value Champion Alternative`,
-        role: 'Best Budget Alternative',
-        why: 'Delivers ~85% of flagship performance at a noticeably lower Indian retail price point.',
-        badge: 'VALUE PICK',
-        score: 90
-      }
-    ];
-  };
-
-  const alternatives = getSmartAlternatives();
+  const alternatives = getCuratedAlternatives(topic);
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/85 backdrop-blur-md flex items-start justify-center p-2 sm:p-4 md:p-6 animate-fadeIn">
@@ -268,7 +161,7 @@ export default function UniversalTopicViewer({ topic, onClose }) {
                 <span>The Bottom Line Verdict:</span>
               </h3>
               <p className="text-sm font-medium text-slate-200 leading-relaxed">
-                "{topic.title} offers best-in-class performance, verified reliability, and stands out as the highest recommendation for Indian creators, professionals, and enthusiasts in 2026."
+                "{topic.summary || topic.verdict || `${topic.title} offers best-in-class performance, verified reliability, and stands out as a top recommendation for Indian users in 2026.`}"
               </p>
             </div>
 
@@ -277,27 +170,44 @@ export default function UniversalTopicViewer({ topic, onClose }) {
               <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
                 <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 uppercase tracking-wider mb-3">
                   <CheckCircle2 size={15} className="text-emerald-400" />
-                  <span>2 Key Strengths (Pros):</span>
+                  <span>Key Strengths (Pros):</span>
                 </div>
                 <ul className="space-y-2 text-xs text-slate-200">
-                  <li className="flex items-start gap-2">
-                    <span className="font-bold text-emerald-400 shrink-0">•</span>
-                    <span>Class-leading performance with outstanding power efficiency and build quality.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="font-bold text-emerald-400 shrink-0">•</span>
-                    <span>Exceptional software support and comprehensive Indian service network.</span>
-                  </li>
+                  {topic.pros && Array.isArray(topic.pros) && topic.pros.length > 0 ? (
+                    topic.pros.map((pro, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="font-bold text-emerald-400 shrink-0">•</span>
+                        <span>{pro}</span>
+                      </li>
+                    ))
+                  ) : (
+                    <>
+                      <li className="flex items-start gap-2">
+                        <span className="font-bold text-emerald-400 shrink-0">•</span>
+                        <span>Class-leading performance with outstanding power efficiency and build quality.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="font-bold text-emerald-400 shrink-0">•</span>
+                        <span>Exceptional reliability and verified benchmark scores across Indian usage scenarios.</span>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
 
               <div className="p-5 rounded-2xl bg-rose-500/10 border border-rose-500/20">
                 <div className="flex items-center gap-1.5 text-xs font-bold text-rose-400 uppercase tracking-wider mb-3">
                   <XCircle size={15} className="text-rose-400" />
-                  <span>1 Honest Flaw (Not a Dealbreaker):</span>
+                  <span>1 Honest Flaw (Trade-off):</span>
                 </div>
                 <p className="text-xs text-slate-200 leading-relaxed">
-                  Base storage fills quickly during heavy video/gaming use; we strongly recommend picking the mid-tier configuration for long-term ownership.
+                  {topic.cons && Array.isArray(topic.cons) && topic.cons.length > 0 ? (
+                    topic.cons[0]
+                  ) : topic.flaw ? (
+                    topic.flaw
+                  ) : (
+                    "Premium pricing tier reflects top-tier component quality; monitor seasonal Amazon deals for the best acquisition price."
+                  )}
                 </p>
               </div>
             </div>

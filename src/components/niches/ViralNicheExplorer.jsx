@@ -49,15 +49,15 @@ export default function ViralNicheExplorer({ onSelectTopic }) {
             <button
               key={niche.id}
               onClick={() => setActiveNicheId(niche.id)}
-              className={`flex items-center gap-2 shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`flex items-center gap-2 shrink-0 min-w-max px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                 isActive
                   ? 'bg-slate-950 text-white shadow-md border border-slate-950 scale-[1.02]'
                   : 'bg-white text-slate-700 hover:text-slate-950 border border-slate-200 hover:bg-slate-50 shadow-2xs'
               }`}
             >
               <Icon size={14} className={isActive ? 'text-indigo-400' : 'text-slate-500'} />
-              <span>{niche.name}</span>
-              <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono font-semibold ${
+              <span className="whitespace-nowrap">{niche.name}</span>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono font-semibold whitespace-nowrap ${
                 isActive ? 'bg-indigo-500/30 text-indigo-200' : 'bg-slate-100 text-slate-500'
               }`}>
                 {niche.tag}

@@ -98,7 +98,7 @@ export default function HeroWidget({ setActiveTab, onOpenVersus }) {
                 Side-by-Side Battles
               </div>
               <p className="text-xs text-slate-400 mt-1.5 line-clamp-2 leading-relaxed">
-                Wirecutter 2 Pros + 1 Con breakdowns with direct SmartScore rankings and Amazon India verified deals.
+                UniqueDigit 2 Pros + 1 Con breakdowns with direct SmartScore rankings and Amazon India verified deals.
               </p>
             </div>
           </div>
