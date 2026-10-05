@@ -37,3 +37,10 @@ jobs:
           git config --global user.email "bot@uniquedigit.in"
           git add public/data/ src/data/ public/sitemap.xml
           git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-synced live rates, AI tools & sitemaps [skip ci]" && git push)
+
+      - name: 📱 Dispatch Live Telegram Status Alert
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/notify-telegram.js
