@@ -174,8 +174,8 @@ export const REAL_GAMING_PC_DATA = {
     {
       tier: "GTA 6 Ready Rig (1440p High RT)",
       targetRes: "1440p",
-      budget: "₹95,000",
-      estimatedPcCost: "₹95,000",
+      budget: "₹1,18,000",
+      estimatedPcCost: "₹1,18,000",
       ram: "32GB DDR5 6000MHz",
       storage: "1TB Gen4 NVMe SSD",
       cpu: "AMD Ryzen 5 7600 / Ryzen 7 7800X3D",
@@ -185,7 +185,7 @@ export const REAL_GAMING_PC_DATA = {
       components: [
         { part: "Processor (CPU)", model: "AMD Ryzen 5 7600 (AM5)", price: "₹17,200" },
         { part: "Motherboard", model: "Gigabyte B650M Gaming WiFi", price: "₹10,500" },
-        { part: "Graphics Card (GPU)", model: "RTX 4070 Super 12GB", price: "₹52,000" },
+        { part: "Graphics Card (GPU)", model: "RTX 4070 Super 12GB", price: "₹58,999" },
         { part: "RAM", model: "32GB DDR5 6000MHz", price: "₹8,900" },
         { part: "Storage", model: "1TB Gen4 NVMe SSD", price: "₹6,400" },
         { part: "Power Supply", model: "Corsair 750W 80+ Gold", price: "₹8,600" },

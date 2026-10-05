@@ -51,7 +51,7 @@
     },
     {
       "id": "samsung-galaxy-s24-ultra",
-      "title": "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB RAM, 256GB)",
+      "title": "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB RAM, 256GB Storage)",
       "category": "Smartphones",
       "verdictBadge": "Top Pick: Ultimate Android & Zoom",
       "specScore": 95,
@@ -92,15 +92,15 @@
         "7 years of Android OS and security upgrades"
       ],
       "matchScore": 0,
-      "affiliateUrl": "https://www.amazon.in/s?k=Samsung+Galaxy+S24+Ultra+5G+Titanium+Gray%2C+12GB+RAM%2C+256GB&tag=uniquedigi0c6-21"
+      "affiliateUrl": "https://www.amazon.in/s?k=Samsung+Galaxy+S24+Ultra+5G+Titanium+Gray%2C+12GB+RAM%2C+256GB+Storage&tag=uniquedigi0c6-21"
     },
     {
       "id": "oneplus-12-5g",
       "title": "OnePlus 12 5G (Silky Black, 16GB RAM, 512GB Storage)",
       "category": "Smartphones",
-      "verdictBadge": "Best Value Flagship Under \u20b970k",
+      "verdictBadge": "Best Value Flagship Under ₹70k",
       "specScore": 92,
-      "verdict": "Flagship Snapdragon 8 Gen 3 performance and Hasselblad periscope cameras at half the price of Apple and Samsung ultras.",
+      "verdict": "Flagship Snapdragon 8 Gen 3 performance and Hasselblad periscope cameras at half the price of Apple and Samsung Ultras.",
       "pros": [
         "Blazing 100W charging fills battery from 0 to 100% in 26 minutes",
         "Outstanding 4500-nit ProXDR display with Aqua Touch wet-finger support"
@@ -127,7 +127,7 @@
         "Processor": "Snapdragon 8 Gen 3 (4nm)",
         "Camera": "Hasselblad 4th Gen (50MP Sony LYT-808 + 64MP 3x Periscope)",
         "Battery": "5400 mAh with 100W SUPERVOOC charging",
-        "Cooling": "Dual Cryo-velocity VC cooling (9140 mm\u00b2)"
+        "Cooling": "Dual Cryo-velocity VC cooling (9140 mm²)"
       },
       "badge": "VALUE FLAGSHIP",
       "highlights": [
@@ -192,7 +192,7 @@
       "verdict": "The best value gaming CPU in India on the future-proof AM5 socket with zero bottleneck when paired with RTX 4070 series.",
       "pros": [
         "Future-proof AM5 socket supported through 2027+ for easy drop-in upgrades",
-        "Low 65W TDP keeps Indian summer temperatures cool under 68\u00b0C"
+        "Low 65W TDP keeps Indian summer temperatures cool under 68°C"
       ],
       "cons": [
         "Requires DDR5 memory which has a minor price premium over older DDR4"
@@ -222,7 +222,7 @@
       "highlights": [
         "Supports high-speed DDR5 6000MHz memory with AMD EXPO",
         "PCIe 5.0 lanes for next-generation Gen5 NVMe SSDs",
-        "Low power draw keeps Indian summer temperatures under 68\u00b0C"
+        "Low power draw keeps Indian summer temperatures under 68°C"
       ],
       "matchScore": 0,
       "affiliateUrl": "https://www.amazon.in/s?k=AMD+Ryzen+5+7600+Desktop+Processor+6+Cores+12+Threads%2C+AM5&tag=uniquedigi0c6-21"
@@ -239,7 +239,7 @@
         "30-hour battery life with 3-minute emergency fast charging"
       ],
       "cons": [
-        "Earcups do not fold inward like older XM4 model"
+        "Earcups do not fold inward like the older XM4 model"
       ],
       "keywords": [
         "headphones",
