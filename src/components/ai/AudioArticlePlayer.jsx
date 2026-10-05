@@ -28,8 +28,7 @@ export default function AudioArticlePlayer({ title, contentText, estimatedMinute
 
     synthRef.current.cancel();
 
-    // Prepare speech text from title + article content
-    const cleanText = `${title}. Key Overview. ${contentText ? contentText.replace(/[#*`_\[\]()]/g, '') : 'Welcome to this tech article on UniqueDigit.'}`;
+    const cleanText = `${title}. Key Overview. ${contentText ? contentText.replace(/[#*`_[\]()]/g, '') : 'Welcome to this tech article on UniqueDigit.'}`;
     const utterance = new SpeechSynthesisUtterance(cleanText.slice(0, 3000));
     utterance.rate = rate;
     utterance.pitch = 1.0;

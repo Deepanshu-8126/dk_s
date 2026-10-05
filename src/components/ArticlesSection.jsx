@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Award, ShieldCheck, ChevronLeft, ChevronRight, PenTool, BookOpen, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import UniversalEditorialCard from './common/UniversalEditorialCard';
 import GuideArticleView from './GuideArticleView';
 import { EditorialStudio } from './studio';

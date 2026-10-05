@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { ShoppingBag, ExternalLink, Star, ShieldCheck, Tag, Sparkles, SlidersHorizontal, Check, RefreshCw, CheckCircle2, XCircle, Award, Swords, Bookmark, Bell, Share2, History } from 'lucide-react';
+import { ShoppingBag, ExternalLink, Star, Tag, SlidersHorizontal, RefreshCw, CheckCircle2, XCircle, Award, Bookmark, Bell, Share2, History } from 'lucide-react';
 import fallbackData from '../../data/productsCatalog.json';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
 import { calculateDiscount } from '../../utils/calculator';

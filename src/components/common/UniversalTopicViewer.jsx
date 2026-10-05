@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { 
-  ShieldCheck, ExternalLink, Calendar, BookOpen, X, Sparkles, 
-  CheckCircle2, XCircle, Award, ShoppingCart, ArrowRight, Layers, 
-  BarChart3, Scale, Flame, RefreshCw, ThumbsUp, Tag
+  ShieldCheck, BookOpen, X, 
+  CheckCircle2, XCircle, Award, ShoppingCart, 
+  BarChart3, Scale, Flame
 } from 'lucide-react';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
 import { getCuratedAlternatives } from '../../utils/recommendations';

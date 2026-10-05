@@ -1,5 +1,4 @@
-import React from 'react';
-import { ArrowLeft, Calendar, Clock, ShieldCheck, ExternalLink, Image as ImageIcon, BookOpen, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, ShieldCheck, ExternalLink, Image as ImageIcon, BookOpen } from 'lucide-react';
 import SmartImage from './common/SmartImage';
 import ReadingProgressBar from './common/ReadingProgressBar';
 import AudioArticlePlayer from './ai/AudioArticlePlayer';

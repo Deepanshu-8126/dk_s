@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import TrendingBar from './components/TrendingBar';
 import HeroWidget from './components/HeroWidget';

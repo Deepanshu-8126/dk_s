@@ -62,6 +62,8 @@ export function buildAffiliateUrl(queryOrUrl, customTag = null, inStock = true) 
   return `https://www.amazon.in/s?k=${encodeURIComponent(clean)}&tag=${encodeURIComponent(tag)}`;
 }
 
+export const getAffiliateLink = buildAffiliateUrl;
+
 // 3. Priority Weight Sorting Engine
 export function sortByPriority(items = [], key = 'priorityWeight') {
   if (!Array.isArray(items)) return [];

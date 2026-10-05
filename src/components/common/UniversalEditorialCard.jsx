@@ -1,5 +1,4 @@
-import React from 'react';
-import { Clock, ShieldCheck, ArrowRight, Sparkles, User } from 'lucide-react';
+import { Clock, ShieldCheck, ArrowRight, User } from 'lucide-react';
 import SmartImage from './SmartImage';
 
 /**

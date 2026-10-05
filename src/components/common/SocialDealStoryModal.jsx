@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { X, Download, Share2, Sparkles, Check, Flame } from 'lucide-react';
-import { buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
+import { X, Download, Share2, Sparkles, Check } from 'lucide-react';
+import { getAffiliateLink } from '../../utils/core';
 
 export default function SocialDealStoryModal({ isOpen, onClose, product }) {
   const canvasRef = useRef(null);
@@ -135,7 +135,7 @@ export default function SocialDealStoryModal({ isOpen, onClose, product }) {
 
   const currentPrice = product.priceNumber ? `₹${product.priceNumber.toLocaleString('en-IN')}` : product.price || '₹61,499';
   const affiliateLink = getAffiliateLink(product.affiliateUrl || product.link || 'https://amazon.in');
-  const shareText = `🔥 Unbelievable Deal Alert: ${product.title || product.name} at only ${currentPrice}! Verified deal tracked by UniqueDigit: https://uniquedigit.com`;
+  const shareText = `🔥 Unbelievable Deal Alert: ${product.title || product.name} at only ${currentPrice}! Check it out here: ${affiliateLink} (Verified deal tracked by UniqueDigit)`;
 
   const handleWhatsAppShare = () => {
     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
