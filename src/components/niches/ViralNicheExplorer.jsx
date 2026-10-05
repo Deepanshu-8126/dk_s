@@ -95,7 +95,7 @@ export default function ViralNicheExplorer({ onSelectTopic }) {
 
         {/* Dynamic Ad & Banner Injector Slot */}
         <AdBannerInjector
-          headline={`Exclusive ${currentNiche.name} Drops & Verified Discounts`}
+          headline={`Exclusive ${currentNiche?.name || 'Featured'} Drops & Verified Discounts`}
           description="Instant vouchers and verified Indian price drops updated hourly on Amazon India."
           tag="Auto-Injected Deal Slot"
         />

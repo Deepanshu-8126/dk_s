@@ -41,9 +41,20 @@ export default class ErrorBoundary extends React.Component {
             <h2 className="text-xl font-bold font-display text-white mb-2">
               Temporary Render Notice
             </h2>
-            <p className="text-xs text-slate-400 leading-relaxed mb-6">
+            <p className="text-xs text-slate-400 leading-relaxed mb-4">
               UniqueDigit encountered a minor view synchronization issue. Click below to refresh the verified intelligence feed.
             </p>
+
+            {this.state.error && (
+              <details className="text-left mb-6 bg-slate-950 p-3 rounded-xl border border-rose-500/30 text-[11px] font-mono text-rose-300 overflow-x-auto">
+                <summary className="cursor-pointer font-bold text-amber-400 select-none pb-1">
+                  Click to view error diagnostics
+                </summary>
+                <div className="mt-2 text-rose-200">
+                  {this.state.error.toString()}
+                </div>
+              </details>
+            )}
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <button

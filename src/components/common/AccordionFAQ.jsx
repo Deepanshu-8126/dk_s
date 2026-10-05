@@ -11,15 +11,18 @@ export default function AccordionFAQ({ faqs = [] }) {
   };
 
   // Schema.org FAQPage structured data
+  const validFaqs = Array.isArray(faqs) ? faqs.filter(Boolean) : [];
+  if (validFaqs.length === 0) return null;
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
+    mainEntity: validFaqs.map((f) => ({
       '@type': 'Question',
-      name: f.q,
+      name: f.q || f.question || 'Frequently Asked Question',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: f.a
+        text: f.a || f.answer || ''
       }
     }))
   };
@@ -37,8 +40,10 @@ export default function AccordionFAQ({ faqs = [] }) {
       </div>
 
       <div className="space-y-3">
-        {faqs.map((faq, idx) => {
+        {validFaqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
+          const questionText = faq.q || faq.question || `Question ${idx + 1}`;
+          const answerText = faq.a || faq.answer || '';
           return (
             <div
               key={idx}
@@ -47,14 +52,14 @@ export default function AccordionFAQ({ faqs = [] }) {
               <button
                 type="button"
                 onClick={() => toggle(idx)}
-                className="w-full flex items-center justify-between p-4 text-left text-xs font-bold text-slate-200 hover:text-cyan-400 transition-colors"
+                className="w-full flex items-center justify-between p-4 text-left text-xs font-bold text-slate-200 hover:text-cyan-400 transition-colors cursor-pointer"
               >
-                <span>{faq.q}</span>
+                <span>{questionText}</span>
                 <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-cyan-400' : ''}`} />
               </button>
               {isOpen && (
                 <div className="px-4 pb-4 text-xs text-slate-400 leading-relaxed border-t border-slate-800/60 pt-3">
-                  {faq.a}
+                  {answerText}
                 </div>
               )}
             </div>

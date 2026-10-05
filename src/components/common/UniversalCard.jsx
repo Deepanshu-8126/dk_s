@@ -100,12 +100,14 @@ export default function UniversalCard({ item, accent = 'cyan', onSelect = null }
       <div className="mt-4 pt-3 border-t border-slate-800/80">
         <div className="flex items-baseline justify-between mb-3">
           <div>
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Verified Rate</span>
+            <span className="text-[10px] uppercase font-bold text-slate-500 block">
+              {item.price ? 'Verified Rate' : 'Classification'}
+            </span>
             <span className="text-lg font-black font-mono text-white tracking-tight">
-              {formatINR(item.price)}
+              {item.price ? formatINR(item.price) : (item.badge || 'Verified Fact')}
             </span>
           </div>
-          {item.originalPrice && item.originalPrice > item.price && (
+          {item.originalPrice && item.price && item.originalPrice > item.price && (
             <span className="text-xs line-through font-mono text-slate-500">
               {formatINR(item.originalPrice)}
             </span>
@@ -113,14 +115,18 @@ export default function UniversalCard({ item, accent = 'cyan', onSelect = null }
         </div>
 
         <a
-          href={affUrl}
+          href={item.sourceUrl || affUrl}
           target="_blank"
           rel="noopener noreferrer nofollow"
           onClick={(e) => e.stopPropagation()}
-          className={`flex items-center justify-center gap-1.5 w-full rounded-xl bg-gradient-to-r ${style.button} py-2.5 text-xs font-bold shadow-md transition-all active:scale-95`}
+          className={`flex items-center justify-center gap-1.5 w-full rounded-xl bg-gradient-to-r ${style.button} py-2.5 text-xs font-bold shadow-md transition-all active:scale-95 cursor-pointer`}
         >
-          <ShoppingCart className="w-3.5 h-3.5" />
-          <span>{inStock ? t('viewOnAmazon') : 'Find on Flipkart'}</span>
+          {item.price ? <ShoppingCart className="w-3.5 h-3.5" /> : <ExternalLink className="w-3.5 h-3.5" />}
+          <span>
+            {item.price 
+              ? (inStock ? t('viewOnAmazon') : 'Find on Flipkart') 
+              : 'View Intelligence Source'}
+          </span>
         </a>
       </div>
     </div>
