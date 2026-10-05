@@ -6,6 +6,21 @@
 import fs from 'fs';
 import path from 'path';
 
+// Fallback: Read .env if running locally and process.env is missing keys
+if (!process.env.TELEGRAM_BOT_TOKEN && fs.existsSync('.env')) {
+  try {
+    const envContent = fs.readFileSync('.env', 'utf8');
+    envContent.split('\n').forEach(line => {
+      const match = line.match(/^\s*([\w_]+)\s*=\s*(.*)?\s*$/);
+      if (match) {
+        const key = match[1];
+        const val = (match[2] || '').trim().replace(/^['"]|['"]$/g, '');
+        if (!process.env[key]) process.env[key] = val;
+      }
+    });
+  } catch {}
+}
+
 async function sendTelegramAlert() {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
