@@ -41,27 +41,27 @@ export default function SarkariResultSection({ searchQuery }) {
   const isStale = isDataStale(REAL_SARKARI_DATA.lastUpdated);
 
   return (
-    <section className="fade-up mb-8 text-slate-100">
+    <section className="fade-up mb-8 text-slate-900">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-            <Newspaper className="text-emerald-400" size={17} />
+          <div className="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center">
+            <Newspaper className="text-emerald-600" size={17} />
           </div>
-          <h2 className="text-xl md:text-2xl font-black text-white tracking-tight font-display">
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight font-display">
             Sarkari Result & Jobs 2026
           </h2>
-          <span className="bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+          <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">
             Official Portals Verified
           </span>
           {isStale && (
-            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30 flex items-center gap-1">
+            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1">
               <AlertTriangle size={11} />
               {STALE_BADGE_TEXT}
             </span>
           )}
         </div>
-        <span className="text-xs text-slate-400 font-mono">
+        <span className="text-xs text-slate-500 font-mono">
           Last updated: {REAL_SARKARI_DATA.displayUpdated}
         </span>
       </div>
@@ -76,11 +76,11 @@ export default function SarkariResultSection({ searchQuery }) {
               href={lnk.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 bg-slate-900 border border-slate-800 hover:border-indigo-500/40 text-slate-300 hover:text-white transition-all shadow-md font-display"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 bg-white border border-slate-200 hover:border-indigo-400 text-slate-700 hover:text-indigo-600 transition-all shadow-xs font-display"
             >
-              <Icon size={14} className="text-indigo-400" />
+              <Icon size={14} className="text-indigo-600" />
               <span>{lnk.label}</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded font-mono bg-slate-950 text-slate-400 border border-slate-800">
+              <span className="text-[10px] px-1.5 py-0.2 rounded font-mono bg-slate-100 text-slate-600 border border-slate-200">
                 {lnk.volume}
               </span>
             </a>
@@ -96,8 +96,8 @@ export default function SarkariResultSection({ searchQuery }) {
             onClick={() => setFilter(f.id)}
             className={`text-xs py-1.5 px-3.5 rounded-full font-bold transition-all cursor-pointer ${
               filter === f.id
-                ? 'bg-emerald-600 text-white shadow-md'
-                : 'text-slate-400 hover:text-white hover:bg-slate-900 bg-slate-950 border border-slate-800'
+                ? 'bg-emerald-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 bg-white border border-slate-200'
             }`}
           >
             {f.label}
@@ -107,8 +107,8 @@ export default function SarkariResultSection({ searchQuery }) {
 
       {/* Job Cards Grid */}
       {filtered.length === 0 ? (
-        <div className="p-8 text-center bg-slate-900 rounded-2xl border border-slate-800">
-          <p className="text-slate-400 font-display">
+        <div className="p-8 text-center bg-white rounded-2xl border border-dashed border-slate-300 shadow-xs">
+          <p className="text-slate-500 font-display">
             No results found for "{searchQuery}"
           </p>
         </div>
@@ -119,7 +119,7 @@ export default function SarkariResultSection({ searchQuery }) {
             const BadgeIcon = badgeCfg.icon;
 
             return (
-              <article key={job.id} className="p-5 bg-slate-900/70 rounded-2xl border border-slate-800 hover:border-emerald-500/30 shadow-lg flex flex-col justify-between gap-3.5 transition-all">
+              <article key={job.id} className="p-5 bg-white rounded-2xl border border-slate-200 hover:border-emerald-400 shadow-xs hover:shadow-md flex flex-col justify-between gap-3.5 transition-all">
                 {/* Top row */}
                 <div>
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
@@ -131,50 +131,50 @@ export default function SarkariResultSection({ searchQuery }) {
                       {job.badge}
                     </span>
                   </div>
-                  <h3 className="font-bold text-base leading-snug text-white font-display">
+                  <h3 className="font-bold text-base leading-snug text-slate-900 font-display">
                     {job.title}
                   </h3>
-                  <p className="text-xs text-slate-400 mt-0.5">{job.org}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{job.org}</p>
                 </div>
 
                 {/* Stats row */}
                 <div className="grid grid-cols-2 gap-2 py-1 text-xs">
                   {job.posts && job.posts !== 'N/A' && (
-                    <div className="flex items-center gap-1.5 text-slate-300">
+                    <div className="flex items-center gap-1.5 text-slate-600">
                       <Users size={12} className="text-slate-400" />
                       <span className="font-bold font-mono">{job.posts} Posts</span>
                     </div>
                   )}
                   {job.salary && (
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold font-mono text-emerald-400">
+                      <span className="font-bold font-mono text-emerald-600">
                         {job.salary}
                       </span>
                     </div>
                   )}
                   {job.category && (
-                    <div className="text-slate-400">
+                    <div className="text-slate-500">
                       {job.category}
                     </div>
                   )}
                   {job.searchVolume && (
-                    <div className="font-bold text-indigo-400 font-mono">
+                    <div className="font-bold text-indigo-600 font-mono">
                       {job.searchVolume} Searches
                     </div>
                   )}
                 </div>
 
                 {/* Dates & Action */}
-                <div className="flex items-center justify-between pt-3 border-t border-slate-800 text-xs">
-                  <div className="flex items-center gap-1 text-slate-400">
+                <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                  <div className="flex items-center gap-1 text-slate-500">
                     <Clock size={12} />
-                    <span>Last Date: <strong className="text-slate-200">{job.lastDate}</strong></span>
+                    <span>Last Date: <strong className="text-slate-800">{job.lastDate}</strong></span>
                   </div>
                   <a
                     href={job.applyLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white font-bold text-xs border border-slate-700 hover:border-emerald-500 transition-all flex items-center gap-1.5 cursor-pointer shadow-md"
+                    className="py-2 px-3 rounded-xl bg-slate-900 hover:bg-emerald-600 text-white font-bold text-xs border border-slate-900 hover:border-emerald-600 transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
                   >
                     <span>{job.ctaText}</span>
                     <ExternalLink size={12} />

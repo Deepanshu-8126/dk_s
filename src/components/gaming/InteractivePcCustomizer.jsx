@@ -65,29 +65,29 @@ export default function InteractivePcCustomizer() {
   const affiliateBuyUrl = buildAmazonAffiliateUrl(searchQuery);
 
   return (
-    <div className="rounded-3xl p-6 md:p-8 bg-slate-900/90 border border-slate-800 shadow-2xl mb-12 text-slate-100">
+    <div className="rounded-3xl p-6 md:p-8 bg-white border border-slate-200 shadow-xs mb-12 text-slate-900">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-2">
-            <Sliders size={13} className="text-indigo-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-2 shadow-xs">
+            <Sliders size={13} className="text-indigo-600" />
             <span>Interactive Tool · Live 2026 Engine</span>
           </div>
-          <h3 className="text-2xl md:text-3xl font-black text-white font-display">
-            Custom Gaming Rig & <span className="text-indigo-400">FPS Estimator</span>
+          <h3 className="text-2xl md:text-3xl font-black text-slate-900 font-display">
+            Custom Gaming Rig & <span className="text-indigo-600">FPS Estimator</span>
           </h3>
-          <p className="text-xs text-slate-400 mt-1 max-w-xl">
+          <p className="text-xs text-slate-600 mt-1 max-w-xl">
             Mix and match verified components with real-time Indian pricing math, expected game framerates, and no-cost EMI breakdowns.
           </p>
         </div>
 
         {/* Total Cost Display Box */}
-        <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-right shrink-0">
-          <span className="text-[11px] text-slate-400 block font-medium">Estimated Rig Total</span>
-          <span className="text-2xl md:text-3xl font-black text-emerald-400 font-mono">
+        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-right shrink-0">
+          <span className="text-[11px] text-slate-500 block font-medium">Estimated Rig Total</span>
+          <span className="text-2xl md:text-3xl font-black text-emerald-600 font-mono">
             {formatPriceINR(totalCost)}
           </span>
-          <span className="text-[10px] text-slate-400 block font-mono mt-0.5">
+          <span className="text-[10px] text-slate-500 block font-mono mt-0.5">
             or ~₹{monthlyEmi.toLocaleString('en-IN')}/mo ({emiMonths} mos EMI)
           </span>
         </div>
@@ -99,9 +99,9 @@ export default function InteractivePcCustomizer() {
         <div className="lg:col-span-7 space-y-4">
           
           {/* Quick Preset Budget Matcher */}
-          <div className="p-3 rounded-2xl bg-slate-950/80 border border-slate-800 flex items-center justify-between gap-2 flex-wrap">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-              <Sparkles size={12} className="text-amber-400" />
+          <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 flex-wrap">
+            <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
+              <Sparkles size={12} className="text-amber-500" />
               <span>Budget Matcher:</span>
             </span>
             <div className="flex items-center gap-1.5 flex-wrap">
@@ -113,7 +113,7 @@ export default function InteractivePcCustomizer() {
                   setSelectedStorage(COMPONENT_OPTIONS.storage[0]);
                   setSelectedPsu(COMPONENT_OPTIONS.psu[0]);
                 }}
-                className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 transition cursor-pointer"
+                className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs transition cursor-pointer"
               >
                 ~₹55k (1080p)
               </button>
@@ -125,7 +125,7 @@ export default function InteractivePcCustomizer() {
                   setSelectedStorage(COMPONENT_OPTIONS.storage[1]);
                   setSelectedPsu(COMPONENT_OPTIONS.psu[1]);
                 }}
-                className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-200 border border-indigo-500/40 transition cursor-pointer"
+                className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition cursor-pointer"
               >
                 ~₹1.18L (1440p RT)
               </button>
@@ -137,7 +137,7 @@ export default function InteractivePcCustomizer() {
                   setSelectedStorage(COMPONENT_OPTIONS.storage[2]);
                   setSelectedPsu(COMPONENT_OPTIONS.psu[2]);
                 }}
-                className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 border border-amber-500/30 transition cursor-pointer"
+                className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition cursor-pointer"
               >
                 ~₹2.2L (4K God)
               </button>
@@ -146,12 +146,12 @@ export default function InteractivePcCustomizer() {
 
           {/* 1. Processor Picker */}
           <div>
-            <label className="text-xs font-bold text-slate-300 mb-1.5 flex items-center justify-between">
+            <label className="text-xs font-bold text-slate-700 mb-1.5 flex items-center justify-between">
               <span className="flex items-center gap-1.5">
-                <Cpu size={14} className="text-indigo-400" />
+                <Cpu size={14} className="text-indigo-600" />
                 <span>Processor (CPU)</span>
               </span>
-              <span className="font-mono text-emerald-400 font-semibold">{formatPriceINR(selectedCpu.price)}</span>
+              <span className="font-mono text-emerald-600 font-semibold">{formatPriceINR(selectedCpu.price)}</span>
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {COMPONENT_OPTIONS.cpu.map(item => (
@@ -160,12 +160,12 @@ export default function InteractivePcCustomizer() {
                   onClick={() => setSelectedCpu(item)}
                   className={`p-2.5 rounded-xl text-left text-xs transition-all border cursor-pointer ${
                     selectedCpu.id === item.id
-                      ? 'bg-indigo-600/20 border-indigo-500 text-white shadow-md'
-                      : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                      ? 'bg-indigo-50 border-indigo-400 text-indigo-900 shadow-xs'
+                      : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:border-slate-300'
                   }`}
                 >
                   <div className="font-bold truncate">{item.name}</div>
-                  <div className="text-[10px] text-slate-400 mt-0.5">{formatPriceINR(item.price)}</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">{formatPriceINR(item.price)}</div>
                 </button>
               ))}
             </div>
@@ -173,12 +173,12 @@ export default function InteractivePcCustomizer() {
 
           {/* 2. Graphics Card (GPU) Picker */}
           <div>
-            <label className="text-xs font-bold text-slate-300 mb-1.5 flex items-center justify-between">
+            <label className="text-xs font-bold text-slate-700 mb-1.5 flex items-center justify-between">
               <span className="flex items-center gap-1.5">
-                <Zap size={14} className="text-amber-400" />
+                <Zap size={14} className="text-amber-600" />
                 <span>Graphics Card (GPU)</span>
               </span>
-              <span className="font-mono text-emerald-400 font-semibold">{formatPriceINR(selectedGpu.price)}</span>
+              <span className="font-mono text-emerald-600 font-semibold">{formatPriceINR(selectedGpu.price)}</span>
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {COMPONENT_OPTIONS.gpu.map(item => (
@@ -187,12 +187,12 @@ export default function InteractivePcCustomizer() {
                   onClick={() => setSelectedGpu(item)}
                   className={`p-2.5 rounded-xl text-left text-xs transition-all border cursor-pointer ${
                     selectedGpu.id === item.id
-                      ? 'bg-amber-500/20 border-amber-500 text-white shadow-md'
-                      : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                      ? 'bg-amber-50 border-amber-400 text-amber-900 shadow-xs'
+                      : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:border-slate-300'
                   }`}
                 >
                   <div className="font-bold truncate">{item.name}</div>
-                  <div className="text-[10px] text-amber-400/80 mt-0.5">{formatPriceINR(item.price)}</div>
+                  <div className="text-[10px] text-amber-700 mt-0.5">{formatPriceINR(item.price)}</div>
                 </button>
               ))}
             </div>
@@ -201,11 +201,11 @@ export default function InteractivePcCustomizer() {
           {/* 3. RAM & Storage Row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-bold text-slate-300 mb-1.5 block">Memory (RAM)</label>
+              <label className="text-xs font-bold text-slate-700 mb-1.5 block">Memory (RAM)</label>
               <select
                 value={selectedRam.id}
                 onChange={(e) => setSelectedRam(COMPONENT_OPTIONS.ram.find(r => r.id === e.target.value))}
-                className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white outline-none focus:border-indigo-500"
+                className="w-full p-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 outline-none focus:border-indigo-500"
               >
                 {COMPONENT_OPTIONS.ram.map(r => (
                   <option key={r.id} value={r.id}>{r.name} ({formatPriceINR(r.price)})</option>
@@ -214,11 +214,11 @@ export default function InteractivePcCustomizer() {
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-300 mb-1.5 block">Gen4 NVMe Storage</label>
+              <label className="text-xs font-bold text-slate-700 mb-1.5 block">Gen4 NVMe Storage</label>
               <select
                 value={selectedStorage.id}
                 onChange={(e) => setSelectedStorage(COMPONENT_OPTIONS.storage.find(s => s.id === e.target.value))}
-                className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white outline-none focus:border-indigo-500"
+                className="w-full p-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 outline-none focus:border-indigo-500"
               >
                 {COMPONENT_OPTIONS.storage.map(s => (
                   <option key={s.id} value={s.id}>{s.name} ({formatPriceINR(s.price)})</option>
@@ -229,49 +229,49 @@ export default function InteractivePcCustomizer() {
         </div>
 
         {/* Right Column: Real-Time FPS Benchmarks & Order Box */}
-        <div className="lg:col-span-5 flex flex-col justify-between p-5 rounded-2xl bg-slate-950 border border-slate-800">
+        <div className="lg:col-span-5 flex flex-col justify-between p-5 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs">
           <div>
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5 font-display">
-                <Gauge size={14} className="text-emerald-400" />
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5 font-display">
+                <Gauge size={14} className="text-emerald-600" />
                 <span>Estimated Game Benchmarks</span>
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
                 1440p High Tested
               </span>
             </div>
 
             {/* FPS Gauges */}
             <div className="space-y-3 mb-6">
-              <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+              <div className="p-3 rounded-xl bg-white border border-slate-200 flex items-center justify-between shadow-xs">
                 <div>
-                  <div className="text-xs font-bold text-white">Grand Theft Auto VI</div>
-                  <div className="text-[10px] text-slate-400">Vice City Path Tracing + DLSS</div>
+                  <div className="text-xs font-bold text-slate-900">Grand Theft Auto VI</div>
+                  <div className="text-[10px] text-slate-500">Vice City Path Tracing + DLSS</div>
                 </div>
-                <div className="text-sm font-mono font-black text-amber-400">{selectedGpu.fps?.gta6 || '60 FPS'}</div>
+                <div className="text-sm font-mono font-black text-amber-700">{selectedGpu.fps?.gta6 || '60 FPS'}</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+              <div className="p-3 rounded-xl bg-white border border-slate-200 flex items-center justify-between shadow-xs">
                 <div>
-                  <div className="text-xs font-bold text-white">Cyberpunk 2077</div>
-                  <div className="text-[10px] text-slate-400">1440p Ultra Ray Reconstruction</div>
+                  <div className="text-xs font-bold text-slate-900">Cyberpunk 2077</div>
+                  <div className="text-[10px] text-slate-500">1440p Ultra Ray Reconstruction</div>
                 </div>
-                <div className="text-sm font-mono font-black text-emerald-400">{selectedGpu.fps?.cp2077 || '80 FPS'}</div>
+                <div className="text-sm font-mono font-black text-emerald-700">{selectedGpu.fps?.cp2077 || '80 FPS'}</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+              <div className="p-3 rounded-xl bg-white border border-slate-200 flex items-center justify-between shadow-xs">
                 <div>
-                  <div className="text-xs font-bold text-white">Valorant / CS2</div>
-                  <div className="text-[10px] text-slate-400">Esports 240Hz Tournament Setting</div>
+                  <div className="text-xs font-bold text-slate-900">Valorant / CS2</div>
+                  <div className="text-[10px] text-slate-500">Esports 240Hz Tournament Setting</div>
                 </div>
-                <div className="text-sm font-mono font-black text-cyan-400">{selectedGpu.fps?.valo || '300+ FPS'}</div>
+                <div className="text-sm font-mono font-black text-cyan-700">{selectedGpu.fps?.valo || '300+ FPS'}</div>
               </div>
             </div>
 
             {/* EMI Selector */}
-            <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-xs text-slate-300">
-                <CreditCard size={13} className="text-indigo-400" />
+            <div className="p-3 rounded-xl bg-white border border-slate-200 mb-4 flex items-center justify-between shadow-xs">
+              <div className="flex items-center gap-1.5 text-xs text-slate-700">
+                <CreditCard size={13} className="text-indigo-600" />
                 <span>EMI Tenure:</span>
               </div>
               <div className="flex items-center gap-1">
@@ -280,7 +280,7 @@ export default function InteractivePcCustomizer() {
                     key={m}
                     onClick={() => setEmiMonths(m)}
                     className={`px-2 py-0.5 rounded text-[11px] font-bold font-mono transition-colors cursor-pointer ${
-                      emiMonths === m ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'
+                      emiMonths === m ? 'bg-indigo-600 text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:text-slate-900'
                     }`}
                   >
                     {m}M
@@ -295,7 +295,7 @@ export default function InteractivePcCustomizer() {
             href={affiliateBuyUrl}
             target="_blank"
             rel="nofollow noopener noreferrer"
-            className="w-full py-3 px-4 rounded-xl font-extrabold text-xs bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-3 px-4 rounded-xl font-extrabold text-xs bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <ShoppingBag size={14} />
             <span>Search & Buy Custom Rig on Amazon.in →</span>

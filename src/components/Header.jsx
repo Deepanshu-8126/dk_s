@@ -51,16 +51,16 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#0A0A0C]/95 backdrop-blur-md border-b border-[#23232C] shadow-2xl text-[#EDEDED]">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs text-slate-900">
       {/* Ticker strip on top */}
       {showTicker && (
-        <div className="flex items-center text-xs bg-[#0A0A0C] border-b border-[#23232C] text-slate-300 h-8">
-          <div className="shrink-0 flex items-center gap-1.5 px-3 font-bold uppercase tracking-wider bg-[#141419] text-amber-400 h-full border-r border-[#23232C]">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping shrink-0" />
-            <span className="hidden sm:inline text-[11px] font-display">LIVE INTELLIGENCE</span>
-            <span className="sm:hidden text-[11px] font-display">LIVE</span>
+        <div className="flex items-center text-xs bg-slate-50 border-b border-slate-200 text-slate-700 h-8">
+          <div className="shrink-0 flex items-center gap-1.5 px-3 font-bold uppercase tracking-wider bg-amber-50 text-amber-900 h-full border-r border-amber-200">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping shrink-0" />
+            <span className="hidden sm:inline text-[11px] font-display font-black">LIVE INTELLIGENCE</span>
+            <span className="sm:hidden text-[11px] font-display font-black">LIVE</span>
           </div>
-          <div className="flex-1 overflow-hidden px-2 sm:px-3 font-medium text-slate-300 font-display">
+          <div className="flex-1 overflow-hidden px-2 sm:px-3 font-medium text-slate-700 font-display">
             <span key={tickerIdx} className="block truncate text-[11px] sm:text-xs">
               {TICKERS[tickerIdx]}
             </span>
@@ -68,7 +68,7 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
           <button
             onClick={handleDismissTicker}
             aria-label="Close live ticker"
-            className="shrink-0 px-2 sm:px-3 text-slate-400 hover:text-white transition-colors cursor-pointer"
+            className="shrink-0 px-2 sm:px-3 text-slate-400 hover:text-slate-800 transition-colors cursor-pointer"
           >
             <X size={13} />
           </button>
@@ -83,7 +83,7 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={isMobileMenuOpen}
-            className="md:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            className="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
           >
             <Menu size={20} />
           </button>
@@ -92,7 +92,7 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
             onClick={() => setActiveTab('all')}
             className="flex items-center gap-3 cursor-pointer select-none group"
           >
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-950 p-0.5 border border-slate-700 shadow-md group-hover:scale-105 transition-transform flex items-center justify-center">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-900 p-0.5 border border-slate-800 shadow-sm group-hover:scale-105 transition-transform flex items-center justify-center">
               <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-1">
                 <defs>
                   <linearGradient id="udGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -109,12 +109,12 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-black text-lg sm:text-xl tracking-tight text-white leading-none font-display">
-                  Unique<span className="text-indigo-400">Digit</span>
+                <span className="font-black text-lg sm:text-xl tracking-tight text-slate-950 leading-none font-display">
+                  Unique<span className="text-indigo-600">Digit</span>
                 </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               </div>
-              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5 hidden sm:block">
+              <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mt-0.5 hidden sm:block">
                 Hardware Intel & Verified Deals
               </div>
             </div>
@@ -132,11 +132,11 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-1.5 text-xs py-1.5 px-3 rounded-full transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-indigo-600 text-white font-bold shadow-md shadow-indigo-600/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/70 font-medium'
+                    ? 'bg-slate-900 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium'
                 }`}
               >
-                <Icon size={13} className={isActive ? 'text-white' : 'text-slate-400'} />
+                <Icon size={13} className={isActive ? 'text-amber-400' : 'text-slate-400'} />
                 <span>{tab.label}</span>
               </button>
             );
@@ -154,12 +154,12 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}
-              className="w-full bg-slate-900 border border-slate-700/80 rounded-full pl-8 pr-7 py-1.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="w-full bg-slate-100 border border-slate-200 rounded-full pl-8 pr-7 py-1.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 text-slate-400 hover:text-white cursor-pointer"
+                className="absolute right-2.5 text-slate-400 hover:text-slate-700 cursor-pointer"
               >
                 <X size={13} />
               </button>
@@ -170,11 +170,11 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
           {onOpenSearch && (
             <button
               onClick={onOpenSearch}
-              className="p-2 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white transition cursor-pointer flex items-center gap-1"
+              className="p-2 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 hover:text-slate-900 transition cursor-pointer flex items-center gap-1"
               title="Quick Search (Ctrl+K)"
             >
               <Search size={14} />
-              <span className="hidden lg:inline text-[10px] font-mono text-slate-400 px-1 py-0.2 bg-slate-800 rounded">⌘K</span>
+              <span className="hidden lg:inline text-[10px] font-mono text-slate-500 px-1 py-0.2 bg-slate-200 rounded">⌘K</span>
             </button>
           )}
 
@@ -185,12 +185,12 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
           {onOpenWishlist && (
             <button
               onClick={onOpenWishlist}
-              className="relative p-2 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-amber-400 transition cursor-pointer"
+              className="relative p-2 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 hover:text-amber-600 transition cursor-pointer"
               title="View Saved Wishlist"
             >
               <Bookmark size={15} />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-amber-400 text-slate-950 font-bold text-[9px] flex items-center justify-center font-mono shadow-sm">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-amber-500 text-white font-bold text-[9px] flex items-center justify-center font-mono shadow-xs">
                   {wishlistCount}
                 </span>
               )}

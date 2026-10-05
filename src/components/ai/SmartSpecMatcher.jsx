@@ -91,30 +91,30 @@ export default function SmartSpecMatcher() {
   const { deviceA, deviceB, aiVerdict } = activePair;
 
   return (
-    <div className="rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 md:p-8 shadow-2xl backdrop-blur-xl my-8">
+    <div className="rounded-3xl border border-slate-200 bg-white p-6 md:p-8 shadow-xs my-8 text-slate-900">
       {/* Header */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800/80 pb-6">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-100 pb-6">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-400 mb-2">
-            <Sparkles className="h-3.5 w-3.5" /> AI Spec Matcher & Verdict
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-800 mb-2 shadow-xs">
+            <Sparkles className="h-3.5 w-3.5 text-cyan-600" /> AI Spec Matcher & Verdict
           </div>
-          <h3 className="text-2xl font-bold font-outfit text-white tracking-tight">
+          <h3 className="text-2xl font-bold font-outfit text-slate-900 tracking-tight">
             Smart Side-by-Side Spec Comparison Matrix
           </h3>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-600 mt-1">
             Real-time algorithmic delta scoring & bottleneck comparison (Zero Biased Data)
           </p>
         </div>
 
         {/* Category Toggles */}
-        <div className="flex items-center gap-2 rounded-xl bg-slate-950 p-1.5 border border-slate-800">
+        <div className="flex items-center gap-2 rounded-xl bg-slate-100 p-1.5 border border-slate-200">
           <button
             type="button"
             onClick={() => { setCategory('smartphones'); setSelectedIdx(0); }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
               category === 'smartphones'
-                ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-cyan-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Smartphone className="w-3.5 h-3.5" /> Smartphones
@@ -122,10 +122,10 @@ export default function SmartSpecMatcher() {
           <button
             type="button"
             onClick={() => { setCategory('gpus'); setSelectedIdx(0); }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
               category === 'gpus'
-                ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-cyan-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Cpu className="w-3.5 h-3.5" /> GPUs / Graphics
@@ -140,10 +140,10 @@ export default function SmartSpecMatcher() {
             key={idx}
             type="button"
             onClick={() => setSelectedIdx(idx)}
-            className={`text-xs px-3.5 py-1.5 rounded-full border transition-all ${
+            className={`text-xs px-3.5 py-1.5 rounded-full border transition-all cursor-pointer ${
               selectedIdx === idx
-                ? 'border-cyan-500 bg-cyan-500/20 text-cyan-300 font-bold'
-                : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                ? 'border-cyan-500 bg-cyan-50 text-cyan-800 font-bold shadow-xs'
+                : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900'
             }`}
           >
             {item.deviceA.name} vs {item.deviceB.name}
@@ -154,81 +154,81 @@ export default function SmartSpecMatcher() {
       {/* Comparison Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6 relative">
         {/* Device A Card */}
-        <div className="rounded-2xl border border-cyan-500/30 bg-slate-900/50 p-5 shadow-lg relative overflow-hidden">
-          <div className="absolute top-0 right-0 px-3 py-1 bg-cyan-500/20 text-cyan-400 text-[10px] font-bold rounded-bl-xl border-b border-l border-cyan-500/30">
+        <div className="rounded-2xl border border-cyan-200 bg-slate-50/60 p-5 shadow-xs relative overflow-hidden">
+          <div className="absolute top-0 right-0 px-3 py-1 bg-cyan-100 text-cyan-800 text-[10px] font-bold rounded-bl-xl border-b border-l border-cyan-200">
             Contender A
           </div>
-          <h4 className="text-lg font-bold text-white font-outfit">{deviceA.name}</h4>
-          <div className="text-xl font-bold font-mono text-cyan-400 mt-1 mb-4">{deviceA.price}</div>
+          <h4 className="text-lg font-bold text-slate-900 font-outfit">{deviceA.name}</h4>
+          <div className="text-xl font-bold font-mono text-cyan-700 mt-1 mb-4">{deviceA.price}</div>
 
           <div className="space-y-3 text-xs">
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Processor / Silicon:</span>
-              <span className="font-semibold text-slate-200 text-right">{deviceA.processor}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Processor / Silicon:</span>
+              <span className="font-semibold text-slate-900 text-right">{deviceA.processor}</span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Camera / VRAM:</span>
-              <span className="font-semibold text-slate-200 text-right">{deviceA.camera}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Camera / VRAM:</span>
+              <span className="font-semibold text-slate-900 text-right">{deviceA.camera}</span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Battery / Power:</span>
-              <span className="font-semibold text-slate-200 text-right">{deviceA.battery}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Battery / Power:</span>
+              <span className="font-semibold text-slate-900 text-right">{deviceA.battery}</span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Display / Video Engine:</span>
-              <span className="font-semibold text-slate-200 text-right">{deviceA.display}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Display / Video Engine:</span>
+              <span className="font-semibold text-slate-900 text-right">{deviceA.display}</span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Benchmark Index:</span>
-              <span className="font-mono font-bold text-emerald-400">{deviceA.antutuScore}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Benchmark Index:</span>
+              <span className="font-mono font-bold text-emerald-700">{deviceA.antutuScore}</span>
             </div>
           </div>
         </div>
 
         {/* Device B Card */}
-        <div className="rounded-2xl border border-blue-500/30 bg-slate-900/50 p-5 shadow-lg relative overflow-hidden">
-          <div className="absolute top-0 right-0 px-3 py-1 bg-blue-500/20 text-blue-400 text-[10px] font-bold rounded-bl-xl border-b border-l border-blue-500/30">
+        <div className="rounded-2xl border border-blue-200 bg-slate-50/60 p-5 shadow-xs relative overflow-hidden">
+          <div className="absolute top-0 right-0 px-3 py-1 bg-blue-100 text-blue-800 text-[10px] font-bold rounded-bl-xl border-b border-l border-blue-200">
             Contender B
           </div>
-          <h4 className="text-lg font-bold text-white font-outfit">{deviceB.name}</h4>
-          <div className="text-xl font-bold font-mono text-blue-400 mt-1 mb-4">{deviceB.price}</div>
+          <h4 className="text-lg font-bold text-slate-900 font-outfit">{deviceB.name}</h4>
+          <div className="text-xl font-bold font-mono text-blue-700 mt-1 mb-4">{deviceB.price}</div>
 
           <div className="space-y-3 text-xs">
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Processor / Silicon:</span>
-              <span className="font-semibold text-slate-200 text-right">{deviceB.processor}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Processor / Silicon:</span>
+              <span className="font-semibold text-slate-900 text-right">{deviceB.processor}</span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Camera / VRAM:</span>
-              <span className="font-semibold text-slate-200 text-right">{deviceB.camera}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Camera / VRAM:</span>
+              <span className="font-semibold text-slate-900 text-right">{deviceB.camera}</span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Battery / Power:</span>
-              <span className="font-semibold text-slate-200 text-right">{deviceB.battery}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Battery / Power:</span>
+              <span className="font-semibold text-slate-900 text-right">{deviceB.battery}</span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Display / Video Engine:</span>
-              <span className="font-semibold text-slate-200 text-right">{deviceB.display}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Display / Video Engine:</span>
+              <span className="font-semibold text-slate-900 text-right">{deviceB.display}</span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800/80">
-              <span className="text-slate-400">Benchmark Index:</span>
-              <span className="font-mono font-bold text-emerald-400">{deviceB.antutuScore}</span>
+            <div className="flex justify-between py-1.5 border-b border-slate-200">
+              <span className="text-slate-500">Benchmark Index:</span>
+              <span className="font-mono font-bold text-emerald-700">{deviceB.antutuScore}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* AI Automated Verdict Box */}
-      <div className="rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 p-5 mt-4">
+      <div className="rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-cyan-50 p-5 mt-4 shadow-xs">
         <div className="flex items-start gap-3">
-          <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 shrink-0">
+          <div className="p-2 rounded-xl bg-emerald-100 text-emerald-700 shrink-0">
             <Award className="h-5 w-5" />
           </div>
           <div>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+            <h5 className="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
               UniqueDigit Automated Verdict
             </h5>
-            <p className="text-xs text-slate-300 mt-1 leading-relaxed">{aiVerdict}</p>
+            <p className="text-xs text-slate-700 mt-1 leading-relaxed">{aiVerdict}</p>
           </div>
         </div>
       </div>

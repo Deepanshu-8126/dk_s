@@ -11,7 +11,7 @@ export default function StickyMobileNav({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/90 backdrop-blur-lg border-t border-slate-800/80 px-2 py-1.5 shadow-2xl">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200 px-2 py-1.5 shadow-md">
       <div className="flex items-center justify-around">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
@@ -25,11 +25,11 @@ export default function StickyMobileNav({ activeTab, setActiveTab }) {
               }}
               className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all cursor-pointer ${
                 isActive
-                  ? 'text-amber-400 font-bold'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'text-indigo-600 font-bold'
+                  : 'text-slate-500 hover:text-slate-900'
               }`}
             >
-              <Icon size={18} className={isActive ? 'text-amber-400 scale-110 transition-transform' : ''} />
+              <Icon size={18} className={isActive ? 'text-indigo-600 scale-110 transition-transform' : ''} />
               <span className="text-[10px] mt-0.5 tracking-tight font-medium">{item.label}</span>
             </button>
           );

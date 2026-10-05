@@ -28,15 +28,15 @@ export default function AccordionFAQ({ faqs = [] }) {
   };
 
   return (
-    <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl my-6">
+    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs my-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
-        <HelpCircle className="w-5 h-5 text-cyan-400" />
-        <h4 className="text-base font-bold font-outfit text-white">Frequently Asked Questions (FAQs)</h4>
+      <div className="flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
+        <HelpCircle className="w-5 h-5 text-indigo-600" />
+        <h4 className="text-base font-bold font-outfit text-slate-900">Frequently Asked Questions (FAQs)</h4>
       </div>
 
       <div className="space-y-3">
@@ -47,18 +47,18 @@ export default function AccordionFAQ({ faqs = [] }) {
           return (
             <div
               key={idx}
-              className="rounded-2xl border border-slate-800 bg-slate-950/80 overflow-hidden transition-all"
+              className="rounded-2xl border border-slate-200 bg-slate-50/80 overflow-hidden transition-all"
             >
               <button
                 type="button"
                 onClick={() => toggle(idx)}
-                className="w-full flex items-center justify-between p-4 text-left text-xs font-bold text-slate-200 hover:text-cyan-400 transition-colors cursor-pointer"
+                className="w-full flex items-center justify-between p-4 text-left text-xs font-bold text-slate-900 hover:text-indigo-600 transition-colors cursor-pointer"
               >
                 <span>{questionText}</span>
-                <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-cyan-400' : ''}`} />
+                <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-indigo-600' : ''}`} />
               </button>
               {isOpen && (
-                <div className="px-4 pb-4 text-xs text-slate-400 leading-relaxed border-t border-slate-800/60 pt-3">
+                <div className="px-4 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-200/60 pt-3">
                   {answerText}
                 </div>
               )}

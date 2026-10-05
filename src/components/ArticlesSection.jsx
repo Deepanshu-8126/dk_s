@@ -57,17 +57,17 @@ export default function ArticlesSection() {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-cyan-400 text-xs font-semibold mb-2 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-xs font-semibold mb-2 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-cyan-600 animate-pulse" />
             <ShieldCheck size={13} />
             <span>The Verge-Style Fact-Grounded Desk</span>
           </div>
           <h2
-            className="text-2xl md:text-3xl font-black text-white tracking-tight font-outfit"
+            className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight font-outfit"
           >
-            Verified Market Guides & <span className="text-cyan-400">Analysis</span>
+            Verified Market Guides & <span className="text-cyan-600">Analysis</span>
           </h2>
-          <p className="text-xs text-slate-400 mt-1 max-w-xl leading-relaxed">
+          <p className="text-xs text-slate-600 mt-1 max-w-xl leading-relaxed">
             Real source grounding, licensed media, and genuine market analysis audited by our 10-pillar verification engine.
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function ArticlesSection() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowStudio(!showStudio)}
-            className="px-3.5 py-2 rounded-xl bg-cyan-500 text-slate-950 hover:bg-cyan-400 text-xs font-bold flex items-center gap-1.5 transition-all shadow-md cursor-pointer"
+            className="px-3.5 py-2 rounded-xl bg-cyan-600 text-white hover:bg-cyan-700 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
           >
             <PenTool size={13} />
             <span>{showStudio ? 'Close Studio' : 'Editorial Studio'}</span>
@@ -96,15 +96,15 @@ export default function ArticlesSection() {
 
       {/* Empty State */}
       {!loading && articles.length === 0 && (
-        <div className="p-8 text-center bg-slate-900 rounded-3xl border border-dashed border-slate-800">
+        <div className="p-8 text-center bg-white rounded-3xl border border-dashed border-slate-300 shadow-xs">
           <BookOpen size={32} className="mx-auto text-slate-400 mb-2" />
-          <h3 className="font-bold text-base text-slate-200 font-outfit">No Articles Published Yet</h3>
-          <p className="text-xs text-slate-400 max-w-md mx-auto mt-1 mb-4">
+          <h3 className="font-bold text-base text-slate-800 font-outfit">No Articles Published Yet</h3>
+          <p className="text-xs text-slate-500 max-w-md mx-auto mt-1 mb-4">
             No live posts found in data store. Use the Editorial Studio to fetch sources and draft an authentic article.
           </p>
           <button
             onClick={() => setShowStudio(true)}
-            className="px-4 py-2 bg-cyan-500 text-slate-950 rounded-xl text-xs font-bold hover:bg-cyan-400 transition-colors"
+            className="px-4 py-2 bg-cyan-600 text-white rounded-xl text-xs font-bold hover:bg-cyan-700 transition-colors shadow-xs"
           >
             Open Editorial Studio
           </button>

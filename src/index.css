@@ -8,21 +8,22 @@
    ══════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Layer 1: Core Primitives */
-  --bg-core: #0A0A0C;
-  --bg-surface: #141419;
-  --bg-surface-elevated: #1C1C24;
-  --border-subtle: #23232C;
-  --border-card: rgba(255, 255, 255, 0.08);
+  /* Layer 1: Core Primitives (Pure White Editorial Theme) */
+  --bg-core: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #F1F5F9;
+  --border-subtle: #E2E8F0;
+  --border-card: rgba(0, 0, 0, 0.08);
   
-  --text-main: #EDEDED;
-  --text-secondary: #CBD5E1;
-  --text-muted: #9CA3AF;
+  --text-main: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
   
-  --accent-pop: #F59E0B; /* Precision Amber */
-  --accent-pop-hover: #D97706;
-  --accent-emerald: #10B981;
-  --accent-rose: #F43F5E;
+  --accent-pop: #D97706; /* Precision Amber */
+  --accent-pop-hover: #B45309;
+  --accent-emerald: #059669;
+  --accent-rose: #E11D48;
+  --accent-indigo: #4F46E5;
   
   --font-heading: 'Plus Jakarta Sans', 'Outfit', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
@@ -74,20 +75,20 @@ code, pre, .font-mono, .tabular-nums {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-base:hover {
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: #CBD5E1;
   transform: translateY(-2px);
-  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
 }
 
 /* Editorial Buttons */
 .btn-buy-primary {
   background: var(--accent-pop);
-  color: #0A0A0C;
+  color: #FFFFFF;
   font-weight: 800;
   font-size: 0.8125rem;
   padding: 0.625rem 1.125rem;
@@ -97,18 +98,18 @@ code, pre, .font-mono, .tabular-nums {
   justify-content: center;
   gap: 0.5rem;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px -2px rgba(245, 158, 11, 0.35);
+  box-shadow: 0 4px 14px -2px rgba(217, 119, 6, 0.25);
   cursor: pointer;
 }
 
 .btn-buy-primary:hover {
   background: var(--accent-pop-hover);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px -2px rgba(245, 158, 11, 0.5);
+  box-shadow: 0 6px 20px -2px rgba(217, 119, 6, 0.35);
 }
 
 .btn-secondary-action {
-  background: rgba(255, 255, 255, 0.05);
+  background: #FFFFFF;
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
   font-weight: 600;
@@ -120,19 +121,20 @@ code, pre, .font-mono, .tabular-nums {
   justify-content: center;
   gap: 0.375rem;
   transition: all 0.2s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
   cursor: pointer;
 }
 
 .btn-secondary-action:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: #F1F5F9;
+  border-color: #CBD5E1;
 }
 
 /* Translucent Editorial Pill Badges */
 .pill-badge {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-card);
-  color: var(--text-main);
+  background: #F1F5F9;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.25rem 0.625rem;
@@ -147,12 +149,12 @@ code, pre, .font-mono, .tabular-nums {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-core);
+  background: #F8FAFC;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-subtle);
+  background: #CBD5E1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #33333E;
+  background: #94A3B8;
 }

@@ -151,7 +151,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0A0A0C] text-[#EDEDED] selection:bg-amber-400 selection:text-black pb-16 md:pb-0">
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] selection:bg-amber-400 selection:text-slate-950 pb-16 md:pb-0">
       <SEO {...getSeoProps()} />
       <SEOSchema activeItem={liveTopic} products={productsCatalog.products || []} />
 

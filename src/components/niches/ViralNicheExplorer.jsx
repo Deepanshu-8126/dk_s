@@ -41,15 +41,15 @@ export default function ViralNicheExplorer({ onSelectTopic }) {
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold mb-2 border border-slate-800">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <Sparkles size={13} className="text-amber-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-900 text-xs font-semibold mb-2 border border-indigo-200">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <Sparkles size={13} className="text-amber-500" />
             <span>2026 Cross-Niche Intelligence Radar</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight font-outfit">
-            Universal Dynamic <span className="text-cyan-400">Niche Ecosystem</span>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight font-outfit">
+            Universal Dynamic <span className="text-indigo-600">Niche Ecosystem</span>
           </h2>
-          <p className="text-xs text-slate-400 mt-1 max-w-xl leading-relaxed">
+          <p className="text-xs text-slate-600 mt-1 max-w-xl leading-relaxed">
             Config-driven dynamic categories across Gaming, Bullion, AI Developer Tools, and Smart Wearables.
           </p>
         </div>
@@ -66,14 +66,14 @@ export default function ViralNicheExplorer({ onSelectTopic }) {
               onClick={() => setActiveNicheId(niche.id)}
               className={`flex items-center gap-2 shrink-0 min-w-max px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                 isActive
-                  ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 border border-cyan-400 font-extrabold scale-[1.02]'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800 hover:bg-slate-800'
+                  ? 'bg-slate-900 text-white shadow-xs border border-slate-900 font-extrabold scale-[1.01]'
+                  : 'bg-white text-slate-700 hover:text-slate-900 border border-slate-200 hover:bg-slate-50'
               }`}
             >
-              <Icon size={14} className={isActive ? 'text-slate-950' : 'text-slate-500'} />
+              <Icon size={14} className={isActive ? 'text-amber-400' : 'text-slate-400'} />
               <span className="whitespace-nowrap">{niche.name}</span>
               <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono font-semibold whitespace-nowrap ${
-                isActive ? 'bg-slate-950/20 text-slate-950' : 'bg-slate-800 text-slate-400'
+                isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
               }`}>
                 {niche.badge || niche.tag || 'Active'}
               </span>

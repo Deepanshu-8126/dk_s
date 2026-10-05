@@ -44,18 +44,18 @@ export default function DailyTechPoll() {
   const totalVotesCount = votes.reduce((sum, o) => sum + o.votes, 0);
 
   return (
-    <div className="my-8 p-6 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl text-slate-100">
+    <div className="my-8 p-6 rounded-3xl bg-white border border-slate-200 shadow-xs text-slate-900">
       <div className="flex items-center justify-between gap-2 mb-3">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
-          <BarChart2 size={13} className="text-indigo-400" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold uppercase tracking-wider shadow-xs">
+          <BarChart2 size={13} className="text-indigo-600" />
           <span>Daily Community Tech Pulse</span>
         </div>
-        <span className="text-[11px] text-slate-400 font-mono">
+        <span className="text-[11px] text-slate-500 font-mono">
           {totalVotesCount.toLocaleString('en-IN')} votes
         </span>
       </div>
 
-      <h4 className="text-base font-bold text-white mb-4 font-display">
+      <h4 className="text-base font-bold text-slate-900 mb-4 font-display">
         {POLL_DATA.question}
       </h4>
 
@@ -71,15 +71,15 @@ export default function DailyTechPoll() {
               disabled={hasVoted}
               className={`w-full relative overflow-hidden p-3.5 rounded-2xl text-left text-xs transition-all border cursor-pointer ${
                 isSelected
-                  ? 'border-indigo-500 bg-indigo-950/40 text-white font-bold'
-                  : 'border-slate-800 bg-slate-950/70 text-slate-300 hover:border-slate-700'
+                  ? 'border-indigo-400 bg-indigo-50 text-indigo-900 font-bold'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300'
               }`}
             >
               {/* Animated Progress Fill Bar */}
               {hasVoted && (
                 <div
                   className={`absolute inset-0 transition-all duration-700 pointer-events-none ${
-                    isSelected ? 'bg-indigo-600/25' : 'bg-slate-800/40'
+                    isSelected ? 'bg-indigo-100' : 'bg-slate-200/60'
                   }`}
                   style={{ width: `${percent}%` }}
                 />
@@ -88,14 +88,14 @@ export default function DailyTechPoll() {
               <div className="relative z-10 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   {isSelected ? (
-                    <CheckCircle2 size={15} className="text-indigo-400 shrink-0" />
+                    <CheckCircle2 size={15} className="text-indigo-600 shrink-0" />
                   ) : (
-                    <span className="w-4 h-4 rounded-full border border-slate-600 shrink-0" />
+                    <span className="w-4 h-4 rounded-full border border-slate-400 shrink-0" />
                   )}
                   <span>{option.text}</span>
                 </div>
                 {hasVoted && (
-                  <span className="font-mono font-bold text-indigo-300 shrink-0">
+                  <span className="font-mono font-bold text-indigo-700 shrink-0">
                     {percent}%
                   </span>
                 )}

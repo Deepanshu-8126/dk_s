@@ -38,23 +38,23 @@ export default function PriceHistoryChart({ product }) {
   const areaPath = `M ${getX(0)},${svgHeight - paddingY} L ${points.split(' ').join(' L ')} L ${getX(historyData.length - 1)},${svgHeight - paddingY} Z`;
 
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-4 shadow-xl backdrop-blur-md my-4">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-xs my-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-3 mb-3">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-slate-100 pb-3 mb-3">
         <div className="flex items-center gap-2">
-          <History className="w-4 h-4 text-cyan-400" />
-          <h4 className="text-xs font-bold text-white uppercase tracking-wider font-outfit">
+          <History className="w-4 h-4 text-cyan-600" />
+          <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-outfit">
             {t('priceHistory')}
           </h4>
         </div>
 
         <div className="flex items-center gap-2">
           {isAllTimeLow ? (
-            <span className="flex items-center gap-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 px-2.5 py-0.5 text-[10px] font-bold text-emerald-400">
+            <span className="flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[10px] font-bold text-emerald-700">
               <Flame className="w-3 h-3" /> {t('strongBuy')}
             </span>
           ) : (
-            <span className="flex items-center gap-1 rounded-full bg-cyan-500/20 border border-cyan-500/30 px-2.5 py-0.5 text-[10px] font-bold text-cyan-400">
+            <span className="flex items-center gap-1 rounded-full bg-cyan-50 border border-cyan-200 px-2.5 py-0.5 text-[10px] font-bold text-cyan-700">
               {t('fairPrice')}
             </span>
           )}
@@ -62,18 +62,18 @@ export default function PriceHistoryChart({ product }) {
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-3 gap-2 text-center py-2 mb-2 bg-slate-900/60 rounded-xl border border-slate-800/80">
+      <div className="grid grid-cols-3 gap-2 text-center py-2 mb-2 bg-slate-50 rounded-xl border border-slate-200">
         <div>
           <span className="text-[10px] text-slate-500 uppercase block font-bold">Lowest (6M)</span>
-          <span className="text-xs font-mono font-bold text-emerald-400">₹{minPrice.toLocaleString('en-IN')}</span>
+          <span className="text-xs font-mono font-bold text-emerald-700">₹{minPrice.toLocaleString('en-IN')}</span>
         </div>
         <div>
           <span className="text-[10px] text-slate-500 uppercase block font-bold">Highest (6M)</span>
-          <span className="text-xs font-mono font-bold text-rose-400">₹{maxPrice.toLocaleString('en-IN')}</span>
+          <span className="text-xs font-mono font-bold text-rose-600">₹{maxPrice.toLocaleString('en-IN')}</span>
         </div>
         <div>
           <span className="text-[10px] text-slate-500 uppercase block font-bold">Current Deal</span>
-          <span className="text-xs font-mono font-bold text-cyan-400">₹{currentPrice.toLocaleString('en-IN')}</span>
+          <span className="text-xs font-mono font-bold text-cyan-700">₹{currentPrice.toLocaleString('en-IN')}</span>
         </div>
       </div>
 
@@ -82,14 +82,14 @@ export default function PriceHistoryChart({ product }) {
         <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} className="w-full h-32">
           <defs>
             <linearGradient id="priceGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.35" />
+              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.25" />
               <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.0" />
             </linearGradient>
           </defs>
 
           {/* Grid lines */}
-          <line x1={paddingX} y1={paddingY} x2={svgWidth - paddingX} y2={paddingY} stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
-          <line x1={paddingX} y1={svgHeight - paddingY} x2={svgWidth - paddingX} y2={svgHeight - paddingY} stroke="rgba(255,255,255,0.1)" />
+          <line x1={paddingX} y1={paddingY} x2={svgWidth - paddingX} y2={paddingY} stroke="rgba(0,0,0,0.06)" strokeDasharray="3 3" />
+          <line x1={paddingX} y1={svgHeight - paddingY} x2={svgWidth - paddingX} y2={svgHeight - paddingY} stroke="rgba(0,0,0,0.08)" />
 
           {/* Area Fill */}
           <path d={areaPath} fill="url(#priceGradient)" />

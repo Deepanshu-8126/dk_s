@@ -5,34 +5,34 @@ import { useTranslation } from '../../context/LanguageContext';
 
 const ACCENT_STYLES = {
   cyan: {
-    border: 'border-[#23232C] hover:border-amber-500/50',
-    badgeBg: 'bg-white/5 text-slate-200 border-white/10',
-    button: 'from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 shadow-amber-500/20 text-slate-950',
-    glow: 'group-hover:shadow-black/60'
+    border: 'border-slate-200 hover:border-indigo-400',
+    badgeBg: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+    button: 'from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white shadow-indigo-500/20',
+    glow: 'hover:shadow-md'
   },
   emerald: {
-    border: 'border-[#23232C] hover:border-emerald-500/50',
-    badgeBg: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
-    button: 'from-emerald-400 to-emerald-500 hover:from-emerald-300 hover:to-emerald-400 shadow-emerald-500/20 text-slate-950',
-    glow: 'group-hover:shadow-black/60'
+    border: 'border-slate-200 hover:border-emerald-400',
+    badgeBg: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    button: 'from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white shadow-emerald-500/20',
+    glow: 'hover:shadow-md'
   },
   purple: {
-    border: 'border-[#23232C] hover:border-indigo-500/50',
-    badgeBg: 'bg-white/5 text-slate-200 border-white/10',
-    button: 'from-indigo-400 to-indigo-500 hover:from-indigo-300 hover:to-indigo-400 shadow-indigo-500/20 text-slate-950',
-    glow: 'group-hover:shadow-black/60'
+    border: 'border-slate-200 hover:border-indigo-400',
+    badgeBg: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+    button: 'from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white shadow-indigo-500/20',
+    glow: 'hover:shadow-md'
   },
   rose: {
-    border: 'border-[#23232C] hover:border-rose-500/50',
-    badgeBg: 'bg-rose-500/10 text-rose-300 border-rose-500/20',
-    button: 'from-rose-400 to-rose-500 hover:from-rose-300 hover:to-rose-400 shadow-rose-500/20 text-slate-950',
-    glow: 'group-hover:shadow-black/60'
+    border: 'border-slate-200 hover:border-rose-400',
+    badgeBg: 'bg-rose-50 text-rose-800 border-rose-200',
+    button: 'from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white shadow-rose-500/20',
+    glow: 'hover:shadow-md'
   },
   amber: {
-    border: 'border-[#23232C] hover:border-amber-500/50',
-    badgeBg: 'bg-amber-500/10 text-amber-300 border-amber-500/20',
-    button: 'from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 shadow-amber-500/20 text-slate-950',
-    glow: 'group-hover:shadow-black/60'
+    border: 'border-slate-200 hover:border-amber-400',
+    badgeBg: 'bg-amber-50 text-amber-800 border-amber-200',
+    button: 'from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white shadow-amber-500/20',
+    glow: 'hover:shadow-md'
   }
 };
 
@@ -48,48 +48,48 @@ export default function UniversalCard({ item, accent = 'cyan', onSelect = null }
   return (
     <div
       onClick={() => onSelect && onSelect(item)}
-      className={`group flex flex-col justify-between rounded-3xl bg-[#141419] p-5 border ${style.border} shadow-2xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 ${style.glow} cursor-pointer`}
+      className={`group flex flex-col justify-between rounded-3xl bg-white p-5 border ${style.border} shadow-xs transition-all duration-300 hover:-translate-y-1 ${style.glow} cursor-pointer`}
     >
       <div>
         {/* Aspect-Locked Media Box */}
-        <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-4 bg-slate-950 border border-slate-800">
+        <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
           <img
             src={item.imageUrl || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80'}
             alt={item.title}
             className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
           {/* Badge */}
-          <span className={`absolute top-3 left-3 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border backdrop-blur-md ${style.badgeBg}`}>
+          <span className={`absolute top-3 left-3 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border shadow-2xs backdrop-blur-md ${style.badgeBg}`}>
             {item.category || 'Featured'}
           </span>
 
           {discount > 0 && (
-            <span className="absolute top-3 right-3 rounded-lg bg-amber-400 text-slate-950 px-2 py-0.5 text-[10px] font-mono font-bold shadow-md">
+            <span className="absolute top-3 right-3 rounded-lg bg-amber-500 text-white px-2 py-0.5 text-[10px] font-mono font-bold shadow-2xs">
               {discount}% OFF
             </span>
           )}
         </div>
 
         {/* Title */}
-        <h3 className="text-base font-bold text-white font-outfit line-clamp-2 leading-snug group-hover:text-cyan-300 transition-colors">
+        <h3 className="text-base font-bold text-slate-900 font-outfit line-clamp-2 leading-snug group-hover:text-indigo-600 transition-colors">
           {item.title}
         </h3>
 
         {/* Summary */}
-        <p className="text-xs text-slate-400 mt-1.5 line-clamp-2 leading-relaxed">
+        <p className="text-xs text-slate-600 mt-1.5 line-clamp-2 leading-relaxed">
           {item.summary || item.description}
         </p>
 
         {/* Dynamic Spec List */}
         {item.specs && (
-          <div className="mt-3.5 space-y-1 rounded-xl bg-slate-950/60 p-2.5 border border-slate-800/80 text-[11px] font-mono">
+          <div className="mt-3.5 space-y-1 rounded-xl bg-slate-50 p-2.5 border border-slate-200 text-[11px] font-mono">
             {Object.entries(item.specs).slice(0, 3).map(([k, v]) => (
-              <div key={k} className="flex justify-between text-slate-300">
+              <div key={k} className="flex justify-between text-slate-700">
                 <span className="text-slate-500">{k}:</span>
-                <span className="font-semibold text-slate-200">{v}</span>
+                <span className="font-semibold text-slate-900">{v}</span>
               </div>
             ))}
           </div>
@@ -97,18 +97,18 @@ export default function UniversalCard({ item, accent = 'cyan', onSelect = null }
       </div>
 
       {/* Pricing & CTA */}
-      <div className="mt-4 pt-3 border-t border-slate-800/80">
+      <div className="mt-4 pt-3 border-t border-slate-100">
         <div className="flex items-baseline justify-between mb-3">
           <div>
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">
+            <span className="text-[10px] uppercase font-bold text-slate-400 block">
               {item.price ? 'Verified Rate' : 'Classification'}
             </span>
-            <span className="text-lg font-black font-mono text-white tracking-tight">
+            <span className="text-lg font-black font-mono text-slate-900 tracking-tight">
               {item.price ? formatINR(item.price) : (item.badge || 'Verified Fact')}
             </span>
           </div>
           {item.originalPrice && item.price && item.originalPrice > item.price && (
-            <span className="text-xs line-through font-mono text-slate-500">
+            <span className="text-xs line-through font-mono text-slate-400">
               {formatINR(item.originalPrice)}
             </span>
           )}
@@ -119,7 +119,7 @@ export default function UniversalCard({ item, accent = 'cyan', onSelect = null }
           target="_blank"
           rel="noopener noreferrer nofollow"
           onClick={(e) => e.stopPropagation()}
-          className={`flex items-center justify-center gap-1.5 w-full rounded-xl bg-gradient-to-r ${style.button} py-2.5 text-xs font-bold shadow-md transition-all active:scale-95 cursor-pointer`}
+          className={`flex items-center justify-center gap-1.5 w-full rounded-xl bg-gradient-to-r ${style.button} py-2.5 text-xs font-bold shadow-xs transition-all active:scale-95 cursor-pointer`}
         >
           {item.price ? <ShoppingCart className="w-3.5 h-3.5" /> : <ExternalLink className="w-3.5 h-3.5" />}
           <span>
