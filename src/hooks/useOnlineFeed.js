@@ -1,10 +1,18 @@
 /**
  * @file useOnlineFeed.js
- * @description React hook to fetch and hydrate dynamic online data with zero hardcoded fake arrays.
+ * @description Master reactive hooks to fetch and hydrate dynamic online data with zero hardcoded fake arrays.
  */
 
 import { useState, useEffect } from 'react';
-import { fetchLiveTopicIntelligence, fetchLiveNicheFeed, fetchLiveBullionRates } from '../services/onlineDataService';
+import { 
+  fetchLiveTopicIntelligence, 
+  fetchLiveNicheFeed, 
+  fetchLiveBullionRates,
+  fetchLiveAITools,
+  fetchLiveSarkariJobs,
+  fetchLiveHyperlocalData,
+  fetchLiveArticles
+} from '../services/onlineDataService';
 
 export function useOnlineTopic(query) {
   const [data, setData] = useState(null);
@@ -86,4 +94,84 @@ export function useOnlineBullion() {
   }, []);
 
   return { rates, isLoading };
+}
+
+export function useOnlineAITools() {
+  const [tools, setTools] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchLiveAITools().then(res => {
+      if (isMounted) {
+        setTools(res);
+        setIsLoading(false);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return { tools, isLoading };
+}
+
+export function useOnlineSarkariJobs() {
+  const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchLiveSarkariJobs().then(res => {
+      if (isMounted) {
+        setJobs(res);
+        setIsLoading(false);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return { jobs, isLoading };
+}
+
+export function useOnlineHyperlocal() {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchLiveHyperlocalData().then(res => {
+      if (isMounted) {
+        setData(res);
+        setIsLoading(false);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return { data, isLoading };
+}
+
+export function useOnlineArticles() {
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchLiveArticles().then(res => {
+      if (isMounted) {
+        setArticles(res);
+        setIsLoading(false);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return { articles, isLoading };
 }
