@@ -3,7 +3,7 @@ import { ShieldCheck, Sparkles, Coins, Gamepad2, Newspaper, Heart, ShoppingBag, 
 
 export default function Footer({ setActiveTab }) {
   return (
-    <footer className="mt-20 border-t border-slate-200 bg-white text-slate-600">
+    <footer className="mt-20 border-t border-slate-800 bg-[#0B0F19] text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
           {/* Col 1: Brand & Ground Intelligence */}
@@ -23,42 +23,42 @@ export default function Footer({ setActiveTab }) {
                   <circle cx="27" cy="10" r="2" fill="#10B981" />
                 </svg>
               </div>
-              <span className="font-black text-xl text-slate-950 tracking-tight leading-none" style={{ fontFamily: 'var(--font-display)' }}>
-                Unique<span className="text-indigo-600">Digit</span>
+              <span className="font-black text-xl text-white tracking-tight leading-none font-display">
+                Unique<span className="text-indigo-400">Digit</span>
               </span>
             </div>
-            <p className="text-xs text-slate-500 leading-relaxed mb-3">
-              India's premier daily intelligence & utility portal. Verified bullion rates, curated AI tools, PC gaming benchmarks, and government recruitment notices.
+            <p className="text-xs text-slate-400 leading-relaxed mb-3">
+              India's premier daily intelligence & utility portal. Verified bullion rates, curated AI tools, PC gaming benchmarks, and verified gadget deals.
             </p>
             <div className="text-[11px] text-slate-400 font-mono">
-              Live automated data sync • Updated October 2026
+              Live automated data sync • 2026
             </div>
           </div>
 
           {/* Col 2: Gold & Commodities */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 mb-3 uppercase tracking-wider flex items-center gap-1.5">
-              <Coins size={14} className="text-amber-600" /> Gold & Bullion
+            <h4 className="text-xs font-bold text-white mb-3 uppercase tracking-wider flex items-center gap-1.5 font-display">
+              <Coins size={14} className="text-amber-400" /> Gold & Bullion
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => setActiveTab('gold')} className="hover:text-amber-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('gold')} className="hover:text-amber-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>24K / 22K Gold Rate Today</span>
                   <ArrowUpRight size={11} className="opacity-40" />
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('gold')} className="hover:text-amber-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('gold')} className="hover:text-amber-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>City-wise Rates (Mumbai, Delhi)</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('gold')} className="hover:text-amber-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('gold')} className="hover:text-amber-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Nifty 50 & Bullion Pulse</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('hyperlocal')} className="hover:text-amber-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('hyperlocal')} className="hover:text-amber-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Daily Fuel & Mandi Bhav</span>
                 </button>
               </li>
@@ -67,28 +67,28 @@ export default function Footer({ setActiveTab }) {
 
           {/* Col 3: Gaming & Hardware */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 mb-3 uppercase tracking-wider flex items-center gap-1.5">
-              <Gamepad2 size={14} className="text-sky-600" /> Gaming & Tech
+            <h4 className="text-xs font-bold text-white mb-3 uppercase tracking-wider flex items-center gap-1.5 font-display">
+              <Gamepad2 size={14} className="text-sky-400" /> Gaming & Tech
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => setActiveTab('gaming')} className="hover:text-sky-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('gaming')} className="hover:text-sky-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>GTA 6 PC Specs & Benchmark</span>
                   <ArrowUpRight size={11} className="opacity-40" />
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('gaming')} className="hover:text-sky-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('gaming')} className="hover:text-sky-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Steam Live Deals & FiveM</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('gaming')} className="hover:text-sky-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('gaming')} className="hover:text-sky-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Budget Gaming PC Builds</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('all')} className="hover:text-sky-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('products')} className="hover:text-sky-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Hardware & GPU Price Track</span>
                 </button>
               </li>
@@ -97,28 +97,28 @@ export default function Footer({ setActiveTab }) {
 
           {/* Col 4: AI Intelligence Hub */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 mb-3 uppercase tracking-wider flex items-center gap-1.5">
-              <Sparkles size={14} className="text-indigo-600" /> AI Tools Directory
+            <h4 className="text-xs font-bold text-white mb-3 uppercase tracking-wider flex items-center gap-1.5 font-display">
+              <Sparkles size={14} className="text-indigo-400" /> AI Tools Directory
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => setActiveTab('ai')} className="hover:text-indigo-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('ai')} className="hover:text-indigo-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Google Gemini Ultra 2.0</span>
                   <ArrowUpRight size={11} className="opacity-40" />
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('ai')} className="hover:text-indigo-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('ai')} className="hover:text-indigo-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>ChatGPT Plus & GPT-4o</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('ai')} className="hover:text-indigo-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('ai')} className="hover:text-indigo-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Cursor & Code Assistants</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('ai')} className="hover:text-indigo-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('ai')} className="hover:text-indigo-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Free Tier Comparison Matrix</span>
                 </button>
               </li>
@@ -127,28 +127,28 @@ export default function Footer({ setActiveTab }) {
 
           {/* Col 5: Sarkari Recruitment */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 mb-3 uppercase tracking-wider flex items-center gap-1.5">
-              <Newspaper size={14} className="text-rose-600" /> Sarkari Result
+            <h4 className="text-xs font-bold text-white mb-3 uppercase tracking-wider flex items-center gap-1.5 font-display">
+              <Newspaper size={14} className="text-emerald-400" /> Sarkari Result
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => setActiveTab('sarkari')} className="hover:text-rose-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('sarkari')} className="hover:text-emerald-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>SSC CGL 2026 Scorecard</span>
                   <ArrowUpRight size={11} className="opacity-40" />
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('sarkari')} className="hover:text-rose-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('sarkari')} className="hover:text-emerald-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Railway RRB NTPC Notice</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('sarkari')} className="hover:text-rose-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('sarkari')} className="hover:text-emerald-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>EPFO Passbook & Claims</span>
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('sarkari')} className="hover:text-rose-700 transition-colors text-left flex items-center gap-1">
+                <button onClick={() => setActiveTab('sarkari')} className="hover:text-emerald-400 transition-colors text-left flex items-center gap-1 cursor-pointer">
                   <span>Official Portals Direct Links</span>
                 </button>
               </li>
@@ -157,9 +157,9 @@ export default function Footer({ setActiveTab }) {
         </div>
 
         {/* Legal, Integrity & Ethics Row */}
-        <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© 2026 UniqueDigit. All verified rates & official recruitment alerts collected from authorized public bodies.</p>
-          <p className="flex items-center gap-1 text-slate-500 font-medium">
+          <p className="flex items-center gap-1 text-slate-400 font-medium">
             <span>High-Speed Clean Editorial Experience</span>
             <Heart size={12} className="text-rose-500 fill-rose-500 inline ml-1" />
           </p>

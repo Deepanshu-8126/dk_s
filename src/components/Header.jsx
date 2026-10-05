@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Search, X, Bell, Flame, Gamepad2, Coins, Sparkles, Newspaper, Fuel, Menu, PenTool, ShoppingBag } from 'lucide-react';
+import { Search, X, Flame, Gamepad2, Coins, Sparkles, Newspaper, Fuel, Menu, PenTool, ShoppingBag, ShieldCheck } from 'lucide-react';
 import MobileDrawer from './common/MobileDrawer';
 
 const TICKERS = [
   "GOLD ALERT: 24K Gold ₹7,462/gram — Up ₹130 today | MCX India",
   "DEALS: iPhone 16 Pro & RTX 4070 Super price drops verified on Amazon India",
   "PETROL/DIESEL: Daily UP rates revised at 6 AM — Aligarh ₹96.48, Lucknow ₹96.57",
-  "GTA 6: Rockstar confirms Vice City map size & Leonida physics engine — PC specs guide live",
+  "GTA 6: Rockstar confirms Vice City map size & Leonida physics engine — PC specs live",
   "AI TOOLS: Gemini Ultra 2.0 launches with real-time Hindi voice — 154% YoY search surge",
-  "GTA V: Steam India special deal live at ₹999 + FiveM Roleplay bonus cash",
   "SARKARI: SSC CGL 2026 Result declared — 17,727 posts | Check scorecard now",
   "MANDI BHAV: Aligarh Gehu ₹2,550/Qtl, Agra Sarson ₹5,850/Qtl — Morning auction live",
   "RAILWAY: RRB NTPC 2026 notification out — 11,558 posts | Apply before 5 Nov",
@@ -51,16 +50,16 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-      {/* Ticker strip on top (Persistently Dismissible in localStorage) */}
+    <header className="sticky top-0 z-40 bg-[#0B0F19]/95 backdrop-blur-md border-b border-slate-800/80 shadow-lg text-slate-100">
+      {/* Ticker strip on top */}
       {showTicker && (
-        <div className="flex items-center text-xs bg-[#0B0F19] border-b border-slate-800 text-slate-300 h-8">
+        <div className="flex items-center text-xs bg-[#030712] border-b border-slate-800/80 text-slate-300 h-8">
           <div className="shrink-0 flex items-center gap-1.5 px-3 font-bold uppercase tracking-wider bg-slate-900/90 text-emerald-400 h-full border-r border-slate-800">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping shrink-0" />
-            <span className="hidden sm:inline text-[11px]" style={{ fontFamily: 'var(--font-display)' }}>LIVE INTELLIGENCE</span>
-            <span className="sm:hidden text-[11px]" style={{ fontFamily: 'var(--font-display)' }}>LIVE</span>
+            <span className="hidden sm:inline text-[11px] font-display">LIVE INTELLIGENCE</span>
+            <span className="sm:hidden text-[11px] font-display">LIVE</span>
           </div>
-          <div className="flex-1 overflow-hidden px-2 sm:px-3 font-medium text-slate-200" style={{ fontFamily: 'var(--font-display)' }}>
+          <div className="flex-1 overflow-hidden px-2 sm:px-3 font-medium text-slate-300 font-display">
             <span key={tickerIdx} className="block truncate text-[11px] sm:text-xs">
               {TICKERS[tickerIdx]}
             </span>
@@ -83,7 +82,7 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={isMobileMenuOpen}
-            className="md:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
+            className="md:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
           >
             <Menu size={20} />
           </button>
@@ -92,7 +91,7 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
             onClick={() => setActiveTab('all')}
             className="flex items-center gap-3 cursor-pointer select-none group"
           >
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-950 p-0.5 border border-slate-800 shadow-md group-hover:scale-105 transition-transform flex items-center justify-center">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-950 p-0.5 border border-slate-700 shadow-md group-hover:scale-105 transition-transform flex items-center justify-center">
               <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-1">
                 <defs>
                   <linearGradient id="udGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -109,20 +108,20 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-black text-lg sm:text-xl tracking-tight text-slate-950 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
-                  Unique<span className="text-indigo-600">Digit</span>
+                <span className="font-black text-lg sm:text-xl tracking-tight text-white leading-none font-display">
+                  Unique<span className="text-indigo-400">Digit</span>
                 </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               </div>
               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5 hidden sm:block">
-                Daily Intelligence & Deals
+                Hardware Intel & Verified Deals
               </div>
             </div>
           </div>
         </div>
 
         {/* Center: Desktop Nav Pills */}
-        <nav className="hidden md:flex items-center gap-1.5 overflow-x-auto scroll-x flex-1 max-w-2xl px-2">
+        <nav className="hidden md:flex items-center gap-1 overflow-x-auto flex-1 max-w-2xl px-2">
           {DESKTOP_TABS.map(tab => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -130,70 +129,51 @@ export default function Header({ searchQuery, setSearchQuery, activeTab, setActi
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`tab-pill flex items-center gap-1.5 text-xs py-1.5 px-3 rounded-full transition-all ${
+                className={`flex items-center gap-1.5 text-xs py-1.5 px-3 rounded-full transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-slate-950 text-white font-bold shadow-xs border-slate-950'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 border-transparent'
+                    ? 'bg-indigo-600 text-white font-bold shadow-md shadow-indigo-600/30'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/70 font-medium'
                 }`}
               >
-                <Icon size={13} className={isActive ? 'text-indigo-400' : 'text-slate-400'} />
+                <Icon size={13} className={isActive ? 'text-white' : 'text-slate-400'} />
                 <span>{tab.label}</span>
               </button>
             );
           })}
         </nav>
 
-        {/* Right: Search Box + Bell */}
-        <div className="flex items-center gap-2">
-          <div className="relative w-36 sm:w-56 md:w-64">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+        {/* Right: Search Box */}
+        <div className="relative flex items-center">
+          <div className={`relative flex items-center transition-all ${searchFocused ? 'w-48 sm:w-64' : 'w-36 sm:w-52'}`}>
+            <Search size={14} className="absolute left-3 text-slate-400 pointer-events-none" />
             <input
+              type="text"
+              placeholder="Search gadgets, AI..."
               value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
+              onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}
-              placeholder="Search topics, AI tools, gold, specs..."
-              aria-label="Search topics, AI tools, gold rates, and specs"
-              className="w-full pl-8 pr-7 py-1.5 text-xs sm:text-sm rounded-xl outline-none bg-slate-50 hover:bg-slate-100/70 focus:bg-white text-slate-900 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 transition-all"
+              className="w-full bg-slate-900 border border-slate-700/80 rounded-full pl-8 pr-7 py-1.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                aria-label="Clear search"
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                className="absolute right-2.5 text-slate-400 hover:text-white cursor-pointer"
               >
-                <X size={12} />
+                <X size={13} />
               </button>
             )}
           </div>
-
-          <button
-            onClick={() => {
-              const next = !showTicker;
-              setShowTicker(next);
-              try {
-                localStorage.setItem('ud_ticker_closed', (!next).toString());
-              } catch {}
-            }}
-            title={showTicker ? "Hide live intelligence strip" : "Show live intelligence strip"}
-            aria-label="Toggle Live Alerts"
-            className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center border transition-all cursor-pointer ${
-              showTicker
-                ? 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                : 'bg-emerald-50 border-emerald-300 text-emerald-600 hover:bg-emerald-100'
-            }`}
-          >
-            <Bell size={15} />
-          </button>
         </div>
       </div>
 
-      {/* Accessible Mobile Drawer */}
+      {/* Mobile Drawer */}
       <MobileDrawer
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         activeTab={activeTab}
-        onSelectTab={setActiveTab}
+        setActiveTab={setActiveTab}
+        tabs={DESKTOP_TABS}
       />
     </header>
   );

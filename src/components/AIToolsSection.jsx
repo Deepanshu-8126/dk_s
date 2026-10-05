@@ -33,7 +33,6 @@ export default function AIToolsSection({ searchQuery }) {
   const [tools, setTools] = useState(AI_TOOLS);
   const [selectedCat, setSelectedCat] = useState('all');
   const [selectedTool, setSelectedTool] = useState(null);
-  const [copiedId, setCopiedId] = useState(null);
 
   useEffect(() => {
     let mounted = true;
@@ -41,7 +40,6 @@ export default function AIToolsSection({ searchQuery }) {
       .then(res => res.ok ? res.json() : null)
       .then(data => {
         if (mounted && data?.tools && data.tools.length > 0) {
-          // Merge discovered tools at top, preserving existing tools without ID collisions
           const discoveredIds = new Set(data.tools.map(t => t.id));
           const existingFiltered = AI_TOOLS.filter(t => !discoveredIds.has(t.id));
           setTools([...data.tools, ...existingFiltered]);
@@ -62,27 +60,20 @@ export default function AIToolsSection({ searchQuery }) {
     return matchCat && matchSearch;
   });
 
-  const handleShare = (e, id, link) => {
-    e.stopPropagation();
-    navigator.clipboard?.writeText(link);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
-
   return (
-    <section id="ai-tools" className="mb-10">
+    <section id="ai-tools" className="mb-10 text-slate-100">
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-5">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-2">
-            <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
-            <ShieldCheck size={13} className="text-emerald-600" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-2">
+            <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+            <ShieldCheck size={13} className="text-emerald-400" />
             <span>8-Pillar Authenticity Verified Engine</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-            Curated AI Tools Directory <span className="text-indigo-600">2026</span>
+          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight font-display">
+            Curated AI Tools Directory <span className="text-indigo-400">2026</span>
           </h2>
-          <p className="text-xs text-slate-500 mt-1 max-w-xl leading-relaxed">
+          <p className="text-xs text-slate-400 mt-1 max-w-xl leading-relaxed">
             Auto-verified video models, frontier LLMs, and code agents audited for commercial safety, latency, and free tier allowances.
           </p>
         </div>
@@ -95,8 +86,8 @@ export default function AIToolsSection({ searchQuery }) {
               onClick={() => setSelectedCat(cat.id)}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                 selectedCat === cat.id
-                  ? 'bg-slate-900 text-white shadow-xs'
-                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300'
+                  ? 'bg-indigo-600 text-white shadow-md'
+                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
               }`}
             >
               {cat.label}
@@ -113,43 +104,43 @@ export default function AIToolsSection({ searchQuery }) {
             <div
               key={tool.id}
               onClick={() => setSelectedTool(tool)}
-              className="group cursor-pointer relative flex flex-col justify-between rounded-2xl p-5 bg-white border border-slate-200 hover:border-indigo-300 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="group cursor-pointer relative flex flex-col justify-between rounded-2xl p-5 bg-slate-900/70 border border-slate-800 hover:border-indigo-500/40 shadow-lg hover:shadow-indigo-500/5 transition-all duration-300 hover:-translate-y-1"
             >
               <div>
                 {/* Top Row */}
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-xs border bg-slate-50 border-slate-200 text-indigo-600 group-hover:scale-105 group-hover:bg-indigo-50 transition-all">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-md border bg-slate-950 border-slate-800 text-indigo-400 group-hover:scale-105 group-hover:border-indigo-500/40 transition-all">
                       <ToolIcon size={19} />
                     </div>
                     <div>
                       <div className="flex items-center gap-1.5 mb-1 flex-wrap">
-                        <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase bg-indigo-50 text-indigo-700 border border-indigo-100">
+                        <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                           {tool.tagBadge || tool.category}
                         </span>
-                        <span className="inline-flex items-center gap-0.5 text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span className="inline-flex items-center gap-0.5 text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                           <ShieldCheck size={10} /> Verified
                         </span>
                       </div>
-                      <h3 className="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug" style={{ fontFamily: 'var(--font-display)' }}>
+                      <h3 className="text-base font-bold text-white group-hover:text-indigo-400 transition-colors leading-snug font-display">
                         {tool.name}
                       </h3>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-lg text-amber-800 text-xs font-semibold shrink-0">
-                    <Star size={12} className="fill-amber-500 text-amber-500" />
+                  <div className="flex items-center gap-1 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-lg text-amber-400 text-xs font-semibold shrink-0">
+                    <Star size={12} className="fill-amber-400 text-amber-400" />
                     <span>{tool.rating}</span>
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-500 line-clamp-3 mb-3 leading-relaxed">
+                <p className="text-xs text-slate-400 line-clamp-3 mb-3 leading-relaxed">
                   {tool.description}
                 </p>
 
                 {tool.useCase && (
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {tool.useCase.map((uc, idx) => (
-                      <span key={idx} className="text-[10px] px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 border border-slate-200">
+                      <span key={idx} className="text-[10px] px-2 py-0.5 rounded-md bg-slate-950 text-slate-400 border border-slate-800">
                         #{uc}
                       </span>
                     ))}
@@ -158,13 +149,13 @@ export default function AIToolsSection({ searchQuery }) {
               </div>
 
               {/* Bottom Meta & Action */}
-              <div className="pt-3 border-t border-slate-100">
-                <div className="flex items-center justify-between text-xs mb-3 text-slate-500">
-                  <span className="font-medium text-slate-700">
-                    Pricing: <strong className="text-slate-900">{tool.pricing}</strong>
+              <div className="pt-3 border-t border-slate-800">
+                <div className="flex items-center justify-between text-xs mb-3 text-slate-400">
+                  <span className="font-medium text-slate-300">
+                    Pricing: <strong className="text-white">{tool.pricing}</strong>
                   </span>
-                  <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
-                    {tool.pricingType === 'freemium' ? 'Free Tier Included' : 'Pro Tier Available'}
+                  <span className="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                    {tool.pricingType === 'freemium' ? 'Free Tier' : 'Pro Tier'}
                   </span>
                 </div>
 
@@ -174,17 +165,10 @@ export default function AIToolsSection({ searchQuery }) {
                       e.stopPropagation();
                       window.open(tool.affiliateLink, '_blank');
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-all shadow-xs cursor-pointer"
+                    className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 transition-all shadow-md cursor-pointer"
                   >
                     <span>{tool.cta || 'Try Official Tool'}</span>
                     <ExternalLink size={13} />
-                  </button>
-                  <button
-                    onClick={(e) => handleShare(e, tool.id, tool.affiliateLink)}
-                    title="Copy direct link"
-                    className="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 transition-colors cursor-pointer"
-                  >
-                    {copiedId === tool.id ? <Check size={14} className="text-emerald-600" /> : <Layers size={14} />}
                   </button>
                 </div>
               </div>
@@ -193,8 +177,12 @@ export default function AIToolsSection({ searchQuery }) {
         })}
       </div>
 
-      {/* 8-Pillars Detail Dossier Modal */}
-      <AIToolModal tool={selectedTool} onClose={() => setSelectedTool(null)} />
+      {selectedTool && (
+        <AIToolModal
+          tool={selectedTool}
+          onClose={() => setSelectedTool(null)}
+        />
+      )}
     </section>
   );
 }

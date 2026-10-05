@@ -128,7 +128,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#1A2027] selection:bg-amber-100 selection:text-amber-900 pb-16 md:pb-0">
+    <div className="min-h-screen flex flex-col bg-[#030712] text-slate-100 selection:bg-amber-400 selection:text-black pb-16 md:pb-0">
       <SEO {...getSeoProps()} />
       <SEOSchema activeItem={liveTopic} products={productsCatalog} />
 

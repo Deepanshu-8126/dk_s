@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, ExternalLink, Star, ShieldCheck, Tag, Sparkles, SlidersHorizontal, Check, RefreshCw, CheckCircle2, XCircle, Award } from 'lucide-react';
+import { ShoppingBag, ExternalLink, Star, ShieldCheck, Tag, Sparkles, SlidersHorizontal, Check, RefreshCw, CheckCircle2, XCircle, Award, Swords } from 'lucide-react';
 import fallbackData from '../../data/productsCatalog.json';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
-import PcBuildTable from '../gaming/PcBuildTable';
 import UniversalTopicViewer from '../common/UniversalTopicViewer';
 
 const FILTER_TABS = [
@@ -13,8 +12,7 @@ const FILTER_TABS = [
   { id: 'Audio', label: 'Audio & ANC' },
 ];
 
-export default function ProductShowcase({ searchQuery, activeCategory = 'all' }) {
-  const [activeBuildIdx, setActiveBuildIdx] = useState(1);
+export default function ProductShowcase({ searchQuery, activeCategory = 'all', onCompare }) {
   const [products, setProducts] = useState(fallbackData.products || []);
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [loading, setLoading] = useState(false);
@@ -70,30 +68,30 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold mb-2">
-            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-            <Award size={13} className="text-amber-600" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <Award size={13} className="text-amber-400" />
             <span>Wirecutter & Spec-Score Audited Engine</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-            The Best Tech & Gadget Deals in India <span className="text-amber-600">2026</span>
+          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight font-display">
+            The Best Tech & Gadget Deals in India <span className="text-amber-400">2026</span>
           </h2>
-          <p className="text-xs text-slate-500 mt-1 max-w-xl leading-relaxed">
+          <p className="text-xs text-slate-400 mt-1 max-w-xl leading-relaxed">
             Tested benchmark scores, verified 1-sentence verdicts, 2 pros + 1 honest con, and live Amazon India pricing.
           </p>
         </div>
 
         {/* Dynamic Tag & Filter Controls */}
         <div className="flex items-center gap-2 flex-wrap">
-          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-full border border-slate-200">
+          <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-full border border-slate-800">
             {FILTER_TABS.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setSelectedFilter(tab.id)}
                 className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   selectedFilter === tab.id
-                    ? 'bg-slate-950 text-white shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-indigo-600 text-white shadow-md'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 {tab.label}
@@ -103,31 +101,31 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
 
           <button
             onClick={() => setShowTagSettings(!showTagSettings)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-all cursor-pointer"
             title="Configure your Amazon Associate Tag"
           >
-            <SlidersHorizontal size={13} className="text-slate-500" />
+            <SlidersHorizontal size={13} className="text-slate-400" />
             <span>{currentTag ? `Tag: ${currentTag}` : 'Set Tag'}</span>
           </button>
           <button
             onClick={() => loadProducts(searchQuery)}
             disabled={loading}
-            className="p-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all cursor-pointer"
+            className="p-2 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-all cursor-pointer"
             title="Refresh verified deals"
           >
-            <RefreshCw size={13} className={loading ? "animate-spin text-amber-600" : "text-slate-500"} />
+            <RefreshCw size={13} className={loading ? "animate-spin text-amber-400" : "text-slate-400"} />
           </button>
         </div>
       </div>
 
       {/* Dynamic Tag Configuration Modal / Bar */}
       {showTagSettings && (
-        <form onSubmit={handleSaveTag} className="mb-6 p-4 rounded-2xl bg-amber-50/60 border border-amber-200 text-xs flex flex-wrap items-center justify-between gap-3">
+        <form onSubmit={handleSaveTag} className="mb-6 p-4 rounded-2xl bg-slate-900 border border-amber-500/30 text-xs flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <Tag size={15} className="text-amber-700 shrink-0" />
+            <Tag size={15} className="text-amber-400 shrink-0" />
             <div>
-              <strong className="text-amber-950 block">Amazon Associate ID Configuration</strong>
-              <span className="text-slate-600 text-[11px]">Paste your Amazon ID here to route all links dynamically through your affiliate account.</span>
+              <strong className="text-white block">Amazon Associate ID Configuration</strong>
+              <span className="text-slate-400 text-[11px]">Paste your Amazon ID here to route all links dynamically through your affiliate account.</span>
             </div>
           </div>
           <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -136,11 +134,11 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
               placeholder="e.g. yourtag-21"
               value={inputTag}
               onChange={e => setInputTag(e.target.value)}
-              className="px-3 py-1.5 rounded-xl border border-amber-300 bg-white text-slate-900 outline-none focus:ring-2 focus:ring-amber-500 text-xs w-44"
+              className="px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-950 text-white outline-none focus:ring-2 focus:ring-amber-500 text-xs w-44"
             />
             <button
               type="submit"
-              className="px-4 py-1.5 rounded-xl font-bold bg-amber-600 hover:bg-amber-700 text-white shadow-xs transition-all cursor-pointer"
+              className="px-4 py-1.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-400 text-black shadow-md transition-all cursor-pointer"
             >
               {savedSuccess ? 'Saved!' : 'Save Tag'}
             </button>
@@ -148,18 +146,18 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
         </form>
       )}
 
-      {/* Products Grid (Wirecutter + Smartprix High-Conversion Cards) */}
+      {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map(product => {
           const finalUrl = buildAmazonAffiliateUrl(product.title, currentTag);
           return (
             <div
               key={product.id}
-              className="group flex flex-col justify-between rounded-3xl p-5 bg-white border border-slate-200 hover:border-amber-300 shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group flex flex-col justify-between rounded-3xl p-5 bg-slate-900/70 border border-slate-800/80 hover:border-slate-700 shadow-lg hover:shadow-indigo-500/5 transition-all duration-300 hover:-translate-y-1"
             >
               <div>
                 {/* Product Image Box */}
-                <div className="relative h-48 rounded-2xl overflow-hidden mb-3.5 bg-slate-900 flex items-center justify-center">
+                <div className="relative h-48 rounded-2xl overflow-hidden mb-3.5 bg-slate-950 flex items-center justify-center border border-slate-800">
                   <img
                     src={product.imageUrl || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=85'}
                     alt={product.title}
@@ -170,16 +168,16 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
                     }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
                   
                   {/* Category Chip */}
-                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-black/80 backdrop-blur-md text-white border border-white/10">
+                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-slate-950/80 backdrop-blur-md text-slate-200 border border-slate-700">
                     {product.badge || product.category}
                   </span>
 
                   {/* Discount Badge */}
                   {product.discount && (
-                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-500 text-slate-950 shadow-xs">
+                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-400 text-slate-950 shadow-md">
                       {product.discount}
                     </span>
                   )}
@@ -187,25 +185,25 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
 
                 {/* Wirecutter Verdict Badge & Smartprix Spec Score */}
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/15 text-indigo-400 border border-indigo-500/25">
                     {product.verdictBadge || "Verified Recommendation"}
                   </span>
                   {product.specScore && (
-                    <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                    <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
                       Spec Score: {product.specScore}/100
                     </span>
                   )}
                 </div>
 
                 {/* Title */}
-                <h3 className="font-bold text-base text-slate-900 group-hover:text-amber-700 transition-colors line-clamp-2 leading-snug mb-2" style={{ fontFamily: 'var(--font-display)' }}>
+                <h3 className="font-bold text-base text-white group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug mb-2 font-display">
                   {product.title}
                 </h3>
 
                 {/* Rating & Reviews */}
                 <div className="flex items-center gap-2 mb-3 text-xs">
-                  <div className="flex items-center gap-1 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded text-amber-800 font-semibold text-[11px]">
-                    <Star size={11} className="fill-amber-500 text-amber-500" />
+                  <div className="flex items-center gap-1 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded text-amber-400 font-semibold text-[11px]">
+                    <Star size={11} className="fill-amber-400 text-amber-400" />
                     <span>{product.rating}</span>
                   </div>
                   <span className="text-[11px] text-slate-400 font-mono">{product.reviewsCount} reviews</span>
@@ -213,7 +211,7 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
 
                 {/* The 1-Sentence Bottom Line Verdict */}
                 {product.verdict && (
-                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/70 mb-3.5 text-xs text-slate-700 leading-relaxed italic">
+                  <div className="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800 mb-3.5 text-xs text-slate-300 leading-relaxed italic">
                     "{product.verdict}"
                   </div>
                 )}
@@ -222,14 +220,14 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
                 {product.pros && product.cons && (
                   <div className="space-y-1.5 mb-4 text-xs">
                     {product.pros.map((pro, i) => (
-                      <div key={i} className="flex items-start gap-1.5 text-slate-700 text-[11px]">
-                        <CheckCircle2 size={13} className="text-emerald-600 shrink-0 mt-0.5" />
+                      <div key={i} className="flex items-start gap-1.5 text-slate-300 text-[11px]">
+                        <CheckCircle2 size={13} className="text-emerald-400 shrink-0 mt-0.5" />
                         <span>{pro}</span>
                       </div>
                     ))}
                     {product.cons.map((con, i) => (
-                      <div key={i} className="flex items-start gap-1.5 text-rose-700 text-[11px]">
-                        <XCircle size={13} className="text-rose-500 shrink-0 mt-0.5" />
+                      <div key={i} className="flex items-start gap-1.5 text-rose-400 text-[11px]">
+                        <XCircle size={13} className="text-rose-400 shrink-0 mt-0.5" />
                         <span>{con}</span>
                       </div>
                     ))}
@@ -238,11 +236,11 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
               </div>
 
               {/* Price & Action Button */}
-              <div className="pt-3 border-t border-slate-100">
+              <div className="pt-3 border-t border-slate-800">
                 <div className="flex items-baseline justify-between mb-3">
                   <div>
                     <span className="text-xs text-slate-400 block text-[10px]">Verified Amazon Price</span>
-                    <span className="text-xl font-black text-slate-900 font-mono tracking-tight">
+                    <span className="text-xl font-black text-white font-mono tracking-tight">
                       ₹{product.price?.toLocaleString('en-IN')}
                     </span>
                   </div>
@@ -261,49 +259,43 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all' })
                       niche: product.category,
                       summary: product.verdict,
                       imageUrl: product.imageUrl,
-                      fastFacts: product.specs,
-                      sourceUrl: finalUrl,
-                      lastVerified: 'Today (Live Stock)'
+                      fastFacts: {
+                        "Display": product.specs?.display || "Standard High Refresh",
+                        "Processor / GPU": product.specs?.processor || product.specs?.gpu || "Flagship Grade",
+                        "Battery / Endurance": product.specs?.battery || "Optimized",
+                        "Spec Score": `${product.specScore || '92'}/100`,
+                        "Amazon Verified": "In Stock"
+                      }
                     })}
-                    className="py-2.5 px-2 rounded-xl text-[11px] font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all cursor-pointer text-center"
+                    className="py-2.5 px-3 rounded-xl font-bold text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                   >
-                    Deep Specs & Alternatives
+                    <span>Full Specs</span>
+                    <ExternalLink size={12} />
                   </button>
 
                   <a
                     href={finalUrl}
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-[11px] font-black text-slate-950 bg-amber-400 hover:bg-amber-300 shadow-xs transition-all cursor-pointer text-center"
+                    rel="nofollow noopener noreferrer"
+                    className="py-2.5 px-3 rounded-xl font-extrabold text-xs bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                   >
-                    <span>Amazon.in</span>
-                    <ExternalLink size={12} />
+                    <ShoppingBag size={13} />
+                    <span>Buy Deal</span>
                   </a>
                 </div>
-                <span className="block text-center text-[10px] text-slate-400 mt-1.5">
-                  Audited Today · Tag: {currentTag || 'uniquedigi0c6-21'}
-                </span>
               </div>
             </div>
           );
         })}
       </div>
 
-      {/* Full-Page Deep Intelligence Modal */}
+      {/* Deep Dive Modal */}
       {selectedModalProduct && (
         <UniversalTopicViewer
           topic={selectedModalProduct}
           onClose={() => setSelectedModalProduct(null)}
         />
       )}
-
-      {/* Complete Indian PC Builds & Component Rigs Guide */}
-      <div className="mt-14 pt-10 border-t border-slate-200">
-        <PcBuildTable
-          activeBuildIdx={activeBuildIdx}
-          setActiveBuildIdx={setActiveBuildIdx}
-        />
-      </div>
     </section>
   );
 }
