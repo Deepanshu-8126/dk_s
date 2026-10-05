@@ -1,4 +1,4 @@
-name = "dk-s"
+name = "unique-digit"
 compatibility_date = "2026-10-01"
 
 [build]
@@ -6,3 +6,6 @@ command = "npm run build"
 
 [assets]
 directory = "./dist"
+
+[observability]
+enabled = false
