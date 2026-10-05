@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowLeft, Calendar, Clock, ShieldCheck, ExternalLink, Image as ImageIcon, BookOpen } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, ShieldCheck, ExternalLink, Image as ImageIcon, BookOpen, Sparkles, CheckCircle2 } from 'lucide-react';
 import SmartImage from './common/SmartImage';
+import ReadingProgressBar from './common/ReadingProgressBar';
 import { ArticleRenderer, RelatedArticles } from './articles';
 import SEO from './SEO';
 
@@ -23,6 +24,7 @@ export default function GuideArticleView({ article, onBack }) {
   const imageAuthor = imageMeta.author || article.imageAuthor;
   const imageLicense = imageMeta.license || article.imageLicense;
   const imagePageUrl = imageMeta.pageUrl || article.imageSourceUrl;
+  const readingTimeMin = Math.max(2, Math.ceil((article.wordCount || 450) / 180));
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -39,9 +41,9 @@ export default function GuideArticleView({ article, onBack }) {
     dateModified: article.updatedAt || article.publishedAt,
   };
 
-
   return (
     <article className="max-w-4xl mx-auto py-6">
+      <ReadingProgressBar />
       <SEO
         title={article.title}
         description={article.metaDescription}
@@ -62,9 +64,16 @@ export default function GuideArticleView({ article, onBack }) {
       )}
 
       <header className="mb-6">
-        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">
-          {article.keyword || 'Verified Editorial'}
-        </span>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-indigo-50 text-indigo-700 border border-indigo-200">
+            {article.keyword || 'Verified Editorial'}
+          </span>
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+            <Clock size={11} />
+            <span>{readingTimeMin} Min Read</span>
+          </span>
+        </div>
+
         <h1
           className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4"
           style={{ fontFamily: 'var(--font-display)' }}

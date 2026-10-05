@@ -12,6 +12,7 @@ import ProductShowcase from './components/products/ProductShowcase';
 import UniversalTopicViewer from './components/common/UniversalTopicViewer';
 import VersusBattleEngine from './components/common/VersusBattleEngine';
 import StickyBuyBar from './components/common/StickyBuyBar';
+import StickyMobileNav from './components/common/StickyMobileNav';
 import ViralNicheExplorer from './components/niches/ViralNicheExplorer';
 import ArticlesSection from './components/ArticlesSection';
 import HyperlocalSection from './components/HyperlocalSection';
@@ -230,6 +231,9 @@ export default function App() {
         activeItem={liveTopic || productsCatalog[0]}
         onOpenVersus={() => openVersus(liveTopic || productsCatalog[0], productsCatalog[1])}
       />
+
+      {/* Modern Bottom Mobile Navigation Dock */}
+      <StickyMobileNav activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <Footer setActiveTab={setActiveTab} />
     </div>

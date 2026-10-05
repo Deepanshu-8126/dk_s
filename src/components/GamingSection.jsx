@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { GTA_EDITIONS } from '../data/gamingData';
 import { REAL_GTA_DATA, fetchLiveSteamGtaPrice } from '../data/realData';
 import { GtaSpotlight, PcBuildTable, TrendingGames } from './gaming';
+import InteractivePcCustomizer from './gaming/InteractivePcCustomizer';
+import DailyTechPoll from './common/DailyTechPoll';
 
 export default function GamingSection({ searchQuery, setActiveTab, isHome = false }) {
   const [activeGtaTab, setActiveGtaTab] = useState('gta-6-pc');
@@ -74,7 +76,10 @@ export default function GamingSection({ searchQuery, setActiveTab, isHome = fals
         activeGtaTab={activeGtaTab}
       />
 
-      {/* 2. Indian PC Build Pricing Guide / Hardware Rigs Callout */}
+      {/* 2. Interactive PC Customizer & FPS Estimator Tool */}
+      <InteractivePcCustomizer />
+
+      {/* 3. Indian PC Build Pricing Guide / Hardware Rigs Callout */}
       {showHardwareBuilds ? (
         <div className="relative">
           {isHome && (
@@ -122,7 +127,10 @@ export default function GamingSection({ searchQuery, setActiveTab, isHome = fals
         </div>
       )}
 
-      {/* 3. Trending Games in India */}
+      {/* 4. Community Daily Tech Poll */}
+      <DailyTechPoll />
+
+      {/* 5. Trending Games in India */}
       <TrendingGames />
     </section>
   );
