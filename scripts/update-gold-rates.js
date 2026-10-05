@@ -151,10 +151,7 @@ export async function updateGoldRates(options = {}) {
     ]
   };
 
-  // Write to both paths
-  fs.mkdirSync(path.dirname(SRC_JSON), { recursive: true });
-  fs.writeFileSync(SRC_JSON, JSON.stringify(updatedPayload, null, 2), 'utf-8');
-
+  // Write only to public runtime cache (src/data/ remains pure schema)
   fs.mkdirSync(path.dirname(PUBLIC_JSON), { recursive: true });
   fs.writeFileSync(PUBLIC_JSON, JSON.stringify(updatedPayload, null, 2), 'utf-8');
 
