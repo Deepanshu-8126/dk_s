@@ -7,7 +7,7 @@ import { BlogApiClient } from '../services/geminiRotator';
 import fallbackArticles from '../data/articles/published.json';
 
 export default function ArticlesSection() {
-  const [articles, setArticles] = useState(fallbackArticles?.articles || fallbackArticles || []);
+   const [articles, setArticles] = useState(fallbackArticles || []);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeArticle, setActiveArticle] = useState(null);

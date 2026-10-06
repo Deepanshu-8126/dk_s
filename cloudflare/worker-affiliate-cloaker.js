@@ -23,6 +23,12 @@ export default {
       return Response.redirect(targetUrl, 302);
     }
 
-    return fetch(request);
+    // Proxy to the main Pages site
+    const pagesUrl = new URL('https://dk-s.pages.dev' + url.pathname + url.search);
+    return fetch(pagesUrl, {
+      headers: request.headers,
+      method: request.method,
+      body: request.body
+    });
   }
 };
