@@ -1,51 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/rss.xsl"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>UniqueDigit - Tech, PC Builds &amp; Live Rates</title>
-    <link>https://uniquedigit.com</link>
+    <link>https://dk-s.uniquedigit-hub.workers.dev</link>
     <description>The Next-Gen Tech Media &amp; Pricing Portal for Indian Geeks</description>
     <language>en-in</language>
-    <lastBuildDate>Tue, 06 Oct 2026 01:27:25 GMT</lastBuildDate>
-    <atom:link href="https://uniquedigit.com/rss.xml" rel="self" type="application/rss+xml"/>
-    
+    <lastBuildDate>Tue, 06 Oct 2026 01:35:34 GMT</lastBuildDate>
+    <atom:link href="https://dk-s.uniquedigit-hub.workers.dev/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title><![CDATA[SSC CGL 2026 Cut Off: Expected Safe Scores, Normalization & Post-Wise Analysis]]></title>
-      <link>https://uniquedigit.com/guides/</link>
-      <guid>https://uniquedigit.com/guides/</guid>
-      <pubDate>Tue, 06 Oct 2026 01:27:25 GMT</pubDate>
-      <description><![CDATA[]]></description>
+      <link>https://dk-s.uniquedigit-hub.workers.dev/guide/ssc-cgl-2026-cut-off-in-tier-2-prep</link>
+      <guid isPermaLink="true">https://dk-s.uniquedigit-hub.workers.dev/guide/ssc-cgl-2026-cut-off-in-tier-2-prep</guid>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Detailed analysis of SSC CGL 2026 Tier 2 expected cut-off marks, category-wise safe scores (UR, OBC, EWS, SC, ST), normalization trends, and post preferences.]]></description>
       <category>Tech</category>
     </item>
-  
-
     <item>
       <title><![CDATA[GTA 6 PC Build Reality: India Pricing, 1080p vs 1440p Stress Test & Hardware Bottlenecks]]></title>
-      <link>https://uniquedigit.com/guides/</link>
-      <guid>https://uniquedigit.com/guides/</guid>
-      <pubDate>Tue, 06 Oct 2026 01:27:25 GMT</pubDate>
-      <description><![CDATA[]]></description>
+      <link>https://dk-s.uniquedigit-hub.workers.dev/guide/gta-6-pc-build-in-moradabad</link>
+      <guid isPermaLink="true">https://dk-s.uniquedigit-hub.workers.dev/guide/gta-6-pc-build-in-moradabad</guid>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Real-world hardware evaluation for GTA 6 PC builds in India. Tested 1080p to 1440p specs, 8GB vs 12GB VRAM reality, and Nehru Place wholesale component pricing.]]></description>
       <category>Tech</category>
     </item>
-  
-
     <item>
       <title><![CDATA[24K Gold Rate in Lucknow & UP Markets: HUID Hallmark, MCX Trends & Making Charge Reality]]></title>
-      <link>https://uniquedigit.com/guides/</link>
-      <guid>https://uniquedigit.com/guides/</guid>
-      <pubDate>Tue, 06 Oct 2026 01:27:25 GMT</pubDate>
-      <description><![CDATA[]]></description>
+      <link>https://dk-s.uniquedigit-hub.workers.dev/guide/24k-gold-rate-in-lucknow-today</link>
+      <guid isPermaLink="true">https://dk-s.uniquedigit-hub.workers.dev/guide/24k-gold-rate-in-lucknow-today</guid>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Complete guide to 24K and 22K gold rates in Lucknow and Uttar Pradesh. Real sarrafa bazaar vs IBJA rates, 6-digit HUID verification, and making charge negotiation.]]></description>
       <category>Tech</category>
     </item>
-  
-
     <item>
       <title><![CDATA[ChatGPT Plus vs Gemini Advanced for Indian Students & Developers (2026 Reality)]]></title>
-      <link>https://uniquedigit.com/guides/</link>
-      <guid>https://uniquedigit.com/guides/</guid>
-      <pubDate>Tue, 06 Oct 2026 01:27:25 GMT</pubDate>
-      <description><![CDATA[]]></description>
+      <link>https://dk-s.uniquedigit-hub.workers.dev/guide/chatgpt-plus-vs-gemini-ultra-in-indian-students</link>
+      <guid isPermaLink="true">https://dk-s.uniquedigit-hub.workers.dev/guide/chatgpt-plus-vs-gemini-ultra-in-indian-students</guid>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Direct comparison between ChatGPT Plus (GPT-4o) and Google Gemini Advanced for Indian engineering students, coding projects, PDF research, and INR UPI subscriptions.]]></description>
       <category>Tech</category>
     </item>
-  
   </channel>
 </rss>
