@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const BASE_URL = process.env.VITE_SITE_URL || 'https://uniquedigit.in';
+const BASE_URL = process.env.VITE_SITE_URL || 'https://dk-s.uniquedigit-hub.workers.dev';
 const CURRENT_DATE = new Date().toISOString().split('T')[0];
 
 const CORE_ROUTES = [
@@ -141,6 +141,7 @@ export function generateSitemap() {
       const chunk = entries.slice(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE);
       const filename = `sitemap-${i}.xml`;
       const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${chunk.map(renderUrl).join('\n')}
@@ -153,6 +154,7 @@ ${chunk.map(renderUrl).join('\n')}
     }
 
     const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${indexEntries.join('\n')}
 </sitemapindex>`;
@@ -160,6 +162,7 @@ ${indexEntries.join('\n')}
     console.log(`[Auto-SEO] Generated sitemap index with ${chunkCount} parts for ${entries.length} URLs.`);
   } else {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${entries.map(renderUrl).join('\n')}

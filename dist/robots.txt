@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-Sitemap: https://uniquedigit.in/sitemap.xml
+Sitemap: https://dk-s.uniquedigit-hub.workers.dev/sitemap.xml
