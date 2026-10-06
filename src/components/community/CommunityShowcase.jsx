@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Camera, ThumbsUp, Trophy, Sparkles, Upload } from 'lucide-react';
+import SmartImage from '../common/SmartImage';
 
 const COMMUNITY_SETUPS = [
   {
@@ -10,7 +11,6 @@ const COMMUNITY_SETUPS = [
     specs: 'Ryzen 7 7800X3D + RTX 4080 Super + Alienware 34" QD-OLED',
     votes: 142,
     badge: '🏆 Setup of the Week',
-    image: 'https://m.media-amazon.com/images/I/71S-5R2Z+4L._SX679_.jpg'
   },
   {
     id: 'setup-2',
@@ -20,7 +20,6 @@ const COMMUNITY_SETUPS = [
     specs: 'Intel Core i7-14700K + RTX 4070 Ti Super + Dual 4K Displays',
     votes: 98,
     badge: '⚡ Community Favorite',
-    image: 'https://m.media-amazon.com/images/I/71ItMeqpN3L._SX679_.jpg'
   }
 ];
 
@@ -61,12 +60,12 @@ export default function CommunityShowcase() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
         {setups.map((setup) => (
           <div key={setup.id} className="rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden shadow-xs hover:border-purple-300 transition-all">
-            <div className="relative h-48 w-full overflow-hidden bg-white flex items-center justify-center p-3 border-b border-slate-200">
-              <img
-                src={setup.image}
+            <div className="relative h-48 w-full bg-slate-100 flex items-center justify-center">
+              <SmartImage
+                keyword={setup.title}
+                niche="gaming"
                 alt={setup.title}
-                className="max-h-full max-w-full object-contain transition-transform duration-500 hover:scale-105"
-                loading="lazy"
+                aspectRatio="h-48 w-full"
               />
               <span className="absolute top-3 left-3 rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-[10px] font-bold text-amber-700 border border-amber-200 shadow-xs">
                 {setup.badge}
@@ -82,11 +81,10 @@ export default function CommunityShowcase() {
                 <button
                   type="button"
                   onClick={() => handleVote(setup.id)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    votedMap[setup.id]
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${votedMap[setup.id]
                       ? 'bg-purple-600 text-white'
                       : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 shadow-xs'
-                  }`}
+                    }`}
                 >
                   <ThumbsUp className="w-3.5 h-3.5" /> {setup.votes}
                 </button>

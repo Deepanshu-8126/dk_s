@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { ShoppingBag, ExternalLink, Star, Tag, SlidersHorizontal, RefreshCw, CheckCircle2, XCircle, Award, Bookmark, Bell, Share2, History } from 'lucide-react';
 import fallbackData from '../../data/productsCatalog.json';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
@@ -6,6 +7,7 @@ import UniversalTopicViewer from '../common/UniversalTopicViewer';
 import PriceDropAlertModal from '../common/PriceDropAlertModal';
 import SocialDealStoryModal from '../common/SocialDealStoryModal';
 import PriceHistoryChart from './PriceHistoryChart';
+import SmartImage from '../common/SmartImage';
 import { useTranslation } from '../../context/LanguageContext';
 
 const FILTER_TABS = [
@@ -51,7 +53,7 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
       localStorage.setItem('ud_wishlist', JSON.stringify(updated));
       setWishlistIds(updated.map(item => item.id));
       if (onWishlistUpdate) onWishlistUpdate(updated);
-    } catch {}
+    } catch { }
   };
 
   const loadProducts = async (q = '') => {
@@ -86,7 +88,7 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
         setSavedSuccess(false);
         setShowTagSettings(false);
       }, 1500);
-    } catch {}
+    } catch { }
   };
 
   const effectiveCat = activeCategory !== 'all' ? activeCategory : selectedFilter;
@@ -120,11 +122,10 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
               <button
                 key={tab.id}
                 onClick={() => setSelectedFilter(tab.id)}
-                className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                  selectedFilter === tab.id
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${selectedFilter === tab.id
                     ? 'bg-slate-900 text-white shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
-                }`}
+                  }`}
               >
                 {tab.label}
               </button>
@@ -193,17 +194,14 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
               <div>
                 {/* Product Image Box */}
                 <div className="relative h-48 rounded-2xl overflow-hidden mb-3.5 bg-white flex items-center justify-center p-3 border border-slate-200 shadow-2xs">
-                  <img
-                    src={product.imageUrl || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg'}
+                  <SmartImage
+                    src={product.imageUrl}
+                    keyword={product.title}
+                    niche={product.category}
                     alt={product.title}
-                    loading="lazy"
-                    onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      e.currentTarget.src = 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg';
-                    }}
-                    className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+                    aspectRatio="h-full w-full"
                   />
-                  
+
                   {/* Category Chip */}
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-white/90 backdrop-blur-md text-slate-800 border border-slate-200 shadow-xs">
                     {product.badge || product.category}
@@ -233,9 +231,8 @@ export default function ProductShowcase({ searchQuery, activeCategory = 'all', o
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); toggleWishlist(product); }}
-                      className={`p-1.5 rounded-lg bg-white/90 hover:bg-white border border-slate-200 backdrop-blur-md transition cursor-pointer shadow-xs ${
-                        wishlistIds.includes(product.id) ? 'text-amber-500' : 'text-slate-700 hover:text-slate-900'
-                      }`}
+                      className={`p-1.5 rounded-lg bg-white/90 hover:bg-white border border-slate-200 backdrop-blur-md transition cursor-pointer shadow-xs ${wishlistIds.includes(product.id) ? 'text-amber-500' : 'text-slate-700 hover:text-slate-900'
+                        }`}
                       title={wishlistIds.includes(product.id) ? "Saved in Wishlist" : "Save to Wishlist"}
                     >
                       <Bookmark size={12} className={wishlistIds.includes(product.id) ? "fill-amber-500 text-amber-500" : ""} />

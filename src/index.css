@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@700;800;900&family=Outfit:wght@700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
 @import "tailwindcss";
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -8,27 +8,27 @@
    ══════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Layer 1: Core Primitives (Pure White Editorial Theme) */
-  --bg-core: #F8FAFC;
+  /* Layer 1: Core Primitives (Total White Editorial Theme) */
+  --bg-core: #FFFFFF;
   --bg-surface: #FFFFFF;
-  --bg-surface-elevated: #F1F5F9;
+  --bg-surface-elevated: #F8FAFC;
   --border-subtle: #E2E8F0;
   --border-card: rgba(0, 0, 0, 0.08);
-  
+   
   --text-main: #0F172A;
   --text-secondary: #334155;
   --text-muted: #64748B;
-  
-  --accent-pop: #D97706; /* Precision Amber */
-  --accent-pop-hover: #B45309;
-  --accent-emerald: #059669;
-  --accent-rose: #E11D48;
-  --accent-indigo: #4F46E5;
-  
-  --font-heading: 'Plus Jakarta Sans', 'Outfit', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+   
+  --accent-pop: #6366F1; /* Electric Indigo */
+  --accent-pop-hover: #4F46E5;
+  --accent-emerald: #10B981;
+  --accent-rose: #F59E0B;
+  --accent-indigo: #6366F1;
+   
+  --font-heading: 'Outfit', system-ui, sans-serif;
+  --font-body: 'Geist', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  
+   
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;

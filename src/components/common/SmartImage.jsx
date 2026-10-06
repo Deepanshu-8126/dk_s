@@ -1,50 +1,57 @@
 import React, { useState, useEffect } from 'react';
+import { 
+  ShoppingBag, Sparkles, Gamepad2, Coins, 
+  Newspaper, HeartPulse, Wheat, Image as ImageIcon, Laptop, Cpu
+} from 'lucide-react';
 import { getRealImage } from '../../utils/getRealImage';
 
-/**
- * SmartImage Component
- * 
- * Automatically resolves and displays a real photograph for any keyword/niche.
- * - 7-day local caching
- * - Blur grey skeleton placeholder while fetching
- * - Edge CDN optimization via weserv.nl
- * - Native lazy loading (with priority support for LCP / Hero images)
- * - Zero dummy photo policy: returns null or fallback text if no real image exists
- */
+const CATEGORY_ICONS = {
+  gaming: Gamepad2,
+  finance: Coins,
+  bullion: Coins,
+  coding: Cpu,
+  ai: Sparkles,
+  smartphones: ShoppingBag,
+  laptops: Laptop,
+  health: HeartPulse,
+  agriculture: Wheat,
+  sarkari: Newspaper,
+};
+
 export default function SmartImage({
   src = null,
-  keyword,
+  keyword = '',
   niche = 'general',
-  alt = '',
+  alt = 'Media visual',
   className = '',
-  priority = false,
-  fallback = null,
-  width = 800,
-  imgClassName = '',
+  imgClassName = 'max-h-full max-w-full object-contain',
+  aspectRatio = 'aspect-video'
 }) {
   const [imgUrl, setImgUrl] = useState(src || null);
   const [status, setStatus] = useState(src ? 'loaded' : 'loading');
 
+  const IconComponent = CATEGORY_ICONS[niche?.toLowerCase()] || ImageIcon;
+
   useEffect(() => {
     let isMounted = true;
-
     if (src) {
       setImgUrl(src);
       setStatus('loaded');
       return;
     }
 
-    setStatus('loading');
     if (!keyword) {
       setStatus('empty');
       return;
     }
 
-    getRealImage(keyword, niche, { width })
+    setStatus('loading');
+    getRealImage(keyword, niche)
       .then(url => {
         if (!isMounted) return;
         if (url) {
           setImgUrl(url);
+          setStatus('loaded');
         } else {
           setStatus('empty');
         }
@@ -56,39 +63,38 @@ export default function SmartImage({
     return () => {
       isMounted = false;
     };
-  }, [src, keyword, niche, width]);
+  }, [src, keyword, niche]);
 
-  // If no image found or image errored out
-  if (status === 'empty' || status === 'error') {
-    return fallback || null;
+  if (status === 'empty' || !imgUrl) {
+    return (
+      <div className={`w-full h-full flex flex-col items-center justify-center bg-slate-50 text-slate-400 p-4 rounded-xl border border-slate-100 ${aspectRatio} ${className}`}>
+        <div className="p-3 bg-white rounded-2xl shadow-2xs border border-slate-200 mb-1.5">
+          <IconComponent size={22} className="text-slate-500" />
+        </div>
+        <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider font-mono">
+          {niche || 'Live Item'}
+        </span>
+      </div>
+    );
   }
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      {/* Blur Grey Skeleton Placeholder */}
+    <div className={`relative w-full h-full flex items-center justify-center overflow-hidden ${aspectRatio} ${className}`}>
       {status === 'loading' && (
-        <div
-          className="absolute inset-0 bg-slate-200/80 animate-pulse backdrop-blur-xs flex items-center justify-center"
-          aria-hidden="true"
-        >
-          <div className="w-6 h-6 rounded-full border-2 border-slate-300 border-t-slate-500 animate-spin opacity-40" />
+        <div className="absolute inset-0 bg-slate-100 animate-pulse flex items-center justify-center rounded-xl">
+          <IconComponent size={20} className="text-slate-300" />
         </div>
       )}
-
-      {imgUrl && (
-        <img
-          src={imgUrl}
-          alt={alt || keyword}
-          loading={priority ? 'eager' : 'lazy'}
-          decoding={priority ? 'sync' : 'async'}
-          fetchPriority={priority ? 'high' : 'auto'}
-          onLoad={() => setStatus('loaded')}
-          onError={() => setStatus('error')}
-          className={`w-full h-full object-cover transition-opacity duration-500 ${
-            status === 'loaded' ? 'opacity-100' : 'opacity-0'
-          } ${imgClassName}`}
-        />
-      )}
+      <img
+        src={imgUrl}
+        alt={alt}
+        loading="lazy"
+        referrerPolicy="no-referrer"
+        crossOrigin="anonymous"
+        onLoad={() => setStatus('loaded')}
+        onError={() => setStatus('empty')}
+        className={`${imgClassName} ${status === 'loading' ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+      />
     </div>
   );
 }

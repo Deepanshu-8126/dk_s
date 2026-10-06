@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  ShieldCheck, BookOpen, X, 
-  CheckCircle2, XCircle, Award, ShoppingCart, 
+import {
+  ShieldCheck, BookOpen, X,
+  CheckCircle2, XCircle, Award, ShoppingCart,
   BarChart3, Scale, Flame
 } from 'lucide-react';
 import { AFFILIATE_CONFIG, buildAmazonAffiliateUrl } from '../../utils/affiliateGenerator';
 import { getCuratedAlternatives } from '../../utils/recommendations';
+import SmartImage from './SmartImage';
 
 export default function UniversalTopicViewer({ topic, onClose }) {
   const [activeTab, setActiveTab] = useState('verdict');
@@ -18,12 +19,12 @@ export default function UniversalTopicViewer({ topic, onClose }) {
   const alternatives = getCuratedAlternatives(topic);
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/40 backdrop-blur-md flex items-start justify-center p-2 sm:p-4 md:p-6 animate-fadeIn touch-manipulation"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div className="relative w-full max-w-5xl my-4 sm:my-8 bg-white text-slate-900 rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col">
-        
+
         {/* Top Sticky Header */}
         <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5 overflow-hidden">
@@ -51,20 +52,17 @@ export default function UniversalTopicViewer({ topic, onClose }) {
         {/* Hero Section with Split Visual and Executive Badge */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 border-b border-slate-200 bg-slate-50 text-slate-900">
           {/* Authentic Real Image */}
-          <div className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] overflow-hidden flex items-center justify-center bg-white p-6 border-b lg:border-b-0 lg:border-r border-slate-200">
-            <img
-              src={topic.imageUrl || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg'}
+          <div className="lg:col-span-6 relative min-h-[300px] flex items-center justify-center bg-slate-100 overflow-hidden">
+            <SmartImage
+              src={topic.imageUrl}
+              keyword={topic.title}
+              niche={topic.niche || 'general'}
               alt={topic.title}
-              loading="eager"
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg';
-              }}
-              className="max-h-[300px] max-w-full object-contain transform hover:scale-105 transition-transform duration-500"
+              aspectRatio="min-h-[300px] w-full"
             />
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
               <span className="font-semibold bg-white/95 text-slate-800 backdrop-blur-md px-3 py-1 rounded-lg border border-slate-200 shadow-xs">
-                📸 Authentic Hardware Photo
+                📸 Verified Visual
               </span>
               <span className="font-mono text-emerald-800 font-bold bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
                 Audited Stock & Rates
@@ -141,11 +139,10 @@ export default function UniversalTopicViewer({ topic, onClose }) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-3.5 px-4 text-xs font-bold flex items-center gap-2 border-b-2 whitespace-nowrap transition-all cursor-pointer ${
-                  isActive
+                className={`py-3.5 px-4 text-xs font-bold flex items-center gap-2 border-b-2 whitespace-nowrap transition-all cursor-pointer ${isActive
                     ? 'border-indigo-600 text-indigo-700 bg-white shadow-xs'
                     : 'border-transparent text-slate-600 hover:text-slate-900'
-                }`}
+                  }`}
               >
                 <Icon size={14} className={isActive ? 'text-indigo-600' : 'text-slate-400'} />
                 <span>{tab.label}</span>
@@ -246,7 +243,7 @@ export default function UniversalTopicViewer({ topic, onClose }) {
               <Scale size={16} className="text-indigo-600" />
               <span>Smart Alternatives & Tested Competitors:</span>
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {alternatives.map((alt, idx) => (
                 <div key={idx} className="p-5 rounded-2xl border border-slate-200 bg-white hover:border-indigo-300 shadow-xs hover:shadow-md transition-all">

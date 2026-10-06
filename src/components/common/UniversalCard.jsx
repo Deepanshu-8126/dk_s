@@ -2,6 +2,7 @@ import React from 'react';
 import { ShoppingCart, ExternalLink, Award, CheckCircle, Flame, ArrowRight, ShieldCheck, Tag } from 'lucide-react';
 import { buildAffiliateUrl, calculateDiscount, formatINR } from '../../utils/core';
 import { useTranslation } from '../../context/LanguageContext';
+import SmartImage from './SmartImage';
 
 const ACCENT_STYLES = {
   cyan: {
@@ -53,11 +54,12 @@ export default function UniversalCard({ item, accent = 'cyan', onSelect = null }
       <div>
         {/* Aspect-Locked Media Box */}
         <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-4 bg-white border border-slate-200 flex items-center justify-center p-2.5">
-          <img
-            src={item.imageUrl || 'https://m.media-amazon.com/images/I/71ZDY57y6QL._SX679_.jpg'}
-            alt={item.title}
-            className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
+          <SmartImage
+            src={item.imageUrl}
+            keyword={item.title || item.name}
+            niche={item.category}
+            alt={item.title || item.name}
+            aspectRatio="aspect-video"
           />
 
           {/* Badge */}
@@ -122,8 +124,8 @@ export default function UniversalCard({ item, accent = 'cyan', onSelect = null }
         >
           {item.price ? <ShoppingCart className="w-3.5 h-3.5" /> : <ExternalLink className="w-3.5 h-3.5" />}
           <span>
-            {item.price 
-              ? (inStock ? t('viewOnAmazon') : 'Find on Flipkart') 
+            {item.price
+              ? (inStock ? t('viewOnAmazon') : 'Find on Flipkart')
               : 'View Intelligence Source'}
           </span>
         </a>
