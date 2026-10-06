@@ -11,6 +11,19 @@ export default function ArticlesSection() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeArticle, setActiveArticle] = useState(null);
+
+  // Update URL when activeArticle changes
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (activeArticle) {
+        // Update URL to guide article path
+        window.history.pushState({}, '', `/guide/${activeArticle.slug}`);
+      } else {
+        // When clearing activeArticle, go back to home (or could try to restore previous state)
+        window.history.pushState({}, '', '/');
+      }
+    }
+  }, [activeArticle]);
   const [showStudio, setShowStudio] = useState(false);
 
   const loadPosts = async () => {
