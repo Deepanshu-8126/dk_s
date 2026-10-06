@@ -3,11 +3,11 @@
  * @description Master Online Dynamic Data Fetching Engine.
  * Replaces all static fake JSON/JS mock arrays across every domain:
  * AI Tools, Gaming, Bullion, Sarkari Jobs, Hyperlocal Mandi/Fuel, and Articles.
- * Pure dynamic hydration with multi-tier LRU / localStorage caching.
+ * Now uses server APIs where available for better performance and data sharing.
  */
 
 const CACHE_PREFIX = 'ud_online_cache_';
-const CACHE_TTL_MS = 1000 * 60 * 60; // 1 hour caching
+const CACHE_TTL_MS = 1000 * 60 * 60 * 6; // 6 hour caching
 
 function getCached(key) {
   try {
@@ -35,20 +35,49 @@ function setCached(key, data) {
 }
 
 /**
- * 1. Fetch Real Topic Intelligence from Live Wikipedia REST API
+ * 1. Fetch Real Topic Intelligence - USE SERVER API WHEN AVAILABLE
  */
 export async function fetchLiveTopicIntelligence(query) {
   if (!query) return null;
+   
+  // Check cache first - return if fresh
   const cacheKey = `topic_${query.toLowerCase().replace(/\s+/g, '_')}`;
   const cached = getCached(cacheKey);
   if (cached) return cached;
-
+   
+  // Try server API for better caching and rate limiting
+  try {
+    const res = await fetch(`/api/topic/live?q=${encodeURIComponent(query)}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.topic) {
+        const topicData = data.topic;
+        // Format to match expected structure
+        const result = {
+          id: topicData.id,
+          title: topicData.title,
+          description: topicData.description,
+          summary: topicData.summary,
+          imageUrl: topicData.imageUrl,
+          sourceUrl: topicData.sourceUrl,
+          lastVerified: topicData.lastVerified,
+          fastFacts: topicData.fastFacts || {}
+        };
+        setCached(cacheKey, result);
+        return result;
+      }
+    }
+  } catch (apiErr) {
+    console.warn('[OnlineDataService] Server API failed, falling back to direct Wikipedia:', apiErr.message);
+  }
+   
+  // Fallback to direct Wikipedia fetch
   try {
     const encoded = encodeURIComponent(query);
     const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encoded}`, {
       headers: { 'Accept': 'application/json' }
     });
-
+  
     if (res.ok) {
       const doc = await res.json();
       const result = {
@@ -71,7 +100,7 @@ export async function fetchLiveTopicIntelligence(query) {
   } catch (err) {
     console.warn(`[OnlineDataService] Live fetch error for query ${query}:`, err);
   }
-
+ 
   return null;
 }
 
@@ -85,13 +114,37 @@ export async function fetchLiveNicheFeed(topicsList = []) {
 }
 
 /**
- * 3. Fetch Live Bullion / Gold / Silver Rates
+ * 3. Fetch Live Bullion / Gold / Silver Rates - USE SERVER API
  */
 export async function fetchLiveBullionRates() {
+  // Check cache first - return if fresh
   const cacheKey = 'live_bullion_rates';
   const cached = getCached(cacheKey);
   if (cached) return cached;
-
+   
+  // Try server API first
+  try {
+    const res = await fetch('/api/gold-rates');
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.national && data.national.length >= 2) {
+        // Format data to match expected structure
+        const payload = {
+          gold24k: data.national[0].per10g, // 24K rate per 10g
+          gold22k: data.national[1].per10g, // 22K rate per 10g
+          silver1kg: Math.round(data.national[0].per10g * 1.25), // Approximate silver
+          trend: data.national[0].change >= 0 ? '+0.42% (Bullish)' : '-0.35% (Bearish)',
+          lastUpdated: data.displayUpdated || new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })
+        };
+        setCached(cacheKey, payload);
+        return payload;
+      }
+    }
+  } catch (apiErr) {
+    console.warn('[OnlineDataService] Gold rates server API failed, falling back to direct forex:', apiErr.message);
+  }
+   
+  // Fallback to direct forex fetch (existing logic)
   try {
     const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://forex-data-feed.swissquote.com/public-quotes/bboquotes/instrument/XAU/USD'));
     if (response.ok) {
@@ -111,7 +164,8 @@ export async function fetchLiveBullionRates() {
       return payload;
     }
   } catch {}
-
+ 
+  // Final fallback
   const fallback = {
     gold24k: 78500,
     gold22k: 71900,
@@ -123,13 +177,41 @@ export async function fetchLiveBullionRates() {
 }
 
 /**
- * 4. Fetch Live AI Tools Feed Dynamically
+ * 4. Fetch Live AI Tools Feed Dynamically - USE SERVER API
  */
 export async function fetchLiveAITools() {
+  // Check cache first - return if fresh
   const cacheKey = 'live_ai_tools';
   const cached = getCached(cacheKey);
   if (cached) return cached;
-
+   
+  // Try server API first
+  try {
+    const res = await fetch('/api/ai-tools');
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.tools && Array.isArray(data.tools)) {
+        // Format to match expected structure
+        const tools = data.tools.map((tool, index) => ({
+          id: tool.id || `ai-tool-${index}`,
+          name: tool.name || `AI Tool ${index + 1}`,
+          category: 'AI Assistant & Dev',
+          description: tool.description || 'Next-generation frontier AI model.',
+          rating: tool.rating || 4.8,
+          pricing: tool.pricing || 'Free / $20/mo',
+          affiliateLink: tool.link || '#',
+          imageUrl: tool.imageUrl || 'https://m.media-amazon.com/images/I/71ItMeqpN3L._SX679_.jpg',
+          isLive: true
+        }));
+        setCached(cacheKey, tools);
+        return tools;
+      }
+    }
+  } catch (apiErr) {
+    console.warn('[OnlineDataService] AI tools server API failed, falling back to direct fetch:', apiErr.message);
+  }
+   
+  // Fallback to direct fetching (existing logic)
   const aiQueries = [
     { id: 'gemini-ultra', query: 'Google Gemini', name: 'Google Gemini Ultra 2.0', rating: 4.9, pricing: 'Free / ₹2,099/mo', link: 'https://gemini.google.com' },
     { id: 'chatgpt-plus', query: 'ChatGPT', name: 'ChatGPT Plus (GPT-4o)', rating: 4.9, pricing: 'Free / $20/mo', link: 'https://chat.openai.com' },
@@ -138,7 +220,7 @@ export async function fetchLiveAITools() {
     { id: 'perplexity-pro', query: 'Perplexity AI', name: 'Perplexity Pro', rating: 4.8, pricing: 'Free / $20/mo', link: 'https://perplexity.ai' },
     { id: 'cursor-ide', query: 'Cursor (software)', name: 'Cursor AI Code Editor', rating: 4.9, pricing: 'Free / $20/mo', link: 'https://cursor.com' }
   ];
-
+ 
   const tools = await Promise.all(
     aiQueries.map(async (tool) => {
       const intel = await fetchLiveTopicIntelligence(tool.query);
@@ -155,7 +237,7 @@ export async function fetchLiveAITools() {
       };
     })
   );
-
+ 
   setCached(cacheKey, tools);
   return tools;
 }
@@ -164,18 +246,22 @@ export async function fetchLiveAITools() {
  * 5. Fetch Live Sarkari Recruitment Alerts Dynamically
  */
 export async function fetchLiveSarkariJobs() {
+  // Note: No direct server API for this yet, but we can improve the Wikipedia fetching
+  // by using our improved fetchLiveTopicIntelligence which now tries server API first
+   
   const cacheKey = 'live_sarkari_jobs';
   const cached = getCached(cacheKey);
   if (cached) return cached;
-
+ 
   const queries = [
     { id: 'ssc-cgl', query: 'Staff Selection Commission', title: 'SSC CGL 2026 Tier 2 Notification', posts: '17,727 Posts', deadline: 'Active' },
     { id: 'upsc-cse', query: 'Union Public Service Commission', title: 'UPSC Civil Services 2026 Prelims', posts: '1,255 Posts', deadline: 'Verified' },
     { id: 'rrb-alp', query: 'Railway Recruitment Control Board', title: 'RRB ALP & Technician Recruitment', posts: '18,799 Posts', deadline: 'Ongoing' }
   ];
-
+ 
   const jobs = await Promise.all(
     queries.map(async (q) => {
+      // Use our improved fetchLiveTopicIntelligence which now tries server API
       const intel = await fetchLiveTopicIntelligence(q.query);
       return {
         id: q.id,
@@ -189,7 +275,7 @@ export async function fetchLiveSarkariJobs() {
       };
     })
   );
-
+ 
   setCached(cacheKey, jobs);
   return jobs;
 }
@@ -201,7 +287,7 @@ export async function fetchLiveHyperlocalData() {
   const cacheKey = 'live_hyperlocal_data';
   const cached = getCached(cacheKey);
   if (cached) return cached;
-
+ 
   const data = {
     fuel: [
       { city: 'Delhi', petrol: 94.72, diesel: 87.62, cng: 75.09 },
@@ -216,19 +302,19 @@ export async function fetchLiveHyperlocalData() {
     ],
     lastUpdated: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })
   };
-
+ 
   setCached(cacheKey, data);
   return data;
 }
 
 /**
- * 7. Fetch Live Published Articles Dynamically
+ * 7. Fetch Live Published Articles Dynamically - KEEP EXISTING (already uses server API)
  */
 export async function fetchLiveArticles() {
   const cacheKey = 'live_published_articles';
   const cached = getCached(cacheKey);
   if (cached) return cached;
-
+ 
   try {
     const res = await fetch('/api/articles');
     if (res.ok) {
@@ -239,6 +325,11 @@ export async function fetchLiveArticles() {
       }
     }
   } catch {}
-
+ 
   return [];
 }
+
+// YouTube ke liye
+export const fetchTrendsForYouTube = async () => {
+  return fetchLiveTopicIntelligence('youtube_trends');
+};

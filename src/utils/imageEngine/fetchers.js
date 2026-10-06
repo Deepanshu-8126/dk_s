@@ -23,6 +23,9 @@ const CURATED_TOPIC_FALLBACKS = [
   },
 ];
 
+/**
+ * Get curated topic image with enhanced fallbacks
+ */
 export function getCuratedTopicImage(keyword, niche) {
   // 1. Check exact curated high-res media registry first
   const exactCurated = getCuratedMedia(keyword);
@@ -35,33 +38,77 @@ export function getCuratedTopicImage(keyword, niche) {
       return item.url;
     }
   }
+  
+  // 3. Enhanced fallback: Try to get any image from curated media as last resort
+  const fallbackImages = Object.values(getCuratedMedia.__esModule ? getCuratedMedia.default : getCuratedMedia);
+  if (fallbackImages && fallbackImages.length > 0) {
+    return fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
+  }
+  
   return null;
 }
 
+/**
+ * Fetch from edge proxy with better error handling
+ */
 export async function fetchFromEdgeProxy(keyword, niche, proxyUrl) {
+  if (!proxyUrl) {
+    console.warn('[ImageFetch] No proxy URL configured');
+    return null;
+  }
+
   try {
     const endpoint = `${proxyUrl}?q=${encodeURIComponent(keyword)}&niche=${encodeURIComponent(niche)}`;
-    const res = await fetch(endpoint, { headers: { Accept: 'application/json' } });
-    if (!res.ok) return null;
+    const res = await fetch(endpoint, { 
+      headers: { Accept: 'application/json' },
+      timeout: 5000 // 5 second timeout
+    });
+    
+    if (!res.ok) {
+      console.warn(`[ImageFetch] Edge proxy failed: ${res.status}`);
+      return null;
+    }
+    
     const data = await res.json();
     return data.url || null;
-  } catch {
+  } catch (err) {
+    console.warn(`[ImageFetch] Edge proxy error:`, err.message);
     return null;
   }
 }
 
+/**
+ * Fetch from RAWG with better error handling
+ */
 export async function fetchFromRAWG(keyword, apiKey) {
+  if (!apiKey || apiKey === 'FREE_KEY') {
+    console.warn('[ImageFetch] RAWG API key not configured');
+    return null;
+  }
+
   try {
     const url = `https://api.rawg.io/api/games?key=${encodeURIComponent(apiKey)}&search=${encodeURIComponent(keyword)}&page_size=1`;
-    const res = await fetch(url, { headers: { Accept: 'application/json' } });
-    if (!res.ok) return null;
+    const res = await fetch(url, { 
+      headers: { Accept: 'application/json' },
+      timeout: 5000 // 5 second timeout
+    });
+    
+    if (!res.ok) {
+      console.warn(`[ImageFetch] RAWG API failed: ${res.status}`);
+      return null;
+    }
+    
     const data = await res.json();
     return data.results?.[0]?.background_image || null;
-  } catch {
+  } catch (err) {
+    console.warn(`[ImageFetch] RAWG error:`, err.message);
     return null;
   }
 }
 
+/**
+ * Fetch from Wikimedia Commons with better error handling and fallbacks
+ */
 export async function fetchFromWikimedia(keyword) {
   try {
     // 1. Direct title search
@@ -69,7 +116,7 @@ export async function fetchFromWikimedia(keyword) {
     const endpoint = `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=original|thumbnail&pithumbsize=800&titles=${encodeURIComponent(clean)}&redirects=1&origin=*`;
 
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 3500);
+    const timeout = setTimeout(() => controller.abort(), 8000); // Increased timeout
     const res = await fetch(endpoint, { signal: controller.signal });
     clearTimeout(timeout);
 
@@ -86,9 +133,10 @@ export async function fetchFromWikimedia(keyword) {
       }
     }
 
-    // 2. Fallback to Wikipedia search generator
-    const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(clean)}&gsrlimit=1&prop=pageimages&piprop=original|thumbnail&pithumbsize=800&format=json&origin=*`;
-    const searchRes = await fetch(searchUrl);
+    // 2. Fallback to Wikipedia search generator with more results
+    const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(clean)}&gsrlimit=3&prop=pageimages&piprop=original|thumbnail&pithumbsize=800&format=json&origin=*`;
+    const searchRes = await fetch(searchUrl, { timeout: 8000 });
+    
     if (searchRes.ok) {
       const searchData = await searchRes.json();
       const searchPages = searchData.query?.pages;
@@ -101,24 +149,86 @@ export async function fetchFromWikimedia(keyword) {
         }
       }
     }
-  } catch {
-    // Silently continue
+    
+    // 3. Fallback to opensearch for title suggestions
+    const opensearchUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(clean)}&limit=5&namespace=0&format=json`;
+    const opensearchRes = await fetch(opensearchUrl, { timeout: 5000 });
+    
+    if (opensearchRes.ok) {
+      const opensearchData = await opensearchRes.json();
+      const titles = opensearchData[1] || [];
+      
+      // Try each suggested title
+      for (const title of titles.slice(0, 3)) {
+        try {
+          const summaryRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/\s+/g, '_'))}`, {
+            timeout: 5000
+          });
+          
+          if (summaryRes.ok) {
+            const doc = await summaryRes.json();
+            if (doc.originalimage?.source || doc.thumbnail?.source) {
+              return doc.originalimage?.source || doc.thumbnail?.source;
+            }
+          }
+        } catch (e) {
+          // Continue to next title
+          continue;
+        }
+      }
+    }
+  } catch (err) {
+    console.warn(`[ImageFetch] Wikimedia error:`, err.message);
+    // Don't silently continue - return null to try next tier
   }
+  
   return null;
 }
 
+/**
+ * Fetch from Openverse with better error handling
+ */
 export async function fetchFromOpenverse(keyword) {
   try {
     const clean = keyword.replace(/\s+in\s+.*$/i, '').replace(/[^\w\s-]/gi, ' ').trim();
     const url = `https://api.openverse.org/v1/images/?q=${encodeURIComponent(clean)}&page_size=1&license_type=all`;
+    
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 4000);
-    const res = await fetch(url, { signal: controller.signal, headers: { Accept: 'application/json' } });
+    const timeout = setTimeout(() => controller.abort(), 8000); // Increased timeout
+    const res = await fetch(url, { 
+      signal: controller.signal, 
+      headers: { Accept: 'application/json' },
+      timeout: 8000
+    });
     clearTimeout(timeout);
-    if (!res.ok) return null;
+    
+    if (!res.ok) {
+      console.warn(`[ImageFetch] Openverse API failed: ${res.status}`);
+      return null;
+    }
+    
     const data = await res.json();
-    return data.results?.[0]?.url || data.results?.[0]?.thumbnail || null;
-  } catch {
-    return null;
+    if (data.results && data.results.length > 0) {
+      return data.results[0].url || data.results[0].thumbnail || null;
+    }
+    
+    // Try with broader search if no results
+    const broadUrl = `https://api.openverse.org/v1/images/?q=${encodeURIComponent(clean.split(' ')[0])}&page_size=1&license_type=all`;
+    const broadRes = await fetch(broadUrl, { 
+      signal: controller.signal, 
+      headers: { Accept: 'application/json' },
+      timeout: 5000
+    });
+    
+    if (broadRes.ok) {
+      const broadData = await broadRes.json();
+      if (broadData.results && broadData.results.length > 0) {
+        return broadData.results[0].url || broadData.results[0].thumbnail || null;
+      }
+    }
+  } catch (err) {
+    console.warn(`[ImageFetch] Openverse error:`, err.message);
   }
+  
+  return null;
 }

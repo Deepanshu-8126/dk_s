@@ -55,16 +55,74 @@ function AppContent() {
       return [];
     }
   });
-  
-  const [directArticle, setDirectArticle] = useState(() => {
-    if (typeof window === 'undefined') return null;
-    const path = window.location.pathname;
-    if (path.startsWith('/guide/')) {
-      const slug = path.replace(/^\/guide\//, '').replace(/\/$/, '');
-      return (publishedArticles.articles || []).find(a => a.slug === slug) || null;
+
+  // Sync activeTab with URL path on load and when tab changes
+  const pathToTabMap = {
+    '/': 'all',
+    '/gaming': 'gaming',
+    '/gold': 'gold',
+    '/products': 'products',
+    '/ai': 'ai',
+    '/sarkari': 'sarkari',
+    '/hyperlocal': 'hyperlocal',
+    '/niches': 'niches',
+    '/studio': 'studio'
+  };
+
+  const tabToPathMap = {
+    'all': '/',
+    'gaming': '/gaming',
+    'gold': '/gold',
+    'products': '/products',
+    'ai': '/ai',
+    'sarkari': '/sarkari',
+    'hyperlocal': '/hyperlocal',
+    'niches': '/niches',
+    'studio': '/studio'
+  };
+
+  // Set activeTab from URL on initial load and handle popstate events
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handlePopState = () => {
+        const path = window.location.pathname;
+        // Check if it's a guide article path first
+        if (path.startsWith('/guide/')) {
+          // Don't override activeTab for guide articles - they override the view completely
+          setDirectArticle(() => {
+            const slug = path.replace(/^\/guide\//, '').replace(/\/$/, '');
+            return publishedArticles.find(a => a.slug === slug) || null;
+          });
+          return;
+        }
+        
+        // Map path to tab for non-guide paths
+        const tabFromPath = pathToTabMap[path] || 'all';
+        setActiveTab(tabFromPath);
+        setDirectArticle(null); // Clear direct article when navigating to tabs
+      };
+      
+      // Handle initial load
+      handlePopState();
+      
+      // Handle popstate events (back/forward buttons)
+      window.addEventListener('popstate', handlePopState);
+      
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
     }
-    return null;
-  });
+  }, []);
+  
+   const [directArticle, setDirectArticle] = useState(() => {
+     if (typeof window === 'undefined') return null;
+     const path = window.location.pathname;
+     if (path.startsWith('/guide/')) {
+       const slug = path.replace(/^\/guide\//, '').replace(/\/$/, '');
+       return publishedArticles.find(a => a.slug === slug) || null;
+     }
+     return null;
+   });
 
   const openVersus = (itemA = null, itemB = null) => {
     const defaultA = itemA || productsCatalog.products?.[0];
@@ -155,18 +213,25 @@ function AppContent() {
       <SEO {...getSeoProps()} />
       <SEOSchema activeItem={liveTopic} products={productsCatalog.products || []} />
 
-      <Header
-        activeTab={activeTab}
-        setActiveTab={(tab) => {
-          setDirectArticle(null);
-          setActiveTab(tab);
-        }}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        onOpenWishlist={() => setIsWishlistOpen(true)}
-        onOpenSearch={() => setIsSearchOpen(true)}
-        wishlistCount={wishlist.length}
-      />
+       <Header
+         activeTab={activeTab}
+         setActiveTab={(tab) => {
+           setDirectArticle(null);
+           setActiveTab(tab);
+           // Update URL when tab changes (except for guide articles which are handled separately)
+           if (typeof window !== 'undefined' && tab !== 'all') {
+             const newPath = tabToPathMap[tab] || '/';
+             window.history.pushState({}, '', newPath);
+           } else if (tab === 'all') {
+             window.history.pushState({}, '', '/');
+           }
+         }}
+         searchQuery={searchQuery}
+         setSearchQuery={setSearchQuery}
+         onOpenWishlist={() => setIsWishlistOpen(true)}
+         onOpenSearch={() => setIsSearchOpen(true)}
+         wishlistCount={wishlist.length}
+       />
 
       {/* Live Bullion Ticker */}
       <GoldSilverTicker />
@@ -287,12 +352,18 @@ function AppContent() {
         onClearAll={handleClearAllWishlist}
       />
 
-      {/* Keyboard-Friendly Fast Search Modal (Cmd+K) */}
-      <InstantSearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        onSelectArticle={(article) => setDirectArticle(article)}
-      />
+       {/* Keyboard-Friendly Fast Search Modal (Cmd+K) */}
+       <InstantSearchModal
+         isOpen={isSearchOpen}
+         onClose={() => setIsSearchOpen(false)}
+         onSelectArticle={(article) => {
+           setDirectArticle(article);
+           // Update URL to guide article path
+           if (typeof window !== 'undefined' && article?.slug) {
+             window.history.pushState({}, '', `/guide/${article.slug}`);
+           }
+         }}
+       />
 
       {/* Exit-Intent Deal Retention Popup */}
       <ExitIntentPopup />
