@@ -111,14 +111,15 @@ export async function fetchFromRAWG(keyword, apiKey) {
  */
 export async function fetchFromWikimedia(keyword) {
   try {
-    // 1. Direct title search
     const clean = keyword.replace(/\s+in\s+.*$/i, '').replace(/[^\w\s-]/gi, ' ').trim();
-    const endpoint = `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=original|thumbnail&pithumbsize=800&titles=${encodeURIComponent(clean)}&redirects=1&origin=*`;
-
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000); // Increased timeout
-    const res = await fetch(endpoint, { signal: controller.signal });
-    clearTimeout(timeout);
+    
+    // 1. Direct title search
+    try {
+      const endpoint = `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=original|thumbnail&pithumbsize=800&titles=${encodeURIComponent(clean)}&redirects=1&origin=*`;
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 6000);
+      const res = await fetch(endpoint, { signal: controller.signal });
+      clearTimeout(timeout);
 
       if (res.ok) {
         const data = await res.json();
@@ -132,64 +133,33 @@ export async function fetchFromWikimedia(keyword) {
           }
         }
       }
-      // If direct search didn't yield image, continue to fallback
-    } catch (directErr) {
-      // Direct search failed (timeout or other error), continue to fallback
-      console.warn('[fetchFromWikimedia] Direct search failed, trying fallback:', directErr.message);
+    } catch (e) {
+      // Direct search failed, continue to fallback
     }
 
-    // 2. Fallback to Wikipedia search generator with more results
-    const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(clean)}&gsrlimit=3&prop=pageimages&piprop=original|thumbnail&pithumbsize=800&format=json&origin=*`;
-    const searchRes = await fetch(searchUrl, { timeout: 8000 });
-    
-    if (searchRes.ok) {
-      const searchData = await searchRes.json();
-      const searchPages = searchData.query?.pages;
-      if (searchPages) {
-        for (const pid in searchPages) {
-          const p = searchPages[pid];
-          if (p?.original?.source || p?.thumbnail?.source) {
-            return p.original?.source || p.thumbnail?.source;
-          }
-        }
-      }
-    } catch (searchErr) {
-      // Fallback also failed
-      console.warn('[fetchFromWikimedia] Fallback search failed:', searchErr.message);
-    }
-    
-    // 3. Fallback to opensearch for title suggestions
-    const opensearchUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(clean)}&limit=5&namespace=0&format=json`;
-    const opensearchRes = await fetch(opensearchUrl, { timeout: 5000 });
-    
-    if (opensearchRes.ok) {
-      const opensearchData = await opensearchRes.json();
-      const titles = opensearchData[1] || [];
-      
-      // Try each suggested title
-      for (const title of titles.slice(0, 3)) {
-        try {
-          const summaryRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/\s+/g, '_'))}`, {
-            timeout: 5000
-          });
-          
-          if (summaryRes.ok) {
-            const doc = await summaryRes.json();
-            if (doc.originalimage?.source || doc.thumbnail?.source) {
-              return doc.originalimage?.source || doc.thumbnail?.source;
+    // 2. Search generator fallback
+    try {
+      const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(clean)}&gsrlimit=3&prop=pageimages&piprop=original|thumbnail&pithumbsize=800&format=json&origin=*`;
+      const searchRes = await fetch(searchUrl);
+      if (searchRes.ok) {
+        const searchData = await searchRes.json();
+        const searchPages = searchData.query?.pages;
+        if (searchPages) {
+          for (const pid in searchPages) {
+            const p = searchPages[pid];
+            if (p?.original?.source || p?.thumbnail?.source) {
+              return p.original?.source || p.thumbnail?.source;
             }
           }
-        } catch (e) {
-          // Continue to next title
-          continue;
         }
       }
+    } catch (e) {
+      // Fallback search failed
     }
+
   } catch (err) {
     console.warn(`[ImageFetch] Wikimedia error:`, err.message);
-    // Don't silently continue - return null to try next tier
   }
-  
   return null;
 }
 
