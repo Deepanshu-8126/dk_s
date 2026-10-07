@@ -27,8 +27,8 @@ export default function SmartImage({
   imgClassName = 'max-h-full max-w-full object-contain',
   aspectRatio = 'aspect-video'
 }) {
-  const [imgUrl, setImgUrl] = useState(src || null);
-  const [status, setStatus] = useState(src ? 'loaded' : 'loading');
+  const [imgUrl, setImgUrl] = useState(null);
+  const [status, setStatus] = useState('loading');
 
   const IconComponent = CATEGORY_ICONS[niche?.toLowerCase()] || ImageIcon;
 
@@ -53,11 +53,25 @@ export default function SmartImage({
           setImgUrl(url);
           setStatus('loaded');
         } else {
-          setStatus('empty');
+          // Fallback to hardcoded src if real image fetching fails
+          if (src) {
+            setImgUrl(src);
+            setStatus('loaded');
+          } else {
+            setStatus('empty');
+          }
         }
       })
       .catch(() => {
-        if (isMounted) setStatus('empty');
+        if (isMounted) {
+          // Fallback to hardcoded src on error
+          if (src) {
+            setImgUrl(src);
+            setStatus('loaded');
+          } else {
+            setStatus('error');
+          }
+        }
       });
 
     return () => {

@@ -1,0 +1,38 @@
+{
+  "niche_id": "agent_2_ai_coding",
+  "topics": {
+    "best ai tools 2026": {
+      "clicks": 40,
+      "ctr": 0.0471,
+      "position": 3
+    },
+    "ai video editing": {
+      "clicks": 110,
+      "ctr": 0.0489,
+      "position": 3
+    },
+    "wan 2.2 tutorial": {
+      "clicks": 43,
+      "ctr": 0.0473,
+      "position": 3
+    },
+    "ai automation workflow": {
+      "clicks": 95,
+      "ctr": 0.0487,
+      "position": 3
+    },
+    "copilot vs cursor": {
+      "clicks": 26,
+      "ctr": 0.0456,
+      "position": 3
+    }
+  },
+  "keyword_boosts": {
+    "best ai tools 2026": 18.271,
+    "ai video editing": 19.689,
+    "wan 2.2 tutorial": 18.333,
+    "ai automation workflow": 19.387,
+    "copilot vs cursor": 17.976
+  },
+  "updated": 1790718323.088127
+}

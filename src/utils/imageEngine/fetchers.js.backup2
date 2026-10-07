@@ -1,0 +1,135 @@
+﻿import { getCuratedMedia } from '../../data/curatedMedia';
+
+const CURATED_TOPIC_FALLBACKS = [
+  {
+    regex: /(gta|gaming|pc build|rig|rtx|gpu|steam|playstation|xbox)/i,
+    url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    regex: /(gold|bullion|silver|24k|22k|karat|sohna|sarrafa)/i,
+    url: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    regex: /(ai|chatgpt|gemini|deepseek|claude|copilot|llm|coding|prompt)/i,
+    url: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    regex: /(sarkari|ssc|cgl|upsc|exam|admit|result|cutoff|vacancy)/i,
+    url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    regex: /(fuel|petrol|diesel|mandi|wheat|crop|chana|gehu|mustard)/i,
+    url: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80',
+  },
+];
+
+export function getCuratedTopicImage(keyword, niche) {
+  // 1. Check exact curated high-res media registry first
+  const exactCurated = getCuratedMedia(keyword);
+  if (exactCurated) return exactCurated;
+
+  // 2. Generic high-res category match
+  const target = `${keyword || ''} ${niche || ''}`.trim();
+  for (const item of CURATED_TOPIC_FALLBACKS) {
+    if (item.regex.test(target)) {
+      return item.url;
+    }
+  }
+  return null;
+}
+
+export async function fetchFromEdgeProxy(keyword, niche, proxyUrl) {
+  try {
+    const endpoint = `${proxyUrl}?q=${encodeURIComponent(keyword)}&niche=${encodeURIComponent(niche)}`;
+    const res = await fetch(endpoint, { headers: { Accept: 'application/json' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.url || null;
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchFromRAWG(keyword, apiKey) {
+  try {
+    const url = `https://api.rawg.io/api/games?key=${encodeURIComponent(apiKey)}&search=${encodeURIComponent(keyword)}&page_size=1`;
+    const res = await fetch(url, { headers: { Accept: 'application/json' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.results?.[0]?.background_image || null;
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchFromWikimedia(keyword) {
+  try {
+    // 1. Direct title search
+    const clean = keyword.replace(/\s+in\s+.*$/i, '').replace(/[^\w\s-]/gi, ' ').trim();
+    const endpoint = https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=original|thumbnail&pithumbsize=800&titles=&redirects=1&origin=*;
+
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 3500);
+      const res = await fetch(endpoint, { signal: controller.signal });
+      clearTimeout(timeout);
+
+      if (res.ok) {
+        const data = await res.json();
+        const pages = data.query?.pages;
+        if (pages) {
+          for (const pid in pages) {
+            const p = pages[pid];
+            if (p?.original?.source || p?.thumbnail?.source) {
+              return p.original?.source || p.thumbnail?.source;
+            }
+          }
+        }
+      }
+      // If direct search didn't yield image, continue to fallback
+    } catch (directErr) {
+      // Direct search failed (timeout or other error), continue to fallback
+      console.warn('[fetchFromWikimedia] Direct search failed, trying fallback:', directErr.message);
+    }
+
+    // 2. Fallback to Wikipedia search generator
+    const searchUrl = https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=&gsrlimit=1&prop=pageimages&piprop=original|thumbnail&pithumbsize=800&format=json&origin=*;
+    try {
+      const searchRes = await fetch(searchUrl);
+      if (searchRes.ok) {
+        const searchData = await searchRes.json();
+        const searchPages = searchData.query?.pages;
+        if (searchPages) {
+          for (const pid in searchPages) {
+            const p = searchPages[pid];
+            if (p?.original?.source || p?.thumbnail?.source) {
+              return p.original?.source || p.thumbnail?.source;
+            }
+          }
+        }
+      }
+    } catch (searchErr) {
+      // Fallback also failed
+      console.warn('[fetchFromWikimedia] Fallback search failed:', searchErr.message);
+    }
+  } catch (err) {
+    console.warn('[fetchFromWikimedia] Unexpected error:', err.message);
+  }
+  return null;
+}
+
+export async function fetchFromOpenverse(keyword) {
+  try {
+    const clean = keyword.replace(/\s+in\s+.*$/i, '').replace(/[^\w\s-]/gi, ' ').trim();
+    const url = `https://api.openverse.org/v1/images/?q=${encodeURIComponent(clean)}&page_size=1&license_type=all`;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 4000);
+    const res = await fetch(url, { signal: controller.signal, headers: { Accept: 'application/json' } });
+    clearTimeout(timeout);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.results?.[0]?.url || data.results?.[0]?.thumbnail || null;
+  } catch {
+    return null;
+  }
+}

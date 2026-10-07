@@ -4,16 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node node_modules/vite/bin/vite.js",
+    "dev": "npx vite",
     "sitemap": "node scripts/seo/generate-sitemap.js",
     "ping": "node scripts/seo/ping-search-console.js",
-    "build": "node scripts/generate-rss.js && node scripts/seo/generate-sitemap.js && node node_modules/vite/bin/vite.js build && node scripts/seo/check-bundle-size.js && node scripts/seo/prerender.js",
+    "build": "node scripts/generate-rss.js && node scripts/seo/generate-sitemap.js && npx vite build && node scripts/seo/check-bundle-size.js && node scripts/seo/prerender.js",
     "predeploy": "npm run build",
     "deploy": "wrangler deploy",
-    "lint": "node node_modules/oxlint/bin/oxlint src",
+    "lint": "npx oxlint src",
     "test": "node scripts/test-api-pipeline.js",
     "server": "node server/index.js",
-    "preview": "node node_modules/vite/bin/vite.js preview"
+    "preview": "npx vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

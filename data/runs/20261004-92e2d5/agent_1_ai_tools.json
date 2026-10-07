@@ -1,0 +1,181 @@
+{
+  "niche_id": "agent_1_ai_tools",
+  "run_id": "20261004-92e2d5",
+  "topic": {
+    "title": "Fresh Ai Tools Guide & Trends #8230",
+    "source": "fallback",
+    "score": 65.0,
+    "momentum": 0.0,
+    "keywords": [
+      "AI tools",
+      "AI tools 2026"
+    ],
+    "evidence": [],
+    "raw": {}
+  },
+  "brief": {
+    "topic": {
+      "title": "Fresh Ai Tools Guide & Trends #8230",
+      "source": "fallback",
+      "score": 65.0,
+      "momentum": 0.0,
+      "keywords": [
+        "AI tools",
+        "AI tools 2026"
+      ],
+      "evidence": [],
+      "raw": {}
+    },
+    "angle": "Comprehensive analysis of cutting-edge AI tools and performance trends for 2026 buyers",
+    "primary_keyword": "AI tools 2026",
+    "secondary_keywords": [
+      "AI tools",
+      "performance comparison",
+      "feature reviews",
+      "buyer intent",
+      "modern software trends"
+    ],
+    "keyword_difficulty": 26,
+    "search_volume": 2720,
+    "outline": [
+      "Introduction to the 2026 AI Landscape",
+      "Methodology for Modern AI Tool Evaluation",
+      "Performance Comparison of Leading Platforms",
+      "Deep-Dive Feature Reviews",
+      "Understanding Buyer Intent in AI Adoption",
+      "Emerging Trends and Future Projections",
+      "Final Recommendations for Buyers"
+    ],
+    "key_facts": [
+      "Comprehensive analysis covers modern AI tools available in the current ecosystem",
+      "Performance comparison evaluates speed, accuracy, and scalability metrics",
+      "Feature reviews break down core capabilities and unique selling propositions",
+      "Buyer intent analysis aligns software features with specific enterprise needs"
+    ],
+    "sources": [
+      {
+        "url": "https://duckduckgo.com/html/?q=what+is+AI+tools",
+        "title": "Dry run mock source",
+        "text": "Comprehensive analysis of modern tools, performance comparison, buyer intent and feature reviews.",
+        "word_count": 12
+      },
+      {
+        "url": "https://duckduckgo.com/html/?q=best+AI+tools",
+        "title": "Dry run mock source",
+        "text": "Comprehensive analysis of modern tools, performance comparison, buyer intent and feature reviews.",
+        "word_count": 12
+      },
+      {
+        "url": "https://duckduckgo.com/html/?q=AI+tools+vs+alternatives",
+        "title": "Dry run mock source",
+        "text": "Comprehensive analysis of modern tools, performance comparison, buyer intent and feature reviews.",
+        "word_count": 12
+      },
+      {
+        "url": "https://duckduckgo.com/html/?q=how+to+use+AI+tools",
+        "title": "Dry run mock source",
+        "text": "Comprehensive analysis of modern tools, performance comparison, buyer intent and feature reviews.",
+        "word_count": 12
+      },
+      {
+        "url": "https://duckduckgo.com/html/?q=AI+tools+review+pros+and+cons",
+        "title": "Dry run mock source",
+        "text": "Comprehensive analysis of modern tools, performance comparison, buyer intent and feature reviews.",
+        "word_count": 12
+      }
+    ],
+    "content_type": "comparison"
+  },
+  "title": "Fresh Ai Tools Guide & Trends #8230",
+  "body_markdown": "",
+  "excerpt": "",
+  "tags": [
+    "AI tools",
+    "performance comparison",
+    "feature reviews",
+    "buyer intent",
+    "modern software trends"
+  ],
+  "author_name": "James Carter",
+  "author_bio": "James Carter is an AI analyst with 5+ years testing and benchmarking AI tools. He focuses on hands-on comparisons, pricing breakdowns and real-world workflows.",
+  "seo": {
+    "score": 0.0,
+    "title_tag": "",
+    "meta_description": "",
+    "slug": "",
+    "focus_keyword": "",
+    "keyword_density": 0.0,
+    "readability": 0.0,
+    "internal_links": [],
+    "schema_jsonld": {},
+    "issues": []
+  },
+  "qc": {
+    "score": 0.0,
+    "passed": false,
+    "checklist": {},
+    "notes": []
+  },
+  "images": [],
+  "approval": "pending",
+  "stage": "research",
+  "published": [],
+  "created_at": 1791098230.2554898,
+  "meta": {
+    "domain": "ai-tools-review.com",
+    "brain": "gemini_flash",
+    "tone": "Pro Reviewer, data-driven, comparison-led, verdict-first",
+    "market": {
+      "tier": "informational",
+      "commercial_score": 8,
+      "money_score": 35.9,
+      "rpm_estimate": 6.0,
+      "content_type": "comparison",
+      "platforms": [
+        {
+          "platform_id": "clickbank",
+          "name": "ClickBank / Digistore24",
+          "geo": "GLOBAL",
+          "commission_low": 30,
+          "commission_high": 75,
+          "cookie_days": 60,
+          "reason": "matches 1 category tag(s), 30-75% comm, 60d cookie"
+        },
+        {
+          "platform_id": "partnerstack",
+          "name": "PartnerStack",
+          "geo": "GLOBAL",
+          "commission_low": 20,
+          "commission_high": 50,
+          "cookie_days": 90,
+          "reason": "matches 1 category tag(s), 20-50% comm, 90d cookie"
+        },
+        {
+          "platform_id": "impact",
+          "name": "Impact.com",
+          "geo": "GLOBAL",
+          "commission_low": 10,
+          "commission_high": 50,
+          "cookie_days": 30,
+          "reason": "matches 2 category tag(s), 10-50% comm, 30d cookie"
+        }
+      ],
+      "buyer_keywords": [
+        "guide"
+      ],
+      "trending_products": [
+        "ChatGPT Plus",
+        "Claude Pro",
+        "Perplexity Pro",
+        "Jasper",
+        "Notion AI"
+      ],
+      "ctas": [
+        "Add a clear 'Check price / Try free' CTA linking via ClickBank / Digistore24 near the first recommendation.",
+        "Reference currently-trending picks: ChatGPT Plus, Claude Pro, Perplexity Pro.",
+        "End with a single strong CTA; avoid stuffing links (keeps ad viewability high)."
+      ],
+      "directive": "--- MONETIZATION STRATEGY (write to earn, stay genuinely helpful) ---\nAudience geo: US (optimise for US readers/RPM).\nCommercial tier: INFORMATIONAL (buyer-intent score 8/100).\nFormat: write this as a comparison.\nPrimary affiliate route: ClickBank / Digistore24. Recommend real products/tools and link the top pick early.\nCurrently trending in this market (weave in where accurate): ChatGPT Plus, Claude Pro, Perplexity Pro, Jasper, Notion AI.\nBuyer-intent phrases to cover naturally: guide.\nUse at most 4 CTAs. Disclose affiliate links. Never fabricate prices or specs."
+    }
+  }
+}

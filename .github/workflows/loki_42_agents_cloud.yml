@@ -1,0 +1,68 @@
+name: ⚡ Loki 42-Agent Autonomous Cloud Factory
+
+on:
+  push:
+    paths:
+      - 'PRD.md'
+      - 'DESIGN.md'
+      - 'docs/**'
+  workflow_dispatch:
+    inputs:
+      mission_prompt:
+        description: 'Mission Prompt for 42-Agent Swarm'
+        required: false
+        default: 'Audit, fix, and build complete Affiliate Blogging Portal'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  autonomous-swarm:
+    name: 🚀 42-Agent Autonomous Swarm Execution
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: 📥 Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⚙️ Set up Node.js LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Project Dependencies
+        run: npm ci || npm install
+
+      - name: ⚡ Execute Loki 42-Agent Swarm Harness
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 factory/loki_swarm_harness.py "${{ github.event.inputs.mission_prompt || 'Autonomous PRD execution and verified build' }}"
+
+      - name: 🧪 Verify Production Build & Static Prerender
+        run: npm run build
+
+      - name: 🚀 Auto-Commit & Push Swarm Deliverables
+        if: success()
+        run: |
+          git config --global user.name "Loki-42-Agent-Bot"
+          git config --global user.email "bot@loki-swarm.ai"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit. Swarm verified everything is up to date."
+          else
+            git commit -m "feat(swarm): 42-agent autonomous release [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+          fi

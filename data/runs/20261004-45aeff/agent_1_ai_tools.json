@@ -1,0 +1,51 @@
+{
+  "niche_id": "agent_1_ai_tools",
+  "run_id": "20261004-45aeff",
+  "topic": {
+    "title": "Fresh Ai Tools Guide & Trends #8050",
+    "source": "fallback",
+    "score": 65.0,
+    "momentum": 0.0,
+    "keywords": [
+      "AI tools",
+      "AI tools 2026"
+    ],
+    "evidence": [],
+    "raw": {}
+  },
+  "brief": null,
+  "title": "Fresh Ai Tools Guide & Trends #8050",
+  "body_markdown": "",
+  "excerpt": "",
+  "tags": [],
+  "author_name": "James Carter",
+  "author_bio": "James Carter is an AI analyst with 5+ years testing and benchmarking AI tools. He focuses on hands-on comparisons, pricing breakdowns and real-world workflows.",
+  "seo": {
+    "score": 0.0,
+    "title_tag": "",
+    "meta_description": "",
+    "slug": "",
+    "focus_keyword": "",
+    "keyword_density": 0.0,
+    "readability": 0.0,
+    "internal_links": [],
+    "schema_jsonld": {},
+    "issues": []
+  },
+  "qc": {
+    "score": 0.0,
+    "passed": false,
+    "checklist": {},
+    "notes": []
+  },
+  "images": [],
+  "approval": "pending",
+  "stage": "trend_detect",
+  "published": [],
+  "created_at": 1791098050.8818548,
+  "meta": {
+    "domain": "ai-tools-review.com",
+    "brain": "gemini_flash",
+    "tone": "Pro Reviewer, data-driven, comparison-led, verdict-first"
+  }
+}

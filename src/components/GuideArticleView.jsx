@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, Clock, ShieldCheck, ExternalLink, Image as ImageIcon, BookOpen } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, ShieldCheck, ExternalLink, Image as ImageIcon, BookOpen, PlayCircle, Film, Pause } from 'lucide-react';
 import SmartImage from './common/SmartImage';
 import ReadingProgressBar from './common/ReadingProgressBar';
 import AudioArticlePlayer from './ai/AudioArticlePlayer';
@@ -6,6 +6,7 @@ import ArticleKeyTakeaways from './ai/ArticleKeyTakeaways';
 import GiscusComments from './community/GiscusComments';
 import { ArticleRenderer, RelatedArticles } from './articles';
 import SEO from './SEO';
+import { useState } from 'react';
 
 export default function GuideArticleView({ article, onBack }) {
   const slug = article?.slug;
@@ -43,11 +44,62 @@ export default function GuideArticleView({ article, onBack }) {
     dateModified: article.updatedAt || article.publishedAt,
   };
 
-  const keyTakeaways = article.keyTakeaways || [
-    article.metaDescription || 'Complete ground-reality benchmark data and verified price matrix for Indian consumers.',
-    'Zero sponsored bias — independent performance validation and authentic component compatibility.',
-    'Verified Indian MRP & live Amazon/Flipkart affiliate discount tracking.'
-  ];
+   const keyTakeaways = article.keyTakeaways || [
+     article.metaDescription || 'Complete ground-reality benchmark data and verified price matrix for Indian consumers.',
+     'Zero sponsored bias — independent performance validation and authentic component compatibility.',
+     'Verified Indian MRP & live Amazon/Flipkart affiliate discount tracking.'
+   ];
+
+  // Video playback state
+  const [videoUrl, setVideoUrl] = useState(null);
+  const [isVideoLoading, setIsVideoLoading] = useState(false);
+  const [videoError, setVideoError] = useState(null);
+
+  // Function to generate video from article
+  const generateVideoFromArticle = async () => {
+    setIsVideoLoading(true);
+    setVideoError(null);
+    try {
+      // Import the video generation service dynamically to avoid SSR issues
+      const { generateVideoFromContent } = await import('../services/videoGenerationService');
+      
+      // Prepare content from article
+      const content = {
+        title: article.title,
+        metaDescription: article.metaDescription || '',
+        keyword: article.keyword || '',
+        niche: article.keyword ? 
+          (article.keyword.toLowerCase().includes('gta') || article.keyword.toLowerCase().includes('gaming') || 
+           article.keyword.toLowerCase().includes('pc build') || article.keyword.toLowerCase().includes('specs')) ? 'gaming' :
+          (article.keyword.toLowerCase().includes('gold') || article.keyword.toLowerCase().includes('bullion') || 
+           article.keyword.toLowerCase().includes('rate') || article.keyword.toLowerCase().includes('price')) ? 'gold' :
+          (article.keyword.toLowerCase().includes('chatgpt') || article.keyword.toLowerCase().includes('gemini') || 
+           article.keyword.toLowerCase().includes('ai') || article.keyword.toLowerCase().includes('tool')) ? 'ai' :
+          (article.keyword.toLowerCase().includes('cgl') || article.keyword.toLowerCase().includes('ssc') || 
+           article.keyword.toLowerCase().includes('sarkari') || article.keyword.toLowerCase().includes('exam')) ? 'sarkari' :
+          'general' : 'general',
+        wordCount: article.wordCount || 800,
+        author: article.author || { name: 'Editorial Team' },
+        publishedAt: article.publishedAt || new Date().toISOString(),
+        sources: article.sources || []
+      };
+
+      const videoResult = await generateVideoFromContent(content, {
+        duration: Math.min(120, Math.max(30, article.wordCount / 20)), // 30s-2min based on word count
+        width: 1080,
+        height: 1920
+      });
+      
+      setVideoUrl(videoResult.videoUrl);
+    } catch (err) {
+      console.error('[GuideArticleView] Video generation error:', err);
+      setVideoError({
+        message: err.message || 'Failed to generate video from article'
+      });
+    } finally {
+      setIsVideoLoading(false);
+    }
+  };
 
   return (
     <article className="max-w-4xl mx-auto py-6">
@@ -117,12 +169,64 @@ export default function GuideArticleView({ article, onBack }) {
         </div>
       </header>
 
-      {/* Free Web Speech Audio Article Player */}
-      <AudioArticlePlayer
-        title={article.title}
-        contentText={article.content}
-        estimatedMinutes={readingTimeMin}
-      />
+       {/* Free Web Speech Audio Article Player */}
+       <AudioArticlePlayer
+         title={article.title}
+         contentText={article.content}
+         estimatedMinutes={readingTimeMin}
+       />
+
+       {/* Video Player */}
+       {article.sources && article.sources.length > 0 && (
+         <div className="mb-6">
+           <div className="flex items-center justify-between mb-3">
+             <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2">
+               <Film size={15} className="text-indigo-600" />
+               <span>Video Summary</span>
+             </h3>
+             <button
+               onClick={generateVideoFromArticle}
+               disabled={isVideoLoading}
+               className="px-3 py-1.5 rounded-xl border border-indigo-200 text-xs font-semibold text-indigo-600 hover:bg-indigo-50 transition-colors"
+             >
+               {isVideoLoading ? (
+                 <div className="flex items-center gap-2">
+                   <RefreshCw size={14} className="animate-spin" />
+                   <span>Generating Video...</span>
+                 </div>
+               ) : (
+                 <span>Generate Video Summary</span>
+               )}
+             </button>
+           </div>
+           
+           {videoError && (
+             <div className="mb-3 p-3 bg-red-50 text-red-600 rounded border border-red-200">
+               Video Generation Failed: {videoError.message}
+             </div>
+           )}
+           
+           {!isVideoLoading && videoUrl && (
+             <div className="relative h-48 w-full rounded-lg bg-slate-100 overflow-hidden">
+               <video
+                 src={videoUrl}
+                 controls
+                 className="w-full h-full object-contain"
+               />
+               <div className="absolute bottom-2 right-2 text-xs text-slate-500 bg-white/70 px-2 py-0.5 rounded">
+                 AI-Generated Summary
+               </div>
+             </div>
+           )}
+           
+           {!isVideoLoading && !videoUrl && (
+             <div className="flex h-48 items-center justify-center bg-slate-200">
+               <Film size={24} className="text-slate-500" />
+               <p className="mt-2 text-slate-400 text-sm">Click to generate a video summary of this article</p>
+             </div>
+           )}
+         </div>
+       )}
 
       {/* Hero Image & Attribution */}
       <div className="mb-8">

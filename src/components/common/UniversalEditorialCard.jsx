@@ -1,4 +1,4 @@
-import { Clock, ShieldCheck, ArrowRight, User } from 'lucide-react';
+import { Clock, ShieldCheck, ArrowRight, User, Film } from 'lucide-react';
 import SmartImage from './SmartImage';
 
 /**
@@ -35,9 +35,15 @@ export default function UniversalEditorialCard({
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-            <span className="absolute top-4 left-4 rounded-full bg-white/90 text-indigo-900 px-3 py-1 text-xs font-bold uppercase tracking-wider border border-white shadow-xs backdrop-blur-md">
-              {article.keyword || 'Featured Lead'}
-            </span>
+             <span className="absolute top-4 left-4 rounded-full bg-white/90 text-indigo-900 px-3 py-1 text-xs font-bold uppercase tracking-wider border border-white shadow-xs backdrop-blur-md">
+               {article.keyword || 'Featured Lead'}
+             </span>
+             {/* Video badge */}
+             {article.hasVideo || (article.videoUrl && article.videoUrl !== null) && (
+               <span className="absolute top-4 right-4 rounded-full bg-indigo-900 text-indigo-100 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider border border-indigo-200">
+                 <Film size={10} className="mr-0.5" /> Video
+               </span>
+             )}
           </div>
 
           {/* Hero Content (5 Columns on Desktop) */}
@@ -90,15 +96,21 @@ export default function UniversalEditorialCard({
         onClick={() => onClick && onClick(article)}
         className="group relative flex flex-col sm:flex-row gap-5 rounded-3xl bg-white border border-slate-200 p-5 hover:border-indigo-400 transition-all duration-300 shadow-xs hover:shadow-md cursor-pointer my-2"
       >
-        {/* Asymmetric Thumbnail (Fixed Aspect on Mobile / Tablet) */}
-        <div className="sm:w-56 shrink-0 aspect-video rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
-          <SmartImage
-            src={imgSrc}
-            keyword={article.keyword}
-            alt={article.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        </div>
+         {/* Asymmetric Thumbnail (Fixed Aspect on Mobile / Tablet) */}
+         <div className="sm:w-56 shrink-0 aspect-video rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
+           <SmartImage
+             src={imgSrc}
+             keyword={article.keyword}
+             alt={article.title}
+             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+           />
+           {/* Video badge */}
+           {article.hasVideo || (article.videoUrl && article.videoUrl !== null) && (
+             <span className="absolute top-2 right-2 rounded-full bg-indigo-900 text-indigo-100 px-2 py-0.5 text-xs font-bold uppercase tracking-wider border border-indigo-200">
+               <Film size={8} className="mr-0.5" /> Video
+             </span>
+           )}
+         </div>
 
         {/* Story Body */}
         <div className="flex-1 flex flex-col justify-between">
@@ -139,15 +151,21 @@ export default function UniversalEditorialCard({
     >
       <div>
         <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-3.5 bg-slate-100 border border-slate-200">
-          <SmartImage
-            src={imgSrc}
-            keyword={article.keyword}
-            alt={article.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          <span className="absolute top-2.5 left-2.5 rounded-full bg-white/90 text-slate-800 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-slate-200 shadow-2xs backdrop-blur-md">
-            {article.keyword || 'Guide'}
-          </span>
+           <SmartImage
+             src={imgSrc}
+             keyword={article.keyword}
+             alt={article.title}
+             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+           />
+           <span className="absolute top-2.5 left-2.5 rounded-full bg-white/90 text-slate-800 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-slate-200 shadow-2xs backdrop-blur-md">
+             {article.keyword || 'Guide'}
+           </span>
+           {/* Video badge */}
+           {article.hasVideo || (article.videoUrl && article.videoUrl !== null) && (
+             <span className="absolute top-2 right-2 rounded-full bg-indigo-900 text-indigo-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-indigo-200">
+               <Film size={8} className="mr-0.5" /> Video
+             </span>
+           )}
         </div>
 
         <h3 className="text-sm font-bold text-slate-900 group-hover:text-indigo-600 transition-colors font-outfit line-clamp-2 leading-snug mb-1.5">

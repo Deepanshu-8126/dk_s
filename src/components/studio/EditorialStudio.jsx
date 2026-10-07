@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { PenTool, Sparkles, BookOpen, Check, AlertCircle, RefreshCw, Image as ImageIcon } from 'lucide-react';
+import { PenTool, Sparkles, BookOpen, Check, AlertCircle, RefreshCw, Image as ImageIcon, PlayCircle, Film } from 'lucide-react';
 import { BlogApiClient } from '../../services/geminiRotator';
+import { generateVideoFromContent } from '../../services/videoGenerationService';
 import WikimediaPicker from './WikimediaPicker';
 
 export default function EditorialStudio({ onArticlePublished, onClose }) {
@@ -9,8 +10,11 @@ export default function EditorialStudio({ onArticlePublished, onClose }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loadingSources, setLoadingSources] = useState(false);
   const [generating, setGenerating] = useState(false);
+  const [generatingVideo, setGeneratingVideo] = useState(false);
   const [publishing, setPublishing] = useState(false);
   const [draft, setDraft] = useState(null);
+  const [videoUrl, setVideoUrl] = useState(null);
+  const [videoError, setVideoError] = useState(null);
   const [errorInfo, setErrorInfo] = useState(null);
 
   const handleFetchSources = async () => {
@@ -33,45 +37,81 @@ export default function EditorialStudio({ onArticlePublished, onClose }) {
     }
   };
 
-  const handleGenerateDraft = async () => {
-    if (!topic.trim()) return;
-    setGenerating(true);
-    setErrorInfo(null);
-    try {
-      const res = await BlogApiClient.generateDraft({
-        topic,
-        sources,
-        image: selectedImage
-      });
-      setDraft(res.draft);
-    } catch (err) {
-      setErrorInfo({
-        type: err.code || 'ERROR',
-        message: err.message,
-        setupHelp: err.setupHelp
-      });
-    } finally {
-      setGenerating(false);
-    }
-  };
+   const handleGenerateDraft = async () => {
+     if (!topic.trim()) return;
+     setGenerating(true);
+     setErrorInfo(null);
+     try {
+       const res = await BlogApiClient.generateDraft({
+         topic,
+         sources,
+         image: selectedImage
+       });
+       setDraft(res.draft);
+     } catch (err) {
+       setErrorInfo({
+         type: err.code || 'ERROR',
+         message: err.message,
+         setupHelp: err.setupHelp
+       });
+     } finally {
+       setGenerating(false);
+     }
+   };
 
-  const handlePublish = async () => {
-    if (!draft?.id) return;
-    setPublishing(true);
-    try {
-      await BlogApiClient.publishDraft(draft.id);
-      if (onArticlePublished) onArticlePublished();
-      setDraft(null);
-      setTopic('');
-      setSources([]);
-      setSelectedImage(null);
-      if (onClose) onClose();
-    } catch (err) {
-      setErrorInfo({ type: 'ERROR', message: err.message });
-    } finally {
-      setPublishing(false);
-    }
-  };
+   const handleGenerateVideo = async () => {
+     if (!topic.trim()) return;
+     setGeneratingVideo(true);
+     setVideoError(null);
+     try {
+       // Create a content object from the current state
+       const content = {
+         title: topic || 'Untitled Topic',
+         metaDescription: sources.length > 0 ? sources[0].excerpt || '' : 'Exploring the latest developments in this topic.',
+         keyword: topic,
+         niche: 'general', // Could be enhanced to detect niche from topic
+         wordCount: 800, // Default estimate
+         author: { name: 'Editorial Team' },
+         publishedAt: new Date().toISOString(),
+         sources: sources
+       };
+
+       const videoResult = await generateVideoFromContent(content, {
+         duration: 45, // 45 seconds default
+         width: 1080,
+         height: 1920 // Vertical format for stories/reels
+       });
+       
+       setVideoUrl(videoResult.videoUrl);
+     } catch (err) {
+       console.error('[EditorialStudio] Video generation error:', err);
+       setVideoError({
+         message: err.message || 'Failed to generate video'
+       });
+     } finally {
+       setGeneratingVideo(false);
+     }
+   };
+
+   const handlePublish = async () => {
+     if (!draft?.id) return;
+     setPublishing(true);
+     try {
+       await BlogApiClient.publishDraft(draft.id);
+       if (onArticlePublished) onArticlePublished();
+       setDraft(null);
+       setTopic('');
+       setSources([]);
+       setSelectedImage(null);
+       setVideoUrl(null);
+       setVideoError(null);
+       if (onClose) onClose();
+     } catch (err) {
+       setErrorInfo({ type: 'ERROR', message: err.message });
+     } finally {
+       setPublishing(false);
+     }
+   };
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 mb-8">
@@ -162,44 +202,103 @@ export default function EditorialStudio({ onArticlePublished, onClose }) {
         />
       </div>
 
-      {/* Step 3: Server Gemini Generation */}
-      <div className="pt-4 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
-        <button
-          onClick={handleGenerateDraft}
-          disabled={generating || !topic.trim()}
-          className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center gap-2 transition-all disabled:opacity-50 shadow-sm"
-        >
-          {generating ? <RefreshCw size={14} className="animate-spin" /> : <Sparkles size={14} />}
-          <span>{generating ? 'Drafting from Sources...' : 'Generate Fact-Grounded Draft'}</span>
-        </button>
+       {/* Step 3: Server Gemini Generation */}
+       <div className="pt-4 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
+         <div className="flex-1 flex flex-col sm:flex-row gap-3 w-full">
+           <button
+             onClick={handleGenerateDraft}
+             disabled={generating || !topic.trim()}
+             className="flex-1 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center gap-2 transition-all disabled:opacity-50 shadow-sm"
+           >
+             {generating ? <RefreshCw size={14} className="animate-spin" /> : <Sparkles size={14} />}
+             <span>{generating ? 'Drafting from Sources...' : 'Generate Fact-Grounded Draft'}</span>
+           </button>
+           
+           <button
+             onClick={handleGenerateVideo}
+             disabled={generatingVideo || !topic.trim()}
+             className="flex-1 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center gap-2 transition-all disabled:opacity-50 shadow-sm"
+           >
+             {generatingVideo ? <RefreshCw size={14} className="animate-spin" /> : <Film size={14} />}
+             <span>{generatingVideo ? 'Rendering Video...' : 'Generate Video Summary'}</span>
+           </button>
+         </div>
 
-        {draft && (
-          <button
-            onClick={handlePublish}
-            disabled={publishing}
-            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-sm"
-          >
-            <Check size={14} />
-            <span>{publishing ? 'Publishing...' : 'Publish to Live Guides'}</span>
-          </button>
-        )}
-      </div>
+         {draft && (
+           <button
+             onClick={handlePublish}
+             disabled={publishing}
+             className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-sm"
+           >
+             <Check size={14} />
+             <span>{publishing ? 'Publishing...' : 'Publish to Live Guides'}</span>
+           </button>
+         )}
+       </div>
 
-      {/* Draft Inspection Card */}
-      {draft && (
-        <div className="mt-6 p-4 rounded-xl border border-purple-200 bg-purple-50/40 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-purple-200 text-purple-800">
-              Draft Ready for Review ({draft.wordCount} words)
-            </span>
-          </div>
-          <h4 className="font-bold text-base text-slate-900">{draft.title}</h4>
-          <p className="text-xs text-slate-600 leading-relaxed italic">{draft.metaDescription}</p>
-          <div className="max-h-48 overflow-y-auto bg-white p-3 rounded-lg border border-purple-100 text-xs text-slate-700 whitespace-pre-wrap">
-            {draft.content}
-          </div>
-        </div>
-      )}
+       {/* Draft Inspection Card */}
+       {draft && (
+         <div className="mt-6 p-4 rounded-xl border border-purple-200 bg-purple-50/40 space-y-3">
+           <div className="flex items-center justify-between">
+             <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-purple-200 text-purple-800">
+               Draft Ready for Review ({draft.wordCount} words)
+             </span>
+           </div>
+           <h4 className="font-bold text-base text-slate-900">{draft.title}</h4>
+           <p className="text-xs text-slate-600 leading-relaxed italic">{draft.metaDescription}</p>
+           <div className="max-h-48 overflow-y-auto bg-white p-3 rounded-lg border border-purple-100 text-xs text-slate-700 whitespace-pre-wrap">
+             {draft.content}
+           </div>
+         </div>
+       )}
+
+       {/* Video Preview */}
+       {videoUrl && (
+         <div className="mt-6 p-4 rounded-xl border border-indigo-200 bg-indigo-50/40 space-y-3">
+           <div className="flex items-center justify-between">
+             <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-indigo-200 text-indigo-800">
+               Video Ready ({videoUrl.split('/').pop().split('.')[0]}...)
+             </span>
+             {!generatingVideo && (
+               <button
+                 onClick={() => {
+                   // In a real implementation, this would open a video player modal
+                   // For now, we'll just show an alert
+                   alert('Video URL: ' + videoUrl);
+                 }}
+                 className="text-xs font-indigo-600 hover:text-indigo-800 underline"
+               >
+                 Preview Video
+               </button>
+             )}
+           </div>
+           <div className="mt-2">
+             <div className="relative h-48 w-full rounded-lg bg-slate-100 overflow-hidden">
+               {!generatingVideo && videoUrl ? (
+                 <video
+                   src={videoUrl}
+                   autoPlay={false}
+                   controls
+                   className="w-full h-full object-contain"
+                 />
+               ) : (
+                 <div className="flex h-full items-center justify-center bg-slate-200">
+                   {generatingVideo ? (
+                     <div className="animate-spin h-8 w-8 border-2 border-indigo-300 border-t-indigo-400 rounded-full" />
+                   ) : (
+                     <Film size={24} className="text-indigo-500" />
+                   )}
+                 </div>
+               )}
+             </div>
+             {videoError && (
+               <div className="mt-2 p-2 bg-red-50 text-red-600 text-xs rounded border border-red-200">
+                 Video Generation Failed: {videoError.message}
+               </div>
+             )}
+           </div>
+         </div>
+       )}
     </div>
   );
 }

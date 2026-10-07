@@ -1,0 +1,18 @@
+# OpenMontage brief — auto-generated for SEO repurpose
+# upstream: https://github.com/calesthio/OpenMontage  (free stack: Piper TTS + FFmpeg + Remotion)
+pipeline: animated_explainer
+budget_usd: 0            # free providers only
+tts: piper               # offline, no API key
+topic: 'Fresh Ai Coding Guide & Trends #8104'
+primary_keyword: 'fresh ai coding guide & trends #8104'
+target_platform: youtube
+cta_url: 'https://ai-code-tutorial.com/fresh-ai-coding-guide-trends-8104'
+narrator: 'Alex Chen'
+scenes:
+    - beat: 'What is Fresh Ai Coding Guide & Trends #8104?'
+    - beat: 'Why Fresh Ai Coding Guide & Trends #8104 matters right now'
+    - beat: 'Key features and how it works'
+    - beat: 'Step-by-step walkthrough'
+    - beat: 'Pros, cons and pricing'
+    - beat: 'Alternatives and comparison'
+    - beat: 'Verdict and recommendations'

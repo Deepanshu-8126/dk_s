@@ -1,0 +1,323 @@
+{
+  "lastUpdated": "2026-10-04T22:45:00+05:30",
+  "displayUpdated": "4 October 2026, 10:45 PM IST",
+  "amazonTagConfigured": true,
+  "count": 7,
+  "products": [
+    {
+      "id": "apple-iphone-16-pro",
+      "title": "Apple iPhone 16 Pro (128 GB) - Desert Titanium",
+      "category": "Smartphones",
+      "verdictBadge": "Top Pick: Flagship Camera & Performance",
+      "specScore": 96,
+      "verdict": "The undisputed flagship for pro creators who demand 4K 120fps Dolby Vision, dedicated Camera Control, and console-grade gaming.",
+      "pros": [
+        "Unmatched 4K 120fps video & 5x optical zoom",
+        "A18 Pro delivers effortless all-day battery & console ray-tracing"
+      ],
+      "cons": [
+        "Base model starts at 128GB storage which fills fast with ProRes video"
+      ],
+      "keywords": [
+        "iphone",
+        "iphone 16",
+        "apple",
+        "phone",
+        "mobile",
+        "ios"
+      ],
+      "price": 119900,
+      "originalPrice": 129900,
+      "discount": "8% OFF",
+      "rating": 4.7,
+      "reviewsCount": "8,420+",
+      "imageUrl": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=85",
+      "asin": "B0DHBY87P1",
+      "specs": {
+        "Display": "6.3-inch Super Retina XDR OLED (120Hz ProMotion)",
+        "Processor": "A18 Pro Bionic (3nm Next-Gen Neural Engine)",
+        "Camera": "48MP Fusion + 48MP Ultra Wide + 5x Telephoto",
+        "Battery": "Up to 27 hours video playback",
+        "Fast Charging": "MagSafe 25W Qi2 wireless"
+      },
+      "badge": "FLAGSHIP PICK",
+      "highlights": [
+        "Grade 5 Titanium design with Camera Control button",
+        "Hardware-accelerated ray tracing for console-grade gaming",
+        "Apple Intelligence built-in for Siri & writing tools"
+      ],
+      "matchScore": 0,
+      "affiliateUrl": "https://www.amazon.in/s?k=Apple+iPhone+16+Pro+128+GB+Desert+Titanium&tag=uniquedigi0c6-21"
+    },
+    {
+      "id": "samsung-galaxy-s24-ultra",
+      "title": "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB RAM, 256GB)",
+      "category": "Smartphones",
+      "verdictBadge": "Top Pick: Ultimate Android & Zoom",
+      "specScore": 95,
+      "verdict": "The most versatile smartphone in the world with a glare-free flat display, built-in S-Pen, and class-leading 100x zoom.",
+      "pros": [
+        "Gorilla Armor flat glass dramatically eliminates outdoor screen reflections",
+        "Galaxy AI Circle to Search and live translation work seamlessly"
+      ],
+      "cons": [
+        "Large 6.8-inch sharp-cornered chassis can feel bulky in one hand"
+      ],
+      "keywords": [
+        "samsung",
+        "s24 ultra",
+        "galaxy",
+        "android",
+        "phone",
+        "mobile"
+      ],
+      "price": 121999,
+      "originalPrice": 134999,
+      "discount": "10% OFF",
+      "rating": 4.6,
+      "reviewsCount": "11,890+",
+      "imageUrl": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=800&q=85",
+      "asin": "B0CQ2BBH97",
+      "specs": {
+        "Display": "6.8-inch Dynamic AMOLED 2X, 2600 nits, Flat Gorilla Armor",
+        "Processor": "Snapdragon 8 Gen 3 for Galaxy (4nm)",
+        "Camera": "200MP Main + 50MP Periscope (5x) + 12MP Ultra-wide",
+        "Battery": "5000 mAh with 45W wired charging",
+        "Stylus": "Embedded Bluetooth S-Pen"
+      },
+      "badge": "BEST ZOOM CAMERA",
+      "highlights": [
+        "Galaxy AI with Circle to Search and Live Call Translation",
+        "Titanium frame with anti-reflective Gorilla Armor glass",
+        "7 years of Android OS and security upgrades"
+      ],
+      "matchScore": 0,
+      "affiliateUrl": "https://www.amazon.in/s?k=Samsung+Galaxy+S24+Ultra+5G+Titanium+Gray%2C+12GB+RAM%2C+256GB&tag=uniquedigi0c6-21"
+    },
+    {
+      "id": "oneplus-12-5g",
+      "title": "OnePlus 12 5G (Silky Black, 16GB RAM, 512GB Storage)",
+      "category": "Smartphones",
+      "verdictBadge": "Best Value Flagship Under \u20b970k",
+      "specScore": 92,
+      "verdict": "Flagship Snapdragon 8 Gen 3 performance and Hasselblad periscope cameras at half the price of Apple and Samsung ultras.",
+      "pros": [
+        "Blazing 100W charging fills battery from 0 to 100% in 26 minutes",
+        "Outstanding 4500-nit ProXDR display with Aqua Touch wet-finger support"
+      ],
+      "cons": [
+        "Curved screen edges may cause occasional palm touch sensitivity"
+      ],
+      "keywords": [
+        "oneplus",
+        "oneplus 12",
+        "phone",
+        "5g",
+        "android"
+      ],
+      "price": 64999,
+      "originalPrice": 69999,
+      "discount": "7% OFF",
+      "rating": 4.5,
+      "reviewsCount": "9,340+",
+      "imageUrl": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=85",
+      "asin": "B0CQPNWJ32",
+      "specs": {
+        "Display": "6.82-inch 2K 120Hz ProXDR with 4500 nits peak brightness",
+        "Processor": "Snapdragon 8 Gen 3 (4nm)",
+        "Camera": "Hasselblad 4th Gen (50MP Sony LYT-808 + 64MP 3x Periscope)",
+        "Battery": "5400 mAh with 100W SUPERVOOC charging",
+        "Cooling": "Dual Cryo-velocity VC cooling (9140 mm\u00b2)"
+      },
+      "badge": "VALUE FLAGSHIP",
+      "highlights": [
+        "0 to 100% full battery charge in just 26 minutes",
+        "Aqua Touch display works flawlessly under rain and wet fingers",
+        "Hasselblad color calibration for portraits"
+      ],
+      "matchScore": 0,
+      "affiliateUrl": "https://www.amazon.in/s?k=OnePlus+12+5G+Silky+Black%2C+16GB+RAM%2C+512GB+Storage&tag=uniquedigi0c6-21"
+    },
+    {
+      "id": "nvidia-rtx-4070-super-gpu",
+      "title": "ZOTAC Gaming GeForce RTX 4070 Super Twin Edge 12GB GDDR6X",
+      "category": "PC Gaming Hardware",
+      "verdictBadge": "Top Pick: 1440p Gaming Sweetspot",
+      "specScore": 94,
+      "verdict": "The definitive graphics card for 1440p ultra ray tracing and DLSS 3.5 Frame Generation, meeting GTA 6 recommended specifications.",
+      "pros": [
+        "Crushes 100+ FPS in Cyberpunk 2077 and GTA V with Path Tracing",
+        "Compact dual-fan form factor fits easily in micro-ATX cabinets"
+      ],
+      "cons": [
+        "Requires dedicated 16-pin 12VHPWR power cable adapter"
+      ],
+      "keywords": [
+        "rtx 4070",
+        "gpu",
+        "graphics card",
+        "gaming pc",
+        "nvidia",
+        "gta 6 pc"
+      ],
+      "price": 58999,
+      "originalPrice": 65000,
+      "discount": "9% OFF",
+      "rating": 4.8,
+      "reviewsCount": "3,410+",
+      "imageUrl": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=85",
+      "asin": "B0CS6Y428P",
+      "specs": {
+        "VRAM": "12GB GDDR6X (192-bit)",
+        "CUDA Cores": "7,168 Cores",
+        "Architecture": "Ada Lovelace (DLSS 3.5 Frame Gen)",
+        "Power Consumption": "220W TGP (Recommended 650W PSU)",
+        "Outputs": "3x DisplayPort 1.4a, 1x HDMI 2.1a"
+      },
+      "badge": "SWEET SPOT 1440P",
+      "highlights": [
+        "Delivers 100+ FPS in Cyberpunk 2077 with full Path Tracing & DLSS 3.5",
+        "Meets GTA 6 Recommended 1440p High specs requirement",
+        "Compact dual-fan form factor fits almost all mATX cases"
+      ],
+      "matchScore": 0,
+      "affiliateUrl": "https://www.amazon.in/s?k=ZOTAC+Gaming+GeForce+RTX+4070+Super+Twin+Edge+12GB+GDDR6X&tag=uniquedigi0c6-21"
+    },
+    {
+      "id": "amd-ryzen-5-7600-processor",
+      "title": "AMD Ryzen 5 7600 Desktop Processor (6 Cores 12 Threads, AM5)",
+      "category": "PC Gaming Hardware",
+      "verdictBadge": "Best Value Gaming CPU",
+      "specScore": 91,
+      "verdict": "The best value gaming CPU in India on the future-proof AM5 socket with zero bottleneck when paired with RTX 4070 series.",
+      "pros": [
+        "Future-proof AM5 socket supported through 2027+ for easy drop-in upgrades",
+        "Low 65W TDP keeps Indian summer temperatures cool under 68\u00b0C"
+      ],
+      "cons": [
+        "Requires DDR5 memory which has a minor price premium over older DDR4"
+      ],
+      "keywords": [
+        "ryzen 5 7600",
+        "cpu",
+        "processor",
+        "gaming pc",
+        "amd"
+      ],
+      "price": 18299,
+      "originalPrice": 22000,
+      "discount": "17% OFF",
+      "rating": 4.7,
+      "reviewsCount": "5,120+",
+      "imageUrl": "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=800&q=85",
+      "asin": "B0BMQJWBDM",
+      "specs": {
+        "Cores/Threads": "6 Cores / 12 Threads",
+        "Socket": "AM5 (Future proof until 2027+)",
+        "Base / Boost Clock": "3.8 GHz / 5.1 GHz Max Boost",
+        "Cache": "38MB Total (32MB L3 Cache)",
+        "TDP": "65W (Low thermal output with bundled Wraith Stealth cooler)"
+      },
+      "badge": "BEST GAMING CPU",
+      "highlights": [
+        "Supports high-speed DDR5 6000MHz memory with AMD EXPO",
+        "PCIe 5.0 lanes for next-generation Gen5 NVMe SSDs",
+        "Low power draw keeps Indian summer temperatures under 68\u00b0C"
+      ],
+      "matchScore": 0,
+      "affiliateUrl": "https://www.amazon.in/s?k=AMD+Ryzen+5+7600+Desktop+Processor+6+Cores+12+Threads%2C+AM5&tag=uniquedigi0c6-21"
+    },
+    {
+      "id": "sony-wh-1000xm5-headphones",
+      "title": "Sony WH-1000XM5 Wireless Noise Cancelling Headphones - Black",
+      "category": "Audio & Electronics",
+      "verdictBadge": "Top Pick: Best Active Noise Cancellation",
+      "specScore": 95,
+      "verdict": "The gold standard for office and travel silence, featuring 8-microphone ANC and ultra-plush synthetic leather earcups.",
+      "pros": [
+        "Unbeatable noise cancellation silences train rumblings and cafe chatter",
+        "30-hour battery life with 3-minute emergency fast charging"
+      ],
+      "cons": [
+        "Earcups do not fold inward like older XM4 model"
+      ],
+      "keywords": [
+        "headphones",
+        "sony",
+        "wh1000xm5",
+        "anc",
+        "noise cancelling",
+        "audio"
+      ],
+      "price": 26990,
+      "originalPrice": 34990,
+      "discount": "23% OFF",
+      "rating": 4.6,
+      "reviewsCount": "19,850+",
+      "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85",
+      "asin": "B09XS7JWHH",
+      "specs": {
+        "Noise Cancellation": "Auto NC Optimizer with 8 microphones & dual V1/QN1 chips",
+        "Battery Life": "30 hours with ANC on (3 min charge = 3 hours playback)",
+        "Audio Codecs": "LDAC, AAC, SBC (Hi-Res Wireless Audio)",
+        "Weight": "250g ultra-lightweight ergonomic synthetic leather",
+        "Connectivity": "Bluetooth 5.2 Multipoint (connects laptop + phone simultaneously)"
+      },
+      "badge": "BEST ANC OVERALL",
+      "highlights": [
+        "Industry-leading active noise cancellation silences train & office chatter",
+        "Speak-to-Chat pauses music automatically when you begin speaking",
+        "Crystal-clear voice calls with 4 beamforming microphones"
+      ],
+      "matchScore": 0,
+      "affiliateUrl": "https://www.amazon.in/s?k=Sony+WH+1000XM5+Wireless+Noise+Cancelling+Headphones+Black&tag=uniquedigi0c6-21"
+    },
+    {
+      "id": "macbook-air-m3-13inch",
+      "title": "Apple 2024 MacBook Air 13-inch (M3 chip, 16GB Unified Memory, 256GB SSD)",
+      "category": "Laptops & Computers",
+      "verdictBadge": "Top Pick: Best Laptop for 85% of Users",
+      "specScore": 97,
+      "verdict": "The best everyday and coding laptop on the planet: 18-hour real battery, silent fanless chassis, and gorgeous 500-nit Liquid Retina screen.",
+      "pros": [
+        "18 hours of true battery life with 100% silent fanless operation",
+        "16GB Unified Memory handles heavy VS Code, Docker, and 40 browser tabs"
+      ],
+      "cons": [
+        "Supports maximum 2 external displays only when laptop lid is shut"
+      ],
+      "keywords": [
+        "macbook",
+        "macbook air",
+        "m3",
+        "laptop",
+        "apple",
+        "coding"
+      ],
+      "price": 104900,
+      "originalPrice": 114900,
+      "discount": "9% OFF",
+      "rating": 4.8,
+      "reviewsCount": "2,840+",
+      "imageUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=85",
+      "asin": "B0CX23NSX1",
+      "specs": {
+        "Processor": "Apple M3 (8-Core CPU, 10-Core GPU, 16-Core Neural Engine)",
+        "Memory": "16GB Unified Memory (zero swap throttling)",
+        "Display": "13.6-inch Liquid Retina Display (500 nits, P3 Wide Color)",
+        "Battery": "Up to 18 hours real-world battery life",
+        "Weight": "1.24 kg fanless ultra-silent design"
+      },
+      "badge": "BEST LAPTOP 2026",
+      "highlights": [
+        "Dual external monitor support with lid closed",
+        "Silent fanless operation with zero heating during code compiling",
+        "1080p FaceTime HD camera with studio-quality three-mic array"
+      ],
+      "matchScore": 0,
+      "affiliateUrl": "https://www.amazon.in/s?k=Apple+2024+MacBook+Air+13+inch+M3+chip%2C+16GB+Unified+Memory%2C+256GB+SSD&tag=uniquedigi0c6-21"
+    }
+  ],
+  "activeAmazonTag": "uniquedigi0c6-21",
+  "lastAffiliateSync": "2026-10-04 23:32:06 IST"
+}

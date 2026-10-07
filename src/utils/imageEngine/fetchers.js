@@ -120,17 +120,22 @@ export async function fetchFromWikimedia(keyword) {
     const res = await fetch(endpoint, { signal: controller.signal });
     clearTimeout(timeout);
 
-    if (res.ok) {
-      const data = await res.json();
-      const pages = data.query?.pages;
-      if (pages) {
-        for (const pid in pages) {
-          const p = pages[pid];
-          if (p?.original?.source || p?.thumbnail?.source) {
-            return p.original?.source || p.thumbnail?.source;
+      if (res.ok) {
+        const data = await res.json();
+        const pages = data.query?.pages;
+        if (pages) {
+          for (const pid in pages) {
+            const p = pages[pid];
+            if (p?.original?.source || p?.thumbnail?.source) {
+              return p.original?.source || p.thumbnail?.source;
+            }
           }
         }
       }
+      // If direct search didn't yield image, continue to fallback
+    } catch (directErr) {
+      // Direct search failed (timeout or other error), continue to fallback
+      console.warn('[fetchFromWikimedia] Direct search failed, trying fallback:', directErr.message);
     }
 
     // 2. Fallback to Wikipedia search generator with more results
@@ -148,6 +153,9 @@ export async function fetchFromWikimedia(keyword) {
           }
         }
       }
+    } catch (searchErr) {
+      // Fallback also failed
+      console.warn('[fetchFromWikimedia] Fallback search failed:', searchErr.message);
     }
     
     // 3. Fallback to opensearch for title suggestions

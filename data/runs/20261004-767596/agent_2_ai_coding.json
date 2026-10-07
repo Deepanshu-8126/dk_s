@@ -1,0 +1,57 @@
+{
+  "niche_id": "agent_2_ai_coding",
+  "run_id": "20261004-767596",
+  "topic": {
+    "title": "Coding Tutorial: What's New in 2026",
+    "source": "citedy",
+    "score": 52.0,
+    "momentum": 0.0,
+    "keywords": [
+      "coding tutorial",
+      "coding tutorial guide",
+      "coding tutorial review",
+      "coding tutorial 2026"
+    ],
+    "evidence": [
+      "https://www.google.com/search?q=coding+tutorial"
+    ],
+    "raw": {
+      "applied_boost": 0.0
+    }
+  },
+  "brief": null,
+  "title": "Coding Tutorial: What's New in 2026",
+  "body_markdown": "",
+  "excerpt": "",
+  "tags": [],
+  "author_name": "Alex Chen",
+  "author_bio": "Alex Chen is a full-stack developer (ex-Google) who writes practical, copy-paste-ready coding tutorials with a focus on AI-assisted development.",
+  "seo": {
+    "score": 0.0,
+    "title_tag": "",
+    "meta_description": "",
+    "slug": "",
+    "focus_keyword": "",
+    "keyword_density": 0.0,
+    "readability": 0.0,
+    "internal_links": [],
+    "schema_jsonld": {},
+    "issues": []
+  },
+  "qc": {
+    "score": 0.0,
+    "passed": false,
+    "checklist": {},
+    "notes": []
+  },
+  "images": [],
+  "approval": "pending",
+  "stage": "trend_detect",
+  "published": [],
+  "created_at": 1791096835.0833602,
+  "meta": {
+    "domain": "ai-code-tutorial.com",
+    "brain": "groq_llama70b",
+    "tone": "Senior Dev, practical, code-first, no fluff, opinionated"
+  }
+}

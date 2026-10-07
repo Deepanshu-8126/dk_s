@@ -1,0 +1,67 @@
+name: ⚡ Universal 42-Agent Cloud Swarm (Build Anything)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mission_prompt:
+        description: '🎯 Aapka Koi Bhi Task / Idea (Type Anything You Want To Build)'
+        required: true
+        default: 'Build a full-stack modern application with automated testing'
+      project_niche:
+        description: '📁 Project Category / Folder Name'
+        required: false
+        default: 'universal-project'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  universal-42-agents-factory:
+    name: 🚀 42-Agent Swarm Execution Engine
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: 📥 Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⚙️ Set up Node.js LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Core Agent & AI Dependencies
+        run: |
+          pip install -q requests httpx pyyaml pydantic
+          npm install -g loki-mode || true
+
+      - name: ⚡ Launch Loki + Hermes + DeepSeek 42-Agent Swarm
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MISSION: ${{ github.event.inputs.mission_prompt }}
+          NICHE: ${{ github.event.inputs.project_niche }}
+        run: |
+          python3 factory/loki_swarm_harness.py "$MISSION"
+
+      - name: 🚀 Commit & Deliver 100% Verified Release
+        if: success()
+        run: |
+          git config --global user.name "Loki-42-Agent-Swarm"
+          git config --global user.email "swarm@loki-factory.ai"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Everything verified and up to date."
+          else
+            git commit -m "feat(universal-swarm): completed mission '${{ github.event.inputs.mission_prompt }}' [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+          fi

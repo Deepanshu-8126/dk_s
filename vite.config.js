@@ -24,4 +24,9 @@ export default defineConfig({
       },
     },
   },
+  define: {
+    'import.meta.env.VITE_DEEPTREND_FEED_URL': JSON.stringify(process.env.DEEPTREND_FEED_URL || ''),
+    'import.meta.env.VITE_PRODUCT_TREND_FEED_URL': JSON.stringify(process.env.PRODUCT_TREND_FEED_URL || ''),
+    'import.meta.env.VITE_VIDEO_RENDERING_SERVICE_URL': JSON.stringify(process.env.VIDEO_RENDERING_SERVICE_URL || ''),
+  },
 });

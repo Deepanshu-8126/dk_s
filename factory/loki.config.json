@@ -1,0 +1,70 @@
+{
+  "name": "loki-42-agents-god-level-cloud-swarm",
+  "version": "2.0.0",
+  "description": "Autonomous 42-Agent Multi-Role Software Factory with Ultimate Multi-Provider Free Inference Pool & Cloud GPU Hub",
+  "settings": {
+    "max_iterations_per_task": 5,
+    "auto_stop_on_pass": true,
+    "verify_build_command": "npm run build",
+    "zero_slop_mode": true,
+    "design_system_lock": true,
+    "cloud_offload": true,
+    "round_robin_failover": true
+  },
+  "providers_pool": [
+    {
+      "id": "cerebras",
+      "name": "Cerebras Ultra-Fast (1800 T/s)",
+      "base_url": "https://api.cerebras.ai/v1",
+      "model": "llama3.1-70b",
+      "api_key_env": "CEREBRAS_API_KEY",
+      "priority": 1
+    },
+    {
+      "id": "groq",
+      "name": "Groq Fast Coder (1000 T/s)",
+      "base_url": "https://api.groq.com/openai/v1",
+      "model": "llama-3.3-70b-versatile",
+      "api_key_env": "GROQ_API_KEY",
+      "priority": 2
+    },
+    {
+      "id": "nvidia",
+      "name": "NVIDIA NIM (Nemotron 120B Flagship)",
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "api_key_env": "NVIDIA_API_KEY",
+      "priority": 3
+    },
+    {
+      "id": "sambanova",
+      "name": "SambaNova Cloud (DeepSeek & Llama)",
+      "base_url": "https://api.sambanova.ai/v1",
+      "model": "Meta-Llama-3.3-70B-Instruct",
+      "api_key_env": "SAMBANOVA_API_KEY",
+      "priority": 4
+    },
+    {
+      "id": "gemini",
+      "name": "Google Gemini 2.0 Flash (1M Context)",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+      "model": "gemini-2.0-flash",
+      "api_key_env": "GEMINI_API_KEY",
+      "priority": 5
+    }
+  ],
+  "cloud_gpu_hub": {
+    "kaggle": {
+      "gpu": "2x NVIDIA T4 (30 hours/week free)",
+      "endpoint_type": "ngrok_tunnel / websocket"
+    },
+    "colab": {
+      "gpu": "1x NVIDIA T4 (Unlimited interactive free)",
+      "endpoint_type": "fastapi_bridge"
+    }
+  },
+  "affiliate": {
+    "amazon_tag": "uniquedigi0c6-21",
+    "enforce_universal_tagging": true
+  }
+}

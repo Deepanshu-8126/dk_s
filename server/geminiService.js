@@ -2,16 +2,38 @@
  * Server-Side Gemini Article Generation Engine
  * Strictly drafts ONLY from supplied, verified source material.
  * Zero hallucination: Every claim must be traceable to provided sources.
+ * Enhanced with better debugging and error reporting.
  */
-
+ 
 export async function generateGroundedDraft({ topic, sources = [], image = null }) {
   const apiKey = (process.env.GEMINI_API_KEY || '').trim();
 
+  // Enhanced API key validation with debugging info
   if (!apiKey) {
     return {
       error: 'GEMINI_API_KEY_MISSING',
-      message: 'GEMINI_API_KEY is not configured in the server environment. Set GEMINI_API_KEY in your Antigravity Secrets or server environment.',
-      setupHelp: 'To configure: Add GEMINI_API_KEY=your_key to your local .env or configure it in Antigravity IDE Secrets.'
+      message: 'GEMINI_API_KEY is not configured in the server environment.',
+      setupHelp: 'To configure: Add GEMINI_API_KEY=your_key to your local .env or configure it in Antigravity IDE Secrets.',
+      debugInfo: {
+        envVarChecked: 'GEMINI_API_KEY',
+        valueProvided: process.env.GEMINI_API_KEY ? '[PRESENT]' : '[MISSING/EMPTY]',
+        recommendation: 'Verify your .env file contains GEMINI_API_KEY=your_actual_key_here'
+      }
+    };
+  }
+
+  // Additional validation: check if it looks like a valid API key format
+  if (!apiKey.startsWith('AIza') && !apiKey.startsWith('ya29.') && apiKey.length < 20) {
+    return {
+      error: 'GEMINI_API_KEY_INVALID_FORMAT',
+      message: 'GEMINI_API_KEY appears to be in an invalid format.',
+      setupHelp: 'Google API keys typically start with \"AIza\" or \"ya29.\" and are longer than 20 characters.',
+      debugInfo: {
+        envVarChecked: 'GEMINI_API_KEY',
+        valueProvided: apiKey.substring(0, 10) + (apiKey.length > 10 ? '...' : ''),
+        length: apiKey.length,
+        recommendation: 'Check that you copied the full API key from Google Cloud Console'
+      }
     };
   }
 
@@ -19,6 +41,11 @@ export async function generateGroundedDraft({ topic, sources = [], image = null 
     return {
       error: 'NEEDS_SOURCES',
       message: 'No reliable source material available for this topic. Every statement must be grounded in verified source excerpts.',
+      debugInfo: {
+        sourcesProvided: sources,
+        sourcesCount: sources?.length || 0,
+        recommendation: 'Add at least one verified source URL or excerpt before generating content'
+      }
     };
   }
 
@@ -44,7 +71,7 @@ Required JSON format:
 {
   "title": "Clean, descriptive editorial headline based on sources",
   "metaDescription": "1-2 sentence summary under 155 characters",
-  "content": "Full article formatted in clean markdown (use ### for subheadings, - for bullet points, **for bold text**). Never use raw HTML. Reference sources naturally.",
+  "content": "Full article formatted in clean markdown (use ### for subheadings, - for bullet points, **for bold text**). Never use raw HTML. Reference sources naturally.
   "citations": [
     {
       "sourceId": "Source ID from provided list",
@@ -79,8 +106,39 @@ Required JSON format:
     if (!res.ok) {
       const errText = await res.text();
       let parsedErr = 'API error';
-      try { parsedErr = JSON.parse(errText).error?.message || errText; } catch {}
-      throw new Error(`Gemini API returned ${res.status}: ${parsedErr}`);
+      let statusCode = res.status;
+      
+      // Try to parse error details for better debugging
+      try {
+        const errJson = JSON.parse(errText);
+        parsedErr = errJson.error?.message || errText;
+        statusCode = errJson.error?.code || res.status;
+      } catch (e) {
+        // Keep original error text if not JSON
+      }
+
+      // Enhanced error handling for common API issues
+      let enhancedMessage = parsedErr;
+      let setupHelp = undefined;
+      
+      if (statusCode === 400) {
+        enhancedMessage = 'Gemini API rejected the request (Bad Request). This often means invalid parameters or content policy violation.';
+        setupHelp = 'Check that your topic and sources comply with Google\'s content policies. Try shortening the topic or reducing source material.';
+      } else if (statusCode === 401) {
+        enhancedMessage = 'Gemini API authentication failed. Your API key may be invalid or expired.';
+        setupHelp = 'Verify your GEMINI_API_KEY is correct and has not been revoked in Google Cloud Console.';
+      } else if (statusCode === 403) {
+        enhancedMessage = 'Gemini API access forbidden. Your API key may lack required permissions.';
+        setupHelp = 'Ensure your API key has the \"Generative Language API\" enabled in Google Cloud Console.';
+      } else if (statusCode === 429) {
+        enhancedMessage = 'Gemini API rate limit exceeded. Too many requests in too short a time.';
+        setupHelp = 'Wait a moment before trying again, or consider upgrading your API quota.';
+      } else if (statusCode >= 500) {
+        enhancedMessage = 'Gemini API server error. The problem is on Google\'s end.';
+        setupHelp = 'Try again in a few minutes. If persistent, check Google Cloud status dashboard.';
+      }
+
+      throw new Error(`Gemini API returned ${statusCode}: ${enhancedMessage}`);
     }
 
     const data = await res.json();
@@ -107,6 +165,11 @@ Required JSON format:
 
     return {
       success: true,
+      debugInfo: {
+        apiResponseStatus: res.status,
+        sourcesUsed: sources.length,
+        wordCountGenerated: wordCount
+      },
       draft: {
         id: `draft-${Date.now()}`,
         slug,
@@ -126,6 +189,7 @@ Required JSON format:
     if (err.name === 'AbortError') {
       throw new Error('Gemini API request timed out (18s limit)');
     }
+    // Re-throw with original error to preserve stack trace
     throw err;
   }
 }

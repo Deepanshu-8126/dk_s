@@ -57,7 +57,7 @@ export async function getRealImage(keyword, niche = 'general', options = {}) {
     }
   }
 
-  // 4. Gaming Niche RAWG
+  // 4. Tier 2: Gaming Niche RAWG (only for gaming niche)
   if (!rawImageUrl && niche === 'gaming') {
     try {
       const rawgApiKey = import.meta.env?.VITE_RAWG_API_KEY;
@@ -70,7 +70,7 @@ export async function getRealImage(keyword, niche = 'general', options = {}) {
     }
   }
 
-  // 5. Tier 2: Wikimedia Commons / Wikipedia API
+  // 5. Tier 3: Wikimedia Commons / Wikipedia API
   if (!rawImageUrl) {
     try {
       rawImageUrl = await fetchFromWikimedia(keyword);
@@ -110,7 +110,27 @@ export async function getRealImage(keyword, niche = 'general', options = {}) {
     console.warn('[ImageFetch] Using placeholder image for:', keyword);
   }
 
-  // 7. Format CDN WebP URL
+  // Log which tier succeeded for debugging/transparency
+  const tierNames = [
+    'Curated Media Registry',
+    'Cloudflare Edge Proxy',
+    'RAWG (Gaming Niche)',
+    'Wikimedia/Wikipedia',
+    'Openverse',
+    'Curated Unsplash Topic (Fallback)'
+  ];
+
+  if (successfulTier !== null) {
+    if (successfulTier < tierNames.length) {
+      console.log(`[ImageFetch] Success via Tier ${successfulTier} (${tierNames[successfulTier]}) for keyword: "${keyword}"`);
+    } else {
+      console.log(`[ImageFetch] Success via unknown tier ${successfulTier} for keyword: "${keyword}"`);
+    }
+  } else {
+    console.log(`[ImageFetch] All tiers failed for keyword: "${keyword}" - returning null`);
+  }
+
+  // 8. Format CDN WebP URL
   let finalUrl = null;
   if (rawImageUrl) {
     try {

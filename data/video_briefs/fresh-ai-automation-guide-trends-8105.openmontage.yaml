@@ -1,0 +1,18 @@
+# OpenMontage brief — auto-generated for SEO repurpose
+# upstream: https://github.com/calesthio/OpenMontage  (free stack: Piper TTS + FFmpeg + Remotion)
+pipeline: animated_explainer
+budget_usd: 0            # free providers only
+tts: piper               # offline, no API key
+topic: 'Fresh Ai Automation Guide & Trends #8105'
+primary_keyword: 'fresh ai automation guide & trends #8105'
+target_platform: youtube
+cta_url: 'https://ai-automate.com/fresh-ai-automation-guide-trends-8105'
+narrator: 'Sarah Mitchell'
+scenes:
+    - beat: 'What is Fresh Ai Automation Guide & Trends #8105?'
+    - beat: 'Why Fresh Ai Automation Guide & Trends #8105 matters right now'
+    - beat: 'Key features and how it works'
+    - beat: 'Step-by-step walkthrough'
+    - beat: 'Pros, cons and pricing'
+    - beat: 'Alternatives and comparison'
+    - beat: 'Verdict and recommendations'
